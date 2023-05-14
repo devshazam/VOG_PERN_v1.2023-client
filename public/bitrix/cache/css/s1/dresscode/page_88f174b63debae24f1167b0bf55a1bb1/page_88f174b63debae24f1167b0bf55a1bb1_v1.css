@@ -1,0 +1,1394 @@
+
+
+/* Start:/local/templates/.default/components/dresscode/catalog/.default/style.css?1626288928172*/
+#middleSlider{
+	margin-bottom: 24px;
+}
+
+.panel-click.selected{
+	pointer-events: none;
+}
+
+.items.productList{
+	margin-bottom: 24px;
+}
+
+.removeFromWishlist{
+	display: none;
+}
+/* End */
+
+
+/* Start:/bitrix/components/dresscode/catalog.tags/templates/.default/style.css?16262889251357*/
+.catalogTagItems{
+	margin-bottom: 12px;
+}
+
+.catalogTagItems .catalogTagItem{
+	vertical-align: middle;
+	display: inline-block;
+	margin-bottom: 12px;
+	margin-right: 12px;
+}
+
+.catalogTagItems .catalogTagItem:last-child{
+	margin-right: 0px;
+}
+
+.catalogTagItems .catalogTagLink{
+	transition: all 0.2s ease-in-out;
+	display: block;
+	background-color: #f4f4f4;
+	text-decoration: none;
+	padding: 6px 12px;
+	border-radius: 4px;
+	color: #000000;
+}
+
+.catalogTagItems .catalogTagLink.selected{
+	font-family: 'robotomedium';
+}
+
+.catalogTagItems .catalogTagLink.selected .reset{
+	vertical-align: middle;
+	display: inline-block;
+	margin-left: 6px;
+	font-size: 13px;
+}
+
+.catalogTagItems .catalogTagLink:hover{
+	background-color: #f0f0f0;
+}
+
+.catalogTagItems .catalogTagLink:active{
+	position: relative;
+	top: 1px;
+}
+
+.catalogTagItems .moreButton .catalogTagLink{
+	background-color: #ffffff;
+	border: 1px solid #e7e8ea;
+}
+
+.catalogTagItems .moreButton .catalogTagLink:hover{
+	background-color: #fbfbfb;
+}
+
+.catalogTagItems .catalogTagItem.showAll{
+	display: inline-block !important;
+}
+
+@media screen and (min-width: 600px){
+	.catalogTagItems .desktopHidden{
+		display: none;
+	}
+}
+
+@media screen and (max-width: 600px){
+	.catalogTagItems .mobileHidden,
+	.catalogTagItems.mobileHidden{
+		display: none;
+	}
+}
+/* End */
+
+
+/* Start:/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/style.css?162628892814799*/
+#smartFilter {
+	margin-top: 24px;
+	border: 1px solid #e7e8ea;
+	position: relative;
+	border-radius: 4px;
+}
+
+#smartFilterForm{
+	padding-bottom: 24px;
+}
+
+#smartFilter a{
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+#smartFilter span.heading{
+    font-family: 'robotobold';
+    text-transform: uppercase;
+	background: #f3f3f3;
+	text-align: center;
+    padding-left: 0px;
+	cursor: pointer;
+	font-size: 14px;
+	color: #000000;
+}
+
+#smartFilter .paramsBox {
+    border-bottom: 1px solid #e7e8ea;
+	padding: 24px;
+	position: relative;
+	clear: both;
+	font-size: 14px;
+}
+
+#smartFilter .paramsBoxTitle {
+	display: inline-block;
+    margin-bottom: 18px;
+	position: relative;
+    font-size: 14px;
+	line-height: 20px;
+}
+
+#smartFilter .paramsBoxTitle span{
+	cursor: pointer;
+}
+
+#smartFilter .propExpander {
+	background: url(/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/images/expander.png) 50% 8px no-repeat transparent;
+	vertical-align: middle;
+	display: inline-block;
+	position: relative;
+	line-height: 16px;
+	cursor: pointer;
+	height: 26px;
+    width: 21px;
+	top: 0px;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+#smartFilter .propExpander.expanded {
+	-moz-transform: rotate(90deg); 
+	-ms-transform: rotate(90deg); 
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg); 
+	transform: rotate(90deg);
+}
+
+#smartFilter .showALL {
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+#smartFilter .showALL:active{
+	position: relative;
+	top: 1px;
+}
+
+#smartFilter .params {
+	transition: all .2s ease;
+	clear: both;
+	opacity: 1;
+}
+
+#smartFilter .params.collapsed {
+	display: block;
+	margin-top: -18px;
+	overflow: hidden;
+	opacity: 0;
+	max-height: 0;
+}
+
+#smartFilter .radio,
+#smartFilter .checkbox  {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#smartFilter .radio li,
+#smartFilter .checkbox li {
+	padding-bottom: 12px;
+}
+
+#smartFilter .radio label,
+#smartFilter .checkbox label{
+	-webkit-transition: all 0.1s;
+	-o-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+#smartFilter .radio .off,
+#smartFilter .checkbox .off {
+	display: none;
+}
+
+#smartFilter .radio li:last-child,
+#smartFilter .checkbox li:last-child {
+	padding-bottom: 0;
+}
+
+#smartFilter .disabled {
+	cursor: default !important;
+	color: #888;
+}
+
+#smartFilter .disabled .wrap {
+	opacity: .6;
+}
+
+#smartFilter .dropdown {
+	background-color: #ffffff;
+    border: 1px solid #e7e8ea;
+	position: relative;
+	line-height: 13px;
+	font-size: 13px;
+	display: block;
+	-webkit-user-select: none; 
+	-moz-user-select: none;     
+	-ms-user-select: none; 
+	border-radius: 4px;
+}
+
+#smartFilter .checkedItem {
+	padding: 12px 30px 12px 8px !important;
+	border-radius: 4px;
+	background: url(/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/images/selectArrow.png) 97% 50% no-repeat transparent;
+	display: block;
+	cursor: pointer;
+}
+
+#smartFilter .dropdown label:before,
+#smartFilter .checkboxList label:before {
+	display: none;
+}
+
+#smartFilter .dropdownList {
+	background-color: #ffffff;
+    border: 1px solid #e7e8ea;
+    position: absolute;
+    list-style: none;
+    margin: 0 -1px;
+    opacity: 0;
+    padding: 0;
+    z-index: 2;
+    top: 47px;
+    right: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+#smartFilter .dropdownList.opened {
+	visibility: visible;
+	opacity: 1;
+}
+
+#smartFilter .pics .dropdownList {
+	top: 52px;
+}
+
+#smartFilter .dropdownList .item {
+	padding: 8px !important;
+	display: block;
+}
+
+#smartFilter .dropdownList .selected,
+#smartFilter .dropdownList .item:hover {
+	cursor: pointer;
+	color: #ffffff;
+}
+
+#smartFilter .dropdown input {
+	top: -44px;
+}
+
+#smartFilter .rangeSlider input[type="text"] {
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	background-color: #ffffff;
+	border-color: #e7e8ea;
+	border-radius: 4px;
+	color: #888888;
+	height: 26px;
+	width: 68px;
+}
+
+#smartFilter .rangeSlider input[type="text"]:nth-of-type(1) {
+	margin-right: 12px;
+}
+
+#smartFilter .rangeSlider label {
+	display: inline-block;
+	margin-right: 12px;
+}
+
+#smartFilter .slider {
+	background: url(/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/images/uiBg.png) 3px 0 repeat-x transparent;
+	margin: 24px auto 0;
+	position: relative;
+	max-width: 300px;
+	height: 54px;
+	width: 100%;
+}
+
+#smartFilter .slider .trans {
+	-webkit-transition: width 0.2s ease-in-out, visibility 0.2s linear;
+	-moz-transition: width 0.2s ease-in-out, visibility 0.2s linear;
+	-o-transition: width 0.2s ease-in-out, visibility 0.2s linear;
+	transition: width 0.2s ease-in-out, visibility 0.2s linear;
+}
+
+#smartFilter .handler {
+	position: absolute;
+    cursor: pointer;
+    height: 14px;
+    width: 100%;
+    top: 19px;
+}
+
+#smartFilter .slider .blackoutLeft,
+#smartFilter .slider .blackoutRight {
+    background: url(/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/images/handler.png) 0 0 repeat-x transparent;
+    position: absolute;
+    height: 14px;
+    width: 0;
+    top: 0;
+}
+
+#smartFilter .slider .blackoutLeft {
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	left: 0px;
+}
+
+#smartFilter .slider .blackoutRight {
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	right: 0px;
+}
+
+#smartFilter .slider ins {
+	background: url(/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/images/motionButton.png) 0 0 no-repeat transparent;
+    position: absolute;
+    cursor: pointer;
+	display: block;
+	height: 34px;
+    width: 34px;
+    z-index: 10;
+    top: -10px;
+}
+
+#smartFilter .slider ins:hover {
+	background-position: -34px 0;
+}
+
+#smartFilter .slider ins:active {
+	background-position: -68px 0;
+}
+
+#smartFilter .slider .left {
+	right: -24px;
+}
+
+#smartFilter .slider .right {
+	left:  -24px;
+}
+
+#smartFilterControls {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: center;
+	padding: 0px 12px;
+	margin: 24px 0 0;
+	overflow: hidden;
+	list-style: none;
+}
+
+#smartFilterControls li {
+	width: 48%;
+	float: left;
+}
+
+#smartFilterControls li:last-child{
+	float: right;
+}
+
+#set_filter, #del_filter {
+	line-height: 46px;
+	font-size: 16px;
+	height: 46px;
+}
+
+#set_filter {
+
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+
+	text-decoration: none;
+	border-radius: 4px;
+	font-size: 13px;
+	display: block;
+	color: #fff;
+}
+
+#set_filter:active{
+	position: relative;
+	top: 1px;
+}
+
+#del_filter {
+
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+
+	background-color: #2b2b2b;
+	text-decoration: none;
+	border-radius: 4px;
+	text-align: center;
+	color: #ffffff;
+	font-size: 13px;
+	display: block;
+	border: none;
+}
+
+#del_filter:hover{
+	background-color: #1e1e1e;
+}
+
+#del_filter:active{
+	position: relative;
+	top: 1px;
+}
+
+#smartFilter .checkboxList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#smartFilter .checkboxList li {
+	padding-bottom: 12px;
+	position: relative;
+	cursor: pointer;
+}
+
+#smartFilter .checkboxList li:last-child {
+	padding-bottom: 0;
+}
+
+#smartFilter .checkboxList label {
+	padding-left: 0 !important;
+	display: block;
+	vertical-align: middle;
+}
+
+#smartFilter .checkboxList.inline li {
+	display: inline-block;
+}
+
+#smartFilter .checkboxList input {
+	top: 10px;
+}
+
+#smartFilter .checkboxList .icon,
+#smartFilter .dropdown .icon {
+	vertical-align: middle;
+	border: 1px solid #e7e8ea;
+	display: inline-block;
+	margin-right: 12px;
+	padding: 6px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-transition: border-color .3s ease;
+	-moz-transition: border-color .3s ease;
+	-o-transition: border-color .3s ease;
+	transition: border-color .3s ease;
+}
+
+#smartFilter .checkboxList .disabled .icon,
+#smartFilter .dropdown .disabled .icon {
+	border-color: #e7e8ea !important;
+}
+
+#smartFilter .checkboxList .icon .wrap,
+#smartFilter .dropdown .icon .wrap {
+	-webkit-background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: contain;
+	vertical-align: middle;
+	display: inline-block;
+	height: 24px;
+	width: 24px;
+}
+
+#smartFilter .dropdown .icon {
+	padding: 4px;
+}
+
+#smartFilter .dropdown .icon .wrap {
+	height: 20px;
+	width: 20px;
+}
+
+#smartFilter .checkboxList .value,
+#smartFilter .dropdown .value {
+	vertical-align: middle;
+	display: inline-block;
+	line-height: 16px;
+}
+
+#smartFilter .filterCalendar {
+	position: relative;
+	display: block;
+	float: left;
+	width: 45%;
+}
+
+#smartFilter .filterCalendar + .filterCalendar {
+	margin-left: 10%;
+}
+
+#smartFilter .filterCalendar .calendar-icon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	z-index: 2;
+	opacity: 0;
+}
+
+#smartFilter .filterCalendar .fakeCalendarIcon {
+	position: absolute;
+	top: 6px;
+	right: 5px;
+	z-index: 1;
+	height: 20px;
+	width: 20px;
+	background-color: #ccc;
+}
+
+#smartFilter .filterCalendar input[type="text"] {
+	background-color: #2d2d2d;
+    border-color: #454545;
+	padding-right: 30px;
+	text-align: center;
+	display: block;
+    height: 32px;
+	width: 100%;
+}
+
+#smartFilter .hint {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	margin-right: 6px;
+	cursor: pointer;
+	height: 18px;
+	width: 18px;
+}
+
+#smartFilter .hint:hover {
+	background-position: -18px 0;
+}
+
+#smartFilter .hintValue {
+	background-color: #ffffff;
+	border: 1px solid #e7e8ea;
+	position: absolute;
+	line-height: 18px;
+	min-width: 250px;
+	margin-top: 8px;
+	font-size: 13px;
+	cursor: default;
+	display: none;
+	padding: 16px;
+	z-index: 3;
+	top: 100%;
+}
+
+#smartFilter .hintValue .heading {
+	line-height: 18px;
+	font-size: 16px;
+	margin: 0 0 8px;
+	color: #FFF;
+	padding: 0;
+}
+
+#smartFilter .hintValue .close {
+	text-decoration: none;
+    position: absolute;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 2;
+    right: 6px;
+    top: 6px;
+}
+
+#smartFilter button, 
+#smartFilter input, 
+#smartFilter select, 
+#smartFilter textarea {
+	box-sizing: border-box;
+}
+
+#smartFilter button:focus, 
+#smartFilter input:focus, 
+#smartFilter select:focus, 
+#smartFilter textarea:focus {
+	outline: none;
+}
+
+#smartFilter button, 
+#smartFilter select {
+	text-transform: none;
+}
+
+#smartFilter button {
+	overflow: visible;
+}
+
+#smartFilter input[type="submit"],
+#smartFilter input[type="reset"],
+#smartFilter button {
+	cursor: pointer;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+#smartFilter input[type="file"] {
+	background: transparent;
+	border: 1px solid transparent;
+}
+
+#smartFilter input[type="text"],
+#smartFilter input[type="password"],
+#smartFilter input[type="email"],
+#smartFilter input[type="tel"],
+#smartFilter input[type="url"],
+#smartFilter textarea,
+#smartFilter select {
+	background: rgba(0,0,0,.5);
+	border: 1px solid #373737;
+	height: 42px;
+	padding: 0px 8px;
+	font-size: 13px;
+	color: #fff;
+	margin: 0;
+}
+
+#smartFilter textarea{
+	padding: 4px 8px;
+}
+
+#smartFilter input[type="text"]:focus,
+#smartFilter input[type="email"]:focus,
+#smartFilter input[type="password"]:focus,
+#smartFilter input[type="tel"]:focus,
+#smartFilter input[type="url"]:focus,
+#smartFilter textarea:focus,
+#smartFilter select:focus {
+	border-color: #cccccc;
+}
+
+#smartFilter input[type="checkbox"] + label,
+#smartFilter input[type="radio"] + label {
+	cursor: pointer;
+}
+
+#smartFilter input[type="checkbox"]:not(checked),
+#smartFilter input[type="radio"]:not(checked) {
+  position: absolute;
+  opacity: 0;
+}
+
+#smartFilter input[type="checkbox"]:not(checked) + label,
+#smartFilter input[type="radio"]:not(checked) + label {
+	position: relative;
+	padding-left: 28px;
+}
+
+#smartFilter input[type="checkbox"] + label:before {
+	background: url(/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/images/checkBox.png) 0 0 no-repeat transparent;
+}
+
+#smartFilter input[type="radio"] + label:before {
+	background: url(/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/images/radio.png) 0 0 no-repeat transparent;
+}
+
+#smartFilter input[type="checkbox"]:not(checked) + label:before,
+#smartFilter input[type="radio"]:not(checked) + label:before {
+	position: absolute;
+	content: " ";
+    height: 17px;
+	width: 17px;
+	left: 0;
+	top: 0px;
+}
+
+#smartFilter input[type="checkbox"]:not(checked) + label:hover:before,
+#smartFilter input[type="radio"]:not(checked) + label:hover:before {
+	background-position: 0 -17px;
+}
+
+#smartFilter input[type="checkbox"]:checked + label:before,
+#smartFilter input[type="radio"]:checked + label:before {
+	background-position: 0 -34px;
+}
+
+#smartFilter input[type="checkbox"]:checked + label:hover:before,
+#smartFilter input[type="radio"]:checked + label:hover:before {
+	background-position: 0 -51px;
+}
+
+#smartFilter input[type="checkbox"]:disabled + label,
+#smartFilter input[type="radio"]:disabled + label {
+	cursor: default;
+}
+
+#smartFilter input[type="checkbox"]:disabled + label:before,
+#smartFilter input[type="radio"]:disabled + label:before {
+	background-position: 0 -68px !important;
+}
+
+#smartFilter textarea {
+	resize: vertical;
+	overflow: auto;
+	height: auto;
+}
+
+#smartFilter button::-moz-focus-inner,
+#smartFilter input::-moz-focus-inner {
+	padding:0;
+	border:0
+}
+
+#smartFilter input::-moz-placeholder,
+#smartFilter textarea::-moz-placeholder {
+	color: #fff;
+}
+
+#smartFilter input:focus::-moz-placeholder,
+#smartFilter textarea:focus::-moz-placeholder {
+    color: transparent;	
+}
+
+#smartFilter input::-ms-input-placeholder,
+#smartFilter textarea::-ms-input-placeholder {
+	color: #fff;
+}
+
+#smartFilter input:focus::-webkit-input-placeholder,
+#smartFilter textarea:focus::-webkit-input-placeholder {
+	color: #fff;
+}
+
+#smartFilter input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+#smartFilter textarea:focus::-webkit-input-placeholder{
+    color: transparent;
+}
+
+#smartFilter input[type="search"] {
+	-webkit-appearance: textfield;
+}
+
+#smartFilter input[type="search"]::-webkit-search-cancel-button,
+#smartFilter input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+#modef {
+    -webkit-transition: top .2s ease;
+    -moz-transition: top .2s ease;
+    -o-transition: top .2s ease;
+    transition: top .2s ease;
+   	position: absolute;
+   	line-height: 38px;
+   	padding-left: 7px;
+   	text-align: center;
+    font-size: 12px;
+   	width: 193px;
+   	height: 38px;
+   	left: 400px;
+    color: #fff;
+    z-index: 99;
+}
+
+#modef .close {
+	background: url(/bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/images/closeModef.png) 0 0 no-repeat;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 8px;
+    margin-top: -2px;
+    height: 12px;
+    width: 12px;
+}
+
+#modef .close:hover {
+	opacity: .8;
+}
+
+
+#modef .close:active {
+	position: relative;
+	top: 1px;
+}
+
+#modef_send {
+	margin-left: 8px;
+	color: #ffffff;
+}
+
+#modef_send:hover {
+	opacity: 0.9;
+}
+
+#modef_num{
+	display: inline-block;
+}
+
+#modef_send{
+	display: inline-block;
+}
+
+#smartFilter .elCount {
+	text-decoration: none;
+}
+
+
+/* End */
+
+
+/* Start:/local/templates/.default/components/dresscode/catalog/.default/bitrix/catalog.section.list/catalog-pictures/style.css?16262889282702*/
+.catalog-section-list-pictures{
+	margin-bottom: 24px;
+	border-left: 1px solid #f3f3f3;
+}
+
+.catalog-section-list-pictures .catalog-section-list-item{
+	position: relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-right: 1px solid #f3f3f3;
+	border-bottom: 1px solid #f3f3f3;
+	line-height: 206px;
+	text-align: center;
+	padding: 0px 24px;
+	height: 206px;
+	float: left;
+	width: 20%;
+}
+
+.catalog-section-list-pictures .catalog-section-list-item:before {
+	content: "";
+	position: absolute;
+	left: 0px;
+	width: 100%;
+	top: -1px;
+	height: 1px;
+	background: #f3f3f3;
+}
+
+.catalog-section-list-pictures .catalog-section-list-item-wp{
+	vertical-align: middle;
+	display: inline-block;
+	line-height: 21px;
+}
+
+.catalog-section-list-pictures .catalog-section-list-link{
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	text-decoration: none;
+	text-align: center;
+	line-height: 44px;
+	overflow: hidden;
+	color: #000000;
+	display: block;
+	height: 44px;
+}
+
+.catalog-section-list-pictures .catalog-section-list-link span{
+	vertical-align: bottom;
+	display: inline-block;
+	line-height: 21px;
+}
+
+.catalog-section-list-pictures .catalog-section-list-link:hover{
+	opacity: 0.7;
+}
+
+.catalog-section-list-pictures .catalog-section-list-link:active{
+	position: relative;
+	top: 1px;
+}
+
+.catalog-section-list-pictures .catalog-section-list-picture{
+	margin-bottom: 12px;
+	text-align: center;
+	line-height: 100px;
+	display: block;
+	height: 100px;
+}
+
+.catalog-section-list-pictures .catalog-section-list-picture:hover img{
+	opacity: 0.8;
+}
+
+.catalog-section-list-pictures .catalog-section-list-picture:active{
+	position: relative;
+	top: 1px;
+}
+
+.catalog-section-list-pictures .catalog-section-list-picture img{
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	vertical-align: middle;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+@media all and (max-width: 1800px){
+
+	.catalog-section-list-pictures .catalog-section-list-item{
+		width: 25%;
+	}
+
+}
+
+@media all and (max-width: 1300px){
+
+	.catalog-section-list-pictures .catalog-section-list-item{
+		width: 33.333333%;
+	}
+
+}
+
+@media all and (max-width: 1024px){
+
+	.catalog-section-list-pictures .catalog-section-list-item{
+		width: 25%;
+	}
+
+}
+
+@media all and (max-width: 1000px){
+
+	.catalog-section-list-pictures .catalog-section-list-item{
+		width: 33.333333%;
+	}
+
+}
+
+@media all and (max-width: 700px){
+
+	.catalog-section-list-pictures .catalog-section-list-item{
+		width: 50%;
+	}
+}
+
+/*@media all and (max-width: 1100px){
+	.catalog-section-list-pictures .catalog-section-list-item{
+		width: 50%;
+	}
+}*/
+/* End */
+
+
+/* Start:/local/templates/.default/components/bitrix/system.pagenavigation/load-more/style.css?166211876871*/
+.load-more-items.btn-simple {
+	display: block;
+	margin: 20px auto;
+}
+/* End */
+
+
+/* Start:/bitrix/components/dresscode/catalog.subscribe/templates/.default/style.css?16262889246881*/
+.catalogSubscribe{
+	margin: 24px 0px;
+}
+
+.catalogSubscribeContainer{
+	background-color: #f9f9f9;
+	border-collapse: separate;
+	box-sizing: border-box;
+	padding: 48px 36px;
+	display: table;
+	width: 100%;
+}
+
+.catalogSubscribeColumn{
+	vertical-align: middle;
+	display: table-cell;
+	width: 50%;
+}
+
+.catalogSubscribeColumn:first-child{
+	padding-right: 12px;
+}
+
+.catalogSubscribeColumn:last-child{
+	padding-left: 12px;
+	text-align: right;
+}
+
+.catalogSubscribeHeading{
+	font-family: "robotobold";
+	font-size: 21px;
+}
+
+.catalogSubscribeDescription{
+	line-height: 21px;
+	margin-top: 12px;
+	font-size: 14px;
+}
+
+.catalogSubscribeRotator{
+	line-height: normal;
+	font-size: 0px;
+}
+
+.catalogSubscribeRotatorContainer{
+	display: inline-block;
+}
+
+.catalogSubscribeRotatorBg{
+	background-color: #ffffff;
+	box-sizing: border-box;
+	table-layout: fixed;
+	padding: 12px 18px;
+	border-radius: 4px;
+	display: table;
+	width: 100%;
+}
+
+.catalogSubscribeRotatorBg.error{
+	border: 1px solid #ff0000;
+}
+
+.catalogSubscribeRotatorBg.success{
+	border: 1px solid #91c409;
+}
+
+.catalogSubscribeLabel,
+.catalogSubscribeField,
+.catalogSubscribeButtons{
+	vertical-align: middle;
+	display: table-cell;
+	font-size: 14px;
+}
+
+.catalogSubscribeLabel{
+	width: 25px;
+}
+
+.catalogSubscribeField input{
+	background-color: transparent;
+	box-sizing: border-box;
+	padding-right: 12px;
+	padding-left: 12px;
+	margin-right: 12px;
+	line-height: 30px;
+	height: 30px;
+	width: 100%;
+	border: 0;
+}
+
+.catalogSubscribeLabel img,
+.catalogSubscribeLabel span{
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.catalogSubscribeButtons{
+	width: 120px;
+}
+
+.catalogSubscribeSend .icon{
+	display: none;
+}
+
+.catalogSubscribePersonal{
+	line-height: normal;
+	text-align: left;
+	margin-top: 18px;
+	font-size: 14px;
+}
+
+.catalogSubscribePersonal input,
+.catalogSubscribePersonal label{
+	vertical-align: middle;
+	display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.catalogSubscribePersonal input{
+	border: 1px solid #e7e8ea;
+	box-sizing: border-box;
+	margin-top: -1px;
+	height: 14px;
+	width: 14px;
+}
+
+.catalogSubscribePersonal input.error + label:before{
+	border: 1px solid #ff0000;
+	border-radius: 4px;
+}
+
+.catalogSubscribePersonal a{
+	border-bottom: 1px dashed #e7e8ea;
+}
+
+.catalogSubscribePersonal input[type="checkbox"] + label{
+	cursor: pointer;
+}
+
+.catalogSubscribePersonal input[type="checkbox"]:not(checked){
+  position: absolute;
+  opacity: 0;
+}
+
+.catalogSubscribePersonal input[type="checkbox"]:not(checked) + label{
+	position: relative;
+	padding-left: 28px;
+}
+
+.catalogSubscribePersonal input[type="checkbox"] + label:before {
+	background: url(/bitrix/components/dresscode/catalog.subscribe/templates/.default/images/checkBox.png) 0 0 no-repeat transparent;
+}
+
+.catalogSubscribePersonal input[type="checkbox"]:not(checked) + label:before{
+	position: absolute;
+	content: " ";
+    height: 17px;
+	width: 17px;
+	left: 0px;
+	top: -1px;
+}
+
+.catalogSubscribePersonal input[type="checkbox"]:not(checked) + label:hover:before{
+	background-position: 0 -17px;
+}
+
+.catalogSubscribePersonal input[type="checkbox"]:checked + label:before{
+	background-position: 0 -34px;
+}
+
+.catalogSubscribePersonal input[type="checkbox"]:checked + label:hover:before{
+	background-position: 0 -51px;
+}
+
+.catalogSubscribePersonal input[type="checkbox"]:disabled + label{
+	cursor: default;
+}
+
+.catalogSubscribePersonal input[type="checkbox"]:disabled + label:before{
+	background-position: 0 -68px !important;
+}
+
+.catalogSubscribeSuccess,
+.catalogSubscribeError{
+    box-shadow: 1px 1px 12px rgba(60, 60, 60, 0.3);
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 24px 24px;
+    text-align: center;
+    min-height: 300px;
+    overflow: hidden;
+    position: fixed;
+    display: none;
+    z-index: 9999;
+    width: 420px;
+    left: 50%;
+    top: 50%;
+}
+
+.catalogSubscribeSuccess.open,
+.catalogSubscribeError.open{
+    display: block;
+}
+
+.catalogSubscribeSuccessHeading,
+.catalogSubscribeErrorHeading{
+    font-family: "robotomedium";
+    line-height: 26px;
+    margin-top: 12px;
+    font-size: 24px;
+}
+
+.catalogSubscribeSuccessText,
+.catalogSubscribeErrorText{
+    line-height: 18px;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.catalogSubscribeSuccessClose,
+.catalogSubscribeErrorClose{
+    margin-top: 12px;
+}
+
+.catalogSubscribeSuccessButton,
+.catalogSubscribeErrorButton{
+    text-decoration: none;
+    line-height: 50px;
+    padding: 0px;
+    height: 50px;
+}
+
+@media screen and (max-width: 1380px){
+
+	.catalogSubscribeHeading{
+		font-size: 18px;
+	}
+
+	.catalogSubscribeContainer{
+		padding: 36px;
+	}
+
+}
+
+
+@media screen and (min-width: 1025px) and (max-width: 1250px){
+
+	.catalogSubscribeColumn{
+		display: block;
+		padding: 0px;
+		width: 100%;
+	}
+
+	.catalogSubscribeColumn:first-child{
+		padding-right: 0px;
+	}
+
+	.catalogSubscribeColumn:last-child{
+		padding-left: 0px;
+		margin-top: 12px;
+	}
+
+}
+
+@media screen and (max-width: 940px){
+
+	.catalogSubscribeColumn{
+		display: block;
+		padding: 0px;
+		width: 100%;
+	}
+
+	.catalogSubscribeColumn:first-child{
+		padding-right: 0px;
+	}
+
+	.catalogSubscribeColumn:last-child{
+		padding-left: 0px;
+		margin-top: 12px;
+	}
+
+}
+
+@media screen and (max-width: 550px){
+	.catalogSubscribeContainer{
+		padding: 24px;
+	}
+}
+
+@media screen and (max-width: 550px){
+	.catalogSubscribeHeading{
+		font-size: 16px;
+	}
+}
+
+@media all and (max-width: 500px){
+
+    .catalog-subscribe-success,
+    .catalog-subscribe-error{
+        width: 380px;
+    }
+
+}
+
+@media all and (max-width: 420px){
+
+    .catalog-subscribe-success,
+    .catalog-subscribe-error{
+        width: 290px;
+    }
+
+}
+
+@media screen and (max-width: 418px){
+
+	.catalogSubscribeField input{
+		padding-left: 0px;
+	}
+
+	.catalogSubscribeLabel{
+		display: none;
+	}
+
+}
+
+@media screen and (max-width: 400px){
+
+	.catalogSubscribeButtons{
+		width: 40px;
+	}
+
+	.catalogSubscribeButtons .catalogSubscribeSend.btn-simple{
+		line-height: 26px;
+		min-width: auto;
+		padding: 0px;
+		width: 40px;
+	}
+
+	.catalogSubscribeSend .text{
+		display: none;
+	}
+
+	.catalogSubscribeSend .icon{
+		background: url(/bitrix/components/dresscode/catalog.subscribe/templates/.default/images/sub_arrow.png) 50% 50% no-repeat transparent;
+		vertical-align: middle;
+		display: inline-block;
+		text-indent: -9999px;
+		font-size: 0px;
+		height: 8px;
+		width: 5px;
+	}
+
+	.catalogSubscribeRotatorBg{
+		padding: 8px 12px;
+	}
+
+}
+
+@media screen and (max-width: 360px){
+	.catalogSubscribeContainer{
+		padding: 12px;
+	}
+}
+/* End */
+/* /local/templates/.default/components/dresscode/catalog/.default/style.css?1626288928172 */
+/* /bitrix/components/dresscode/catalog.tags/templates/.default/style.css?16262889251357 */
+/* /bitrix/templates/dresscode/components/bitrix/catalog.smart.filter/.default/style.css?162628892814799 */
+/* /local/templates/.default/components/dresscode/catalog/.default/bitrix/catalog.section.list/catalog-pictures/style.css?16262889282702 */
+/* /local/templates/.default/components/bitrix/system.pagenavigation/load-more/style.css?166211876871 */
+/* /bitrix/components/dresscode/catalog.subscribe/templates/.default/style.css?16262889246881 */

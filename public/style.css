@@ -1,0 +1,116 @@
+.disabled { 
+    pointer-events: none; 
+    cursor: default; 
+    } 
+
+
+
+
+    @media (max-width: 1024px){
+#left {
+    display: none;
+    /* width: 100%; */
+}
+    }
+
+#bg1{
+    background-image: url('/upload/iblock/53a/53a3e8ed24fc95b0de1bc92ada4f8b08.jpg');
+}
+#bg2{
+    background-image: url('/upload/iblock/a04/a041fd5cf666b83dfebb11fd40906c4e.jpg');
+}
+#bg3{
+    background-image: url('/upload/iblock/b14/b149ba26b09c036fed4225bf6cfe9f00.jpg');
+}
+#bg4{
+    background-image: url('/upload/iblock/b4f/b4fb3135a72d2a778b84be95a781c6f9.jpg');
+}
+#bg5{
+    background-image: url('/upload/iblock/978/978d05cba541f418f6f7a8987b1d3ab8.jpg');
+}
+#bg6{
+    background-image: url('/upload/iblock/9df/9df51b9c7771bbb095cd25aa008fd648.jpg')
+}
+
+
+
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 60px;
+
+}
+.col-6{
+    box-sizing: border-box;
+    width: 50%;
+    border: 5px solid red;
+}
+.col-6 img{
+    margin: 15px;
+    width: 80%;
+}
+
+.mid{
+    /* width: 100%; */
+    margin: 5px;
+    border: 2px solid red;
+    padding: 3px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* max-width: 890px; */
+
+}
+
+.rittu{
+    justify-content: space-around;
+}
+.mid h2{
+    font-size: 38px;
+    display: inline-block;
+
+
+}
+
+
+
+    .search-form__field{
+        box-sizing: border-box;
+        border: 0;
+        background: transparent url("../../img/svg/Oval.svg") no-repeat left 5px;
+        background-size: 20px;
+        padding: 10px 30px 25px 40px;
+        border-bottom: 1px solid #FFFFFF;
+        margin-right: 10px;
+        width: 45%;
+    }
+        .search-form::placeholder{
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            color: #FFFFFF;
+        }
+
+
+
+@media (max-width: 1024px){
+    .wrapper{
+        display: flex;
+    
+    }
+    .col-6{
+        box-sizing: border-box;
+        width: 100%;
+    }
+    
+        }
+
+#subTableColumn-4{
+    text-align: center!important;
+}
+#slider{
+
+    background: url(/file/b04ee18c22eaab05c343c45f3aa63a09.jpg) no-repeat center;
+    background-size: cover;
+}

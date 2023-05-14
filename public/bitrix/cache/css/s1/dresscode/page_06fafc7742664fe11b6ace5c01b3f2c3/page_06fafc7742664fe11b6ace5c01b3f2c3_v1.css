@@ -1,0 +1,341 @@
+
+
+/* Start:/bitrix/templates/dresscode/components/bitrix/menu/personal/style.css?16262889281686*/
+#personalMenu{
+	border-bottom: 1px solid #f1f1f1;
+	margin: 0px 0px 24px 0px;
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+}
+
+#personalMenu li{
+	margin-bottom: 24px;
+	margin-right: 24px;
+	float: left;
+}
+
+#personalMenu li:last-child{
+	margin-right: 0;
+}
+
+#personalMenu li a{
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	/*text-transform: uppercase;*/
+	text-decoration: none;
+	font-size: 16px;
+	color: #000000;
+}
+
+#personalMenu li a:active{
+	position: relative;
+	top: 1px;
+}
+
+#personalMenu li .selected{
+	border-bottom: 1px dashed #000000;
+	font-family: 'robotobold';
+	padding-bottom: 4px;
+}
+
+#personalMenu li .selected:hover{
+	color: #000000;
+}
+
+@media all and (max-width: 1024px) {
+
+	#personalMenuWrap{
+		position: relative;
+		min-width: 100%;
+		overflow: hidden;
+		overflow-x: auto;
+		height: 40px;
+	}
+
+	#personalMenuWrap ul{
+		white-space: nowrap;
+		overflow: auto;
+	}
+
+	#personalMenu li{
+		white-space: nowrap;
+		float: none;
+		display: inline-block;
+		vertical-align: top;
+		margin-right: 18px;
+		margin-bottom: 18px;
+	}
+
+	#personalMenu::after {
+	    background: -moz-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -webkit-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -o-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -ms-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: linear-gradient(to right, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    pointer-events: none;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    height: 100%;
+	    content: '';
+	    width: 35px;
+	}
+
+}
+/* End */
+
+
+/* Start:/bitrix/templates/dresscode/components/bitrix/system.auth.authorize/.default/style.css?16262889282906*/
+.bx-auth .bx-auth-type-select{
+	line-height: normal;
+	margin-bottom: 18px;
+	font-size: 0;
+}
+
+.bx-auth .bx-auth-type-select .bx-auth-type-select-item{
+	vertical-align: middle;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.bx-auth .bx-auth-type-select .bx-auth-type-select-item{
+	margin-left: 12px;
+}
+
+.bx-auth .bx-auth-type-select .bx-auth-type-select-item:first-child{
+	margin-left: 0px;
+}
+
+.bx-auth .bx-auth-type-select .bx-auth-type-select-link{
+	padding-right: 24px;
+	padding-left: 24px;
+	min-width: auto;
+}
+
+.bx-auth .bx-auth-type-item{
+	display: none;
+}
+
+.bx-auth .bx-auth-type-item.active{
+	display: block;
+}
+
+.bx-auth .emailAuth .bx-captcha{
+	margin-top: 0px;
+}
+
+.bx-auth-error-item{
+	margin-top: 12px;
+	display: block;
+}
+
+.bx-auth .dbg_captha{
+	margin-top: 12px;
+}
+
+.bx-auth .dbg_captha .bx-captcha{
+	margin-bottom: 12px;
+	margin-top: 0px;
+}
+
+.bx-auth .sendForm.loading{
+    background-image: url(/bitrix/templates/dresscode/components/bitrix/system.auth.authorize/.default/images/spin.svg);
+    color: rgba(255, 255, 255, 0.6);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    -webkit-transition: none;
+    pointer-events: none;
+    -o-transition: none;
+    transition: none;
+    opacity: 0.65;
+}
+
+.bx-auth .bx-title{
+	font-size: 14px;
+}
+
+.bx-auth .bx-auth-error-item{
+    text-transform: lowercase;
+    border: 1px solid #f00;
+    background-color: #fff;
+    margin-bottom: 0px;
+    line-height: 21px;
+    margin-top: 12px;
+    max-width: 100%;
+    padding: 12px;
+    width: auto;
+}
+
+.bx-auth .bx-auth-error-item:first-letter{
+	text-transform: capitalize;
+}
+
+.bx-auth input:-webkit-autofill,
+.bx-auth input:-webkit-autofill:hover,
+.bx-auth input:-webkit-autofill:focus,
+.bx-auth input:-webkit-autofill,
+.bx-auth textarea:-webkit-autofill,
+.bx-auth textarea:-webkit-autofill:hover,
+.bx-auth textarea:-webkit-autofill:focus,
+.bx-auth select:-webkit-autofill,
+.bx-auth select:-webkit-autofill:hover,
+.bx-auth select:-webkit-autofill:focus{
+	background-color: #f3f3f3 !important;
+	-webkit-box-shadow: 0 0 0 30px #f3f3f3 inset !important;
+}
+
+@media screen and (max-width: 750px){
+
+	#main .bx-auth .leftContainer{
+		margin-right: 0px;
+		float: none;
+	}
+
+	#main .bx-auth input[type="text"],
+	#main .bx-auth input[type="password"]{
+		width: 100%;
+	}
+
+}
+
+@media screen and (max-width: 600px){
+
+	#main h1{
+		margin-bottom: 12px;
+	}
+
+	#authMenu{
+		display: none;
+	}
+
+}
+
+@media screen and (max-width: 450px){
+
+	#main .bx-auth .submit, .popup-window .btn{
+		min-width: 170px;
+		width: auto;
+	}
+
+}
+
+@media screen and (max-width: 400px){
+
+	#main .bx-auth .bx-auth-type-select .bx-auth-type-select-link {
+	    padding-right: 16px;
+	    padding-left: 16px;
+	}
+
+	#main .bx-auth .submit, .popup-window .btn{
+		box-sizing: border-box;
+		padding-right: 12px;
+		padding-left: 12px;
+		min-width: 120px;
+		width: auto;
+	}
+
+}
+
+/* End */
+
+
+/* Start:/bitrix/components/bitrix/socserv.auth.form/templates/flat/style.min.css?16291383932638*/
+.bx-authform-social-popup{display:none;background:#fff;width:auto;padding:15px;font-size:14px;white-space:nowrap}.bx-authform-social-popup form{margin-bottom:0}.bx-authform-social-popup input[type="text"]{display:inline-block;max-width:150px;font-size:18px;height:30px;margin:0;padding:0 4px;border:1px solid #ccd5db;border-radius:2px;background:#f8fafc;outline:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.bx-authform-social ul{padding:5px 0 12px;margin:0 0 15px;display:block}.bx-authform-social ul li{position:relative;display:inline-block;width:35px;height:35px;margin-right:5px}.bx-authform-social ul li .bx-authform-social-icon{display:block;width:35px;height:35px;	background-image: url(/bitrix/components/bitrix/socserv.auth.form/templates/flat/images/sprite.png); background-repeat:no-repeat;border-bottom:0}.bx-authform-social ul li .bx-authform-social-icon:hover{opacity:.9}.bx-authform-social ul li .bx-authform-social-icon.box{background-position:0 0}.bx-authform-social ul li .bx-authform-social-icon.dropbox{background-position:-44px 0}.bx-authform-social ul li .bx-authform-social-icon.bitrix24{background-position:-88px 0}.bx-authform-social ul li .bx-authform-social-icon.yandex{background-position:-132px 0}.bx-authform-social ul li .bx-authform-social-icon.openid{background-position:-176px 0}.bx-authform-social ul li .bx-authform-social-icon.odnoklassniki{background-position:-220px 0}.bx-authform-social ul li .bx-authform-social-icon.google{background-position:-264px 0}.bx-authform-social ul li .bx-authform-social-icon.mymailru{background-position:-308px 0}.bx-authform-social ul li .bx-authform-social-icon.mailru2{background-position:-440px 0}.bx-authform-social ul li .bx-authform-social-icon.livejournal{background-position:-352px 0}.bx-authform-social ul li .bx-authform-social-icon.openid-mail-ru{background-position:-440px 0}.bx-authform-social ul li .bx-authform-social-icon.liveid{background-position:-484px 0}.bx-authform-social ul li .bx-authform-social-icon.liveinternet{background-position:-528px 0}.bx-authform-social ul li .bx-authform-social-icon.blogger{background-position:-572px 0}.bx-authform-social ul li .bx-authform-social-icon.vkontakte{background-position:-616px 0}.bx-authform-social ul li .bx-authform-social-icon.twitter{background-position:-660px 0}.bx-authform-social ul li .bx-authform-social-icon.facebook{background-position:-704px 0}.bx-authform-social ul li .bx-authform-social-icon.google-plus{background-position:-748px 0}.bx-authform-social ul li .bx-authform-social-icon.office365{background-position:-792px 0}.bx-authform-social ul li .bx-authform-social-icon.zoom{background-position:-836px 0}
+/* End */
+
+
+/* Start:/bitrix/templates/dresscode/components/bitrix/sale.personal.profile.list/.default/style.css?16262889281803*/
+.sale-personal-profile-list{
+	overflow: auto;
+}
+
+/*Table*/
+table.sale-personal-profile-list-container
+{
+	border-collapse: collapse;
+	font-size: 14px;
+	width: 100%;
+}
+
+/*Table head*/
+table.sale-personal-profile-list-container th{
+	font-family: "robotomedium";
+	background-color: #f7f7f7;
+	border: 1px solid #e4e4e4;
+	font-weight: normal;
+	padding: 12px 24px;
+}
+
+/* Table cells and heads*/
+table.sale-personal-profile-list-container td{
+	border: 1px solid #e4e4e4;
+	vertical-align: middle;
+	padding: 12px 24px;
+	text-align: center;
+	color: #333333;
+}
+
+table.sale-personal-profile-list-container tr:nth-child(odd) td{
+	background-color: #fbfbfb;
+}
+
+table.sale-personal-profile-list-container td a{
+	color: #000000;
+}
+
+table.sale-personal-profile-list-container td a:hover{
+	opacity: 0.7;
+}
+
+table.sale-personal-profile-list-container td a:active{
+	position: relative;
+	top: 1px;
+}
+
+.sale-personal-profile-list-arrow-up,
+.sale-personal-profile-list-arrow-down {
+	color: #d8d8d8;
+	-webkit-transition: color .3s ease;
+	-moz-transition: color .3s ease;
+	transition: color .3s ease;
+}
+
+.sale-personal-profile-list-arrow-up:hover,
+.sale-personal-profile-list-arrow-down:hover {
+	color: #337ab7;
+}
+
+.sale-personal-profile-list-actions {
+	min-width: 120px;
+}
+
+.sale-personal-profile-list-close-button {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	font-size: 0;
+	background: url(/bitrix/templates/dresscode/components/bitrix/sale.personal.profile.list/.default/images/sale-personal-profile-list-close.svg) 4px 4px no-repeat;
+	-webkit-transition: opacity .3s ease;
+	-moz-transition: opacity .3s ease;
+	transition: opacity .3s ease;
+	opacity: 1;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.sale-personal-profile-list-close-button:hover {
+	opacity: .5;
+}
+
+.sale-personal-profile-list-change-button {
+	transition: border-bottom .3s ease;
+	vertical-align: middle;
+	display: inline-block;
+}
+/* End */
+/* /bitrix/templates/dresscode/components/bitrix/menu/personal/style.css?16262889281686 */
+/* /bitrix/templates/dresscode/components/bitrix/system.auth.authorize/.default/style.css?16262889282906 */
+/* /bitrix/components/bitrix/socserv.auth.form/templates/flat/style.min.css?16291383932638 */
+/* /bitrix/templates/dresscode/components/bitrix/sale.personal.profile.list/.default/style.css?16262889281803 */

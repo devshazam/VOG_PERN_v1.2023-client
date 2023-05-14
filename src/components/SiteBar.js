@@ -4,13 +4,13 @@ import React from 'react';
     const SiteBar = () => { 
 
     return ( <>
-<div id="left">
-						<a href="javascript:void(0)" className="heading orange disabled" id="catalogMenuHeading">Каталог
+            <div id="left">
+						<a href="#" className="heading orange disabled" id="catalogMenuHeading">Каталог
 							товаров<ins></ins></a>
 						<div className="collapsed">
 							<ul id="leftMenu">
-								<li className="eChild allow-dropdown nested">
-									<a href="#" className="menuLink">
+								 <li className="eChild allow-dropdown nested">
+									<a href="/vizitki" className="menuLink">
 										<span className="tb">
 											<span className="pc">
 												<img src="/upload/iblock/dfa/dfab5316825d01f70a61ea2696f327c1.png"
@@ -24,7 +24,7 @@ import React from 'react';
 										</span>
 									</a>
 								</li>
-								<li className="eChild allow-dropdown nested">
+								<li  key={3} className="eChild allow-dropdown nested">
 									<a href="/catalog/pereplet-dokumentov/" className="menuLink">
 										<span className="tb">
 											<span className="pc">
@@ -40,13 +40,13 @@ import React from 'react';
 									</a>
 								
 								</li>
-								<li className="eChild allow-dropdown nested">
+								<li key={2} className="eChild allow-dropdown nested">
 									<a href="/catalog/srochnaya-poligrafiya/" className="menuLink">
 										<span className="tb">
 											<span className="pc">
 												<img src="/upload/iblock/2c2/2c283c717caf0f4a7e27d3564f9e520a.png"
-													alt="Срочная полиграфия" title="Срочная полиграфия">
-												<span className="back"></span></img>
+													alt="Срочная полиграфия" title="Срочная полиграфия"></img>
+												<span className="back"></span>
 											</span>
 											<span className="tx">
 												<span className="link-title">Листовки</span>

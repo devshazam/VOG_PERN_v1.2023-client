@@ -1,0 +1,265 @@
+
+
+/* Start:/bitrix/templates/dresscode/components/bitrix/menu/personal/style.css?16262889281686*/
+#personalMenu{
+	border-bottom: 1px solid #f1f1f1;
+	margin: 0px 0px 24px 0px;
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+}
+
+#personalMenu li{
+	margin-bottom: 24px;
+	margin-right: 24px;
+	float: left;
+}
+
+#personalMenu li:last-child{
+	margin-right: 0;
+}
+
+#personalMenu li a{
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	/*text-transform: uppercase;*/
+	text-decoration: none;
+	font-size: 16px;
+	color: #000000;
+}
+
+#personalMenu li a:active{
+	position: relative;
+	top: 1px;
+}
+
+#personalMenu li .selected{
+	border-bottom: 1px dashed #000000;
+	font-family: 'robotobold';
+	padding-bottom: 4px;
+}
+
+#personalMenu li .selected:hover{
+	color: #000000;
+}
+
+@media all and (max-width: 1024px) {
+
+	#personalMenuWrap{
+		position: relative;
+		min-width: 100%;
+		overflow: hidden;
+		overflow-x: auto;
+		height: 40px;
+	}
+
+	#personalMenuWrap ul{
+		white-space: nowrap;
+		overflow: auto;
+	}
+
+	#personalMenu li{
+		white-space: nowrap;
+		float: none;
+		display: inline-block;
+		vertical-align: top;
+		margin-right: 18px;
+		margin-bottom: 18px;
+	}
+
+	#personalMenu::after {
+	    background: -moz-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -webkit-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -o-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -ms-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: linear-gradient(to right, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    pointer-events: none;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    height: 100%;
+	    content: '';
+	    width: 35px;
+	}
+
+}
+/* End */
+
+
+/* Start:/bitrix/templates/dresscode/components/bitrix/system.pagenavigation/round/style.css?16262889282357*/
+.bx-pagination {
+	margin: 10px 0;
+}
+.bx-pagination .bx-pagination-container {
+	text-align: center;
+	position: relative;
+}
+.bx-pagination .bx-pagination-container ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: inline-block;
+}
+.bx-pagination .bx-pagination-container ul li {
+	display: inline-block;
+	margin: 0 2px 15px 2px;
+}
+.bx-pagination .bx-pagination-container ul li span{
+    -webkit-transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+       -moz-transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+    	-ms-transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+    	 -o-transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+    		transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+	background: #eff0f1;
+	padding: 0 8px;
+	display: block;
+	height: 32px;
+	min-width: 32px;
+	line-height: 32px;
+	color: #444;
+	font-size: 14px;
+	border-radius: 16px;
+	vertical-align: middle;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.bx-pagination .bx-pagination-container ul li a {
+	text-decoration: none;
+	display: block;
+	border-radius: 16px;
+	display: block;
+	height: 32px;
+	min-width: 32px;
+	line-height: 32px;
+	color: #444;
+	vertical-align: middle;
+}
+.bx-pagination .bx-pagination-container ul li a:hover span{
+	background: #DADADA;
+}
+.bx-pagination .bx-pagination-container ul li.bx-pag-all a span,
+.bx-pagination .bx-pagination-container ul li.bx-pag-prev a span,
+.bx-pagination .bx-pagination-container ul li.bx-pag-next a span {
+	background: #fff;
+	border: 2px solid #eff0f1;
+	line-height: 28px;
+	padding: 0 18px;
+	color: #444;
+}
+.bx-pagination .bx-pagination-container ul li.bx-pag-all span,
+.bx-pagination .bx-pagination-container ul li.bx-pag-prev span,
+.bx-pagination .bx-pagination-container ul li.bx-pag-next span{
+	color: #aab1b4;
+	background: #fff;
+	border: 2px solid #eff0f1;
+	line-height: 28px;
+	padding: 0 18px;
+}
+.bx-pagination .bx-pagination-container ul li.bx-pag-all a:hover span,
+.bx-pagination .bx-pagination-container ul li.bx-pag-prev a:hover span,
+.bx-pagination .bx-pagination-container ul li.bx-pag-next a:hover span {
+	background: #fff;
+	border-color: #DADADA;
+	color: #000;
+}
+
+/* End */
+
+
+/* Start:/bitrix/templates/dresscode/components/bitrix/news/blog/bitrix/news.list/.default/style.css?16262889285738*/
+	.tiles-list { max-width: none; margin: -12px; font-size: 0; }
+	.tiles-list .tile-wrap { display: inline-block; width: 20%; padding: 12px; vertical-align: top; -webkit-box-sizing: border-box; box-sizing: border-box; color: #000; }
+	.tiles-list .tile { height: 396px; border: 1px solid #e7e8ea; }
+	.tiles-list .tb { height: 100%; }
+	.tiles-list .tc { vertical-align: top; }
+	.tiles-list .tile.no-image .tc { vertical-align: middle; }
+	.tiles-list .tile.no-image .h3 { max-height: 60px; }
+	.tiles-list .tile.center-image .image { background-size: contain; }
+	.tiles-list .image-wrap { position: relative; display: block; height: 200px; overflow: hidden; }
+	.tiles-list .image { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; background-position: center center; background-size: cover; background-repeat: no-repeat; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out; }
+	.tiles-list .image-wrap:hover .image { -webkit-transform: scale(1.02); transform: scale(1.02); }
+	.tiles-list .tile-text { -webkit-box-sizing: border-box; box-sizing: border-box; padding: 12px 18px 18px; }
+	.tiles-list .tile-time { font-family: "robotomedium"; font-size: 13px; color: #888888; }
+	.tiles-list .tile-time:after { content: ""; display: block; width: 50px; height: 1px; margin: 8px 0 12px; background: #cccccc; }
+	.tiles-list .tile-date { margin-bottom: 6px; font-size: 13px; color: #cccccc; }
+	.tiles-list .h3 { max-height: 40px; overflow: hidden; margin-bottom: 6px; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; }
+	.tiles-list .tile-descr { max-height: 45px; overflow: hidden; font-size: 13px; line-height: 15px; }
+	.tiles-list .btn-simple { margin-top: 8px; }
+	.tiles-list .tile-wrap:first-child { width: 40%; color: #fff; }
+	.tiles-list .tile-wrap:first-child .tb { position: relative; }
+	.tiles-list .tile-wrap:first-child .image-wrap { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+	.tiles-list .tile-wrap:first-child .h3 { font-size: 21px; line-height: 25px; max-height: 50px; color: #fff; }
+	.tiles-list .tile-wrap:first-child .tile-text { position: absolute; z-index: 10; bottom: 0; left: 0; width: 100%; padding: 18px; background: rgba(0,0,0, 0.7); -webkit-box-shadow: 0 0 16px 0 rgba(255,255,255, 0.3); box-shadow: 0 0 16px 0 rgba(255,255,255, 0.3); }
+
+	@media screen and (max-width: 1700px){
+		.tiles-list { margin: -6px; }
+		.tiles-list .tile-wrap { padding: 6px; }
+		.tiles-list .tile-text { padding: 12px; }
+	}
+
+
+	@media screen and (max-width: 1600px){
+		.tiles-list .tile { height: 330px; }
+		.tiles-list .tile-wrap:first-child { width: 50%; }
+		.tiles-list .tile-wrap { width: 25%; }
+		.tiles-list .tile-text { padding: 6px 12px; }
+		.tiles-list .image-wrap { height: 160px; }
+		.tiles-list .tile-time:after { margin: 3px 0 6px; }
+		.tiles-list .h3 { font-size: 14px; line-height: 18px; max-height: 36px; }
+		.tiles-list .tile.no-image .h3 { max-height: 51px; }
+		.tiles-list .tile-wrap:first-child .h3 { max-height: 44px; font-size: 18px; line-height: 22px; }
+	}
+
+	@media screen and (max-width: 1300px){
+		.tiles-list .tile-wrap { width: 33.333%; }
+		.tiles-list .tile-wrap:first-child { width: 66.666%; }
+	}
+
+	@media screen and (max-width: 1024px){
+		.tiles-list .tile-wrap { width: 25%; }
+		.tiles-list .tile-wrap:first-child { width: 50%; }
+	}
+
+	@media screen and (max-width: 950px){
+		.tiles-list .tile-wrap { width: 33.333%; }
+		.tiles-list .tile-wrap:first-child { width: 66.666%; }
+	}
+
+	@media screen and (max-width: 800px){
+		.tiles-list .tile-wrap:nth-child(n) { width: 100%; }
+		.tiles-list .tile { height: auto; padding: 18px; }
+		.tiles-list .tb {  }
+		.tiles-list .tc { display: table-row; }
+		.tiles-list .tile-wrap:first-child .image-wrap { position: relative; left: auto; top: auto; display: table-cell; vertical-align: middle; width: 40%; height: auto; padding-right: 4%; }
+		.tiles-list .image-wrap { display: table-cell; vertical-align: middle; width: 40%; height: auto; padding-right: 4%; }
+		.tiles-list .image { position: relative; left: auto; top: auto; height: 140px; }
+		.tiles-list .tile-date { margin-bottom: 3px; }
+		.tiles-list .tile-descr { max-height: 30px; }
+		.tiles-list .tile-wrap:first-child .tile-text { position: relative; left: auto; bottom: auto; width: auto; background: no-repeat; -webkit-box-shadow: none; box-shadow: none; text-align: left; color: #000; }
+		.tiles-list .tile-wrap:nth-child(n) .tile-text { display: table-cell; vertical-align: middle; padding: 0; }
+		.tiles-list .tile-wrap:first-child .btn-simple { display: inline-block; }
+		.tiles-list .tile-wrap:first-child .tile-time { display: block; }
+		.tiles-list .tile-wrap:first-child .tile-date { margin: 0 0 6px 0; }
+		.tiles-list .tile-wrap:nth-child(n) .h3 { font-size: 16px; line-height: 20px; max-height: 40px; color: #000; }
+	}
+
+	@media screen and (max-width: 480px){
+		.tiles-list .tile { padding: 12px; }
+		.tiles-list .tile-wrap:nth-child(n) .image-wrap { display: none; }
+	}
+	
+	.blog-list .tile-wrap:first-child .tile-text { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+	.blog-list .tile-wrap:first-child .tile-date { -webkit-box-ordinal-group: 2; -ms-flex-order: 1; order: 1; margin: 6px 0 0 24px; }
+	.blog-list .tile-wrap:first-child .h3 { width: 100%; }
+	.blog-list .tile-wrap:first-child .tile-descr { width: 100%; }
+
+	@media screen and (max-width: 800px){
+		.blog-list .tile-wrap:first-child .tile-text { display: block; }
+		.blog-list .tile-wrap:first-child .tile-date  { margin: 0 0 3px; }
+	}
+/* End */
+/* /bitrix/templates/dresscode/components/bitrix/menu/personal/style.css?16262889281686 */
+/* /bitrix/templates/dresscode/components/bitrix/system.pagenavigation/round/style.css?16262889282357 */
+/* /bitrix/templates/dresscode/components/bitrix/news/blog/bitrix/news.list/.default/style.css?16262889285738 */

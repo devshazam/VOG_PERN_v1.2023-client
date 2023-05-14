@@ -6,10 +6,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from './Layout';
 
-import Contacts from "./pages/Contacts";
+// import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
 
 import Empty from "./pages/Empty";
+import Vizitki from "./pages/Vizitki";
+
 
 const App = () => {
 
@@ -22,7 +24,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               {/* <Route path="product/:id" element={<ProductView />} /> */}
-              <Route path="contacts" element={<Contacts />} />
+              <Route path="/vizitki" element={<Vizitki />} />
               <Route path="*" element={<Empty />} />
             </Route>
       </Routes>

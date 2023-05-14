@@ -1,0 +1,215 @@
+
+
+/* Start:/local/templates/.default/components/dresscode/catalog/services/style.css?16262889281327*/
+.banner-elem.fullscreen-banner .image{
+	vertical-align: bottom;
+}
+@media screen and (max-width: 800px){
+	.banner-elem.fullscreen-banner .btn-simple {
+		padding: 13px 8px 11px;
+	}
+
+	.banner-elem.fullscreen-banner {
+		height: 250px;
+	}
+	
+	.banner-elem.fullscreen-banner .image img{
+		max-height: 250px;
+	}
+
+}
+
+@media screen and (max-width: 700px){
+	.banner-elem.fullscreen-banner{
+		height: auto;
+		margin-bottom: 18px;
+		border: 1px solid #e7e8ea;
+	}
+
+	.banner-elem.fullscreen-banner .descr{
+		max-height: 80px;
+	}
+
+	.banner-elem.fullscreen-banner .text-wrap{
+		display: block;
+		margin-bottom: 6px;
+		padding: 12px 12px 0;
+	}
+
+	.banner-elem.fullscreen-banner h1{
+		margin-bottom: 8px;
+		font-size: 18px;
+	}
+
+	.banner-elem.fullscreen-banner .image{
+		display: block;
+		width: 100%;
+		padding: 0;
+	}
+	.banner-elem.fullscreen-banner .image img{
+		max-height: 250px;
+		margin: 0 auto;
+	}
+	.banner-elem.fullscreen-banner.banner-no-bg .image img{
+		max-height: none;
+	}
+}
+
+@media screen and (max-width: 500px){
+	.banner-elem.fullscreen-banner .descr{
+		display: block;
+	}
+
+	.banner-elem.fullscreen-banner h1{
+		font-size: 16px;
+		margin-bottom: 8px;
+		line-height: 20px;
+		max-height: 60px;
+	}
+
+	.banner-elem.fullscreen-banner .image img{
+		max-height: 200px;
+	}
+}
+/* End */
+
+
+/* Start:/bitrix/templates/dresscode/components/bitrix/menu/personal/style.css?16262889281686*/
+#personalMenu{
+	border-bottom: 1px solid #f1f1f1;
+	margin: 0px 0px 24px 0px;
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+}
+
+#personalMenu li{
+	margin-bottom: 24px;
+	margin-right: 24px;
+	float: left;
+}
+
+#personalMenu li:last-child{
+	margin-right: 0;
+}
+
+#personalMenu li a{
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	/*text-transform: uppercase;*/
+	text-decoration: none;
+	font-size: 16px;
+	color: #000000;
+}
+
+#personalMenu li a:active{
+	position: relative;
+	top: 1px;
+}
+
+#personalMenu li .selected{
+	border-bottom: 1px dashed #000000;
+	font-family: 'robotobold';
+	padding-bottom: 4px;
+}
+
+#personalMenu li .selected:hover{
+	color: #000000;
+}
+
+@media all and (max-width: 1024px) {
+
+	#personalMenuWrap{
+		position: relative;
+		min-width: 100%;
+		overflow: hidden;
+		overflow-x: auto;
+		height: 40px;
+	}
+
+	#personalMenuWrap ul{
+		white-space: nowrap;
+		overflow: auto;
+	}
+
+	#personalMenu li{
+		white-space: nowrap;
+		float: none;
+		display: inline-block;
+		vertical-align: top;
+		margin-right: 18px;
+		margin-bottom: 18px;
+	}
+
+	#personalMenu::after {
+	    background: -moz-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -webkit-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -o-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: -ms-linear-gradient(left, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    background: linear-gradient(to right, rgba(255,255, 255, 0.2), #ffffff 100%);
+	    pointer-events: none;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    height: 100%;
+	    content: '';
+	    width: 35px;
+	}
+
+}
+/* End */
+
+
+/* Start:/local/templates/.default/components/dresscode/catalog/services/bitrix/catalog.section.list/.default/style.css?1626288928939*/
+@media screen and (max-width: 1300px){
+	.services-banners-list .banner-elem .h2{
+		font-size: 18px;
+		max-height: 44px;
+		line-height: 22px;
+	}
+
+	.services-banners-list .banner-elem .image{
+		width: 55%;
+	}
+
+	.services-banners-list .banner-elem{
+		height: 190px;
+	}
+	.services-banners-list .banner-elem .image img{
+		max-height: 190px;
+	}
+}
+
+@media screen and (max-width: 1024px){
+	.services-banners-list .banner-elem{
+		height: 160px;
+	}
+	.services-banners-list .banner-elem .image img{
+		max-height: 160px;
+	}
+}
+
+@media screen and (max-width: 800px){
+	.services-banners-list .banner-elem .image{
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 400px){
+	.services-banners-list .banner-elem{
+		height: 150px;
+	}
+	.services-banners-list .banner-elem .image img{
+		max-height: 150px;
+	}
+	.services-banners-list .banner-elem .h2{
+		font-size: 16px;
+		line-height: 20px;
+		max-height: 40px;
+	}
+}
+/* End */
+/* /local/templates/.default/components/dresscode/catalog/services/style.css?16262889281327 */
+/* /bitrix/templates/dresscode/components/bitrix/menu/personal/style.css?16262889281686 */
+/* /local/templates/.default/components/dresscode/catalog/services/bitrix/catalog.section.list/.default/style.css?1626288928939 */

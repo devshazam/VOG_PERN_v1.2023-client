@@ -22,7 +22,7 @@ export default function  Layout(){
 				<div className="compliter">
 
         <SiteBar />
-                    {/* <Outlet /> */}
+                    <Outlet />
 
         </div>
 			</div>

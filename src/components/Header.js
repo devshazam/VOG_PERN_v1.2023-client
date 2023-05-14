@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Header = () => { 
 
@@ -9,7 +9,7 @@ const Header = () => {
     return (
       <>
 
-<div id="headerLine2" className="color_theme">
+{/* <div id="headerLine2" className="color_theme">
 			<div className="limiter">
 				<div className="headerLineContainer">
 					<div className="headerLineColumn">
@@ -87,14 +87,14 @@ const Header = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> */}
 		<div id="subHeader5">
 			<div className="limiter">
 				<div className="subTable">
 					<div className="subTableColumn">
 						<div id="logo">
 							<img alt="Копировальный центр в Москве"
-								src="/local/templates/dresscode/images/logo.png?v=1626288927?v="></img>
+								src="/file/logo.png"></img>
 						</div>
 					</div>
 					<div className="subTableColumn">
@@ -110,8 +110,8 @@ const Header = () => {
 					<div className="subTableColumn">
 						
 					</div>
-					<div className="subTableColumn">
-					
+					<div className="subTableColumn" id="subTableColumn-4">
+					<span className="heading"><a href='#'>Контакты</a></span>
 					</div>
 				</div>
 			</div>
