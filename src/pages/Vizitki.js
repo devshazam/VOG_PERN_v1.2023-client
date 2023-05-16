@@ -1,21 +1,157 @@
 import React, {useState, useEffect} from 'react';
 
 
-const Vizitki = () => {
-    const [value, setValue] = useState(1000);
-    const [side, setSide] = useState(1);
-    const [num, setNum] = useState(1);
-    const price = 1000;
 
+
+
+
+
+const Vizitki = () => {
+
+    const vizit = {
+        one: {
+            one: {
+                one: {
+                    one: 288,
+                    two: 560,
+                    tre: 1000,
+                    for: 1900
+                    
+                },
+                two: {
+                    
+                    one: 379.5,
+                    two: 1060,
+                    tre: 2250,
+                    for: 4275
+        
+                },
+                tre: {
+                    
+                    one: 624,
+                    two: 1260,
+                    tre: 2750,
+                    for: 5225
+        
+                }
+            },
+            // ukzywtdst 
+            two: {
+                one: {
+                    one: 288,
+                    two: 500,
+                    tre: 1100,
+                    for: 2090
+                    
+                },
+                two: {
+                    
+                    one: "Нет",
+                    two: "Нет",
+                    tre: "Нет",
+                    for: "Нет"
+        
+                },
+                tre: {
+                    
+                    one: "Нет",
+                    two: "Нет",
+                    tre: "Нет",
+                    for: "Нет"
+        
+                }
+    
+            }
+
+        },
+        two: {
+            one: {
+                one: {
+                    one: 432,
+                    two: 800,
+                    tre: 1750,
+                    for: 3325
+                    
+                },
+                two: {
+                    
+                    one: 672,
+                    two: 1300,
+                    tre: 3000,
+                    for: 5700
+        
+                },
+                tre: {
+                    
+                    one: 768,
+                    two: 1500,
+                    tre: 3500,
+                    for: 6650
+        
+                }
+            },
+            two: {
+                one: {
+                    one: 480,
+                    two: 940,
+                    tre: 2250,
+                    for: 4269
+                    
+                },
+                two: {
+                    
+                    one: "Нет",
+                    two: "Нет",
+                    tre: "Нет",
+                    for: "Нет"
+        
+                },
+                tre: {
+                    
+                    one: "Нет",
+                    two: "Нет",
+                    tre: "Нет",
+                    for: "Нет"
+        
+                }
+    
+            }
+
+        }
+    };
+    
+
+
+
+
+    
+
+    const [value, setValue] = useState(288);
+    const [side, setSide] = useState('one');
+    const [vid, setVid] = useState('one');
+    const [lam, setLam] = useState('one');
+    const [num, setNum] = useState('one');
+    const price = 1000;
+console.log(vizit.one.one.one.one);
     useEffect(() => {
-        setValue(price * side * num);
-      }, [side, num]); // <- add the count variable here
+        setValue(vizit[side][vid][lam][num]);
+
+
+      }, [side, num, lam, vid]); // <- add the count variable here
   
     function handleChange(event) {
 		setSide(event.target.value);
         // setValue(price * side * num);
 	}
     function handleChange2(event) {
+		setVid(event.target.value);
+        // setValue(price * side * num);
+	}
+    function handleChange3(event) {
+		setLam(event.target.value);
+        // setValue(price * side * num);
+	}
+    function handleChange4(event) {
 		setNum(event.target.value);
         // setValue(price * side * num);
 	}
@@ -35,15 +171,39 @@ const Vizitki = () => {
             <button type="submit" className="search-form__submit">search</button>
         </div>
         <div className="mid">
-            <select name="cars" className="search-form__field" id="cars" value={side} onChange={handleChange}>
-                <option value="1" >Односторонние{side}</option>
-                <option value="2" >Двусторонние{side}</option>
-            </select>
-            <select name="cars" className="search-form__field" id="cars" value={num} onChange={handleChange2}>
-                <option value="1" >Без ламинации</option>
-                <option value="2" >Ламинацияе</option>
-            </select>
- 
+            <div className="mid-23">
+                <p>Стороны печати</p>
+                <select name="cars" className="search-form__field" id="cars" value={side} onChange={handleChange}>
+                    <option value="one" >Односторонние</option>
+                    <option value="two" >Двусторонние</option>
+                </select>
+            </div>
+            <div className="mid-23">
+                <p>Бумага</p>
+                <select name="cars" className="search-form__field" id="cars" value={vid} onChange={handleChange2}>
+                    <option value="one" >Матовая</option>
+                    <option value="two" >Глянцевая</option>
+                </select>
+            </div>
+        </div>
+        <div className="mid">
+            <div className="mid-23">
+                <p>Ламинация</p>
+                <select name="cars" className="search-form__field" id="cars" value={lam} onChange={handleChange3}>
+                    <option value="one" >Без ламинации</option>
+                    <option value="two" >Глянцевая</option>
+                    <option value="tre" >Матовая</option>
+                </select>
+            </div>
+            <div className="mid-23">
+                <p>Кол-во</p>
+                <select name="cars" className="search-form__field" id="cars" value={num} onChange={handleChange4}>
+                    <option value="one" >96</option>
+                    <option value="two" >200</option>
+                    <option value="tre" >500</option>
+                    <option value="for" >1000</option>
+                </select>
+            </div>
         </div>
         
  
