@@ -43,7 +43,7 @@
 .col-6{
     box-sizing: border-box;
     width: 50%;
-    border: 5px solid red;
+    /* border: 5px solid red; */
 }
 .col-6 img{
     margin: 15px;
@@ -53,7 +53,7 @@
 .mid{
     /* width: 100%; */
     margin: 5px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     padding: 3px;
     text-align: center;
     display: flex;
@@ -62,7 +62,25 @@
     /* max-width: 890px; */
 
 }
+.mid button{
+    width: 100px;
+    height: 60px;
+    font-size: 22px;
+    background-color: #ffa200;
+    border: 0;
+}
 
+.mid-23{
+    width: 50%;
+
+}
+.mid-23 p{
+    /* width: 50%; */
+    text-align: left;
+    font-size: 21px;
+    margin: 2px 0 3px 9px
+
+}
 .rittu{
     justify-content: space-around;
 }
@@ -77,13 +95,15 @@
 
     .search-form__field{
         box-sizing: border-box;
-        border: 0;
+            width: 96%;
+    border: 1px solid #8b8b8b;
+    font-size: 18px;
+    margin: 9px;
         background: transparent url("../../img/svg/Oval.svg") no-repeat left 5px;
         background-size: 20px;
         padding: 10px 30px 25px 40px;
-        border-bottom: 1px solid #FFFFFF;
-        margin-right: 10px;
-        width: 45%;
+        /* border-bottom: 1px solid #FFFFFF; */
+        /* margin-right: 10px; */
     }
         .search-form::placeholder{
             font-weight: 500;
@@ -92,7 +112,11 @@
             color: #FFFFFF;
         }
 
-
+        .search-form__field option{
+                width: 50px;
+                font-size: 20px;
+                background: #dfe7ff;color:#4e46e5;
+        }
 
 @media (max-width: 1024px){
     .wrapper{

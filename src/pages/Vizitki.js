@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 
-
+import { createItem } from '../http/deviceAPI'
 
 
 
@@ -131,7 +131,11 @@ const Vizitki = () => {
     const [vid, setVid] = useState('one');
     const [lam, setLam] = useState('one');
     const [num, setNum] = useState('one');
-    const price = 1000;
+
+     const [tel, setTel] = useState(0);
+        const [file, setFile] = useState(null);
+
+
 console.log(vizit.one.one.one.one);
     useEffect(() => {
         setValue(vizit[side][vid][lam][num]);
@@ -155,6 +159,28 @@ console.log(vizit.one.one.one.one);
 		setNum(event.target.value);
         // setValue(price * side * num);
 	}
+
+
+    const gGoods= () => {
+        const formData = new FormData();     
+        formData.append('value', `${value}`)
+        formData.append('side', side)
+        formData.append('img', file)
+        formData.append('vid', vid)
+        formData.append('lam', lam)
+        formData.append('tel', `${tel}`)
+        formData.append('num', num)
+
+        createItem(formData)
+          .then(data => {
+        
+            alert('Объявление успешно создано!');
+            
+        });
+    }
+
+
+
     return (
         <>
             
@@ -168,19 +194,19 @@ console.log(vizit.one.one.one.one);
     <div className="col-6">
         <div className="mid rittu">
             <h2>{value} p.</h2>
-            <button type="submit" className="search-form__submit">search</button>
+            <button type="submit" className="search-form__submit" onClick={gGoods}>КУПИТЬ</button>
         </div>
         <div className="mid">
             <div className="mid-23">
                 <p>Стороны печати</p>
-                <select name="cars" className="search-form__field" id="cars" value={side} onChange={handleChange}>
+                <select name="side" className="search-form__field" id="cars" value={side} onChange={handleChange}>
                     <option value="one" >Односторонние</option>
                     <option value="two" >Двусторонние</option>
                 </select>
             </div>
             <div className="mid-23">
                 <p>Бумага</p>
-                <select name="cars" className="search-form__field" id="cars" value={vid} onChange={handleChange2}>
+                <select name="vid" className="search-form__field" id="cars" value={vid} onChange={handleChange2}>
                     <option value="one" >Матовая</option>
                     <option value="two" >Глянцевая</option>
                 </select>
@@ -189,7 +215,7 @@ console.log(vizit.one.one.one.one);
         <div className="mid">
             <div className="mid-23">
                 <p>Ламинация</p>
-                <select name="cars" className="search-form__field" id="cars" value={lam} onChange={handleChange3}>
+                <select name="lam" className="search-form__field" id="cars" value={lam} onChange={handleChange3}>
                     <option value="one" >Без ламинации</option>
                     <option value="two" >Глянцевая</option>
                     <option value="tre" >Матовая</option>
@@ -197,12 +223,26 @@ console.log(vizit.one.one.one.one);
             </div>
             <div className="mid-23">
                 <p>Кол-во</p>
-                <select name="cars" className="search-form__field" id="cars" value={num} onChange={handleChange4}>
+                <select name="num" className="search-form__field" id="cars" value={num} onChange={handleChange4}>
                     <option value="one" >96</option>
                     <option value="two" >200</option>
                     <option value="tre" >500</option>
                     <option value="for" >1000</option>
                 </select>
+            </div>
+        </div>
+        <div className="mid">
+            <div className="mid-23">
+                <p>Телефон для связи</p>
+                <input type="text" name="tel" className="search-form__field"  value={tel}  onChange={e => setTel(e.target.value)} >
+
+                </input>
+            </div>
+            <div className="mid-23">
+                <p>Картинка</p>
+                <input type="file" name="foto" className="search-form__field" onChange={e => setFile(e.target.files[0]) }>
+
+                </input>
             </div>
         </div>
         

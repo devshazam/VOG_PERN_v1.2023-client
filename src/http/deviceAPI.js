@@ -12,7 +12,7 @@ export const fetchHomeDevices = async () => {
 
 // Done
 export const createItem = async (device) => {
-    const {data} = await instance.post('/device/create-device', device)
+    const {data} = await instance.post('/device', device)
     return data
 }
 
