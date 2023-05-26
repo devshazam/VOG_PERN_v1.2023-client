@@ -94,7 +94,7 @@ const Header = () => {
 					<div className="subTableColumn">
 						<div id="logo">
 							<img alt="Копировальный центр в Москве"
-								src="/file/logo.png"></img>
+								src="/file/logo22.png"></img>
 						</div>
 					</div>
 					<div className="subTableColumn">
@@ -104,8 +104,8 @@ const Header = () => {
 					</div>
 					<div className="subTableColumn">
 						<span className="label"><a
-								href='mailto: zakaz.opechatka@list.ru'>zakaz.opechatka@list.ru</a></span><span
-							className="label">Заревый пр., 12</span>
+								href='mailto: zakaz.opechatka@list.ru'>info@kopi34.ru</a></span><span
+							className="label">г. Волгоград, ул. Петропавловская 87</span>
 					</div>
 					<div className="subTableColumn">
 						
