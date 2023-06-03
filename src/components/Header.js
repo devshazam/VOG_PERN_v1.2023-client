@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 // import { useNavigate } from "react-router-dom";
 
@@ -93,25 +93,25 @@ const Header = () => {
 				<div className="subTable">
 					<div className="subTableColumn">
 						<div id="logo">
-							<img alt="Копировальный центр в Москве"
-								src="/file/logo22.png"></img>
+							<a href='/'><img alt="Копировальный центр в Москве"
+								src="/file/logo22.png"></img></a>
 						</div>
 					</div>
-					<div className="subTableColumn">
+					{/* <div className="subTableColumn">
 						<span className="heading"><a href='tel:+79093802519'>+7(909) 380-25-19</a></span>
 							
 						
-					</div>
+					</div> */}
 					<div className="subTableColumn">
 						<span className="label"><a
-								href='mailto: zakaz.opechatka@list.ru'>info@kopi34.ru</a></span><span
+								href='mailto: info@kopi34.ru'>info@kopi34.ru</a></span><span
 							className="label">г. Волгоград, ул. Петропавловская 87</span>
 					</div>
 					<div className="subTableColumn">
 						
 					</div>
 					<div className="subTableColumn" id="subTableColumn-4">
-					<span className="heading"><a href='#'>Контакты</a></span>
+					<span className="heading"><a href='/contacts'>Контакты</a></span>
 					</div>
 				</div>
 			</div>

@@ -32,9 +32,5 @@ export default function  Layout(){
     <div id="overlap"></div>
 
 
-<div id="upButton">
-  <a href="#"></a>
-</div>
-
     </>);
 }

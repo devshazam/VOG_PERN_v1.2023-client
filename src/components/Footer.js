@@ -8,29 +8,29 @@ function Footer(){
 				<div id="leftFooter">
 					<div className="footerRow">
 						<div className="column">
-							<span className="heading">Каталог</span>
+							<span className="heading">Договор оферта</span>
 							<ul className="footerMenu">
 
-								<li><a href="#">Полиграфия</a></li>
+								<li><a href="/oferta">Договор оферта</a></li>
 
 							</ul>
 						</div>
 						<div className="column">
-							<span className="heading">Наши предложения</span>
+							{/* <span className="heading">Политика конфиденциальности</span>
 							<ul className="footerMenu">
 
-								<li><a href="#">Новинки</a></li>
+								<li><a href="#">Политика конфиденциальности</a></li>
 
-							</ul>
+							</ul> */}
 
 						</div>
 						<div className="column">
-							<span className="heading">Помощь и сервисы</span>
+							{/* <span className="heading">Помощь и сервисы</span>
 							<ul className="footerMenu">
 
 								<li><a href="#">О компании</a></li>
 
-							</ul>
+							</ul> */}
 						</div>
 					</div>
 				</div>
@@ -49,7 +49,7 @@ function Footer(){
 									<div className="telephone"><a href='tel:'>	
 +7(909) 380-25-19</a></div>
 									<div className="email">Email: <a
-											href="mailto:<a href='mailto: info@kopi34.ru'>zakaz.opechatka@list.ru</a>"><a
+											href="mailto:<a href='mailto: info@kopi34.ru'>info@kopi34.ru</a>"><a
 												href='mailto: info@kopi34.ru'>info@kopi34.ru</a></a>
 									</div>
 									<ul className="list">

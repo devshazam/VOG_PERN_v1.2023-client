@@ -1,140 +1,18 @@
-import {useState, useEffect} from 'react';
-import { fetchHomeDevices } from '../http/deviceAPI'
-import Spinner from 'react-bootstrap/Spinner';
+import React from 'react';
 
 
 
 export default function  Home(){
-        const [goods, setGoods] = useState();
 
-//     useEffect(() => {
-//         fetchHomeDevices().then(data => setGoods(data)).catch(e => console.log(e.message));
-//     //  if(goods) console.log(goods);
-//     }, [])
-
-// if(!goods) return <Spinner animation="border" classNameName='mt-5 ml-5' />
 
 
     return ( <>
         <div id="right">
-						<div id="promoBlock">
-							<div id="sliderBlock">
-								<div id="slider">
-									<ul className="slideBox">
-										<li id="bx_1712592909_114">
-											<div className="sliderContent">
-												<div className="bigText">Изготовление печатей<br></br>
-													и штампов<br></br>
-													с гарантией 5 лет</div>
-												<div className="smallText"></div>
-												<a href="/catalog/pechati-i-shtampy/" className="cButton">Перейти в
-													раздел</a>
-											</div>
-											<span
-												data-large="/file/b04ee18c22eaab05c343c45f3aa63a09.jpg"
-												data-normal="/file/b04ee18c22eaab05c343c45f3aa63a09.jpg"></span>
-										</li>
-										{/* <li id="bx_1712592909_115">
-											<div className="sliderContent" style={{display: 'none'}}>
-												<div className="bigText">Сувенирная продукция<br></br>
-													с нанесением фото<br></br>
-													или логотипа<br></br>
-													от 1 штуки</div>
-												<div className="smallText"></div>
-												<a href="#" className="cButton">Перейти в раздел</a>
-											</div>
-											<span
-												data-large="/file/b04ee18c22eaab05c343c45f3aa63a09.jpg"
-												data-normal="/file/b04ee18c22eaab05c343c45f3aa63a09.jpg"></span>
-										</li> */}
-									</ul>
-									{/* <a href="#" className="sliderBtnLeft"></a>
-									<a href="#" className="sliderBtnRight"></a> */}
-								</div>
-							</div>
+						<div id="promoBlock-1">
+						<img src="/file/banner.jpg" alt="полиграфия"></img>
 						</div>
 
-						<div className="index-banners-wrap">
-							<div className="index-banners">
-								<div className="elem-column">
-									<a href="/catalog/pechati-i-shtampy/" className="elem-wrap" id="bx_3485106786_15">
-										<div className="elem">
-											<div className="bg" id="bg1">
-											</div>
-											<div className="text-wrap">
-												<div className="name">Изготовление печатей и штампов</div>
-												<div className="descr"></div>
-												<div className="btn-simple btn-micro">Перейти</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div className="elem-column">
-									<a href="/catalog/podarki-s-vashim-foto/" className="elem-wrap" id="bx_3485106786_16">
-										<div className="elem">
-											<div className="bg" id="bg2">
-											</div>
-											<div className="text-wrap">
-												<div className="name">Сувенирная продукция</div>
-												<div className="descr"></div>
-												<div className="btn-simple btn-micro">Перейти</div>
-											</div>
-										</div>
-									</a> <a href="services/fotouslugi/foto-na-dokumenty.html" className="elem-wrap"
-										id="bx_3485106786_17">
-										<div className="elem">
-											<div className="bg" id="bg3">
-											</div>
-											<div className="text-wrap">
-												<div className="name">СРОЧНОЕ фото на документы</div>
-												<div className="descr"></div>
-												<div className="btn-simple btn-micro">Перейти</div>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div className="elem-column">
-									<a href="/services/srochnaya-poligrafiya/shirokoformatnaya-pechat-foto-prays.html"
-										className="elem-wrap" id="bx_3485106786_18">
-										<div className="elem">
-											<div className="bg" id="bg4">
-											</div>
-											<div className="text-wrap">
-												<div className="name">Широкоформатная печать</div>
-												<div className="descr"></div>
-												<div className="btn-simple btn-micro">Перейти</div>
 
-											</div>
-										</div>
-									</a>
-								</div>
-								<div className="elem-column">
-									<a href="/services/poligrafiya/nakleyki-foto-prays/" className="elem-wrap"
-										id="bx_3485106786_19">
-										<div className="elem">
-											<div className="bg" id="bg5">
-											</div>
-											<div className="text-wrap">
-												<div className="name">Изготовление наклеек</div>
-												<div className="descr"></div>
-												<div className="btn-simple btn-micro">Перейти</div>
-											</div>
-										</div>
-									</a> <a href="https://xn----8sbas0aui0a7b.xn--p1ai/services/srochnaya-poligrafiya/"
-										className="elem-wrap" id="bx_3485106786_20">
-										<div className="elem">
-											<div className="bg"  id="bg6">
-											</div>
-											<div className="text-wrap">
-												<div className="name">Срочное копирование и печать документов</div>
-												<div className="descr"></div>
-												<div className="btn-simple btn-micro">Перейти</div>
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
 
 
 
@@ -146,7 +24,16 @@ export default function  Home(){
 						
 
 						<h2>Полиграфия в Волгограде</h2>
-						<p>Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформлениеТекст для примера - сколько угодно текста - любое оформлениеТекст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление Текст для примера - сколько угодно текста - любое оформление</p>
+						<hr></hr>
+						<p>Полиграфические услуги - это широкий спектр услуг, связанных с производством и печатью различных материалов. Они охватывают такие аспекты, как дизайн, верстка, печать и отделка разнообразных продуктов. Эти услуги оказываются полиграфическими компаниями, которые специализируются на создании качественных и профессиональных печатных изданий.<br></br>
+
+Одной из основных услуг, предлагаемых полиграфическими компаниями, является разработка дизайна и верстка различных материалов. Это может включать в себя создание логотипов, брошюр, листовок, каталогов, журналов и многого другого. Опытные дизайнеры работают над созданием эстетически привлекательных и эффективных макетов, учитывая требования и предпочтения клиента.<br></br>
+<hr></hr><br></br>	
+После разработки дизайна и верстки, полиграфическая компания занимается печатью созданных материалов. Они используют различные типы печати, включая офсетную печать, цифровую печать, шелкографию и трафаретную печать. Каждый из этих методов обладает своими преимуществами и применяется в зависимости от требований проекта. Полиграфические услуги позволяют получить высококачественную печать с яркими цветами и четкими изображениями.
+<br></br>
+Кроме того, полиграфические компании обеспечивают отделку продукции. Они предлагают различные варианты обработки, такие как ламинация, тиснение, фольгирование, уф-лакирование и другие. Эти методы отделки придают дополнительный визуальный и тактильный эффект продуктам, делая их более привлекательными и престижными.
+<br></br>
+Важным аспектом полиграфических услуг является соблюдение высоких стандартов качества и точности. Полиграфические компании работают с современным оборудованием и используют качественные материалы для достижения наилучших результатов. Они также имеют опытных специалистов, которые следят за всем процессом производства, чтобы гарантировать, что</p>
 						
 					</div>
     </>); 

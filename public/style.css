@@ -7,10 +7,7 @@
 
 
     @media (max-width: 1024px){
-#left {
-    display: none;
-    /* width: 100%; */
-}
+
     }
 
 #bg1{
@@ -66,7 +63,7 @@
     width: 100px;
     height: 60px;
     font-size: 22px;
-    background-color: #ffa200;
+    background-color: #73ca1a;
     border: 0;
 }
 
@@ -137,4 +134,29 @@
 
     background: url(/file/b04ee18c22eaab05c343c45f3aa63a09.jpg) no-repeat center;
     background-size: cover;
+}
+
+
+
+/* Banner */
+#promoBlock-1 img{
+    width: 100%;
+}
+.heading.orange{
+    background: #73ca1a;
+
+
+}
+
+
+
+
+#subHeader.color_black #headerTools .tools .link, #subHeader2 #topCallback .link, #subHeader3 .cart .total, #subHeader3.color_theme .cart .active .count, #subHeader6 .cart .total, #subHeader6 .cart .active .count, #subHeader7 .cart .active .total, #subHeader7 .firstPhones .callBack, #subHeader4 #subMenu li .selected, #subHeader8 #subMenu li .selected, #subHeader5 .cart .heading .total, #headerLine #topAuth ul li a, #headerLine .user-geo-position-value-link, #headerLine2 .user-geo-position-value-link, #headerLine2 #subMenu li .selected, #headerLine2.color_black #subMenu li .selected, #headerLine3 #subMenu li .selected, #headerLine3.color_black #subMenu li a.selected, #headerLine4 #subMenu li .selected, #footerLine.color_white .item .callback, #footer.variant_5 #leftFooter .heading, #footer.variant_5 #rightFooter .email a, #footer.variant_5 #leftFooter .selected, #footer.variant_6 #leftFooter .heading, #footer.variant_6 #rightFooter .email a, #footer.variant_6 #leftFooter .selected, #footer.variant_7 #leftFooter .heading, #footer.variant_7 #rightFooter .email a, #footer.variant_7 #leftFooter .selected, #footer.variant_8 #leftFooter .heading, #footer.variant_8 #leftFooter .selected {
+    color: #73ca1a;
+}
+.fhdkfl{
+    margin: 10px;
+}
+.fhrj{
+    margin: 20px;
 }
