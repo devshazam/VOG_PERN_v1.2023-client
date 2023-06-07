@@ -60,8 +60,8 @@ console.log(vizit.one.one.one.one);
 
         createItem(formData)
           .then(data => {
-        
-            alert('Объявление успешно создано!');
+        console.log(data);
+        window.location.href = data.confirmation.confirmation_url;
             
         });
     }else{

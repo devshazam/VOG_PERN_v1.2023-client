@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './Layout';
 
 import Contacts from "./pages/Contacts";
+import Payinfo from "./pages/Payinfo";
 import Banner from "./pages/Banner";
 import Samokley from "./pages/Samokley";
 import Home from "./pages/Home";
@@ -29,6 +30,8 @@ const App = () => {
               {/* <Route path="product/:id" element={<ProductView />} /> */}
               <Route path="/vizitki" element={<Vizitki />} />
               <Route path="/banner" element={<Banner />} />
+              <Route path="/payinfo" element={<Payinfo />} />
+              
               <Route path="/samokley" element={<Samokley />} />
               <Route path="/oferta" element={<Oferta />} />
               <Route path="/contacts" element={<Contacts />} />

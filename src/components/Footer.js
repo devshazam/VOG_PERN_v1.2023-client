@@ -16,12 +16,8 @@ function Footer(){
 							</ul>
 						</div>
 						<div className="column">
-							{/* <span className="heading">Политика конфиденциальности</span>
-							<ul className="footerMenu">
-
-								<li><a href="#">Политика конфиденциальности</a></li>
-
-							</ul> */}
+							<span className="heading">Разработка сайта</span>
+							<a href="https://seo-cy.ru/"><img class="seo" src='/file/footer-logo.png'></img></a>
 
 						</div>
 						<div className="column">

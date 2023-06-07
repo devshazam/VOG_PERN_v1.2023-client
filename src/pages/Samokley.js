@@ -11,13 +11,14 @@ const Vizitki = () => {
 
 
 
-    const [value, setValue] = useState(288);
+    const [value, setValue] = useState(0);
     const [side, setSide] = useState(0);
     const [vid, setVid] = useState(0);
 
      const [tel, setTel] = useState(0);
         const [file, setFile] = useState(null);
-
+    const num = 'one';
+    const lam = 'one';
 
 
     useEffect(() => {
@@ -44,23 +45,26 @@ const Vizitki = () => {
 	}
 
 
-    const gGoods= () => {
-        if(file !== null && tel !== 0){
-        const formData = new FormData();     
-        formData.append('value', `${value}`)
-        formData.append('side', side)
-        formData.append('img', file)
-        formData.append('vid', vid)
-        formData.append('tel', `${tel}`)
 
-        createItem(formData)
-          .then(data => {
-        
-            alert('Объявление успешно создано!');
-            
-        });
+    const gGoods= () => {
+        if(file !== null && tel !== 0 && value !== 0){
+                const formData = new FormData();     
+                formData.append('value', `${value}`)
+                formData.append('side', side)
+                formData.append('img', file)
+                formData.append('vid', vid)
+                formData.append('lam', lam)
+                formData.append('tel', `${tel}`)
+                formData.append('num', num)
+
+                createItem(formData)
+                .then(data => {
+                console.log(data);
+                window.location.href = data.confirmation.confirmation_url;
+                    
+                });
     }else{
-        alert('Заполните файл и телефон!');
+        alert('Заполните файл и телефон и размеры!');
     }
     }
 
