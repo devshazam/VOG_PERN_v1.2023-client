@@ -24,15 +24,15 @@ const Vizitki = () => {
         let m1 = Number(side)*Number(vid);
         if(m1 < 1){
             if(lam == 'one'){ setValue(m1*550);}else{setValue(m1*650);}
-        }else if(m1 == 1 && m1 < 5){
+        }else if(m1 >= 1 && m1 < 5){
             if(lam == 'one'){ setValue(m1*500);}else{setValue(m1*600);}
-        }if(m1 == 5 && m1 < 10){
+        }if(m1 >= 5 && m1 < 10){
             if(lam == 'one'){ setValue(m1*400);}else{setValue(m1*500);}
-        }if(m1 == 10 && m1 < 50){
+        }if(m1 >= 10 && m1 < 50){
             if(lam == 'one'){ setValue(m1*350);}else{setValue(m1*450);}
-        }if(m1 == 50 && m1 < 100){
+        }if(m1 >= 50 && m1 < 100){
             if(lam == 'one'){ setValue(m1*300);}else{setValue(m1*400);}
-        }if(m1 == 100 && m1 < 500){
+        }if(m1 >= 100 && m1 < 500){
             if(lam == 'one'){ setValue(m1*280);}else{setValue(m1*380);}
         }if(m1 >= 500){
             if(lam == 'one'){ setValue(m1*240);}else{setValue(m1*340);}

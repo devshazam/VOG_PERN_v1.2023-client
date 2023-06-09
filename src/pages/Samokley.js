@@ -27,7 +27,7 @@ const Vizitki = () => {
             setValue(m1*650);
         }else if(m1 >= 1 && m1 < 5){
             setValue(m1*600);
-        }if(m1 == 5 && m1 < 10){
+        }if(m1 >= 5 && m1 < 10){
             setValue(m1*550);
         }if(m1 >= 10){
             setValue(m1*500);
