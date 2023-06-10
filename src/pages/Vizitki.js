@@ -58,7 +58,7 @@ console.log(vizit.one.one.one.one);
         formData.append('tel', `${tel}`)
         formData.append('num', num)
 
-        createItem()
+        createItem(formData)
           .then(data => {
         console.log(data);
         window.location.href = data.confirmation.confirmation_url;

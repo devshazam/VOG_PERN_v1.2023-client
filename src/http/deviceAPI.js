@@ -4,7 +4,7 @@ import {instance} from "./index";
 
 // Done
 export const createItem = async (device) => {
-    const {data} = await instance.get('/device')
+    const {data} = await instance.post('/device', device)
     localStorage.setItem('payid', data.id)
     return data
 }
