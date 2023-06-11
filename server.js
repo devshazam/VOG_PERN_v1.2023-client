@@ -11,6 +11,12 @@ app.use(cors({
 app.use(express.static(__dirname))
 app.use(express.static(path.resolve(__dirname, 'build')))
 
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', 'https://kopi34.ru/');
+  // res.set('Content-Type', 'text/plain')
+  next();
+});
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
