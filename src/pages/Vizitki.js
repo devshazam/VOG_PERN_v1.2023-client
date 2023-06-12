@@ -22,7 +22,7 @@ const Vizitki = () => {
         const [file, setFile] = useState(null);
 
 
-console.log(vizit.one.one.one.one);
+
     useEffect(() => {
         setValue(vizit[side][vid][lam][num]);
 
@@ -61,6 +61,7 @@ console.log(vizit.one.one.one.one);
         createItem(formData)
           .then(data => {
         console.log(data);
+        alert(data);
         window.location.href = data.confirmation.confirmation_url;
             
         });
