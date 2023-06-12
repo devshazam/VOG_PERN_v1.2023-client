@@ -58,13 +58,18 @@ const Vizitki = () => {
         formData.append('tel', `${tel}`)
         formData.append('num', num)
 
-        createItem(formData)
-          .then(data => {
-        console.log(data);
-        alert(data);
-        window.location.href = data.confirmation.confirmation_url;
-            
-        });
+        if(Number(file.size) > 900000){
+            alert('Картинка должна быть менее 900Kb');
+        }else{
+            createItem(formData)
+            .then(data => {
+            console.log(data);
+
+            window.location.href = data.confirmation.confirmation_url;
+                
+            });
+        }
+        
     }else{
         alert('Заполните файл и телефон!');
     }

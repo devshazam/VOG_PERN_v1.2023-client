@@ -5,9 +5,9 @@ const PORT = process.env.PORT || 8080
 const cors = require('cors')
 const app = express()
 
-app.use(cors({
-  origin: 'https://kopi34.ru'
-}));
+// app.use(cors({
+//   origin: 'https://kopi34.ru'
+// }));
 app.use(express.static(__dirname))
 app.use(express.static(path.resolve(__dirname, 'build')))
 
