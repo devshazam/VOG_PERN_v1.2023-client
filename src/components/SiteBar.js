@@ -24,7 +24,7 @@ import React from 'react';
 										</span>
 									</a>
 								</li>
-								<li  key={3} className="eChild allow-dropdown nested">
+								<li  className="eChild allow-dropdown nested">
 									<a href="/banner" className="menuLink">
 										<span className="tb">
 											<span className="pc">
@@ -40,7 +40,7 @@ import React from 'react';
 									</a>
 								
 								</li>
-								<li key={2} className="eChild allow-dropdown nested">
+								<li className="eChild allow-dropdown nested">
 									<a href="/samokley" className="menuLink">
 										<span className="tb">
 											<span className="pc">

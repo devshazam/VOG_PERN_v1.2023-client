@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
 
+import 'bootstrap/dist/css/bootstrap.css';
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 import { createItem } from '../http/deviceAPI.js'
@@ -78,59 +84,26 @@ const Vizitki = () => {
         <>
             
         
-            <div id="right">
+            <Container>
+                <Row>
+                    <Col  xs={12} md={6} >
+                        <div className='column__first'>
+                            <a href='/samokleyky-bumaga'>
+                                <div className='img-wrapper'>
+                                    <img src='/file/banner.jpg'></img>
+                                    <p>Самоклейки</p>
+                                </div>
+                            </a>
+                        </div>
+                    </Col>
 
-<div className="wrapper">
-    <div className="col-6">
-        <img src="/file/pic/samo.jpg" alt="полиграфия"></img>
-        </div>
-    <div className="col-6">
-        <div className="mid rittu">
-            <h2>{value} p.</h2>
-            <button type="submit" className="search-form__submit" onClick={gGoods}>КУПИТЬ</button>
-        </div>
-        <div className="mid">
-            <div className="mid-23">
-                <p>Ширина</p>
-                <input name="side" className="search-form__field" id="cars" value={side} onChange={handleChange}>
-                </input>
-            </div>
-            <div className="mid-23">
-                <p>Высота</p>
-                <input name="vid" className="search-form__field" id="cars" value={vid} onChange={handleChange2}>
-                </input>
-            </div>
-        </div>
-    
-        <div className="mid">
-            <div className="mid-23">
-                <p>Телефон для связи</p>
-                <input type="text" name="tel" className="search-form__field"  value={tel}  onChange={e => setTel(e.target.value)} >
-
-                </input>
-            </div>
-            <div className="mid-23">
-                <p>Картинка</p>
-                <input type="file" name="foto" className="search-form__field" onChange={e => setFile(e.target.files[0]) }>
-
-                </input>
-            </div>
-        </div>
-        
- 
-
-    </div>
-    </div>
-
-
-    <h2>Самоклейки</h2>
-						<p>Самоклеящаяся пленка – это материал, который имеет специальное покрытие на одной стороне, позволяющее ему приклеиваться к различным поверхностям без использования дополнительных клеевых веществ. Ниже приведен текст, описывающий самоклеящуюся пленку:
-
-Самоклеящаяся пленка – это универсальный материал, который может быть использован в различных областях. Она состоит из основы, которая обычно выполнена из винила, и специального клеящего слоя, нанесенного на одну сторону пленки.
-
-Одним из главных преимуществ самоклеящейся пленки является ее легкость в использовании. Она может быть легко приклеена к различным поверхностям, включая стекло, металл, пластик, дерево и т.д. Клейкий слой обеспечивает надежное и долговременное сцепление с поверхностью, сохраняя при этом гибкость и устойчивость к воздействию окружающей среды.</p>
-                        
-</div>
+                    <Col  xs={12} md={6} >Second, but unordered</Col>
+                    <Col  xs={12} md={6} >Third, but first</Col>
+                    <Col  xs={12} md={6} >Third, but first</Col>
+                    <Col  xs={12} md={6} >Third, but first</Col>
+                    <Col  xs={12} md={6} >Third, but first</Col>
+                </Row>
+            </Container>
           
 
         </>
