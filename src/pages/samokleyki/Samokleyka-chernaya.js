@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 
 
-import { createItem } from '../http/deviceAPI.js'
+import { createItem } from '../../http/deviceAPI.js'
 
 
 
@@ -24,13 +24,13 @@ const Vizitki = () => {
     useEffect(() => {
         let m1 = Number(side)*Number(vid);
         if(m1 < 1){
-            setValue(m1*650);
+            setValue(m1*700);
         }else if(m1 >= 1 && m1 < 5){
-            setValue(m1*600);
+            setValue(m1*650);
         }if(m1 >= 5 && m1 < 10){
-            setValue(m1*550);
+            setValue(m1*600);
         }if(m1 >= 10){
-            setValue(m1*500);
+            setValue(m1*550);
         }
 
       }, [side, vid]); // <- add the count variable here
@@ -82,7 +82,7 @@ const Vizitki = () => {
 
 <div className="wrapper">
     <div className="col-6">
-        <img src="/file/pic/samo.jpg" alt="полиграфия"></img>
+        <img src="/file/samokleyki/chernaya.jpg" alt="полиграфия"></img>
         </div>
     <div className="col-6">
         <div className="mid rittu">
@@ -123,7 +123,7 @@ const Vizitki = () => {
     </div>
 
 
-    <h2>Самоклейки</h2>
+    <h2>Самоклейки - подложка черная</h2>
 						<p>Самоклеящаяся пленка – это материал, который имеет специальное покрытие на одной стороне, позволяющее ему приклеиваться к различным поверхностям без использования дополнительных клеевых веществ. Ниже приведен текст, описывающий самоклеящуюся пленку:
 
 Самоклеящаяся пленка – это универсальный материал, который может быть использован в различных областях. Она состоит из основы, которая обычно выполнена из винила, и специального клеящего слоя, нанесенного на одну сторону пленки.

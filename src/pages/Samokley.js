@@ -88,20 +88,85 @@ const Vizitki = () => {
                 <Row>
                     <Col  xs={12} md={6} >
                         <div className='column__first'>
-                            <a href='/samokleyky-bumaga'>
+                            <a href='/samokleyka_belaya'>
                                 <div className='img-wrapper'>
-                                    <img src='/file/banner.jpg'></img>
-                                    <p>Самоклейки</p>
+                                    <img src='/file/samokleyki/belaya.jpg'></img>
+                                    <p>Самоклейка - белая подложка (глянец/Мат)</p>
                                 </div>
                             </a>
                         </div>
                     </Col>
+                    <Col  xs={12} md={6} >
+                        <div className='column__first'>
+                            <a href='/samokleyka-chernaya'>
+                                <div className='img-wrapper'>
+                                    <img src='/file/samokleyki/chernaya.jpg'></img>
+                                    <p>Самоклейка - подложка черная</p>
+                                </div>
+                            </a>
+                        </div>
+                    </Col>
+                    <Col  xs={12} md={6} >
+                        <div className='column__first'>
+                            <a href='/samokleyka-prozrachnaya'>
+                                <div className='img-wrapper'>
+                                    <img src='/file/samokleyki/prozrachnaya.jpg'></img>
+                                    <p>Самоклейка - прозрачная</p>
+                                </div>
+                            </a>
+                        </div>
+                    </Col>
+                    <Col  xs={12} md={6} >
+                        <div className='column__first'>
+                            <a href='/samokleyka-svetootrazhayuschaya'>
+                                <div className='img-wrapper'>
+                                    <img src='/file/samokleyki/svetootrajaushaya.jpg'></img>
+                                    <p>Самоклейка - светоотражающая</p>
+                                </div>
+                            </a>
+                        </div>
+                    </Col>
+                    <Col  xs={12} md={6} >
+                        <div className='column__first'>
+                            <a href='/samokleyka-fotolyuminiscentnaya'>
+                                <div className='img-wrapper'>
+                                    <img src='/file/samokleyki/fotoluminiscent.jpg'></img>
+                                    <p>Самоклейка - фотолюминесцентная</p>
+                                </div>
+                            </a>
+                        </div>
+                    </Col>
+                    <Col  xs={12} md={6} >
+                        <div className='column__first'>
+                            <a href='/samokleyka-cvetnaya'>
+                                <div className='img-wrapper'>
+                                    <img src='/file/samokleyki/cvetnaya.jpg'></img>
+                                    <p>Самоклейка - цветная (Oracl, Averal, LG)</p>
+                                </div>
+                            </a>
+                        </div>
+                    </Col>
+                    <Col  xs={12} md={6} >
+                        <div className='column__first'>
+                            <a href='/samokleyka-dezaynerskaya'>
+                                <div className='img-wrapper'>
+                                    <img src='/file/samokleyki/dezainerskaya.jpg'></img>
+                                    <p>Самоклейка - дизайнерская</p>
+                                </div>
+                            </a>
+                        </div>
+                    </Col>
+                    <Col  xs={12} md={6} >
+                        <div className='column__first'>
+                            <a href='/samokleyka-perforirovannaya'>
+                                <div className='img-wrapper'>
+                                    <img src='/file/samokleyki/perforirovanaya.jpg'></img>
+                                    <p>Самоклейка - перфорированная под печать</p>
+                                </div>
+                            </a>
+                        </div>
+                    </Col> 
 
-                    <Col  xs={12} md={6} >Second, but unordered</Col>
-                    <Col  xs={12} md={6} >Third, but first</Col>
-                    <Col  xs={12} md={6} >Third, but first</Col>
-                    <Col  xs={12} md={6} >Third, but first</Col>
-                    <Col  xs={12} md={6} >Third, but first</Col>
                 </Row>
             </Container>
           

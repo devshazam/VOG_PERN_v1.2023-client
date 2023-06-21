@@ -55,6 +55,21 @@ import React from 'react';
 										</span>
 									</a>
 								</li>
+								<li className="eChild allow-dropdown nested">
+									<a href="/pechat-holst" className="menuLink">
+										<span className="tb">
+											<span className="pc">
+												<img src="/file/pic/icons8-card-100.png"
+													alt="Срочная полиграфия" title="Срочная полиграфия"></img>
+												<span className="back"></span>
+											</span>
+											<span className="tx">
+												<span className="link-title">Печать на холсте</span>
+												<span className="dropdown btn-simple btn-micro"></span>
+											</span>
+										</span>
+									</a>
+								</li>
 							</ul>
 						</div>
 
@@ -63,3 +78,4 @@ import React from 'react';
 };
 
 export default SiteBar;
+
