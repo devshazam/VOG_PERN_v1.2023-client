@@ -17,7 +17,7 @@ function Footer(){
 						</div>
 						<div className="column">
 							<span className="heading">Разработка сайта</span>
-							<a href="https://seo-cy.ru/"><img class="seo" src='/file/footer-logo.png'></img></a>
+							<a href="https://github.com/jacklee137/"><p>Разработка сайта</p></a>
 
 						</div>
 						<div className="column">
