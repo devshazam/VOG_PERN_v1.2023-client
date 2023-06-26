@@ -4,7 +4,7 @@ const vizit = {
             one: {
                 one: 288,
                 two: 560,
-                tre: 1000,
+                tre: 1000, 
                 for: 1900
                 
             },
@@ -25,7 +25,7 @@ const vizit = {
     
             }
         },
-        // ukzywtdst 
+        // TODO ukzywtdst
         two: {
             one: {
                 one: 288,
