@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
 
-import { vizit } from '../arrays/vizitki.js';
+import { vizit } from '../../arrays/vizitki.js';
 
-import { createItem } from '../http/deviceAPI'
+import { createItem } from '../../http/deviceAPI.js'
 
 
 

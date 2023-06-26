@@ -2,23 +2,22 @@ import React, {useState, useEffect} from 'react';
 
 
 
-import { createItem } from '../http/deviceAPI.js'
+import { createItem } from '../../http/deviceAPI.js'
 
 
 
 
-const Pechat_holst = () => {
+const Samokleyka_belaya = () => {
 
 
 
     const [value, setValue] = useState(0);
     const [side, setSide] = useState(0);
     const [vid, setVid] = useState(0);
-
-     const [tel, setTel] = useState(0);
-        const [file, setFile] = useState(null);
-    const num = 'one';
-    const lam = 'one';
+    const [tel, setTel] = useState(0);
+    const [file, setFile] = useState(null);
+    const num = 'no';
+    const lam = 'no';
 
 
     useEffect(() => {
@@ -58,7 +57,7 @@ const Pechat_holst = () => {
                 formData.append('num', num)
 
                 if(Number(file.size) > 900000){
-                    alert('Картинка должна быть менее 900Kb');
+                    alert('Картинка должна быть менее 900Kb');+
                 }else{
                     createItem(formData)
                     .then(data => {
@@ -82,7 +81,7 @@ const Pechat_holst = () => {
 
 <div className="wrapper">
     <div className="col-6">
-        <img src="/file/pechat-na-holste.jpg" alt="полиграфия"></img>
+        <img src="/file/pechat-na-holste/pechat-individual.jpg" alt="полиграфия"></img>
         </div>
     <div className="col-6">
         <div className="mid rittu">
@@ -90,15 +89,16 @@ const Pechat_holst = () => {
             <button type="submit" className="search-form__submit" onClick={gGoods}>КУПИТЬ</button>
         </div>
         <div className="mid">
+           
             <div className="mid-23">
-                <p>Ширина</p>
-                <input name="side" className="search-form__field" id="cars" value={side} onChange={handleChange}>
-                </input>
-            </div>
-            <div className="mid-23">
-                <p>Высота</p>
-                <input name="vid" className="search-form__field" id="cars" value={vid} onChange={handleChange2}>
-                </input>
+                <p>Ламинация</p>
+                <select name="lam" className="search-form__field" id="cars" value={side} onChange={event => setSide(event.target.value)}>
+                    <option value="one" >21x30</option>
+                    <option value="two" >30x40</option>
+                    <option value="tre" >40x60</option>
+                    <option value="tre" >60x80</option>
+                    <option value="tre" >80x100</option>
+                </select>
             </div>
         </div>
     
@@ -123,26 +123,6 @@ const Pechat_holst = () => {
     </div>
 
 
-    <table>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-</table>
-
-
-
     <h2>Самоклейки - подложка белая (ГЛЯНЕЦ/МАТ)</h2>
 						<p>Самоклеящаяся пленка – это материал, который имеет специальное покрытие на одной стороне, позволяющее ему приклеиваться к различным поверхностям без использования дополнительных клеевых веществ. Ниже приведен текст, описывающий самоклеящуюся пленку:
 
@@ -157,4 +137,4 @@ const Pechat_holst = () => {
     );
 };
 
-export default Pechat_holst;
+export default Samokleyka_belaya;

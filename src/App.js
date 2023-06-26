@@ -28,7 +28,7 @@ import Samokleyka_dezaynerskaya from "./pages/samokleyki/Samokleyka-dezaynerskay
 import Samokleyka_perforirovannaya from "./pages/samokleyki/Samokleyka-perforirovannaya";
 
 
-import Pechat_holst from "./pages/Pechat-holst";
+import Pechat_holst from "./pages/pechat-holstov/Pechat-holst";
 import Pechat_na_holste from "./pages/pechat-na-holste/Pechat-na-holste";
 import Pechat_na_holste_regular from "./pages/pechat-na-holste/Pechat-na-holste-regular";
 import Pechat_na_holste_individual from "./pages/pechat-na-holste/Pechat-na-holste-individual";

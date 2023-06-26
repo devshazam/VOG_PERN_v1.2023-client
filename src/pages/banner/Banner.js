@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 
-import { createItem } from '../http/deviceAPI.js'
+import { createItem } from '../../http/deviceAPI.js'
 
 
 
