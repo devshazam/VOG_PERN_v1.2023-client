@@ -1,48 +1,45 @@
-import React from 'react';
-// import {Context} from "./index";
+
+import React, {useContext, useEffect, useState} from 'react';
+import {Context} from "./index";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {observer} from "mobx-react-lite";
 
 
 import Layout from './Layout';
 
 import Contacts from "./pages/Contacts";
 import Payinfo from "./pages/Payinfo";
-import Banner from "./pages/Banner";
+import Banner from "./pages/banner/Banner";
 
 import Home from "./pages/Home";
 
 import Empty from "./pages/Empty";
-import Vizitki from "./pages/Vizitki";
+import Vizitki from "./pages//vizitki/Vizitki";
 import Oferta from "./pages/Oferta";
 
 
 import Samokley from "./pages/samokleyki/Samokley";
-import Samokleyka_belaya from "./pages/samokleyki/Samokleyka-belaya";
-import Samokleyka_chernaya from "./pages/samokleyki/Samokleyka-chernaya";
-import Samokleyka_prozrachnaya from "./pages/samokleyki/Samokleyka-prozrachnaya";
-import Samokleyka_svetootrazhayuschaya from "./pages/samokleyki/Samokleyka-svetootrazhayuschaya.js";
-import Samokleyka_fotolyuminiscentnaya from "./pages/samokleyki/Samokleyka-fotolyuminiscentnaya";
-import Samokleyka_cvetnaya from "./pages/samokleyki/Samokleyka-cvetnaya";
-import Samokleyka_dezaynerskaya from "./pages/samokleyki/Samokleyka-dezaynerskaya";
-import Samokleyka_perforirovannaya from "./pages/samokleyki/Samokleyka-perforirovannaya";
-
-
-import Pechat_holst from "./pages/pechat-holstov/Pechat-holst";
-import Pechat_na_holste from "./pages/pechat-na-holste/Pechat-na-holste";
-import Pechat_na_holste_regular from "./pages/pechat-na-holste/Pechat-na-holste-regular";
-import Pechat_na_holste_individual from "./pages/pechat-na-holste/Pechat-na-holste-individual";
-import Pechat_na_holste_podramnik from "./pages/pechat-na-holste/Pechat-na-holste-podramnik";
-
-import Tverdy_pereplet from "./pages/tverdy-pereplet/Tverdy-pereplet";
+import SamokleykaBelaya from "./pages/samokleyki/SamokleykaBelaya";
+import SamokleykaChernaya from "./pages/samokleyki/SamokleykaChernaya";
+import SamokleykaProzrachnaya from "./pages/samokleyki/SamokleykaProzrachnaya";
+import SamokleykaSvetootrazhayuschaya from "./pages/samokleyki/SamokleykaSvetootrazhayuschaya";
+import SamokleykaFotolyuminiscentnaya from "./pages/samokleyki/SamokleykaFotolyuminiscentnaya";
+import SamokleykaCvetnaya from "./pages/samokleyki/SamokleykaCvetnaya";
+import SamokleykaDezaynerskaya from "./pages/samokleyki/SamokleykaDezaynerskaya";
+import SamokleykaPerforirovannaya from "./pages/samokleyki/SamokleykaPerforirovannaya";
 
 
 
-import Razrabotka_saitov from "./pages/razrabotka-saitov/RazrabotkaSaitov";
+import PechatHolste from "./pages/pechat-na-holste/PechatHolste";
+import PechatHolsteRegular from "./pages/pechat-na-holste/PechatHolsteRegular";
+import PechatHolstIndividual from "./pages/pechat-na-holste/PechatHolstIndividual";
+import PechatHolstePodramnik from "./pages/pechat-na-holste/PechatHolstePodramnik";
+
+import TverdyPereplet from "./pages/tverdy-pereplet/TverdyPereplet";
 
 
-
-
+import RazrabotkaSaitov from "./pages/razrabotka-saitov/RazrabotkaSaitov";
 
 
 import StruinayPechat from "./pages/struinay-pechat/StruinayPechat";
@@ -52,14 +49,34 @@ import StruinayPechatMatovDvustoron from "./pages/struinay-pechat/StruinayPechat
 import StruinayPechatMatovOdnostoron from "./pages/struinay-pechat/StruinayPechatMatovOdnostoron";
 
 
+// Админ панель
+import LayoutAdmin from "./LayoutAdmin";
+import ClientAdminPanel from "./pages/admin/ClientAdminPanel";
+// import RegForm from "./pages/admin/RegForm";
 
 
 
+import {check} from "./http/userAPI";
+import {Spinner} from "react-bootstrap";
 
 
+const App = observer(() => {
+  const {user} = useContext(Context)
+  const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+      check().then(data => {
+       if(!data.stop){
+          user.setUser(data)
+          user.setIsAuth(true)
+          // console.log(123)
+       }
+      }).catch(e => console.log(e)).finally(() => setLoading(false))
+  }, [])
 
-const App = () => {
+  if (loading) {
+      return <Spinner animation="border" />;
+  }
 
 
   return (
@@ -67,40 +84,41 @@ const App = () => {
     
       <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/admin" element={<LayoutAdmin />}>
+              <Route index element={<ClientAdminPanel />} /> 
+              {/* <Route path="add-product" element={<ClientAdminPanel.js />} /> */}
+      </Route>
+              <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
-              {/* <Route path="product/:id" element={<ProductView />} /> */}
+
+{/* Autorization */}
+              {/* <Route path="/login" element={<LoginForm />} /> */}
+              {/* <Route path="/registration" element={<RegForm />} /> */}
+              
+{/* Товары */}
               <Route path="/vizitki" element={<Vizitki />} />
               <Route path="/banner" element={<Banner />} />
               <Route path="/payinfo" element={<Payinfo />} />
-              
-              <Route path="/pechat-holst" element={<Pechat_holst />} />
 
-
-              {/* Самоклейки */}
+{/* Самоклейки */}
               <Route path="/samokley" element={<Samokley />} />
-              <Route path="/samokleyka_belaya" element={<Samokleyka_belaya />} />
-              <Route path="/samokleyka-chernaya" element={<Samokleyka_chernaya />} />
-              <Route path="/samokleyka-prozrachnaya" element={<Samokleyka_prozrachnaya />} />
-              <Route path="/samokleyka-svetootrazhayuschaya" element={<Samokleyka_svetootrazhayuschaya />} />
-              <Route path="/samokleyka-fotolyuminiscentnaya" element={<Samokleyka_fotolyuminiscentnaya />} />
-              <Route path="/samokleyka-cvetnaya" element={<Samokleyka_cvetnaya />} />
-              <Route path="/samokleyka-dezaynerskaya" element={<Samokleyka_dezaynerskaya />} />
-              <Route path="/samokleyka-perforirovannaya" element={<Samokleyka_perforirovannaya />} />
+              <Route path="/samokleyka_belaya" element={<SamokleykaBelaya />} />
+              <Route path="/samokleyka-chernaya" element={<SamokleykaChernaya />} />
+              <Route path="/samokleyka-prozrachnaya" element={<SamokleykaProzrachnaya />} />
+              <Route path="/samokleyka-svetootrazhayuschaya" element={<SamokleykaSvetootrazhayuschaya />} />
+              <Route path="/samokleyka-fotolyuminiscentnaya" element={<SamokleykaFotolyuminiscentnaya />} />
+              <Route path="/samokleyka-cvetnaya" element={<SamokleykaCvetnaya />} />
+              <Route path="/samokleyka-dezaynerskaya" element={<SamokleykaDezaynerskaya />} />
+              <Route path="/samokleyka-perforirovannaya" element={<SamokleykaPerforirovannaya />} />
 
-
-
-
-
-              <Route path="/pechat-na-holste" element={<Pechat_na_holste />} />
-              <Route path="/pechat-na-holste-regular" element={<Pechat_na_holste_regular />} />
-              <Route path="/pechat-na-holste-individual" element={<Pechat_na_holste_individual />} />
-              <Route path="/pechat-na-holste-podramnik" element={<Pechat_na_holste_podramnik />} />
+{/* Печать на холсте */}
+              <Route path="/pechat-na-holste" element={<PechatHolste />} />
+              <Route path="/pechat-na-holste-regular" element={<PechatHolsteRegular />} />
+              <Route path="/pechat-na-holste-individual" element={<PechatHolstIndividual />} />
+              <Route path="/pechat-na-holste-podramnik" element={<PechatHolstePodramnik />} />
 
 {/* Cтраница твердый переплет */}
-              <Route path="/tverdy-pereplet" element={<Tverdy_pereplet />} />
-
-
+              <Route path="/tverdy-pereplet" element={<TverdyPereplet />} />
 
 {/* Страницы струйная печать */}
               <Route path="/struinay-pechat" element={<StruinayPechat />} />
@@ -109,14 +127,11 @@ const App = () => {
               <Route path="/struinay-pechat-matov-dvustoron" element={<StruinayPechatMatovDvustoron />} />
               <Route path="/struinay-pechat-matov-odnostoron" element={< StruinayPechatMatovOdnostoron />} />
 
+{/* Разработка сайтов */}
+              <Route path="/razrabotka-saitov" element={<RazrabotkaSaitov />} />
 
-
-              <Route path="/razrabotka-saitov" element={<Razrabotka_saitov />} />
-              
-
-
+{/* Основные страницыы сайта */}
               <Route path="/oferta" element={<Oferta />} />
-              <Route path="/contacts" element={<Contacts />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="*" element={<Empty />} />
             </Route>
@@ -128,6 +143,6 @@ const App = () => {
       
     </div>
   );
-};
+});
 
 export default App;

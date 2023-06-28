@@ -107,12 +107,17 @@ const Header = () => {
 								href='mailto: info@kopi34.ru'>info@kopi34.ru</a></span><span
 							className="label">г. Волгоград, ул. Петропавловская 87</span>
 					</div>
-					<div className="subTableColumn">
-						
-					</div>
+					
 					<div className="subTableColumn" id="subTableColumn-4">
 					<span className="heading"><a href='/contacts'>Контакты</a></span>
 					</div>
+					{/* <div className="subTableColumn">
+
+						
+					<span className="heading"><a href='/login'>Вход</a><br></br>
+					<a href='/registration'>Регистрация</a>
+					</span>
+					</div> */}
 				</div>
 			</div>
 		</div>
