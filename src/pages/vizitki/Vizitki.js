@@ -65,7 +65,7 @@ const Vizitki = () => {
             .then(data => {
             console.log(data);
 
-            window.location.href = data.confirmation.confirmation_url;
+            // window.location.href = data.confirmation.confirmation_url;
                 
             });
         }

@@ -56,7 +56,7 @@ const RegPage = observer(() => {
                   <Form.Label>Пароль:</Form.Label>
                   <Form.Control type='text' onChange={e => setPassword(e.target.value)} placeholder="password" />
                 </Form.Group>
-                <Button variant="primary" onClick={makeReg}>Primary</Button>
+                <Button variant="primary" onClick={makeReg}>Регистрация</Button>
           </Form>
 
           
