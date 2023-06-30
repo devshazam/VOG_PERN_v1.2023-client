@@ -64,15 +64,12 @@ const App = observer(() => {
   const {user} = useContext(Context)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-      check().then(data => {
-       if(!data.stop){
-          user.setUser(data)
-          user.setIsAuth(true)
-          // console.log(123)
-       }
-      }).catch(e => console.log(e)).finally(() => setLoading(false))
-  }, [])
+      useEffect(() => {
+        check().then(data => {
+            user.setUser(data)
+            user.setIsAuth(true)
+        }).finally(() => setLoading(false))
+    }, [])
 
   if (loading) {
       return <Spinner animation="border" />;

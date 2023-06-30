@@ -20,11 +20,15 @@ const RegPage = observer(() => {
     helpers.setModalRegistration(false)
   }
   const makeReg = () => {
+
+    // TODO - pfibne jn 
     registration(mail, password, name, phone).then(data => {
-      
-      alert('success!');
+      console.log(data)
+      // alert('success!');
       
       helpers.setModalRegistration(false)
+    }).catch((error) => { // рекомендуемая ф-ция, исполняет внутреннюю ф-ции и передает туда результат описание ошибки
+      console.log(error.name + error.message);
     })
     
   }
