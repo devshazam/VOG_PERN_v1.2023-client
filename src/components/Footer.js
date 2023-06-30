@@ -49,7 +49,7 @@ function Footer(){
 												href='mailto: info@kopi34.ru'>info@kopi34.ru</a></a>
 									</div>
 									<ul className="list">
-										<li>График работы с 10:00 до 21:00</li>
+										<li>График работы с 09:00 до 19:00</li>
 									</ul>
 									<div className="snl"></div>
 								</div>

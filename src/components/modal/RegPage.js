@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 
 import {observer} from "mobx-react-lite";
 
-import { registration } from '../../http/userAPI'
+import { registration, confirmMail } from '../../http/userAPI'
 
 const RegPage = observer(() => {
   const {helpers} = useContext(Context)
@@ -15,24 +15,46 @@ const RegPage = observer(() => {
   const [password, setPassword] = useState('')
   const [phone, setPhone] = useState('')
   const [name, setName] = useState('')
+  const [confirm, setConfirm] = useState(true)
+  const [confirmCode, setConfirmCode] = useState(false)
   
+
+
   const hideModal = () => {
     helpers.setModalRegistration(false)
   }
-  const makeReg = () => {
+  const makeReg = async () => {
 
     // TODO - pfibne jn 
-    registration(mail, password, name, phone).then(data => {
+      let data = await registration(mail, password, name, phone)
       console.log(data)
-      // alert('success!');
-      
+      alert('success!')
       helpers.setModalRegistration(false)
-    }).catch((error) => { // рекомендуемая ф-ция, исполняет внутреннюю ф-ции и передает туда результат описание ошибки
-      console.log(error.name + error.message);
-    })
     
   }
-  
+  // Отправка кода подтверждения 
+      const  sendConfirmCode = async () => {
+            try{
+              console.log(234);
+              setConfirmCode(await confirmMail(mail))
+              console.log(confirmCode)
+            }catch(error){
+              console.log(2333333333333333334);
+            }
+      }
+
+
+      const  compareCodes = async (event) => {
+        if(confirmCode == event.target.value){
+          setConfirm(false)
+        }else{
+          alert(' Код НЕ совпадает!')
+        }
+     }
+
+
+
+
   return (
     <>
 
@@ -44,23 +66,39 @@ const RegPage = observer(() => {
         <Modal.Body>
 
               <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>Имя:</Form.Label>
-                  <Form.Control type="name" placeholder="Иванов Иван Иванович" onChange={e => setName(e.target.value)} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>Email:</Form.Label>
-                  <Form.Control type="email" placeholder="name@example.com" onChange={e => setMail(e.target.value)} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Телефон для связи:</Form.Label>
-                  <Form.Control type='text' onChange={e => setPhone(e.target.value)} placeholder="phone" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Пароль:</Form.Label>
-                  <Form.Control type='text' onChange={e => setPassword(e.target.value)} placeholder="password" />
-                </Form.Group>
-                <Button variant="primary" onClick={makeReg}>Регистрация</Button>
+                
+                {confirm ?
+                  <>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Email:</Form.Label>
+                    <Form.Control type="email" placeholder="name@example.com" onChange={e => setMail(e.target.value)} />
+                  </Form.Group>
+                  <Button variant="primary" onClick={sendConfirmCode}>Подтвердить почту</Button>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                      <Form.Label>Введите код подтверждения почты (из письма!):</Form.Label>
+                      <Form.Control type="name" placeholder="Код подтверждения без пробелов!" onChange={event => compareCodes(event)} />
+                  </Form.Group>
+                  
+                  </>
+                :
+                  <>
+                  <h2>Ваш адрес {mail} подтвержден!</h2>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Имя:</Form.Label>
+                    <Form.Control type="name" placeholder="Иванов Иван Иванович" onChange={e => setName(e.target.value)} />
+                  </Form.Group>
+                  
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Телефон для связи:</Form.Label>
+                    <Form.Control type='text' onChange={e => setPhone(e.target.value)} placeholder="phone" />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Пароль:</Form.Label>
+                    <Form.Control type='text' onChange={e => setPassword(e.target.value)} placeholder="password" />
+                  </Form.Group>
+                  <Button variant="primary" onClick={makeReg}>Регистрация</Button>
+                </>
+                  }
           </Form>
 
           

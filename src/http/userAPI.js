@@ -8,13 +8,22 @@ export const registration = async (email, password, name, phone) => {
 }
 
 export const login = async (email, password) => {
-    const {data} = await $host.post('api/user/login', {email, password})
+    const {data} = await $host.post('/user/login', {email, password})
     localStorage.setItem('token', data.token)
     return jwt_decode(data.token)
 }
 
 export const check = async () => {
-    const {data} = await $authHost.get('api/user/auth' )
+    const {data} = await $authHost.get('/user/auth' )
     localStorage.setItem('token', data.token)
     return jwt_decode(data.token)
 }
+
+export const confirmMail = async (email) => {
+    const {data} = await $host.post('/user/confirm-mail', email)
+    // localStorage.setItem('token', data.token)
+    // Question - в последствии можно сделать сохранение информации в куки
+    return data
+}
+
+
