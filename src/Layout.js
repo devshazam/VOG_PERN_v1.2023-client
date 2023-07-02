@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 import SiteBar from "./components/SiteBar";
 import LoginPage from './components/modal/LoginPage';
-import RegPage from './components/modal/RegPage';
+import RegPage from './components/modal/RegPage.js';
 
 
 export default function  Layout(){

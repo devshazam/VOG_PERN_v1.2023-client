@@ -16,6 +16,7 @@ const LoginPage = observer(() => {
   const [password, setPassword] = useState('')
   const hideModal = () => {
   helpers.setModalLogin(false)
+
 }
 
 
@@ -27,6 +28,7 @@ const LoginPage = observer(() => {
       
       helpers.setModalLogin(false)
       user.setIsAuth(true)
+      window.location.reload();
     })
     
   }

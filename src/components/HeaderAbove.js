@@ -10,7 +10,7 @@ const Header = observer(() => {
   const navigate = useNavigate();
 
     const {helpers, user} = useContext(Context)
-console.log(helpers.modalLogin, user.isAuth)
+    console.log(user.user.phone)
     const showModalLogin = () => {
         helpers.setModalLogin(true);
     }
@@ -35,13 +35,6 @@ console.log(helpers.modalLogin, user.isAuth)
                           <><Nav.Item>
                           <Nav.Link onClick={logOut} >Выход</Nav.Link>
                           </Nav.Item>
-
-                          <Nav.Item>
-                            <Nav.Link href="/admin/" >Мои объявления</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                            <Nav.Link href="/admin/add-product/" >Создать объявление</Nav.Link>
-                            </Nav.Item>
                           </>
                             :
                           <>

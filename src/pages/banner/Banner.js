@@ -14,6 +14,7 @@ const Banner = () => {
     const [density, setDensity] = useState('400-440'); // плотность баннера 
     const [tel, setTel] = useState(0); // Телефон
     const [file, setFile] = useState(null); // Файл
+    const name = 'Баннер';
 
 
     useEffect(() => {
@@ -43,9 +44,10 @@ const Banner = () => {
            if(user.isAuth){if(file !== null && tel !== 0 && value !== 0){
                     const formData = new FormData();     
                         formData.append('value', `${value}`)
-                        formData.append('description', `Наименование: Баннер; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм;`)
+                        formData.append('name', `${name}`)
+                        formData.append('description', `Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм;`)
                         formData.append('img', file)
-                        formData.append('tel', `${tel}`)
+                        formData.append('userId', `${user.user.id}`)    
 
                     if(Number(file.size) > 900000){
                         alert('Картинка должна быть менее 900Kb');
