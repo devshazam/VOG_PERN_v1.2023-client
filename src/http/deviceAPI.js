@@ -17,6 +17,13 @@ export const callPay = async () => {
     return data
 }
 
+export const fetchDevices = async (itemSort, orderSort, limit, page) => {
+    const {data} = await $host.get('api/device', {params: {
+        itemSort, orderSort, limit, page
+        }})
+    return data
+}
+
 // 
 // export const createBrand = async (brand) => {
 //     const {data} = await $authHost.post('api/brand', brand)

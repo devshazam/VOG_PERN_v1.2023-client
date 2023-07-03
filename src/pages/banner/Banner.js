@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "../../index";
 
 import { createItem } from '../../http/deviceAPI.js'
+import SendPay from '../a-components/SendPay'
 
 
 const Banner = () => {
@@ -12,7 +13,7 @@ const Banner = () => {
     const [width, setWidth] = useState(0); // ширина баннеар
     const [height, setHeight] = useState(0); // высота баннера
     const [density, setDensity] = useState('400-440'); // плотность баннера 
-    const [tel, setTel] = useState(0); // Телефон
+    const [description, setDescription] = useState(0); // Телефон
     const [file, setFile] = useState(null); // Файл
     const name = 'Баннер';
 
@@ -36,34 +37,40 @@ const Banner = () => {
                 if(density == '400-440'){ midNum2 = midNum*240;}else{midNum2 = midNum*340;}
             }
             setValue(Math.round((midNum2) * 100) / 100);
+
       }, [width, density, height]); // <- add the count variable here
-  
+      
+      
+      useEffect(() => {
+
+        setDescription(`Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм;`)
+  }, [description]); // <- add the count variable here
 
 
-    const countPrice= () => {
-           if(user.isAuth){if(file !== null && tel !== 0 && value !== 0){
-                    const formData = new FormData();     
-                        formData.append('value', `${value}`)
-                        formData.append('name', `${name}`)
-                        formData.append('description', `Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм;`)
-                        formData.append('img', file)
-                        formData.append('userId', `${user.user.id}`)    
+    // const countPrice= () => {
+    //        if(user.isAuth){if(file !== null && tel !== 0 && value !== 0){
+    //                 const formData = new FormData();     
+    //                     formData.append('value', `${value}`)
+    //                     formData.append('name', `${name}`)
+    //                     formData.append('description', `Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм;`)
+    //                     formData.append('img', file)
+    //                     formData.append('userId', `${user.user.id}`)    
 
-                    if(Number(file.size) > 900000){
-                        alert('Картинка должна быть менее 900Kb');
-                    }else{
-                        createItem(formData)
-                        .then(data => {
-                        console.log(data);
-                        // window.location.href = data.confirmation.confirmation_url;
-                        });
-                    }
-            }else{
-                alert('Заполните файл и телефон и размеры!');
-            }}else{
-                alert('Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с левой стороны!');
-            }
-    }
+    //                 if(Number(file.size) > 900000){
+    //                     alert('Картинка должна быть менее 900Kb');
+    //                 }else{
+    //                     createItem(formData)
+    //                     .then(data => {
+    //                     console.log(data);
+    //                     // window.location.href = data.confirmation.confirmation_url;
+    //                     });
+    //                 }
+    //         }else{
+    //             alert('Заполните файл и телефон и размеры!');
+    //         }}else{
+    //             alert('Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с левой стороны!');
+    //         }
+    // }
 
 
     return (
@@ -77,10 +84,12 @@ const Banner = () => {
                     <img src="/file/pic/banner.jpg" alt="полиграфия"></img>
                     </div>
                 <div className="col-6">
-                    <div className="mid rittu">
+
+                    <SendPay value={value} description={description} name={name} file={file} />
+                    {/* <div className="mid rittu">
                         <h2>{value} p.</h2>
                         <button type="submit" className="search-form__submit" onClick={countPrice}>КУПИТЬ</button>
-                    </div>
+                    </div> */}
                     <div className="mid">
                         <div className="mid-23">
                             <p>Ширина (мм)</p>
@@ -106,12 +115,12 @@ const Banner = () => {
                         </div>
                     </div>
                     <div className="mid">
-                        <div className="mid-23">
+                        {/* <div className="mid-23">
                             <p>Телефон для связи</p>
                             <input type="text" name="tel" className="search-form__field"  placeholder="+7 800 123-45-67"  onChange={e => setTel(e.target.value)} >
 
                             </input>
-                        </div>
+                        </div> */}
                         <div className="mid-23">
                             <p>Картинка</p>
                             <input type="file" name="foto" className="search-form__field" onChange={e => setFile(e.target.files[0]) }>

@@ -51,7 +51,7 @@ import StruinayPechatMatovOdnostoron from "./pages/struinay-pechat/StruinayPecha
 
 // Админ панель
 import LayoutAdmin from "./LayoutAdmin";
-import ClientAdminPanel from "./pages/admin/ClientAdminPanel";
+import AllOrdersAdmin from "./pages/admin/AllOrdersAdmin";
 // import RegForm from "./pages/admin/RegForm";
 
 
@@ -84,7 +84,7 @@ const App = observer(() => {
       <Routes>
           <Route path="/admin" element={<LayoutAdmin />}>
               <Route index element={<ClientAdminPanel />} /> 
-              {/* <Route path="add-product" element={<ClientAdminPanel.js />} /> */}
+              <Route path="/devices-view/" element={<AllOrdersAdmin />} />
       </Route>
               <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
