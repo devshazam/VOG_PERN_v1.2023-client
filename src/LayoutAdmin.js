@@ -28,7 +28,7 @@ const LayoutAdmin = () => {
         <div className="limiter">
             <div className="compliter">
 
-    <SiteBarAdmin />
+    {/* <SiteBarAdmin />     */}
     {user.isAuth ? <Outlet /> : <Navigate to='/' />}
 
     </div>

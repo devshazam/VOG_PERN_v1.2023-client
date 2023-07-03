@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "../../index";
 
-import { createItem } from '../../http/deviceAPI.js'
+import { createItem } from '../../http/deviceAPI'
 import SendPay from '../a-components/SendPay'
 
 

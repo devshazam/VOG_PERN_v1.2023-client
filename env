@@ -1,0 +1,3 @@
+# для запросов http и для ссылок на папку ststic с файлами
+REACT_APP_API_URL='http://localhost:5000/'
+

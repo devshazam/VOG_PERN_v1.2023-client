@@ -83,9 +83,9 @@ const App = observer(() => {
       <BrowserRouter>
       <Routes>
           <Route path="/admin" element={<LayoutAdmin />}>
-              <Route index element={<ClientAdminPanel />} /> 
-              <Route path="/devices-view/" element={<AllOrdersAdmin />} />
-      </Route>
+              <Route index element={<AllOrdersAdmin />} /> 
+              {/* <Route path="/devices-view/" element={<AllOrdersAdmin />} /> */}
+          </Route>
               <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
 
