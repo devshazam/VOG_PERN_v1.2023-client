@@ -35,6 +35,9 @@ const Header = observer(() => {
                           <><Nav.Item>
                           <Nav.Link onClick={logOut} >Выход</Nav.Link>
                           </Nav.Item>
+                            <Nav.Item>
+                          <Nav.Link  href="/admin">Панель администратора</Nav.Link>
+                          </Nav.Item>
                           </>
                             :
                           <>

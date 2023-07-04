@@ -11,11 +11,11 @@ import { fetchDevices, deleteDevice } from '../../http/deviceAPI'
 const AllOrdersAdmin = () => {
     const [itemSort, setItemSort] = useState('createdAt');
     const [orderSort, setOrderSort] = useState('ASC');
-    const [limit, setLimit] = useState('10');
-    const [page, setPage] = useState('1');
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
 
     const [devices, setDevices] = useState({});
-    const [count, setCount] = useState('1');
+    const [count, setCount] = useState(0);
     const {device} = useContext(Context)
     // user.role
 
@@ -23,40 +23,44 @@ if(devices) console.log(devices)
     useEffect(() => {
         fetchDevices(itemSort, orderSort, limit, page).then(data => {
             setDevices(data.rows)
-            device.setTotalCount(data.count)
+            setCount(data.count)
         })
     }, [])
 
     console.log(devices)
 
-    // useEffect(() => {
-    //     fetchDevices(itemSort, orderSort, limit, page).then(data => {
-    //         setDevices(data.rows)
-    //         device.setTotalCount(data.count)
-    //     })
-    // }, [itemSort, orderSort, limit, page])
+    useEffect(() => {
+        fetchDevices(itemSort, orderSort, limit, page).then(data => {
+            setDevices(data.rows)
+            setCount(data.count)
+        })
+    }, [itemSort, orderSort, limit, page])
 
     
-    function deleteItem(id) {
-		deleteDevice(id)
-	}
+    // function deleteItem(id) {
+	// 	deleteDevice(id)
+	// }
+    function choicePage(number){
+        setPage(number);
+    }
 
-    let active = 2;
-let items = [];
-for (let number = 1; number <= 5; number++) {
-  items.push(
-    <Pagination.Item key={number} active={number === active}>
-      {number}
-    </Pagination.Item>,
-  );
-}
-const paginationBasic = (
-    <div>
-      <Pagination>{items}</Pagination>
 
-    </div>
-  );
-  
+    let midlItem1 = Math.ceil(count / limit)
+    let items = [];
+    for (let number = 1; number <= midlItem1; number++) {
+    items.push(
+        <Pagination.Item key={number} active={number === page} onClick={() => choicePage(number)}>
+        {number}
+        </Pagination.Item>,
+    );
+    }
+    const paginationBasic = (
+        <div>
+        <Pagination>{items}</Pagination>
+
+        </div>
+    );
+    
 
 
 
@@ -86,6 +90,13 @@ const paginationBasic = (
                     <option value="DESC" >По возрастанию</option>
                 </select>
             </div>
+            {/* <div className="mid-23">
+                <p>Статус готовности</p>
+                <select name="num" className="search-form__field" id="cars" value={orderSort}onChange={e => setOrderSort(e.target.value)}>
+                    <option value="ASC" >По убыванию</option>
+                    <option value="DESC" >По возрастанию</option>
+                </select>
+            </div> */}
         </div>
 
 
@@ -120,7 +131,9 @@ const paginationBasic = (
                             
 
                             <td>{device.createdAt}</td>
-                            <td> <button onClick={() => deleteItem(device.id)}></button></td>
+                            <td> 
+                                {/* <button onClick={() => deleteItem(device.id)}>Выполнить</button> */}
+                                </td>
                         </tr>
                     ) : 
                         <tr>

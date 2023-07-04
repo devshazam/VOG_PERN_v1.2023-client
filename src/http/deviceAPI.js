@@ -6,13 +6,16 @@ import jwt_decode from "jwt-decode";
 export const createItem = async (device) => {
     const {data} = await $authHost.post('/api/device', device)
     localStorage.setItem('payid', data.id)
+    localStorage.setItem('orderid', data.metadata.order_id)
     return data
 }
 
+
 export const callPay = async () => {
     const payinfo = localStorage.getItem('payid')
+    const orderid = localStorage.getItem('orderid')
     const {data} = await $authHost.post('/api/device/getpay', {
-        payinfo: payinfo
+        payinfo, orderid
       })
     return data
 }
