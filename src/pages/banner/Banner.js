@@ -3,10 +3,11 @@ import {Context} from "../../index";
 
 import { createItem } from '../../http/deviceAPI'
 import SendPay from '../a-components/SendPay'
+import GetFile from '../a-components/GetFile'
+import {observer} from "mobx-react-lite";
 
-
-const Banner = () => {
-    const {user} = useContext(Context)
+const Banner = observer(() => {
+    const {user, device} = useContext(Context)
     
 
     const [value, setValue] = useState(0); // цена товара - расчитаная
@@ -14,7 +15,7 @@ const Banner = () => {
     const [height, setHeight] = useState(0); // высота баннера
     const [density, setDensity] = useState('400-440'); // плотность баннера 
     const [description, setDescription] = useState(''); // Телефон
-    const [file, setFile] = useState(null); // Файл
+    // const [file, setFile] = useState(null); // Файл
     const name = 'Баннер';
 
 
@@ -55,7 +56,7 @@ const Banner = () => {
                     </div>
                 <div className="col-6">
 
-                    <SendPay value={value} description={description} name={name} file={file} />
+                    <SendPay value={value} description={description} name={name} />
                     {/* <div className="mid rittu">
                         <h2>{value} p.</h2>
                         <button type="submit" className="search-form__submit" onClick={countPrice}>КУПИТЬ</button>
@@ -84,13 +85,12 @@ const Banner = () => {
                             
                         </div>
                     </div>
-                    <div className="mid">
+                    <GetFile/>
+                    {/* <div className="mid">
                         <div className="mid-23">
                             <p>Ваш телефон</p>
                             <p>{user.user.phone ? user.user.phone : 'Пожалуйста зарегистрируйтесь!'}</p>
-                            {/* <input type="text" name="tel" className="search-form__field"  placeholder="+7 800 123-45-67"  onChange={e => setTel(e.target.value)} >
-
-                            </input> */}
+                          
                         </div>
                         <div className="mid-23">
                             <p>Картинка</p>
@@ -98,9 +98,9 @@ const Banner = () => {
 
                             </input>
                         </div>
-                    </div>
+                    </div> */}
                     
-            
+                    
 
                 </div>
                 </div>
@@ -118,6 +118,6 @@ const Banner = () => {
 
         </>
     );
-};
+});
 
 export default Banner;

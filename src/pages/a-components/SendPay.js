@@ -1,26 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {Context} from "../../index";
+import Spinner from 'react-bootstrap/Spinner';
 
 import { createItem } from '../../http/deviceAPI.js'
+import {observer} from "mobx-react-lite";
 
-
-const SendPay = (props) => {
-    const {user} = useContext(Context)
+const SendPay = observer((props) => {
+    const {user, device} = useContext(Context)
+    const [spinner, setSpinner] = useState(true); // цена товара - расчитаная
     
 
 console.log(props.name + props.value + props.description + props.file)
 
     const countPrice= () => {
            if(user.isAuth){
-            if(props.file !== null && props.value !== 0){
+            if(device.file !== null && props.value !== 0){
+                setSpinner(false)
                     const formData = new FormData();     
                         formData.append('value', `${props.value}`)
                         formData.append('name', `${props.name}`)
                         formData.append('description', `${props.description}`)
-                        formData.append('img', props.file)
+                        formData.append('img', device.file)
                         formData.append('userId', `${user.user.id}`)    
 
-                    if(Number(props.file.size) > 900000){
+                    if(Number(device.file.size) > 900000){
                         alert('Картинка должна быть менее 900Kb');
                     }else{
                         createItem(formData)
@@ -42,11 +45,12 @@ console.log(props.name + props.value + props.description + props.file)
         <>
             <div className="mid rittu">
                 <h2>{props.value} p.</h2>
-                <button type="submit" className="search-form__submit" onClick={countPrice}>КУПИТЬ</button>
+                
+                <button type="submit" className="search-form__submit" onClick={countPrice}>{spinner ? 'КУПИТЬ' : <Spinner animation="border" />}</button>
             </div>
           
         </>
     );
-};
+});
 
 export default SendPay;
