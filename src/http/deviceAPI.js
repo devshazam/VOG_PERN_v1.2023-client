@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 export const createItem = async (device) => {
     const {data} = await $authHost.post('/api/device', device)
     localStorage.setItem('payid', data.id)
-    console.log(data)
+    console.log(data)   
     localStorage.setItem('orderid', data.metadata.order_id)
     return data
 }
@@ -21,16 +21,16 @@ export const callPay = async () => {
     return data
 }
 
-export const fetchDevices = async (itemSort, orderSort, limit, page) => {
+export const fetchDevices = async (itemSort, orderSort, limit, page, id, filter) => {
     const {data} = await $host.get('/api/device/admin/devices-view/', {params: {
-        itemSort, orderSort, limit, page
+        itemSort, orderSort, limit, page, id, filter
         }})
     return data
 }
 
 
 export const deleteDevice = async (id) => {
-    const {data} = await $authHost.post('api/device/delete-item/', id)
+    const {data} = await $authHost.post('api/device/delete-item/', {id})
     return data
 }
 

@@ -13,37 +13,54 @@ const AllOrdersAdmin = () => {
     const [orderSort, setOrderSort] = useState('ASC');
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
+    const [midOne, setMidOne] = useState(1);
+    
+    const [id, setId] = useState('0');
+    const [filter, setFilter] = useState('Баннер');
+
+
 
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
     const {device} = useContext(Context)
     // user.role
 
-if(devices) console.log(devices)
     useEffect(() => {
-        fetchDevices(itemSort, orderSort, limit, page).then(data => {
+        fetchDevices(itemSort, orderSort, limit, page, id, filter).then(data => {
             setDevices(data.rows)
             setCount(data.count)
         })
     }, [])
 
-    console.log(devices)
 
     useEffect(() => {
-        fetchDevices(itemSort, orderSort, limit, page).then(data => {
+        fetchDevices(itemSort, orderSort, limit, page,  id, filter).then(data => {
             setDevices(data.rows)
             setCount(data.count)
         })
-    }, [itemSort, orderSort, limit, page])
+    }, [itemSort, orderSort, limit, page, midOne, id, filter])
 
     
-    // function deleteItem(id) {
-	// 	deleteDevice(id)
-	// }
+    function doneItem(id) {
+		deleteDevice(id).then(data => {
+                setMidOne(midOne + 1)
+        })
+	}
     function choicePage(number){
         setPage(number);
     }
-
+    function findItem(event) {
+        if(isNaN(event.target.value) || event.target.value == ''){
+            alert('Строку должна содержать цифру ID!')
+        }else{
+		setId(event.target.value);
+        }
+	}
+    // function resetFinding() {
+    //     setId('0')
+       
+	// }
+    
 
     let midlItem1 = Math.ceil(count / limit)
     let items = [];
@@ -61,10 +78,6 @@ if(devices) console.log(devices)
         </div>
     );
     
-
-
-
-
     return (
         <>
             
@@ -72,9 +85,14 @@ if(devices) console.log(devices)
             <div id="right">
 
 <div className="wrapper">
-
-
-
+        <div className="mid">
+            <div className="mid-23">
+                <p>Поиск по ID:</p>
+                <input  className="search-form__field" id="cars" value={id}  onChange={findItem}>
+                </input>
+            </div>
+            <button type="submit" className="search-form__submit" onClick={() => setId('0')}>Сбросить</button>
+        </div>
         <div className="mid">
             <div className="mid-23">
                 <p>Элемент сортировки</p>
@@ -90,13 +108,14 @@ if(devices) console.log(devices)
                     <option value="DESC" >По возрастанию</option>
                 </select>
             </div>
-            {/* <div className="mid-23">
-                <p>Статус готовности</p>
-                <select name="num" className="search-form__field" id="cars" value={orderSort}onChange={e => setOrderSort(e.target.value)}>
-                    <option value="ASC" >По убыванию</option>
-                    <option value="DESC" >По возрастанию</option>
+            <div className="mid-23">
+                <p>Фильтрация</p>
+                <select name="lam" className="search-form__field" id="cars" value={filter} onChange={e => setFilter(e.target.value)}>
+                    <option value="Баннер" >Баннер</option>
+                    <option value="Самоклейка" >Самоклейка</option>
+                    <option value="Визитка" >Визитка</option>
                 </select>
-            </div> */}
+            </div>
         </div>
 
 
@@ -108,6 +127,7 @@ if(devices) console.log(devices)
                     <th>Имя</th>
                     <th>Описание заказа</th>
                     <th>Описание Клиента</th>
+                    <th>Доставка</th>
                     <th>Картинка</th>
                     <th>Статус Готовности и Оплаты</th>
                     <th>Дата создания</th>
@@ -121,7 +141,7 @@ if(devices) console.log(devices)
                             <td>{device.feature}</td>
                             <td>{device.userDescription}</td>
                             
-                            
+                            <th>Доставка</th>
                             <td>
                                 <img width={150} height={150} src={process.env.REACT_APP_API_URL + device.img}/>
                                 <a href={process.env.REACT_APP_API_URL + device.img}> Ссылка на картинку</a>
@@ -132,7 +152,7 @@ if(devices) console.log(devices)
 
                             <td>{device.createdAt}</td>
                             <td> 
-                                {/* <button onClick={() => deleteItem(device.id)}>Выполнить</button> */}
+                                <button onClick={() => doneItem(device.id)}>Выполнить</button>
                                 </td>
                         </tr>
                     ) : 
