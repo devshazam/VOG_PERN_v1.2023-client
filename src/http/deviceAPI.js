@@ -8,6 +8,7 @@ export const createItem = async (device) => {
     localStorage.setItem('payid', data.id)
     console.log(data)   
     localStorage.setItem('orderid', data.metadata.order_id)
+    console.log(data)
     return data
 }
 
@@ -18,6 +19,7 @@ export const callPay = async () => {
     const {data} = await $authHost.post('/api/device/getpay', {
         payinfo, orderid
       })
+    console.log(data)
     return data
 }
 
@@ -25,12 +27,15 @@ export const fetchDevices = async (itemSort, orderSort, limit, page, id, filter)
     const {data} = await $host.get('/api/device/admin/devices-view/', {params: {
         itemSort, orderSort, limit, page, id, filter
         }})
+    console.log(data)
     return data
 }
 
 
 export const deleteDevice = async (id) => {
     const {data} = await $authHost.post('api/device/delete-item/', {id})
+    // const {data} = await $authHost.post('api/device/delete-item/', id)
+    console.log(data)
     return data
 }
 
