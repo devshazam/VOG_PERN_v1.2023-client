@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import {Context} from "../../index";
 import Spinner from 'react-bootstrap/Spinner';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 
 import { createItem } from '../../http/deviceAPI.js'
 import {observer} from "mobx-react-lite";
@@ -10,7 +12,7 @@ const SendPay = observer((props) => {
     const [spinner, setSpinner] = useState(true); // цена товара - расчитаная
     
 
-console.log(props.name + props.value + props.description + props.file)
+// console.log(props.name + props.value + props.description + props.file)
 
     const countPrice= () => {
            if(user.isAuth){
@@ -28,12 +30,12 @@ console.log(props.name + props.value + props.description + props.file)
                     }else{
                         createItem(formData)
                         .then(data => {
-                        console.log(data);
-                        // window.location.href = data.confirmation.confirmation_url;
+                        // console.log(data);
+                        window.location.href = data.confirmation.confirmation_url;
                         });
                     }
             }else{
-                alert('Заполните файл и телефон и размеры!');
+                alert('Не загружен файл или не заполнены размеры!');
             }
         }else{
                 alert('Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с левой стороны!');
@@ -43,11 +45,11 @@ console.log(props.name + props.value + props.description + props.file)
 
     return (
         <>
-            <div className="mid rittu">
-                <h2>{props.value} p.</h2>
-                
-                <button type="submit" className="search-form__submit" onClick={countPrice}>{spinner ? 'КУПИТЬ' : <Spinner animation="border" />}</button>
-            </div>
+
+            <Row className="mb-3">
+                    <Button type="submit"  variant="danger" onClick={countPrice}>{spinner ? 'КУПИТЬ' : <Spinner animation="border" />}</Button>
+            </Row>
+
           
         </>
     );

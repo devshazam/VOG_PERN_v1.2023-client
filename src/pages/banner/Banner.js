@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "../../index";
 
-import Button from 'react-bootstrap/Button';
+
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -22,32 +22,55 @@ const Banner = observer(() => {
     const [height, setHeight] = useState(0); // высота баннера
     const [density, setDensity] = useState('400-440'); // плотность баннера 
     const [description, setDescription] = useState(''); // Телефон
+    const [cargo, setCargo] = useState('Самовывоз: Петропавловская 87'); // Телефон
+
+    const [luvers, setLuvers] = useState('0'); // Телефон
+
+
     // const [file, setFile] = useState(null); // Файл
     const name = 'Баннер';
 
 
     useEffect(() => {
-            let midNum = Number(width)*Number(height) / 1000000;
-            let midNum2;
-            if(midNum < 1){
-                if(density == '400-440'){midNum2 = midNum*550;}else{midNum2 = midNum*650;}
-            }else if(midNum >= 1 && midNum < 5){
-                if(density == '400-440'){ midNum2 = midNum*500;}else{midNum2 = midNum*600;}
-            }if(midNum >= 5 && midNum < 10){
-                if(density == '400-440'){ midNum2 = midNum*400;}else{midNum2 = midNum*500;}
-            }if(midNum >= 10 && midNum < 50){
-                if(density == '400-440'){ midNum2 = midNum*350;}else{midNum2 = midNum*450;}
-            }if(midNum >= 50 && midNum < 100){
-                if(density == '400-440'){ midNum2 = midNum*300;}else{midNum2 = midNum*400;}
-            }if(midNum >= 100 && midNum < 500){
-                if(density == '400-440'){ midNum2 = midNum*280;}else{midNum2 = midNum*380;}
-            }if(midNum >= 500){
-                if(density == '400-440'){ midNum2 = midNum*240;}else{midNum2 = midNum*340;}
-            }
-            setValue(Math.round((midNum2) * 100) / 100);
+            if(height !== 0 && width !==0){
+                let midNum = Number(width)*Number(height) / 1000000;
+                let midNum2;
+                if(midNum < 1){
+                    if(density == '400-440'){midNum2 = midNum*550;}else{midNum2 = midNum*650;}
+                }else if(midNum >= 1 && midNum < 5){
+                    if(density == '400-440'){ midNum2 = midNum*500;}else{midNum2 = midNum*600;}
+                }if(midNum >= 5 && midNum < 10){
+                    if(density == '400-440'){ midNum2 = midNum*400;}else{midNum2 = midNum*500;}
+                }if(midNum >= 10 && midNum < 50){
+                    if(density == '400-440'){ midNum2 = midNum*350;}else{midNum2 = midNum*450;}
+                }if(midNum >= 50 && midNum < 100){
+                    if(density == '400-440'){ midNum2 = midNum*300;}else{midNum2 = midNum*400;}
+                }if(midNum >= 100 && midNum < 500){
+                    if(density == '400-440'){ midNum2 = midNum*280;}else{midNum2 = midNum*380;}
+                }if(midNum >= 500){
+                    if(density == '400-440'){ midNum2 = midNum*240;}else{midNum2 = midNum*340;}
+                }
+                let midNum14
+                console.log(midNum2)
+                if(Number(luvers) == 0){
+                    midNum14 = 0;
+                }else{
+                    midNum14 = ((Number(width)+Number(height)) * 2) / Number(luvers) * 15;
+                
+                }
+                console.log(midNum14)
 
-            setDescription(`Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм;`)
-      }, [width, density, height]); // <- add the count variable here
+                if(Math.round((midNum2 + midNum14) * 100) / 100 <= 200){
+                    setValue(200);
+                }else{
+                    setValue(Math.round((midNum2 + midNum14) * 100) / 100);
+                }
+
+                setDescription(`Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм; Люверсы: ${luvers} мм; Доставка: ${cargo}`)
+            }
+
+
+      }, [width, density, height, luvers, cargo, value]); // <- add the count variable here
       
       const [validated, setValidated] = useState(false);
 
@@ -76,126 +99,99 @@ const Banner = observer(() => {
 
 
 
-
+<h1>Цена: {value} p.</h1>
+<hr></hr>
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                            
                         <Row className="mb-3">
                             <Form.Group as={Col} md="4" controlId="validationCustom01">
-                            <Form.Label>First name</Form.Label>
+                            <Form.Label>Ширина (мм):</Form.Label>
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="First name"
-                                defaultValue="Mark"
+                                placeholder="Миллиметры"
+                                onChange={e => setWidth(e.target.value)}
                             />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                            <Form.Control.Feedback  type="invalid">Введите ширину!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="4" controlId="validationCustom02">
-                            <Form.Label>Last name</Form.Label>
+                            <Form.Label>Высота (мм):</Form.Label>
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="Last name"
-                                defaultValue="Otto"
+                                placeholder="Миллиметры"
+                                onChange={e => setHeight(e.target.value)}
                             />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                            <Form.Control.Feedback type="invalid">Введите высоту!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                            <Form.Label>Username</Form.Label>
+                            <Form.Label>Плотность (гр):</Form.Label>
                             <InputGroup hasValidation>
-                                <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                                <Form.Control
-                                type="text"
-                                placeholder="Username"
-                                aria-describedby="inputGroupPrepend"
-                                required
-                                />
+                                <Form.Select aria-label="Default select example" onChange={e => setDensity(e.target.value)}>
+                                    <option value="400-440" >400-440</option>
+                                    <option value="500" >500</option>
+                                </Form.Select>
                                 <Form.Control.Feedback type="invalid">
-                                Please choose a username.
+                                Введите плотность.
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                            </Form.Group>
+                            <Form.Group as={Col} md="12" controlId="validationCustomUsername">
+                            <Form.Label>Растояние между люверсами (мм):</Form.Label>
+                            <InputGroup hasValidation>
+                                <Form.Select aria-label="Default select example" onChange={e => setLuvers(e.target.value)} value={luvers}>
+                                    <option value="0" >Без люверсов</option>
+                                    <option value="200" >200 миллиметров</option>
+                                    <option value="300" >300 миллиметров</option>
+                                    <option value="400" >400 миллиметров</option>
+                                    <option value="500" >200 миллиметров</option>
+                                </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                Введите плотность.
                                 </Form.Control.Feedback>
                             </InputGroup>
                             </Form.Group>
                         </Row>
+
+                        <hr></hr>
+
+                        <GetFile/>
+                        
+                        
+                        <hr></hr>
+
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="6" controlId="validationCustom03">
-                            <Form.Label>City</Form.Label>
-                            <Form.Control type="text" placeholder="City" required />
-                            <Form.Control.Feedback type="invalid">
-                                Please provide a valid city.
-                            </Form.Control.Feedback>
+                            <Form.Group as={Col} md="12" controlId="validationCustomUsername">
+                            <Form.Label>Доставка:</Form.Label>
+                            <InputGroup hasValidation>
+                                <Form.Select aria-label="Default select example" onChange={e => setCargo(e.target.value)} value={cargo}>
+                                    <option value="Самовывоз: Петропавловская 87" >Самовывоз: Петропавловская 87</option>
+                                    <option value="Самовывоз: Казахская 25" >Самовывоз: Казахская 25</option>
+                                    {/* <option value="500" >СДЕК (оплата при получении)</option> */}
+                                </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                Выберите вариант доставки.
+                                </Form.Control.Feedback>
+                            </InputGroup>
                             </Form.Group>
-                            <Form.Group as={Col} md="3" controlId="validationCustom04">
-                            <Form.Label>State</Form.Label>
-                            <Form.Control type="text" placeholder="State" required />
-                            <Form.Control.Feedback type="invalid">
-                                Please provide a valid state.
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group as={Col} md="3" controlId="validationCustom05">
-                            <Form.Label>Zip</Form.Label>
-                            <Form.Control type="text" placeholder="Zip" required />
-                            <Form.Control.Feedback type="invalid">
-                                Please provide a valid zip.
-                            </Form.Control.Feedback>
-                            </Form.Group>
+                            
                         </Row>
+
+                        
+
                         <Form.Group className="mb-3">
                             <Form.Check
                             required
-                            label="Agree to terms and conditions"
-                            feedback="You must agree before submitting."
+                            label="Соглашаюсь с политикой конфиденциальности."
+                            feedback="Вы должны поставить галочку."
                             feedbackType="invalid"
                             />
                         </Form.Group>
-                        <Button type="submit">Submit form</Button>
+
+                        <SendPay value={value} description={description} name={name} />
+                        
                         </Form>
 
-
-
-
-                    <SendPay value={value} description={description} name={name} />
-                    {/* <div className="mid rittu">
-                        <h2>{value} p.</h2>
-                        <button type="submit" className="search-form__submit" onClick={countPrice}>КУПИТЬ</button>
-                    </div> */}
-                    <div className="mid">
-                        <div className="mid-23">
-                            <p>Ширина (мм)</p>
-                            <input name="width" className="search-form__field" id="cars" placeholder="Миллиметры" onChange={e => setWidth(e.target.value)}>
-                            </input>
-                        </div>
-                        <div className="mid-23">
-                            <p>Высота (мм)</p>
-                            <input name="height" className="search-form__field" id="cars" placeholder="Миллиметры" onChange={e => setHeight(e.target.value)}>
-                            </input>
-                        </div>
-                    </div>
-                    <div className="mid">
-                        <div className="mid-23">
-                            <p>Плотность</p>
-                            <select name="density" className="search-form__field" value={density} id="cars" onChange={e => setDensity(e.target.value)}>
-                                <option value="400-440" >400-440</option>
-                                <option value="500" >500</option>
-                            </select>
-                        </div>
-                        <div className="mid-23">
-                            
-                        </div>
-                    </div>
-                    <GetFile/>
-                    {/* <div className="mid">
-                        <div className="mid-23">
-                            <p>Ваш телефон</p>
-                            <p>{user.user.phone ? user.user.phone : 'Пожалуйста зарегистрируйтесь!'}</p>
-                          
-                        </div>
-                        <div className="mid-23">
-                            <p>Картинка</p>
-                            <input type="file" name="foto" className="search-form__field" onChange={e => setFile(e.target.files[0]) }>
-
-                            </input>
-                        </div>
-                    </div> */}
-                    
                     
 
                 </div>

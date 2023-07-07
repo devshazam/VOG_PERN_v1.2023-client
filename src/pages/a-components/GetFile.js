@@ -1,3 +1,8 @@
+
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+
 import React, { useState, useEffect, useContext } from 'react';
 import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
@@ -13,21 +18,26 @@ const GetFile = observer(() => {
 
     return (
         <>
-                <div className="mid">
-                    <div className="mid-23">
-                        <p>Ваш телефон</p>
-                        <p>{user.user.phone ? user.user.phone : 'Пожалуйста зарегистрируйтесь!'}</p>
-                        {/* <input type="text" name="tel" className="search-form__field"  placeholder="+7 800 123-45-67"  onChange={e => setTel(e.target.value)} >
 
-                        </input> */}
-                    </div>
-                    <div className="mid-23">
-                        <p>Картинка</p>
-                        <input type="file" name="foto" className="search-form__field" onChange={e => setFile(e.target.files[0]) }>
+                <Row className="mb-3">
+                            <Form.Group as={Col} md="6" controlId="validationCustom03">
+                            <Form.Label>Телефон:</Form.Label>
+                            <Form.Control type="text" placeholder="+7 (999) 123-45-67" required defaultValue={user.user.phone && user.user.phone} disabled  />
+                            <Form.Control.Feedback type="invalid">
+                                Пожалуйста введите ваш телефон!
+                            </Form.Control.Feedback>
+                            </Form.Group>
 
-                        </input>
-                    </div>
-                </div>
+                            <Form.Group as={Col} md="6" controlId="validationCustom03" >
+                                <Form.Label>Файл (jpg; До 900kB):</Form.Label>
+                                <Form.Control type="file" required onChange={e => setFile(e.target.files[0]) }/>
+                                <Form.Control.Feedback type="invalid">
+                                Пожалуйста загрузите файл!
+                                </Form.Control.Feedback>
+                                
+                            </Form.Group>
+                            
+                        </Row>
           
         </>
     );

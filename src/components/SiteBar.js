@@ -55,7 +55,7 @@ import React from 'react';
 										</span>
 									</a>
 								</li>
-								<li className="eChild allow-dropdown nested">
+								{/* <li className="eChild allow-dropdown nested">
 									<a href="/pechat-na-holste" className="menuLink">
 										<span className="tb">
 											<span className="pc">
@@ -99,7 +99,7 @@ import React from 'react';
 											</span>
 										</span>
 									</a>
-								</li>
+								</li> */}
 
 
 
