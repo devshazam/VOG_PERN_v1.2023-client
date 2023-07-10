@@ -31,14 +31,13 @@ const Samokleyka = observer(() => {
     const [description, setDescription] = useState(''); // Телефон
     const [cargo, setCargo] = useState('Самовывоз: Петропавловская 87'); // Телефон
 
-    
-    const [side, setSide] = useState(0);
     const [vidSamo, setVidSamo] = useState('Белая');
 
      const [tel, setTel] = useState(0);
         const [file, setFile] = useState(null);
     const name = 'Cамоклейка';
 
+    console.log(value)
 
     useEffect(() => {
         let m1 = Number(width)*Number(height) / 1000000
@@ -134,7 +133,7 @@ const Samokleyka = observer(() => {
 
       }, [width, height, vidSamo]); // <- add the count variable here
   
-
+// console.log(value)
 
 
     const functionWithSwitch = () => {
@@ -159,7 +158,7 @@ const Samokleyka = observer(() => {
             return "/file/samokleyki/belaya.jpg"
         }
       }
-      console.log(functionWithSwitch())
+    //   console.log(functionWithSwitch())
 
       const [validated, setValidated] = useState(false);
 

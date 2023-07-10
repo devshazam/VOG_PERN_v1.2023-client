@@ -10,7 +10,12 @@ import {observer} from "mobx-react-lite";
 const GetFile = observer(() => {
     const {user, device} = useContext(Context)
     const [file, setFile] = useState(null); // Файл
-    
+    let oneSwitcher = true;
+    console.log(13334)
+    // console.log(user.user)
+    if(user.user.phone){
+        console.log(13334)
+    }
     
         useEffect(() => {
                 device.setFile(file)

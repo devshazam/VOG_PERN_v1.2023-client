@@ -10,7 +10,7 @@ const Header = observer(() => {
   const navigate = useNavigate();
 
     const {helpers, user} = useContext(Context)
-    console.log(user.user.phone)
+    // console.log(user.user.phone)
     const showModalLogin = () => {
         helpers.setModalLogin(true);
     }

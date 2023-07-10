@@ -22,10 +22,10 @@ import Oferta from "./pages/Oferta";
 import Samokleyka from "./pages/samokleyki/Samokleyka";
 
 
-import PechatHolste from "./pages/pechat-na-holste/PechatHolste";
-import PechatHolsteRegular from "./pages/pechat-na-holste/PechatHolsteRegular";
-import PechatHolstIndividual from "./pages/pechat-na-holste/PechatHolstIndividual";
-import PechatHolstePodramnik from "./pages/pechat-na-holste/PechatHolstePodramnik";
+// import PechatHolste from "./pages/pechat-na-holste/PechatHolste";
+// import PechatHolsteRegular from "./pages/pechat-na-holste/PechatHolsteRegular";
+// import PechatHolstIndividual from "./pages/pechat-na-holste/PechatHolstIndividual";
+// import PechatHolstePodramnik from "./pages/pechat-na-holste/PechatHolstePodramnik";
 
 import TverdyPereplet from "./pages/tverdy-pereplet/TverdyPereplet";
 
@@ -33,11 +33,11 @@ import TverdyPereplet from "./pages/tverdy-pereplet/TverdyPereplet";
 import RazrabotkaSaitov from "./pages/razrabotka-saitov/RazrabotkaSaitov";
 
 
-import StruinayPechat from "./pages/struinay-pechat/StruinayPechat";
-import StruinayPechatGlanecDvustoron from "./pages/struinay-pechat/StruinayPechatGlanecDvustoron";
-import StruinayPechatGlanecOdnostoron from "./pages/struinay-pechat/StruinayPechatGlanecOdnostoron";
-import StruinayPechatMatovDvustoron from "./pages/struinay-pechat/StruinayPechatMatovDvustoron";
-import StruinayPechatMatovOdnostoron from "./pages/struinay-pechat/StruinayPechatMatovOdnostoron";
+// import StruinayPechat from "./pages/struinay-pechat/StruinayPechat";
+// import StruinayPechatGlanecDvustoron from "./pages/struinay-pechat/StruinayPechatGlanecDvustoron";
+// import StruinayPechatGlanecOdnostoron from "./pages/struinay-pechat/StruinayPechatGlanecOdnostoron";
+// import StruinayPechatMatovDvustoron from "./pages/struinay-pechat/StruinayPechatMatovDvustoron";
+// import StruinayPechatMatovOdnostoron from "./pages/struinay-pechat/StruinayPechatMatovOdnostoron";
 
 
 // Админ панель
@@ -57,8 +57,8 @@ const App = observer(() => {
 
       useEffect(() => {
         check().then(data => {
-          // console.log(data)
-            user.setUser(data)
+          console.log(data)
+            // user.setUser(data)
             user.setIsAuth(true)
         }).finally(() => setLoading(false))
     }, [])
@@ -97,20 +97,20 @@ const App = observer(() => {
 
 
 {/* Печать на холсте */}
-              <Route path="/pechat-na-holste" element={<PechatHolste />} />
+              {/* <Route path="/pechat-na-holste" element={<PechatHolste />} />
               <Route path="/pechat-na-holste-regular" element={<PechatHolsteRegular />} />
               <Route path="/pechat-na-holste-individual" element={<PechatHolstIndividual />} />
-              <Route path="/pechat-na-holste-podramnik" element={<PechatHolstePodramnik />} />
+              <Route path="/pechat-na-holste-podramnik" element={<PechatHolstePodramnik />} /> */}
 
 {/* Cтраница твердый переплет */}
               <Route path="/tverdy-pereplet" element={<TverdyPereplet />} />
 
 {/* Страницы струйная печать */}
-              <Route path="/struinay-pechat" element={<StruinayPechat />} />
+              {/* <Route path="/struinay-pechat" element={<StruinayPechat />} />
               <Route path="/struinay-pechat-glanec-dvustoron" element={<StruinayPechatGlanecDvustoron />} />
               <Route path="/struinay-pechat-glanec-odnostoronl" element={<StruinayPechatGlanecOdnostoron />} />
               <Route path="/struinay-pechat-matov-dvustoron" element={<StruinayPechatMatovDvustoron />} />
-              <Route path="/struinay-pechat-matov-odnostoron" element={< StruinayPechatMatovOdnostoron />} />
+              <Route path="/struinay-pechat-matov-odnostoron" element={< StruinayPechatMatovOdnostoron />} /> */}
 
 {/* Разработка сайтов */}
               <Route path="/razrabotka-saitov" element={<RazrabotkaSaitov />} />
