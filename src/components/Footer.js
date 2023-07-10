@@ -1,66 +1,50 @@
 import React from 'react';
-
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Footer(){
-    return (<>
-     <div id="footer" className="variant_5">
-			<div id="rowFooter">
-				<div id="leftFooter">
-					<div className="footerRow">
-						<div className="column">
-							<span className="heading">Договор оферта</span>
-							<ul className="footerMenu">
-
-								<li><a href="/oferta">Договор оферта</a></li>
-
-							</ul>
+    return (
+	
+<footer>
+		<Container>
+            
+            <Row>
+              <Col xs={12} lg={3}>
+			  <div className="column">
+							<p className="heading">Договор оферта</p>
+							<a href="/oferta"><p>Ссылка на документ</p></a>
 						</div>
-						<div className="column">
-							<span className="heading">Разработка сайта</span>
-							<a href="https://github.com/jacklee137/"><p>Разработка сайта</p></a>
+              </Col>
+              <Col xs={12} lg ={3}>
+			  <div className="column">
+							<p className="heading">Разработка сайта</p>
+							<a href="https://github.com/jacklee137/"><p>Разработчик</p></a>
 
 						</div>
-						<div className="column">
-							{/* <span className="heading">Помощь и сервисы</span>
-							<ul className="footerMenu">
+              </Col>
+			  <Col xs={12} lg ={3}>
+			  <div className="column">
+							<p className="heading">Адреса:</p>
+							<p className="hr">1) ул. Петропавловская 87<br></br>2) Казахская 25 <br></br>График работы с 09:00 до 19:00</p>
 
-								<li><a href="#">О компании</a></li>
-
-							</ul> */}
+						</div>		
+              </Col>
+			  <Col xs={12} lg ={3}>
+			  <div className="column">
+							<p className="heading">Контакты:</p>
+							<a  href="mailto:<a href='mailto: info@kopi34.ru">Email: info@kopi34.ru</a><br></br>
+							<a href='tel:89093802519'>+7(909) 380-25-19</a>
 						</div>
-					</div>
-				</div>
-				<div id="rightFooter">
-					<table className="rightTable">
-						<tr className="footerRow">
-							<td className="leftColumn">
-								<div className="logo">
-									<span><img src="/local/templates/dresscode/images/logoW.png" alt=""></img></span>
-								</div>
-								<p>2023 © Копи-Принт - полиграфические услуги. Все права защищены.</p>
-								<p className="hr">г. Волгоград, ул. Петропавловская 87</p>
-							</td>
-							<td className="rightColumn">
-								<div className="wrap">
-									<div className="telephone"><a href='tel:'>	
-+7(909) 380-25-19</a></div>
-									<div className="email">Email: <a
-											href="mailto:<a href='mailto: info@kopi34.ru'>info@kopi34.ru</a>"><a
-												href='mailto: info@kopi34.ru'>info@kopi34.ru</a></a>
-									</div>
-									<ul className="list">
-										<li>График работы с 09:00 до 19:00</li>
-									</ul>
-									<div className="snl"></div>
-								</div>
-							</td>
-						</tr>
-                    </table>
-						
-				</div>
-			</div>
-		</div>
-    </>
+
+              </Col>
+			  
+            </Row>
+			<p >2023 © Копи-Принт - полиграфические услуги. Все права защищены.</p>
+          </Container>
+
+		  </footer>
+
         
     );
 };

@@ -19,16 +19,7 @@ import Vizitki from "./pages//vizitki/Vizitki";
 import Oferta from "./pages/Oferta";
 
 
-import Samokley from "./pages/samokleyki/Samokley";
-import SamokleykaBelaya from "./pages/samokleyki/SamokleykaBelaya";
-import SamokleykaChernaya from "./pages/samokleyki/SamokleykaChernaya";
-import SamokleykaProzrachnaya from "./pages/samokleyki/SamokleykaProzrachnaya";
-import SamokleykaSvetootrazhayuschaya from "./pages/samokleyki/SamokleykaSvetootrazhayuschaya";
-import SamokleykaFotolyuminiscentnaya from "./pages/samokleyki/SamokleykaFotolyuminiscentnaya";
-import SamokleykaCvetnaya from "./pages/samokleyki/SamokleykaCvetnaya";
-import SamokleykaDezaynerskaya from "./pages/samokleyki/SamokleykaDezaynerskaya";
-import SamokleykaPerforirovannaya from "./pages/samokleyki/SamokleykaPerforirovannaya";
-
+import Samokleyka from "./pages/samokleyki/Samokleyka";
 
 
 import PechatHolste from "./pages/pechat-na-holste/PechatHolste";
@@ -72,8 +63,11 @@ const App = observer(() => {
         }).finally(() => setLoading(false))
     }, [])
 
+
+
+
   if (loading) {
-      return <Spinner animation="border" />;
+    return <div id="mail-spinner"><Spinner animation="border" x /></div>;
   }
 
 
@@ -99,15 +93,8 @@ const App = observer(() => {
               <Route path="/payinfo" element={<Payinfo />} />
 
 {/* Самоклейки */}
-              <Route path="/samokley" element={<Samokley />} />
-              <Route path="/samokleyka_belaya" element={<SamokleykaBelaya />} />
-              <Route path="/samokleyka-chernaya" element={<SamokleykaChernaya />} />
-              <Route path="/samokleyka-prozrachnaya" element={<SamokleykaProzrachnaya />} />
-              <Route path="/samokleyka-svetootrazhayuschaya" element={<SamokleykaSvetootrazhayuschaya />} />
-              <Route path="/samokleyka-fotolyuminiscentnaya" element={<SamokleykaFotolyuminiscentnaya />} />
-              <Route path="/samokleyka-cvetnaya" element={<SamokleykaCvetnaya />} />
-              <Route path="/samokleyka-dezaynerskaya" element={<SamokleykaDezaynerskaya />} />
-              <Route path="/samokleyka-perforirovannaya" element={<SamokleykaPerforirovannaya />} />
+              <Route path="/samokleyka" element={<Samokleyka />} />
+
 
 {/* Печать на холсте */}
               <Route path="/pechat-na-holste" element={<PechatHolste />} />

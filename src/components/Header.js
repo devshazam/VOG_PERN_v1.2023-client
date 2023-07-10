@@ -1,5 +1,17 @@
 import React from 'react';
 
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
+// import Container from 'react-bootstrap/Container';
+// import Navbar from 'react-bootstrap/Navbar';
+
 // import { useNavigate } from "react-router-dom";
 
 const Header = () => { 
@@ -9,118 +21,73 @@ const Header = () => {
     return (
       <>
 
-{/* <div id="headerLine2" className="color_theme">
-			<div className="limiter">
-				<div className="headerLineContainer">
-					<div className="headerLineColumn">
-						<div id="geoPosition">
-							<ul>
+        <Navbar expand="lg" className="bg-body-tertiary mb-3" sticky="top">
+          <Container >
+            {/* <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand> */}
 
-								<li>
-									<div className="user-geo-position">
-										<div className="user-geo-position-label">Ваш город:</div>
-										<div className="user-geo-position-value"><a href="#"
-												className="user-geo-position-value-link"><span>Определение</span></a></div>
-									</div>
-								</li>
-								<li className="null">
-									<div id="geo-location-window" className="hidden">
-										<div className="geo-location-window-container">
-											<div className="geo-location-window-container-bg">
-												<div className="geo-location-window-heading"> Выберите ваш город <a href="#"
-														className="geo-location-window-exit"></a></div>
-												<div className="geo-location-window-wp">
-													<div className="geo-location-window-search">
-														<input type="text" autocomplete="new-password" value=""
-															placeholder=" Выберите ваш город"
-															className="geo-location-window-search-input"></input>
-														<div className="geo-location-window-search-values-cn">
-															<div className="geo-location-window-search-values"></div>
-														</div>
-													</div>
-													<div className="geo-location-window-button-container">
-														<a href="#"
-															className="geo-location-window-button disabled">Запомнить город
-															<span id="geo-location-window-fast-loader">
-																<span className="f_circleG" id="frotateG_01"></span>
-																<span className="f_circleG" id="frotateG_02"></span>
-																<span className="f_circleG" id="frotateG_03"></span>
-																<span className="f_circleG" id="frotateG_04"></span>
-																<span className="f_circleG" id="frotateG_05"></span>
-																<span className="f_circleG" id="frotateG_06"></span>
-																<span className="f_circleG" id="frotateG_07"></span>
-																<span className="f_circleG" id="frotateG_08"></span>
-															</span>
-														</a>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div id="geo-location-ref-window" data-disabled="Y">
-										<div className="geo-location-ref-window-city-container">
-											<div className="geo-location-ref-window-city-label">Сейчас выбран:</div>
-											<div className="geo-location-ref-window-city-value"></div>
-											<div className="get-location-ref-window-confirm"><a href="#"
-													className="get-location-ref-window-confirm-button btn-simple btn-small">Подтверждаю</a>
-											</div>
-											<div className="get-location-ref-window-change"><a href="#"
-													className="get-location-ref-window-change-button theme-link-dashed">Изменить</a>
-											</div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div className="headerLineColumn headerLineMenu">
-						<ul id="subMenu">
-							<li><a href="/about/">О компании</a></li>
-							<li><a href="/stock/">Акции</a></li>
-							<li><a href="/about/delivery/">Доставка и оплата</a></li>
-							<li><a href="/about/contacts/">Контакты</a></li>
-						</ul>
-					</div>
-					<div className="headerLineColumn">
-						
-						
-					</div>
-				</div>
-			</div>
-		</div> */}
-		<div id="subHeader5">
-			<div className="limiter">
-				<div className="subTable">
-					<div className="subTableColumn">
-						<div id="logo">
-							<a href='/'><img alt="Копировальный центр в Москве"
-								src="/file/logo22.png"></img></a>
-						</div>
-					</div>
-					{/* <div className="subTableColumn">
-						<span className="heading"><a href='tel:+79093802519'>+7(909) 380-25-19</a></span>
-							
-						
-					</div> */}
-					<div className="subTableColumn">
-						<span className="label"><a
-								href='mailto: info@kopi34.ru'>info@kopi34.ru</a></span><span
-							className="label">г. Волгоград, ул. Петропавловская 87</span>
-					</div>
-					
-					<div className="subTableColumn" id="subTableColumn-4">
-					<span className="heading"><a href='/contacts'>Контакты</a></span>
-					</div>
-					{/* <div className="subTableColumn">
-
-						
-					<span className="heading"><a href='/login'>Вход</a><br></br>
-					<a href='/registration'>Регистрация</a>
+			<Navbar.Brand href="/">
+            <img
+              src="/file/logo.png"
+              width="280"
+              height="60"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+              id="logo-file"
+            />
+			</Navbar.Brand>
+            <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
+            <Navbar.Offcanvas
+              id="offcanvasNavbar-expand-lg"
+              aria-labelledby="offcanvasNavbarLabel-expand-lg"
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">
+                  Offcanvas
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body className="justify-content-between">
+                <Nav className="justify-content-end  pe-3 my-2 my-lg-0">
+                  <Nav.Link href="#action1">Визитки</Nav.Link>
+                  <Nav.Link href="#action2">Баннеры</Nav.Link>
+				  
+                  <Nav.Link href="#action2">Самоклейки</Nav.Link>
+                  <NavDropdown
+                    title="Dropdown"
+                    id="offcanvasNavbarDropdown-expand-lg"
+                  >
+                    <NavDropdown.Item href="#action3">Выпадающее меню</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">
+                      Первый 
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                      Второй
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+				<Navbar.Text>
+				<span className="label">
+					<a href='mailto: info@kopi34.ru'>Email: info@kopi34.ru</a><br></br>
+					Адрес: г. Волгоград, ул. Петропавловская 87
 					</span>
-					</div> */}
-				</div>
-			</div>
-		</div>
+				</Navbar.Text>
+                {/* <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Search</Button>
+                </Form> */}
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+
+
+
 </>
     );
 

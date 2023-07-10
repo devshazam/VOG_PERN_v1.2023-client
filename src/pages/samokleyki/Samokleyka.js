@@ -13,12 +13,12 @@ import SendPay from '../a-components/SendPay'
 import GetFile from '../a-components/GetFile'
 import {observer} from "mobx-react-lite";
 
+import Container from 'react-bootstrap/Container';
 
 
 
 
-
-const Samokleyka_belaya = observer(() => {
+const Samokleyka = observer(() => {
 
 
 
@@ -177,15 +177,14 @@ const Samokleyka_belaya = observer(() => {
         <>
             
         
-            <div id="right">
 
-<div className="wrapper">
-    <div className="col-6">
-    <Image src={functionWithSwitch()}  rounded />
-        
 
-        </div>
-    <div className="col-6">
+    <Container>
+            <Row>
+              <Col xs={12} md={6}>
+                <Image src={functionWithSwitch()}  id="goods-image" rounded />
+              </Col>
+              <Col xs={12} lg ={6}>
 
 
         <h1>Цена: {value} p.</h1>
@@ -193,7 +192,7 @@ const Samokleyka_belaya = observer(() => {
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
                             
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="4" controlId="validationCustom01">
+                            <Form.Group as={Col} md="6" controlId="validationCustom01">
                             <Form.Label>Ширина (мм):</Form.Label>
                             <Form.Control
                                 required
@@ -203,7 +202,7 @@ const Samokleyka_belaya = observer(() => {
                             />
                             <Form.Control.Feedback  type="invalid">Введите ширину!</Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group as={Col} md="4" controlId="validationCustom02">
+                            <Form.Group as={Col} md="6" controlId="validationCustom02">
                             <Form.Label>Высота (мм):</Form.Label>
                             <Form.Control
                                 required
@@ -287,22 +286,19 @@ const Samokleyka_belaya = observer(() => {
 
     
     
-    </div>
-    </div>
+                        </Col>
+            </Row>
+            <h2>Баннеры</h2>
+                <p>Баннеры являются одним из наиболее эффективных и популярных способов рекламы и информационного обозначения. Печать баннеров — это процесс создания крупноформатных материалов с помощью специального оборудования. Ниже приведен текст, описывающий процесс печати баннеров:
 
+                Печать баннеров – это профессиональный процесс, при котором создаются крупноформатные материалы с использованием специализированного оборудования и высококачественных материалов. Он предоставляет возможность эффективно привлекать внимание к продукту, услуге или событию.
 
-    <h2>Самоклейки - подложка белая (ГЛЯНЕЦ/МАТ)</h2>
-						<p>Самоклеящаяся пленка – это материал, который имеет специальное покрытие на одной стороне, позволяющее ему приклеиваться к различным поверхностям без использования дополнительных клеевых веществ. Ниже приведен текст, описывающий самоклеящуюся пленку:
-
-Самоклеящаяся пленка – это универсальный материал, который может быть использован в различных областях. Она состоит из основы, которая обычно выполнена из винила, и специального клеящего слоя, нанесенного на одну сторону пленки.
-
-Одним из главных преимуществ самоклеящейся пленки является ее легкость в использовании. Она может быть легко приклеена к различным поверхностям, включая стекло, металл, пластик, дерево и т.д. Клейкий слой обеспечивает надежное и долговременное сцепление с поверхностью, сохраняя при этом гибкость и устойчивость к воздействию окружающей среды.</p>
-                        
-</div>
+                Печать баннеров начинается с подготовки дизайна и макета. Дизайнер создает графическое оформление баннера, учитывая его цель и целевую аудиторию. Он может включать в себя логотипы, изображения, текст и другие визуальные элементы.</p>
+          </Container>
           
 
         </>
     );
 });
 
-export default Samokleyka_belaya;
+export default Samokleyka;

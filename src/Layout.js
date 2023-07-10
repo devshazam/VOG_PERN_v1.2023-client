@@ -2,6 +2,9 @@ import React from 'react';
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import HeaderAbove from "./components/HeaderAbove";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 import Footer from "./components/Footer";
@@ -16,26 +19,25 @@ export default function  Layout(){
     return ( <>
 
 <HeaderAbove />
-            <div id="panel">
-	</div>
-	<div id="foundation">
-            <Header />
 
-            <div id="main" className="color_white">
-			<div className="limiter">
-				<div className="compliter">
 
-        <SiteBar />
-                    <Outlet />
 
-        </div>
-			</div>
-		</div>
-    <Footer />
-    </div>
-    <div id="overlap"></div>
-    <LoginPage />
-              <RegPage />
+      <Header />
+          <Container>
+            
+            <Row>
+              <Col xs={0} md={3} className="d-none d-lg-block">
+              <SiteBar />
+              </Col>
+              <Col xs={12} lg ={9}>
+              <Outlet />
+              </Col>
+            </Row>
+            
+          </Container>
+          <Footer />
+          <LoginPage />
+          <RegPage />
 
 
     </>);

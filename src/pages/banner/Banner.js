@@ -7,6 +7,9 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
+
+
 
 import { createItem } from '../../http/deviceAPI'
 import SendPay from '../a-components/SendPay'
@@ -88,15 +91,12 @@ const Banner = observer(() => {
         <>
             
         
-            <div id="right">
-
-                <div className="wrapper">
-                    <div className="col-6">
-                        <Image src="/file/pic/banner.jpg"  rounded />
-                    </div>
-                    <div className="col-6">
-
-
+        <Container>
+            <Row>
+              <Col xs={12} md={6}>
+                <Image src="/file/pic/banner.jpg" id="goods-image" rounded />
+              </Col>
+              <Col xs={12} lg ={6}>
 
 
 <h1>Цена: {value} p.</h1>
@@ -144,7 +144,7 @@ const Banner = observer(() => {
                                     <option value="200" >200 миллиметров</option>
                                     <option value="300" >300 миллиметров</option>
                                     <option value="400" >400 миллиметров</option>
-                                    <option value="500" >200 миллиметров</option>
+                                    <option value="500" >500 миллиметров</option>
                                 </Form.Select>
                                 <Form.Control.Feedback type="invalid">
                                 Введите плотность.
@@ -194,20 +194,19 @@ const Banner = observer(() => {
 
                     
 
-                </div>
-                </div>
-
-
-                <h2>Баннеры</h2>
+                        </Col>
+            </Row>
+            <h2>Баннеры</h2>
                 <p>Баннеры являются одним из наиболее эффективных и популярных способов рекламы и информационного обозначения. Печать баннеров — это процесс создания крупноформатных материалов с помощью специального оборудования. Ниже приведен текст, описывающий процесс печати баннеров:
 
                 Печать баннеров – это профессиональный процесс, при котором создаются крупноформатные материалы с использованием специализированного оборудования и высококачественных материалов. Он предоставляет возможность эффективно привлекать внимание к продукту, услуге или событию.
 
                 Печать баннеров начинается с подготовки дизайна и макета. Дизайнер создает графическое оформление баннера, учитывая его цель и целевую аудиторию. Он может включать в себя логотипы, изображения, текст и другие визуальные элементы.</p>
-                        
-            </div>
-          
+          </Container>
 
+                
+                        
+          
         </>
     );
 });
