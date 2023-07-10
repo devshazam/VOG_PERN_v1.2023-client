@@ -40,97 +40,97 @@ const Samokleyka = observer(() => {
     console.log(value)
 
     useEffect(() => {
-        let m1 = Number(width)*Number(height) / 1000000
-        let m2
-        if(vidSamo == "Белая"){
+        if(width && height){
+                let m1 = Number(width)*Number(height) / 1000000
+                let m2
+                if(vidSamo == "Белая"){
+                            if(m1 < 1){
+                                m2 = m1*650;
+                        }else if(m1 >= 1 && m1 < 5){
+                            m2 = m1*600;
+                        }if(m1 >= 5 && m1 < 10){
+                            m2 = m1*550;
+                        }if(m1 >= 10){
+                            m2 = m1*500;
+                        }
+                }else if(vidSamo == "Черная"){
+                        if(m1 < 1){
+                            m2 = m1*700;
+                        }else if(m1 >= 1 && m1 < 5){
+                            m2 = m1*650;
+                        }if(m1 >= 5 && m1 < 10){
+                            m2 = m1*600;
+                        }if(m1 >= 10){
+                            m2 = m1*550;
+                        }
+                }else if(vidSamo == "Цветная"){
+                        if(m1 < 1){
+                            m2 = m1*900;
+                        }else if(m1 >= 1 && m1 < 5){
+                            m2 = m1*850;
+                        }if(m1 >= 5 && m1 < 10){
+                            m2 = m1*800;
+                        }if(m1 >= 10){
+                            m2 = m1*750;
+                        }
+                }else if(vidSamo == "Дизайнерская"){
+                        if(m1 < 1){
+                            m2 = m1*2500;
+                        }else if(m1 >= 1 && m1 < 5){
+                            m2 = m1*2300;
+                        }if(m1 >= 5 && m1 < 10){
+                            m2 = m1*2150;
+                        }if(m1 >= 10){
+                            m2 = m1*2000;
+                        }
+                }else if(vidSamo == "Фотолюминесцентная"){
+                        if(m1 < 1){
+                            m2 = m1*5000;
+                        }else if(m1 >= 1 && m1 < 5){
+                            m2 = m1*4700;
+                        }if(m1 >= 5 && m1 < 10){
+                            m2 = m1*4500;
+                        }if(m1 >= 10){
+                            m2 = m1*4200;
+                        }
+                }else if(vidSamo == "Перфорированная"){
+                        if(m1 < 1){
+                            m2 = m1*1000;
+                        }else if(m1 >= 1 && m1 < 5){
+                            m2 = m1*900;
+                        }if(m1 >= 5 && m1 < 10){
+                            m2 = m1*850;
+                        }if(m1 >= 10){
+                            m2 = m1*800;
+                        }
+                }else if(vidSamo == "Прозрачная"){
+                        if(m1 < 1){
+                            m2 = m1*700;
+                        }else if(m1 >= 1 && m1 < 5){
+                            m2 = m1*650;
+                        }if(m1 >= 5 && m1 < 10){
+                            m2 = m1*600;
+                        }if(m1 >= 10){
+                            m2 = m1*550;
+                        }
+                }else if(vidSamo == "Светоотражающая"){
                     if(m1 < 1){
-                        m2 = m1*650;
-                }else if(m1 >= 1 && m1 < 5){
-                    m2 = m1*600;
-                }if(m1 >= 5 && m1 < 10){
-                    m2 = m1*550;
-                }if(m1 >= 10){
-                    m2 = m1*500;
+                        m2 = m1*1500;
+                    }else if(m1 >= 1 && m1 < 5){
+                        m2 = m1*1400;
+                    }if(m1 >= 5 && m1 < 10){
+                        m2 = m1*1300;
+                    }if(m1 >= 10){
+                        m2 = m1*1200;
+                    }
                 }
-        }else if(vidSamo == "Черная"){
-                if(m1 < 1){
-                    m2 = m1*700;
-                }else if(m1 >= 1 && m1 < 5){
-                    m2 = m1*650;
-                }if(m1 >= 5 && m1 < 10){
-                    m2 = m1*600;
-                }if(m1 >= 10){
-                    m2 = m1*550;
+                
+                if(Math.round((m2) * 100) / 100 <= 200){
+                    setValue(200);
+                }else{
+                    setValue(Math.round((m2) * 100) / 100);
                 }
-        }else if(vidSamo == "Цветная"){
-                if(m1 < 1){
-                    m2 = m1*900;
-                }else if(m1 >= 1 && m1 < 5){
-                    m2 = m1*850;
-                }if(m1 >= 5 && m1 < 10){
-                    m2 = m1*800;
-                }if(m1 >= 10){
-                    m2 = m1*750;
-                }
-        }else if(vidSamo == "Дизайнерская"){
-                if(m1 < 1){
-                    m2 = m1*2500;
-                }else if(m1 >= 1 && m1 < 5){
-                    m2 = m1*2300;
-                }if(m1 >= 5 && m1 < 10){
-                    m2 = m1*2150;
-                }if(m1 >= 10){
-                    m2 = m1*2000;
-                }
-        }else if(vidSamo == "Фотолюминесцентная"){
-                if(m1 < 1){
-                    m2 = m1*5000;
-                }else if(m1 >= 1 && m1 < 5){
-                    m2 = m1*4700;
-                }if(m1 >= 5 && m1 < 10){
-                    m2 = m1*4500;
-                }if(m1 >= 10){
-                    m2 = m1*4200;
-                }
-        }else if(vidSamo == "Перфорированная"){
-                if(m1 < 1){
-                    m2 = m1*1000;
-                }else if(m1 >= 1 && m1 < 5){
-                    m2 = m1*900;
-                }if(m1 >= 5 && m1 < 10){
-                    m2 = m1*850;
-                }if(m1 >= 10){
-                    m2 = m1*800;
-                }
-        }else if(vidSamo == "Прозрачная"){
-                if(m1 < 1){
-                    m2 = m1*700;
-                }else if(m1 >= 1 && m1 < 5){
-                    m2 = m1*650;
-                }if(m1 >= 5 && m1 < 10){
-                    m2 = m1*600;
-                }if(m1 >= 10){
-                    m2 = m1*550;
-                }
-        }else if(vidSamo == "Светоотражающая"){
-            if(m1 < 1){
-                m2 = m1*1500;
-            }else if(m1 >= 1 && m1 < 5){
-                m2 = m1*1400;
-            }if(m1 >= 5 && m1 < 10){
-                m2 = m1*1300;
-            }if(m1 >= 10){
-                m2 = m1*1200;
-            }
-        }
-        
-        if(Math.round((m2) * 100) / 100 <= 200){
-            setValue(200);
-        }else{
-            setValue(Math.round((m2) * 100) / 100);
-        }
-        
-
+        }    
       }, [width, height, vidSamo]); // <- add the count variable here
   
 // console.log(value)
