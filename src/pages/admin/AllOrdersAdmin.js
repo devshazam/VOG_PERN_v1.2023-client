@@ -82,9 +82,18 @@ const AllOrdersAdmin = () => {
         <>
             
         
-            <div id="right">
+                    <Form.Group as={Col} md="4" controlId="validationCustom02">
+                        <Form.Label>Высота (мм):</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Миллиметры"
+                            onChange={e => setHeight(e.target.value)}
+                        />
+                        <Form.Control.Feedback type="invalid">Введите высоту!</Form.Control.Feedback>
+                    </Form.Group>
 
-<div className="wrapper">
+
         <div className="mid">
             <div className="mid-23">
                 <p>Поиск по ID:</p>
@@ -165,12 +174,9 @@ const AllOrdersAdmin = () => {
                     }
                 </tbody>
             </Table>
-            {paginationBasic}
-    </div>
 
-                        
-</div>
-          
+            {paginationBasic}
+   
 
         </>
     );

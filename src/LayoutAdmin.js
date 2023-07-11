@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {Context} from "./index";
 import { Outlet, Navigate } from "react-router-dom";
-
+import Container from 'react-bootstrap/Container';
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -36,7 +36,20 @@ const LayoutAdmin = () => {
     </div>
 <Footer />
 </div>
-<div id="overlap"></div>
+
+
+
+
+<Header />
+          <Container>
+            
+    {/* <SiteBarAdmin />     */}
+    {user.isAuth ? <Outlet /> : <Navigate to='/' />}
+            
+          </Container>
+          <Footer />
+          {/* <LoginPage />
+          <RegPage /> */}
 
 
 </>);

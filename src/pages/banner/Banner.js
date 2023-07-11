@@ -114,6 +114,7 @@ const Banner = observer(() => {
                             />
                             <Form.Control.Feedback  type="invalid">Введите ширину!</Form.Control.Feedback>
                             </Form.Group>
+                            
                             <Form.Group as={Col} md="4" controlId="validationCustom02">
                             <Form.Label>Высота (мм):</Form.Label>
                             <Form.Control
@@ -124,6 +125,7 @@ const Banner = observer(() => {
                             />
                             <Form.Control.Feedback type="invalid">Введите высоту!</Form.Control.Feedback>
                             </Form.Group>
+
                             <Form.Group as={Col} md="4" controlId="validationCustomUsername">
                             <Form.Label>Плотность (гр):</Form.Label>
                             <InputGroup hasValidation>

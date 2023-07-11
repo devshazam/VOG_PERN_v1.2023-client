@@ -62,7 +62,7 @@ const App = observer(() => {
               user.setUser(data)
               user.setIsAuth(true)
             }
-        }).catch((e) => console.log(12212123)).finally(() => setLoading(false))
+        }).finally(() => setLoading(false))
     }, [])
 
 
@@ -82,7 +82,8 @@ const App = observer(() => {
               <Route index element={<AllOrdersAdmin />} /> 
               {/* <Route path="/devices-view/" element={<AllOrdersAdmin />} /> */}
           </Route>
-              <Route path="/" element={<Layout />}>
+          
+          <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
 
 {/* Autorization */}
