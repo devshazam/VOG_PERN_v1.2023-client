@@ -25,15 +25,15 @@ export default function  Layout(){
       <Header />
           <Container>
             
-            <Row>
+            {/* <Row>
               <Col xs={0} md={3} className="d-none d-lg-block">
               <SiteBar />
               </Col>
               <Col xs={12} lg ={9}>
               <Outlet />
               </Col>
-            </Row>
-            
+            </Row> */}
+            <Outlet />
           </Container>
           <Footer />
           <LoginPage />

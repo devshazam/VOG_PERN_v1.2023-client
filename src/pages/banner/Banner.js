@@ -144,7 +144,7 @@ const Banner = observer(() => {
                             </InputGroup>
                             </Form.Group>z
                             <Form.Group as={Col} md="12" controlId="validationCustomUsername">
-                            <Form.Label>Растояние между люверсами (мм):</Form.Label>
+                            <Form.Label>Растояние между люверсами* (мм):</Form.Label>
                             <InputGroup hasValidation>
                                 <Form.Select aria-label="Default select example" onChange={e => setLuvers(e.target.value)} value={luvers}>
                                     <option value="0" >Без люверсов</option>

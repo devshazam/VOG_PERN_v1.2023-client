@@ -197,7 +197,12 @@ iframe{
 
 /* Новый стиль */
 .navbar-expand-lg .navbar-nav .nav-link {
-    padding-top: 24px;
+    margin: 20px 10px 4px 4px;
+    padding: 5px 8px;
+    background-color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 18px;
 }
 footer{
     margin-top: 160Px;
