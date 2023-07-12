@@ -17,27 +17,19 @@ import Container from 'react-bootstrap/Container';
 
 
 
-
 const Samokleyka = observer(() => {
 
-
-
     const {user, device} = useContext(Context)
-    
-
     const [value, setValue] = useState(0); // цена товара - расчитаная
-    const [width, setWidth] = useState(0); // ширина баннеар
-    const [height, setHeight] = useState(0); // высота баннера
+    const [width, setWidth] = useState(''); // ширина баннеар
+    const [height, setHeight] = useState(''); // высота баннера
     const [description, setDescription] = useState(''); // Телефон
     const [cargo, setCargo] = useState('Самовывоз: Петропавловская 87'); // Телефон
-
     const [vidSamo, setVidSamo] = useState('Белая');
-
-     const [tel, setTel] = useState(0);
-        const [file, setFile] = useState(null);
+    const [tel, setTel] = useState(0);
+    const [file, setFile] = useState(null);
     const name = 'Cамоклейка';
 
-    console.log(value)
 
     useEffect(() => {
         if(width && height){
@@ -128,9 +120,15 @@ const Samokleyka = observer(() => {
                 if(Math.round((m2) * 100) / 100 <= 200){
                     setValue(200);
                 }else{
-                    setValue(Math.round((m2) * 100) / 100);
+                    if(!isNaN(Math.round((m2) * 100) / 100)){
+                        setValue(Math.round((m2) * 100) / 100);
+                    }else{
+                        alert('Введите размеры корректно!')
+                    }
+                    
                 }
-        }    
+            }
+
       }, [width, height, vidSamo]); // <- add the count variable here
   
 // console.log(value)

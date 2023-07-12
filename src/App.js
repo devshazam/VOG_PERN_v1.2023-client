@@ -27,7 +27,7 @@ import Samokleyka from "./pages/samokleyki/Samokleyka";
 // import PechatHolstIndividual from "./pages/pechat-na-holste/PechatHolstIndividual";
 // import PechatHolstePodramnik from "./pages/pechat-na-holste/PechatHolstePodramnik";
 
-import TverdyPereplet from "./pages/tverdy-pereplet/TverdyPereplet";
+// import TverdyPereplet from "./pages/tverdy-pereplet/TverdyPereplet";
 
 
 import RazrabotkaSaitov from "./pages/razrabotka-saitov/RazrabotkaSaitov";
@@ -57,12 +57,12 @@ const App = observer(() => {
 
       useEffect(() => {
         check().then(data => {
-          console.log(data)
+          console.log('00-App->check->userData:', data)
             if(data){
               user.setUser(data)
               user.setIsAuth(true)
             }
-        }).finally(() => setLoading(false))
+        }).catch((e) => console.log('00-Сработал catch при аутентификации:')).finally(() => setLoading(false))
     }, [])
 
 
@@ -106,7 +106,7 @@ const App = observer(() => {
               <Route path="/pechat-na-holste-podramnik" element={<PechatHolstePodramnik />} /> */}
 
 {/* Cтраница твердый переплет */}
-              <Route path="/tverdy-pereplet" element={<TverdyPereplet />} />
+              {/* <Route path="/tverdy-pereplet" element={<TverdyPereplet />} /> */}
 
 {/* Страницы струйная печать */}
               {/* <Route path="/struinay-pechat" element={<StruinayPechat />} />

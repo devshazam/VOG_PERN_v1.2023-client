@@ -19,27 +19,6 @@ const LayoutAdmin = () => {
     return ( <>
 
 <HeaderAbove />
-        <div id="panel">
-</div>
-<div id="foundation">
-        <Header />
-
-        <div id="main" className="color_white">
-        <div className="limiter">
-            <div className="compliter">
-
-    {/* <SiteBarAdmin />     */}
-    {user.isAuth ? <Outlet /> : <Navigate to='/' />}
-
-    </div>
-        </div>
-    </div>
-<Footer />
-</div>
-
-
-
-
 <Header />
           <Container>
             

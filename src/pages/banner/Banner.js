@@ -21,8 +21,8 @@ const Banner = observer(() => {
     
 
     const [value, setValue] = useState(0); // цена товара - расчитаная
-    const [width, setWidth] = useState(0); // ширина баннеар
-    const [height, setHeight] = useState(0); // высота баннера
+    const [width, setWidth] = useState(''); // ширина баннеар
+    const [height, setHeight] = useState(''); // высота баннера
     const [density, setDensity] = useState('400-440'); // плотность баннера 
     const [description, setDescription] = useState(''); // Телефон
     const [cargo, setCargo] = useState('Самовывоз: Петропавловская 87'); // Телефон
@@ -35,41 +35,46 @@ const Banner = observer(() => {
 
 
     useEffect(() => {
-            if(height !== 0 && width !==0){
-                let midNum = Number(width)*Number(height) / 1000000;
-                let midNum2;
-                if(midNum < 1){
-                    if(density == '400-440'){midNum2 = midNum*550;}else{midNum2 = midNum*650;}
-                }else if(midNum >= 1 && midNum < 5){
-                    if(density == '400-440'){ midNum2 = midNum*500;}else{midNum2 = midNum*600;}
-                }if(midNum >= 5 && midNum < 10){
-                    if(density == '400-440'){ midNum2 = midNum*400;}else{midNum2 = midNum*500;}
-                }if(midNum >= 10 && midNum < 50){
-                    if(density == '400-440'){ midNum2 = midNum*350;}else{midNum2 = midNum*450;}
-                }if(midNum >= 50 && midNum < 100){
-                    if(density == '400-440'){ midNum2 = midNum*300;}else{midNum2 = midNum*400;}
-                }if(midNum >= 100 && midNum < 500){
-                    if(density == '400-440'){ midNum2 = midNum*280;}else{midNum2 = midNum*380;}
-                }if(midNum >= 500){
-                    if(density == '400-440'){ midNum2 = midNum*240;}else{midNum2 = midNum*340;}
-                }
-                let midNum14
-                console.log(midNum2)
-                if(Number(luvers) == 0){
-                    midNum14 = 0;
-                }else{
-                    midNum14 = ((Number(width)+Number(height)) * 2) / Number(luvers) * 15;
-                
-                }
-                console.log(midNum14)
+            if(height && width){
+                if(height && width && !isNaN(Number(width)) &&  !isNaN(Number(height))){
+                            let midNum = Number(width)*Number(height) / 1000000;
+                            let midNum2;
+                            if(midNum < 1){
+                                if(density == '400-440'){midNum2 = midNum*550;}else{midNum2 = midNum*650;}
+                            }else if(midNum >= 1 && midNum < 5){
+                                if(density == '400-440'){ midNum2 = midNum*500;}else{midNum2 = midNum*600;}
+                            }if(midNum >= 5 && midNum < 10){
+                                if(density == '400-440'){ midNum2 = midNum*400;}else{midNum2 = midNum*500;}
+                            }if(midNum >= 10 && midNum < 50){
+                                if(density == '400-440'){ midNum2 = midNum*350;}else{midNum2 = midNum*450;}
+                            }if(midNum >= 50 && midNum < 100){
+                                if(density == '400-440'){ midNum2 = midNum*300;}else{midNum2 = midNum*400;}
+                            }if(midNum >= 100 && midNum < 500){
+                                if(density == '400-440'){ midNum2 = midNum*280;}else{midNum2 = midNum*380;}
+                            }if(midNum >= 500){
+                                if(density == '400-440'){ midNum2 = midNum*240;}else{midNum2 = midNum*340;}
+                            }
+                            let midNum14
 
-                if(Math.round((midNum2 + midNum14) * 100) / 100 <= 200){
-                    setValue(200);
-                }else{
-                    setValue(Math.round((midNum2 + midNum14) * 100) / 100);
-                }
+                        console.log('Стоимость баннера', midNum2)
+                            if(Number(luvers) == 0){
+                                midNum14 = 0;
+                            }else{
+                                midNum14 = ((Number(width)+Number(height)) * 2) / Number(luvers) * 15;
+                            }
 
-                setDescription(`Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм; Люверсы: ${luvers} мм; Доставка: ${cargo}`)
+                        console.log('Стоимость Люверсов', midNum14)
+
+                            if(Math.round((midNum2 + midNum14) * 100) / 100 <= 200){
+                                setValue(200);
+                            }else{
+                                setValue(Math.round((midNum2 + midNum14) * 100) / 100);
+                            }
+
+                            setDescription(`Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм; Люверсы: ${luvers} мм; Доставка: ${cargo}`)
+                        }else{
+                            alert('Введите корректные цифры!')
+                        }
             }
 
 
@@ -137,7 +142,7 @@ const Banner = observer(() => {
                                 Введите плотность.
                                 </Form.Control.Feedback>
                             </InputGroup>
-                            </Form.Group>
+                            </Form.Group>z
                             <Form.Group as={Col} md="12" controlId="validationCustomUsername">
                             <Form.Label>Растояние между люверсами (мм):</Form.Label>
                             <InputGroup hasValidation>

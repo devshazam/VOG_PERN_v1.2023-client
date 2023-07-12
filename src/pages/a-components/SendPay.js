@@ -16,8 +16,14 @@ const SendPay = observer((props) => {
 
     const countPrice= () => {
            if(user.isAuth){
-            if(device.file !== null && props.value !== 0){
+ 
+            if(device.file && props.value){
                 setSpinner(false)
+                // Отладочный вывод в консоль
+                console.log('00-SendPay->Вывод перед отправкой запроса на сервер:', props.value, props.name, props.description, user.user.id)
+
+
+               
                     const formData = new FormData();     
                         formData.append('value', `${props.value}`)
                         formData.append('name', `${props.name}`)

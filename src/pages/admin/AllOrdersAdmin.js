@@ -1,6 +1,13 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Table from 'react-bootstrap/Table';
 import {Context} from "../../index";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
 
 import Pagination from 'react-bootstrap/Pagination';
 import { fetchDevices, deleteDevice } from '../../http/deviceAPI'
@@ -25,12 +32,12 @@ const AllOrdersAdmin = () => {
     const {device} = useContext(Context)
     // user.role
 
-    useEffect(() => {
-        fetchDevices(itemSort, orderSort, limit, page, id, filter).then(data => {
-            setDevices(data.rows)
-            setCount(data.count)
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetchDevices(itemSort, orderSort, limit, page, id, filter).then(data => {
+    //         setDevices(data.rows)
+    //         setCount(data.count)
+    //     })
+    // }, [])
 
 
     useEffect(() => {
@@ -80,63 +87,54 @@ const AllOrdersAdmin = () => {
     
     return (
         <>
-            
-        
-                    <Form.Group as={Col} md="4" controlId="validationCustom02">
-                        <Form.Label>Высота (мм):</Form.Label>
+        <Container>
+            <Row>
+              <Col xs={12} md={3}>
+                        <Form.Label>Поиск по ID</Form.Label>
                         <Form.Control
                             required
                             type="text"
                             placeholder="Миллиметры"
-                            onChange={e => setHeight(e.target.value)}
+                            value={id}  onChange={findItem}
                         />
-                        <Form.Control.Feedback type="invalid">Введите высоту!</Form.Control.Feedback>
-                    </Form.Group>
-
-
-        <div className="mid">
-            <div className="mid-23">
-                <p>Поиск по ID:</p>
-                <input  className="search-form__field" id="cars" value={id}  onChange={findItem}>
-                </input>
-            </div>
-            <button type="submit" className="search-form__submit" onClick={() => setId('0')}>Сбросить</button>
-        </div>
-        <div className="mid">
-            <div className="mid-23">
-                <p>Элемент сортировки</p>
-                <select name="lam" className="search-form__field" id="cars" value={itemSort} onChange={e => setItemSort(e.target.value)}>
+                        <Button variant="outline-primary" onClick={() => setId('0')}>Сбросить</Button>
+              </Col>
+              <Col xs={12} lg ={3}>
+              <Form.Label>Элемент сортировки</Form.Label>
+                    <Form.Select aria-label="Default select example" value={itemSort} onChange={e => setItemSort(e.target.value)}>
                     <option value="createdAt" >Дата</option>
                     <option value="name" >Названию товара</option>
-                </select>
-            </div>
-            <div className="mid-23">
-                <p>Порядок сортировки</p>
-                <select name="num" className="search-form__field" id="cars" value={orderSort}onChange={e => setOrderSort(e.target.value)}>
+                    </Form.Select>
+              </Col>
+              <Col xs={12} lg ={3}>
+              <Form.Label>Элемент сортировки</Form.Label>
+                    <Form.Select aria-label="Default select example" value={orderSort}onChange={e => setOrderSort(e.target.value)}>
                     <option value="ASC" >По убыванию</option>
                     <option value="DESC" >По возрастанию</option>
-                </select>
-            </div>
-            <div className="mid-23">
-                <p>Фильтрация</p>
-                <select name="lam" className="search-form__field" id="cars" value={filter} onChange={e => setFilter(e.target.value)}>
+                    </Form.Select>
+              </Col>
+              <Col xs={12} lg ={3}>
+              <Form.Label>Элемент сортировки</Form.Label>
+                    <Form.Select aria-label="Default select example" value={filter} onChange={e => setFilter(e.target.value)}>
                     <option value="Баннер" >Баннер</option>
                     <option value="Самоклейка" >Самоклейка</option>
                     <option value="Визитка" >Визитка</option>
-                </select>
-            </div>
-        </div>
+                    </Form.Select>
+              </Col>
+            </Row>
+        </Container>
+        
+
+ 
 
 
-
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover >
                 <thead>
                     <tr>
                     <th>ID</th>
                     <th>Имя</th>
                     <th>Описание заказа</th>
                     <th>Описание Клиента</th>
-                    <th>Доставка</th>
                     <th>Картинка</th>
                     <th>Статус Готовности и Оплаты</th>
                     <th>Дата создания</th>
@@ -150,7 +148,6 @@ const AllOrdersAdmin = () => {
                             <td>{device.feature}</td>
                             <td>{device.userDescription}</td>
                             
-                            <th>Доставка</th>
                             <td>
                                 <img width={150} height={150} src={process.env.REACT_APP_API_URL + device.img}/>
                                 <a href={process.env.REACT_APP_API_URL + device.img}> Ссылка на картинку</a>
@@ -166,6 +163,9 @@ const AllOrdersAdmin = () => {
                         </tr>
                     ) : 
                         <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
