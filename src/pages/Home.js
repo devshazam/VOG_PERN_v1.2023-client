@@ -1,20 +1,57 @@
 import React from 'react';
 
-
+import Carousel from 'react-bootstrap/Carousel';
+import Container from 'react-bootstrap/Container';
 
 export default function  Home(){
 
 
 
     return ( <>
-        <div id="right">
-						<div id="promoBlock-1">
-						<img src="/file/banner.jpg" alt="полиграфия"></img>
-						</div>
+
+        <Container>
 
 
 
+	<Carousel data-bs-theme="dark">
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="/file/banner.jpg"
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="/file/banner.jpg"
+          alt="Second slide"
+        />
 
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="/file/banner.jpg"
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
 
 
 
@@ -34,7 +71,9 @@ export default function  Home(){
 Кроме того, полиграфические компании обеспечивают отделку продукции. Они предлагают различные варианты обработки, такие как ламинация, тиснение, фольгирование, уф-лакирование и другие. Эти методы отделки придают дополнительный визуальный и тактильный эффект продуктам, делая их более привлекательными и престижными.
 <br></br>
 Важным аспектом полиграфических услуг является соблюдение высоких стандартов качества и точности. Полиграфические компании работают с современным оборудованием и используют качественные материалы для достижения наилучших результатов. Они также имеют опытных специалистов, которые следят за всем процессом производства, чтобы гарантировать, что</p>
-						
-					</div>
+
+
+					</Container>
+
     </>); 
 }
