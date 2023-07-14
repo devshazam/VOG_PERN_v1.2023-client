@@ -10,6 +10,7 @@ export default class DeviceStore {
         this._page = 1
         this._totalCount = 0
         this._limit = 3
+        this._totalCargo = ''
         makeAutoObservable(this)
     }
 
@@ -36,6 +37,9 @@ export default class DeviceStore {
     setTotalCount(count) {
         this._totalCount = count
     }
+    setCargo(cargo) {
+        this._totalCargo = cargo
+    }
 
     get modal() {
         return this._modal
@@ -60,5 +64,8 @@ export default class DeviceStore {
     }
     get limit() {
         return this._limit
+    }
+    get cargo() {
+        return this._totalCargo
     }
 }

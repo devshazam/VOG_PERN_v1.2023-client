@@ -8,9 +8,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 
-import { createItem } from '../../http/deviceAPI'
 import SendPay from '../a-components/rt'
-import GetFile from '../a-components/GetFile'
 import {observer} from "mobx-react-lite";
 
 import Container from 'react-bootstrap/Container';
@@ -24,10 +22,7 @@ const Samokleyka = observer(() => {
     const [width, setWidth] = useState(''); // ширина баннеар
     const [height, setHeight] = useState(''); // высота баннера
     const [description, setDescription] = useState(''); // Телефон
-    const [cargo, setCargo] = useState('Самовывоз: Петропавловская 87'); // Телефон
     const [vidSamo, setVidSamo] = useState('Белая');
-    const [tel, setTel] = useState(0);
-    const [file, setFile] = useState(null);
     const name = 'Cамоклейка';
 
 
@@ -128,7 +123,7 @@ const Samokleyka = observer(() => {
                     
                 }
 
-                setDescription(`Наименование: ${name}; Вид самоклейки: ${vidSamo}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Доставка: ${cargo}`)
+                setDescription(`Наименование: ${name}; Вид самоклейки: ${vidSamo}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм;`)
             }
 
       }, [width, height, vidSamo]); // <- add the count variable here
@@ -160,17 +155,6 @@ const Samokleyka = observer(() => {
       }
     //   console.log(functionWithSwitch())
 
-      const [validated, setValidated] = useState(false);
-
-      const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-    
-        setValidated(true);
-      };
 
     return (
         <>
@@ -188,7 +172,7 @@ const Samokleyka = observer(() => {
 
         <h1>Цена: {value} p.</h1>
 <hr></hr>
-                        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                 
                             
                         <Row className="mb-3">
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
@@ -245,14 +229,11 @@ const Samokleyka = observer(() => {
 
                         <hr></hr>
 
-                        <GetFile/>
-                        
-                        
                         
 
                         <SendPay value={value} description={description} name={name} />
                         
-                        </Form>
+                       
  
 
     

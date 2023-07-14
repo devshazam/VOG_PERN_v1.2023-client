@@ -8,50 +8,26 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
-import { createItem } from "../../http/deviceAPI";
 import SendPay from "../a-components/rt";
 import { observer } from "mobx-react-lite";
-
 import { vizit } from "../../arrays/vizitki.js";
 
-const Vizitki = () => {
-  let arc = { пер: 233 };
-  let as = "пер";
-  alert(arc[as]);
-
-  const [value, setValue] = useState(288);
-  const [side, setSide] = useState("one");
-  const [vid, setVid] = useState("one");
-  const [lam, setLam] = useState("one");
-  const [num, setNum] = useState("one");
-
-  const [cargo, setCargo] = useState("Самовывоз: Петропавловская 87"); // Телефон
-
+const Vizitki = observer(() => {
+  const [value, setValue] = useState('');
+  const [side, setSide] = useState("odnostoronnie");
+  const [vid, setVid] = useState("matovaya");
+  const [lam, setLam] = useState("bez");
+  const [num, setNum] = useState("96");
   const [description, setDescription] = useState(""); // Телефон
   const name = "Визитки";
 
-  const [tel, setTel] = useState(0);
-  const [file, setFile] = useState(null);
-
   useEffect(() => {
     setValue(vizit[side][vid][lam][num]);
-
     setDescription(
-      `Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${density} грамм; Люверсы: ${luvers} мм; Доставка: ${cargo}`
+      `Наименование: ${name}; Цена: ${value} рублей; Кол-во сторон печати: ${side}; Бумага: ${vid}; Ламинация: ${lam}; Кол-во: ${num};`
     );
-  }, [side, num, lam, vid]); // <- add the count variable here
+  }, [value, side, num, lam, vid]); // <- add the count variable here
 
-  const [validated, setValidated] = useState(false);
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-  };
 
   return (
     <>
@@ -63,7 +39,6 @@ const Vizitki = () => {
           <Col xs={12} lg={6}>
             <h1>Цена: {value} p.</h1>
             <hr></hr>
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
               <Row className="mb-3">
                 <Form.Group
                   as={Col}
@@ -77,8 +52,8 @@ const Vizitki = () => {
                       onChange={(e) => setSide(e.target.value)}
                       value={side}
                     >
-                      <option value="односторонние">Односторонние</option>
-                      <option value="двусторонние">Двусторонние</option>
+                      <option value="odnostoronnie">Односторонние</option>
+                      <option value="dvustoronnie">Двусторонние</option>
                     </Form.Select>
                   </InputGroup>
                 </Form.Group>
@@ -95,9 +70,9 @@ const Vizitki = () => {
                       onChange={(e) => setVid(e.target.value)}
                       value={vid}
                     >
-                      <option value="матовая">Матовая</option>
-                      <option value="глянцевая">Глянцевая</option>
-                      <option value="дизайнерская">Дизайнерская</option>
+                      <option value="matovaya">Матовая</option>
+                      <option value="glyancevaya">Глянцевая</option>
+                      <option value="dizinerskaya">Дизайнерская</option>
                     </Form.Select>
                   </InputGroup>
                 </Form.Group>
@@ -114,9 +89,9 @@ const Vizitki = () => {
                       onChange={(e) => setLam(e.target.value)}
                       value={lam}
                     >
-                      <option value="без_ламинации">Без ламинации</option>
-                      <option value="глянцевая">Глянцевая</option>
-                      <option value="матовая">Матовая</option>
+                      <option value="bez">Без ламинации</option>
+                      <option value="glyancevaya">Глянцевая</option>
+                      <option value="matovaya">Матовая</option>
                     </Form.Select>
                   </InputGroup>
                 </Form.Group>
@@ -143,50 +118,9 @@ const Vizitki = () => {
               </Row>
 
               <hr></hr>
+{/* Вспомогательный компонент */}
+<SendPay value={value} description={description} name={name} />
 
-              <GetFile />
-
-              <hr></hr>
-
-              <Row className="mb-3">
-                <Form.Group
-                  as={Col}
-                  md="12"
-                  controlId="validationCustomUsername"
-                >
-                  <Form.Label>Доставка:</Form.Label>
-                  <InputGroup hasValidation>
-                    <Form.Select
-                      aria-label="Default select example"
-                      onChange={(e) => setCargo(e.target.value)}
-                      value={cargo}
-                    >
-                      <option value="Самовывоз: Петропавловская 87">
-                        Самовывоз: Петропавловская 87
-                      </option>
-                      <option value="Самовывоз: Казахская 25">
-                        Самовывоз: Казахская 25
-                      </option>
-                      {/* <option value="500" >СДЕК (оплата при получении)</option> */}
-                    </Form.Select>
-                    <Form.Control.Feedback type="invalid">
-                      Выберите вариант доставки.
-                    </Form.Control.Feedback>
-                  </InputGroup>
-                </Form.Group>
-              </Row>
-
-              <Form.Group className="mb-3">
-                <Form.Check
-                  required
-                  label="Соглашаюсь с политикой конфиденциальности."
-                  feedback="Вы должны поставить галочку."
-                  feedbackType="invalid"
-                />
-              </Form.Group>
-
-              <SendPay value={value} description={description} name={name} />
-            </Form>
           </Col>
         </Row>
 
@@ -214,6 +148,6 @@ const Vizitki = () => {
       </Container>
     </>
   );
-};
+});
 
 export default Vizitki;
