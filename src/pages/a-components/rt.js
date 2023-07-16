@@ -38,7 +38,7 @@ console.log(String(file.type))
                     alert(0)
                     createItem(formData).then((data) => {
                         console.log("00-конечная точка", data);
-                        // window.location.href = data.confirmation.confirmation_url;
+                        window.location.href = data.confirmation.confirmation_url;
                     }).catch((e) => {
                         console.log(e.response.data.message)
                         alert('Ошибка сервера! Пожалуйста обрптитесь к администрации сайта!')
