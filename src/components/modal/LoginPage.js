@@ -31,7 +31,7 @@ const LoginPage = observer(() => {
       window.location.reload();
     }).catch((error) => { 
         if(error) alert(error.response.data.message)
-    })
+    });
     
   }
 

@@ -44,14 +44,18 @@ const AllOrdersAdmin = () => {
         fetchDevices(itemSort, orderSort, limit, page,  id, filter).then(data => {
             setDevices(data.rows)
             setCount(data.count)
-        })
+        }).catch((error) => { 
+            if(error) alert(error.response.data.message)
+        });
     }, [itemSort, orderSort, limit, page, midOne, id, filter])
 
     
     function doneItem(id) {
 		deleteDevice(id).then(data => {
                 setMidOne(midOne + 1)
-        })
+        }).catch((error) => { 
+            if(error) alert(error.response.data.message)
+        });
 	}
     function choicePage(number){
         setPage(number);
@@ -117,8 +121,8 @@ const AllOrdersAdmin = () => {
               <Form.Label>Элемент сортировки</Form.Label>
                     <Form.Select aria-label="Default select example" value={filter} onChange={e => setFilter(e.target.value)}>
                     <option value="Баннер" >Баннер</option>
-                    <option value="Самоклейка" >Самоклейка</option>
-                    <option value="Визитка" >Визитка</option>
+                    <option value="Cамоклейка" >Cамоклейка</option>
+                    <option value="Визитки" >Визитка</option>
                     </Form.Select>
               </Col>
             </Row>

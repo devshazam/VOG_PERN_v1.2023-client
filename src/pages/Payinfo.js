@@ -19,6 +19,8 @@ const Contacts = () => {
                 setValue('Оплата НЕ прошла!');
             }
                 
+            }).catch((error) => { 
+                if(error) alert(error.response.data.message)
             });
       }, []);
 

@@ -71,6 +71,8 @@ const RazrabotkaSaitov = () => {
                     console.log(data);
                     window.location.href = data.confirmation.confirmation_url;
                         
+                    }).catch((error) => { 
+                        if(error) alert(error.response.data.message)
                     });
                 }
     }else{
