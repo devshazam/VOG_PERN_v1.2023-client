@@ -35,7 +35,7 @@ const SendPay = observer((props) => {
 console.log(String(file.type))
                 if (Number(file.size) < 900000 && String(file.type) == 'image/jpeg') {
                     setSpinner(false);
-                    alert(0)
+                    // alert(0)
                     createItem(formData).then((data) => {
                         console.log("00-конечная точка", data);
                         window.location.href = data.confirmation.confirmation_url;
