@@ -27,7 +27,7 @@ const RegPage = observer(() => {
   const makeReg = async () => {
     try{
         if(mail && password && name && phone){
-              if(isEmail(mail)){
+            if(isEmail(mail)){
               let data = await registration(mail, password, name, phone)
               console.log(data)
               alert('success!')
@@ -67,7 +67,7 @@ const RegPage = observer(() => {
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Телефон для связи:</Form.Label>
-                    <Form.Control type='text' onChange={e => setPhone(e.target.value)} placeholder="phone" />
+                    <Form.Control type='text' onChange={e => setPhone(e.target.value)} placeholder="+7 (999) 123-45-67" />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Пароль:</Form.Label>

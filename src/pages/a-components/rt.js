@@ -111,7 +111,7 @@ console.log(String(file.type))
                 </Form.Group>
             </Row>
 
-            <Button type="submit" variant="danger" onClick={countPrice}>
+            <Button variant="danger" onClick={countPrice}>
                 {spinner ? "КУПИТЬ" : <Spinner animation="border"></Spinner>}
             </Button>
         </>

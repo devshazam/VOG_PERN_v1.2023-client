@@ -43,7 +43,7 @@ import RazrabotkaSaitov from "./pages/razrabotka-saitov/RazrabotkaSaitov";
 // Админ панель
 import LayoutAdmin from "./LayoutAdmin";
 import AllOrdersAdmin from "./pages/admin/AllOrdersAdmin";
-// import RegForm from "./pages/admin/RegForm";
+import PrivateCab from "./pages/admin/PrivateCab.js";
 
 
 
@@ -78,9 +78,9 @@ const App = observer(() => {
     
       <BrowserRouter>
       <Routes>
-          <Route path="/admin" element={<LayoutAdmin />}>
+          <Route path="/admin/" element={<LayoutAdmin />}>
               <Route index element={<AllOrdersAdmin />} /> 
-              {/* <Route path="/devices-view/" element={<AllOrdersAdmin />} /> */}
+              <Route path="/admin/bar" element={<PrivateCab  />} />
           </Route>
           
           <Route path="/" element={<Layout />}>

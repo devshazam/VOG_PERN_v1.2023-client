@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
-import Table from 'react-bootstrap/Table';
 import {Context} from "../../index";
+
+import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -30,22 +31,15 @@ const AllOrdersAdmin = () => {
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
     const {device} = useContext(Context)
-    // user.role
-
-    // useEffect(() => {
-    //     fetchDevices(itemSort, orderSort, limit, page, id, filter).then(data => {
-    //         setDevices(data.rows)
-    //         setCount(data.count)
-    //     })
-    // }, [])
+    const userId = undefined;
 
 
     useEffect(() => {
-        fetchDevices(itemSort, orderSort, limit, page,  id, filter).then(data => {
+        fetchDevices(itemSort, orderSort, limit, page, filter, id, userId).then(data => {
             setDevices(data.rows)
             setCount(data.count)
         }).catch((error) => { 
-            if(error) alert(error.response.data.message)
+            console.log(error.response.data.message);
         });
     }, [itemSort, orderSort, limit, page, midOne, id, filter])
 

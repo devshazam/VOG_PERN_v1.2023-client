@@ -20,6 +20,14 @@ export const check = async () => {
 
 }
 
+export const changeCredencials = async (email, phone) => {
+    const {data} = await $authHost.post('/api/user/change', {email, phone})
+    localStorage.setItem('token', data.token)
+    return jwt_decode(data.token)
+
+}
+
+
 // export const confirmMail = async (email) => {
 //     const {data} = await $host.post('/user/confirm-mail', {email})
 //     // localStorage.setItem('token', data.token)

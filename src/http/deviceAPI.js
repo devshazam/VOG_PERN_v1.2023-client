@@ -20,9 +20,9 @@ export const callPay = async () => {
     return data
 }
 
-export const fetchDevices = async (itemSort, orderSort, limit, page, id, filter) => {
+export const fetchDevices = async (itemSort, orderSort, limit, page, filter, id, userId) => {
     const {data} = await $host.get('/api/device/admin/devices-view/', {params: {
-        itemSort, orderSort, limit, page, id, filter
+        itemSort, orderSort, limit, page, filter, id, userId
         }})
     console.log(data)
     return data

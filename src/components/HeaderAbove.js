@@ -25,6 +25,7 @@ const Header = observer(() => {
         
         navigate("/");
     }
+  // console.log(user.user.role)
  
 
     return (
@@ -35,9 +36,16 @@ const Header = observer(() => {
                           <><Nav.Item>
                           <Nav.Link onClick={logOut} >Выход</Nav.Link>
                           </Nav.Item>
-                              {user.user.role && <Nav.Item>
-                                <Nav.Link  href="/admin">Панель администратора</Nav.Link>
-                              </Nav.Item>}
+                          <Nav.Item>
+                            <Nav.Link  href="/admin/bar">Личный кабинет</Nav.Link>
+                          </Nav.Item>
+                              {user.user.role == 'ADMIN' && 
+                                <>
+                                      <Nav.Item>
+                                        <Nav.Link  href="/admin">Панель администратора</Nav.Link>
+                                      </Nav.Item>
+                                </>
+                              }
                           </>
                             :
                           <>
