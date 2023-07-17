@@ -33,7 +33,7 @@ function Footer(){
 			  <Col xs={12} lg ={3}>
 			  <div className="column">
 							<p className="heading">Контакты:</p>
-							<a  href="mailto:<a href='mailto: info@kopi34.ru">Email: info@kopi34.ru</a><br></br>
+							<a  href="mailto:<a href='mailto: info@kopi34.ru">Email: kopi34@yandex.ru</a><br></br>
 							<a href='tel:89093802519'>+7(909) 380-25-19</a>
 						</div>
 
