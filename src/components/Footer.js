@@ -19,7 +19,9 @@ function Footer(){
               <Col xs={12} lg ={3}>
 			  <div className="column">
 							<p className="heading">Разработка сайта</p>
-							<a href="https://github.com/jacklee137/"><p>Делаем сайт по технологии "@Jack_Lee"</p></a>
+							{/* <a href="https://github.com/jacklee137/"> */}
+								<p>Делаем сайтs по технологии @Jack_Lee</p>
+								{/* </a> */}
 
 						</div>
               </Col>
