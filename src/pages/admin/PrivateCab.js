@@ -13,6 +13,7 @@ import Container from "react-bootstrap/Container";
 import Pagination from "react-bootstrap/Pagination";
 
 import { fetchDevices, deleteDevice } from "../../http/deviceAPI";
+import { changeCredencials } from "../../http/userAPI";
 
 import isEmail from 'validator/lib/isEmail';
 //
@@ -50,19 +51,26 @@ const PrivateCab = () => {
     }, [itemSort, orderSort, limit, page, midOne, id, filter]);
 
 
-    function changeCred(){
+    async function changeCred(){
+        
         if(isEmail(mail)){
-            const data = await changeCredencials(mail, phone)
-            console.log(data)
-            alert('success!')
-            helpers.setModalRegistration(false)
-            window.location.reload();
+            try{const data = await changeCredencials(mail, phone)
+                
+                console.log(data)
+                alert('success!')
+            }catch(e){
+                alert('444444!')
+            }
+                window.location.reload();
         }else{
             alert("Не корректный email!")
         }
         
     }
 
+    function choicePage(number){
+        setPage(number);
+    }
 
 // ###############
     let midlItem1 = Math.ceil(count / limit);
@@ -87,11 +95,11 @@ const PrivateCab = () => {
 
     return (
         <>
-            <Container>
+            <Container className="mb-3">
                 <Row>
-                    <p>Ваш ID: {user.user.id}</p>
-                    <Col xs={12} md={6}>
-                        <Form.Label>Заменить email: {user.user.email} на новый (введите новый):</Form.Label>
+                    <p>Ваш ID: {user.user.id}; Ваш Email: {user.user.email}; Ваш Телефон: {user.user.phone}</p>
+                    <Col xs={12} lg={6}>
+                        <Form.Label>Введите новый email:</Form.Label>
                         <Form.Control
                             required
                             type="text"
@@ -100,7 +108,7 @@ const PrivateCab = () => {
                         />
                     </Col>
                     <Col xs={12} lg={6}>
-                        <Form.Label>Ваш телефон: {user.user.phone}</Form.Label>
+                        <Form.Label>Введите новый телефон:</Form.Label>
                         <Form.Control
                             required
                             type="text"
@@ -109,7 +117,13 @@ const PrivateCab = () => {
                         />
                     </Col>
 
+
                 </Row>
+                <div className="d-grid gap-2 m-3">
+                            <Button variant="primary" size="lg" onClick={changeCred}>
+                                Изменить данные
+                            </Button>
+                        </div>
             </Container>
 
             <Table striped bordered hover>
