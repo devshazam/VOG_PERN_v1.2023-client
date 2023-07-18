@@ -35,9 +35,6 @@ const PrivateCab = () => {
 
 
 
-
-    
-
 // Загрузка всех заказов ользователя
     useEffect(() => {
         fetchDevices(itemSort, orderSort, limit, page, id, filter, user.user.id)
@@ -55,11 +52,11 @@ const PrivateCab = () => {
         
         if(isEmail(mail)){
             try{const data = await changeCredencials(mail, phone)
-                
-                console.log(data)
-                alert('success!')
+                console.log('11-', data)
+                alert('Данные успешно изменены!')
             }catch(e){
-                alert('444444!')
+                console.log('00->changeCred->PrivateCab.js', e.code, e.message)
+                alert('Ошибка Сервера - Обратитесь к администратору!')
             }
                 window.location.reload();
         }else{

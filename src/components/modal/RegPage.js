@@ -28,11 +28,15 @@ const RegPage = observer(() => {
     try{
         if(mail && password && name && phone){
             if(isEmail(mail)){
-              let data = await registration(mail, password, name, phone)
-              console.log(data)
-              alert('success!')
-              helpers.setModalRegistration(false)
-              window.location.reload();
+              try{
+                let data = await registration(mail, password, name, phone)
+                console.log(data)
+                alert('success!')
+                helpers.setModalRegistration(false)
+                window.location.reload();
+              }catch(e){
+                alert('Ошибка Сервера - Обратитесь к администратору!')
+              }
             }else{
               alert("Не корректный email!")
             }
