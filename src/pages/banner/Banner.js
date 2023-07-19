@@ -19,6 +19,8 @@ const Banner = observer(() => {
     const [description, setDescription] = useState(""); // Телефон
 
     const [luvers, setLuvers] = useState("0"); // Телефон
+    const [luversCoast, setLuversCoast] = useState("0"); // Телефон
+
 
     // const [file, setFile] = useState(null); // Файл
     const name = "Баннер";
@@ -84,16 +86,16 @@ const Banner = observer(() => {
                 let midNum14;
 
                 console.log("Стоимость баннера", midNum2);
-                if (Number(luvers) == 0) {
+                if (Number(luvers) === 0) {
                     midNum14 = 0;
                 } else {
                     midNum14 =
-                        (((Number(width) + Number(height)) * 2) /
-                            Number(luvers)) *
-                        15;
+                    Math.round((((Number(width) + Number(height)) * 2) /
+                            Number(luvers))) * 15;
                 }
 
                 console.log("Стоимость Люверсов", midNum14);
+                setLuversCoast(midNum14);
 
                 if (Math.round((midNum2 + midNum14) * 100) / 100 <= 200) {
                     setValue(200);
@@ -122,7 +124,8 @@ const Banner = observer(() => {
                         />
                     </Col>
                     <Col xs={12} lg={6}>
-                        <h1>Цена: {value} p.</h1>
+                        <h1>Цена: {value} p. </h1>
+                        <h2>(цена люверсов: {luversCoast}р.)</h2>
                         <hr></hr>
                         <Row className="mb-3">
                             <Form.Group
@@ -225,7 +228,7 @@ const Banner = observer(() => {
                             name={name}
                         />
                         <p style={{ fontSize: 12 }}>
-                            * - кол-во люверсов может отличчаться на один в
+                            * - кол-во люверсов может отличчаться на один, два в
                             большую сторону
                         </p>
                     </Col>

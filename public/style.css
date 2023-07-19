@@ -196,6 +196,14 @@ iframe{
 
 
 /* Новый стиль */
+#offcanvasNavbar-expand-lg{
+    background-color: white!important;
+    border-radius: 30px;
+}
+
+#offcanvasNavbar-expand-lg .navbar-text{
+    margin-right: 10px;
+}
 .navbar-expand-lg .navbar-nav .nav-link {
     margin: 20px 10px 4px 4px;
     padding: 5px 8px;
@@ -207,7 +215,7 @@ iframe{
 footer{
     margin-top: 160Px;
     width: 100%;
-    background-color: #d9d9d9;
+    background-color: #f2f2f2;
     padding: 50px;
 }
 nav.bg-body-tertiary{

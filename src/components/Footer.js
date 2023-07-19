@@ -20,7 +20,7 @@ function Footer(){
 			  <div className="column">
 							<p className="heading">Разработка сайта</p>
 							{/* <a href="https://github.com/jacklee137/"> */}
-								<p>Делаем сайтs по технологии @Jack_Lee</p>
+								<p>Делаем сайты по технологии @Jack_Lee</p>
 								{/* </a> */}
 
 						</div>
