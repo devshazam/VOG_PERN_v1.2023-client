@@ -93,9 +93,16 @@ console.log(String(file.type))
                         required
                         onChange={(e) => setFile(e.target.files[0])}
                     />
-                    <Form.Control.Feedback type="invalid">
-                        Пожалуйста загрузите файл!
-                    </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="12" controlId="validationCustom03">
+                    <Form.Label>
+                        Описание :
+                    </Form.Label>
+                    <Form.Control
+                        type="text"
+                        required
+                        onChange={(e) => setFile(e.target.files[0])}
+                    />
                 </Form.Group>
             </Row>
             <hr></hr>
