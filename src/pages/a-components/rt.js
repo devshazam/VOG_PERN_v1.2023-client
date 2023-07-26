@@ -94,7 +94,7 @@ console.log(String(file.type))
                         onChange={(e) => setFile(e.target.files[0])}
                     />
                 </Form.Group>
-                <Form.Group as={Col} md="12" controlId="validationCustom03">
+                {/* <Form.Group as={Col} md="12" controlId="validationCustom03">
                     <Form.Label>
                         Описание :
                     </Form.Label>
@@ -103,7 +103,7 @@ console.log(String(file.type))
                         required
                         onChange={(e) => setFile(e.target.files[0])}
                     />
-                </Form.Group>
+                </Form.Group> */}
             </Row>
             <hr></hr>
             <Row className="mb-3">
