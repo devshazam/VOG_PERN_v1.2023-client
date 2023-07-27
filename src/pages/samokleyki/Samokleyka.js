@@ -23,12 +23,21 @@ const Samokleyka = observer(() => {
     const [height, setHeight] = useState(''); // высота баннера
     const [description, setDescription] = useState(''); // Телефон
     const [vidSamo, setVidSamo] = useState('Белая');
+        const [number, setNumber] = useState('1');
+
     const name = 'Cамоклейка';
 
 
     useEffect(() => {
+        // console.log(number)
+        if(!+number){
+            setValue(0)
+            alert('Не корректное значение в поле кол-во!')
+            return
+        }
+
         if(width && height){
-                let m1 = Number(width)*Number(height) / 1000000
+                let m1 = Number(width) * Number(height) * Number(number) / 1000000
                 let m2
                 if(vidSamo == "Белая"){
                             if(m1 < 1){
@@ -123,10 +132,10 @@ const Samokleyka = observer(() => {
                     
                 }
 
-                setDescription(`Наименование: ${name}; Вид самоклейки: ${vidSamo}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм;`)
+                setDescription(`// Наименование: ${name}; Вид самоклейки: ${vidSamo}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number};`)
             }
 
-      }, [width, height, vidSamo]); // <- add the count variable here
+      }, [width, height, vidSamo, number]); // <- add the count variable here
   
 // console.log(value)
 
@@ -185,6 +194,7 @@ const Samokleyka = observer(() => {
                             />
                             <Form.Control.Feedback  type="invalid">Введите ширину!</Form.Control.Feedback>
                             </Form.Group>
+
                             <Form.Group as={Col} md="6" controlId="validationCustom02">
                             <Form.Label>Высота (мм):</Form.Label>
                             <Form.Control
@@ -195,19 +205,8 @@ const Samokleyka = observer(() => {
                             />
                             <Form.Control.Feedback type="invalid">Введите высоту!</Form.Control.Feedback>
                             </Form.Group>
-                            {/* <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                            <Form.Label>Плотность (гр):</Form.Label>
-                            <InputGroup hasValidation>
-                                <Form.Select aria-label="Default select example" onChange={e => setDensity(e.target.value)}>
-                                    <option value="400-440" >400-440</option>
-                                    <option value="500" >500</option>
-                                </Form.Select>
-                                <Form.Control.Feedback type="invalid">
-                                Введите плотность.
-                                </Form.Control.Feedback>
-                            </InputGroup>
-                            </Form.Group> */}
-                            <Form.Group as={Col} md="12" controlId="validationCustomUsername">
+       
+                            <Form.Group as={Col} md="6" controlId="validationCustomUsername">
                             <Form.Label>Вид самоклейки</Form.Label>
                             <InputGroup hasValidation>
                                 <Form.Select aria-label="Default select example" onChange={e => setVidSamo(e.target.value)} value={vidSamo}>
@@ -224,6 +223,17 @@ const Samokleyka = observer(() => {
                                 Введите плотность.
                                 </Form.Control.Feedback>
                             </InputGroup>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6" controlId="validationCustom02">
+                            <Form.Label>Кол-во:</Form.Label>
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="Штуки"
+                                value={number}
+                                onChange={e => setNumber(e.target.value)}
+                            />
                             </Form.Group>
                         </Row>
 

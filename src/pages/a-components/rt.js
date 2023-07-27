@@ -20,6 +20,7 @@ const SendPay = observer((props) => {
     const [file, setFile] = useState(null); // Файл
     const [city, setCity] = useState(''); // Файл
     const [address, setAddress] = useState(''); // Файл
+    const [description, setDescription] = useState(''); // Файл
 
 
     const countPrice = () => {
@@ -107,6 +108,19 @@ console.log(String(file.type))
             </Row>
             <hr></hr>
             <Row className="mb-3">
+
+                <Form.Group as={Col} md="12" controlId="validationCustom03">
+                    <Form.Label>
+                        Описание:
+                    </Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Пример: ссылки на файлы, дополнительные условия..."
+                        required
+                        onChange={(e) => setDescription(e.target.files[0])}
+                    />
+                </Form.Group>
+
                 <Form.Group
                     as={Col}
                     md="12"

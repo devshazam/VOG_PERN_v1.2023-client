@@ -20,12 +20,21 @@ const Banner = observer(() => {
 
     const [luvers, setLuvers] = useState("0"); // Телефон
     const [luversCoast, setLuversCoast] = useState("0"); // Телефон
+    const [number, setNumber] = useState('1');
 
 
     // const [file, setFile] = useState(null); // Файл
     const name = "Баннер";
 
     useEffect(() => {
+
+                console.log(number)
+                if(!+number){
+                    setValue(0)
+                    alert('Не корректное значение в поле кол-во!')
+                    return
+                }
+
         if (height && width) {
             if (
                 height &&
@@ -33,7 +42,7 @@ const Banner = observer(() => {
                 !isNaN(Number(width)) &&
                 !isNaN(Number(height))
             ) {
-                let midNum = (Number(width) * Number(height)) / 1000000;
+                let midNum = (Number(width) * Number(height) * Number(number)) / 1000000;
                 let midNum2;
                 if (midNum < 1) {
                     if (density == "400-440") {
@@ -89,9 +98,7 @@ const Banner = observer(() => {
                 if (Number(luvers) === 0) {
                     midNum14 = 0;
                 } else {
-                    midNum14 =
-                    Math.round((((Number(width) + Number(height)) * 2) /
-                            Number(luvers))) * 15;
+                    midNum14 = Math.round((((Number(width) + Number(height)) * Number(number) * 2) / Number(luvers))) * 15;
                 }
 
                 console.log("Стоимость Люверсов", midNum14);
@@ -110,7 +117,7 @@ const Banner = observer(() => {
                 alert("Введите корректные цифры!");
             }
         }
-    }, [width, density, height, luvers, value]); // <- add the count variable here
+    }, [width, density, height, luvers, number]); // <- add the count variable here
 
     return (
         <>
@@ -185,11 +192,11 @@ const Banner = observer(() => {
                             </Form.Group>
                             <Form.Group
                                 as={Col}
-                                md="12"
+                                md="6"
                                 controlId="validationCustomUsername"
                             >
                                 <Form.Label>
-                                    Растояние между люверсами* (мм):
+                                    Растояние между люверсами*:
                                 </Form.Label>
                                 <InputGroup hasValidation>
                                     <Form.Select
@@ -217,6 +224,17 @@ const Banner = observer(() => {
                                         Введите плотность.
                                     </Form.Control.Feedback>
                                 </InputGroup>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6" controlId="validationCustom02">
+                            <Form.Label>Кол-во:</Form.Label>
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="Штуки"
+                                value={number}
+                                onChange={e => setNumber(e.target.value)}
+                            />
                             </Form.Group>
                         </Row>
 
