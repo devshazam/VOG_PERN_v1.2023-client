@@ -132,6 +132,7 @@ const AllOrdersAdmin = () => {
                     <th>ID</th>
                     <th>Имя</th>
                     <th>Описание заказа</th>
+                    <th>Описание </th>
                     <th>Описание Клиента</th>
                     <th>Картинка</th>
                     <th>Статус Готовности и Оплаты</th>
@@ -144,6 +145,7 @@ const AllOrdersAdmin = () => {
                             <td>{device.id}</td>
                             <td>{device.name}</td>
                             <td>{device.feature}</td>
+                            <td>{device.descriptionText}</td>
                             <td>{device.userDescription}</td>
                             
                             <td>

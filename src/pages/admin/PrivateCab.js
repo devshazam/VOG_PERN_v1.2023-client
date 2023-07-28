@@ -128,6 +128,7 @@ const PrivateCab = () => {
                     <tr>
                         <th>Название</th>
                         <th>Описание заказа</th>
+                        <th>Описание</th>
                         <th>Описание Клиента</th>
                         <th>Картинка</th>
                         <th>Статус Готовности и Оплаты</th>
@@ -140,6 +141,7 @@ const PrivateCab = () => {
                             <tr key={device.id}>
                                 <td>{device.name}</td>
                                 <td>{device.feature}</td>
+                                <td>{device.descriptionText}</td>
                                 <td>{device.userDescription}</td>
 
                                 <td>

@@ -20,10 +20,14 @@ const SendPay = observer((props) => {
     const [file, setFile] = useState(null); // Файл
     const [city, setCity] = useState(''); // Файл
     const [address, setAddress] = useState(''); // Файл
-    const [description, setDescription] = useState(''); // Файл
+    const [descriptionText, setDescriptionText] = useState('Без описания'); // Файл
 
 
     const countPrice = () => {
+        if(descriptionText.split('').length > 1000  ){
+                alert('Длинна описания должна быть меннее 1000 символов!')
+                return
+        }
 
         if (user.isAuth) {
             console.log(Number(props.value));
@@ -43,8 +47,11 @@ const SendPay = observer((props) => {
                     "description",
                     `${props.description}  Доставка: ${cargo} ${city}, ${address}`
                 );
+                formData.append("descriptionText", descriptionText);
+                
                 formData.append("img", file);
                 formData.append("userId", `${user.user.id}`);
+
 console.log(String(file.type))
                 if (Number(file.size) < 900000 && String(file.type) == 'image/jpeg') {
                     setSpinner(false);
@@ -109,7 +116,7 @@ console.log(String(file.type))
             <hr></hr>
             <Row className="mb-3">
 
-                <Form.Group as={Col} md="12" controlId="validationCustom03">
+                <Form.Group as={Col} md="12" className="mb-3" controlId="validationCustom03">
                     <Form.Label>
                         Описание:
                     </Form.Label>
@@ -117,7 +124,7 @@ console.log(String(file.type))
                         type="text"
                         placeholder="Пример: ссылки на файлы, дополнительные условия..."
                         required
-                        onChange={(e) => setDescription(e.target.files[0])}
+                        onChange={(e) => setDescriptionText(e.target.value)}
                     />
                 </Form.Group>
 
