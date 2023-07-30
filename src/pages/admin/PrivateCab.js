@@ -145,17 +145,8 @@ const PrivateCab = () => {
                                 <td>{device.userDescription}</td>
 
                                 <td>
-                                    <img
-                                        width={150}
-                                        height={150}
-                                        src={
-                                            process.env.REACT_APP_API_URL +
-                                            device.img
-                                        }
-                                    />
                                     <a
-                                        href={
-                                            process.env.REACT_APP_API_URL +
+                                        href={  
                                             device.img
                                         }
                                     >

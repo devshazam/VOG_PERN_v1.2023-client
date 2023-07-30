@@ -149,8 +149,7 @@ const AllOrdersAdmin = () => {
                             <td>{device.userDescription}</td>
                             
                             <td>
-                                <img width={150} height={150} src={process.env.REACT_APP_API_URL + device.img}/>
-                                <a href={process.env.REACT_APP_API_URL + device.img}> Ссылка на картинку</a>
+                                <a href={device.img}> Ссылка на картинку</a>
                             </td>
                             <td>{device.status_done ? <p>готово</p> : <p>не готово</p>}<br></br>
                             {device.status_pay ? <p>оплачено</p> : <p>не оплачено</p>}</td>

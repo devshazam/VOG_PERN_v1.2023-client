@@ -24,58 +24,53 @@ const SendPay = observer((props) => {
 
 
     const countPrice = () => {
+
+        // 
+        if (!user.isAuth){alert("Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с левой стороны!");
+            return
+        }
         if(descriptionText.split('').length > 1000  ){
                 alert('Длинна описания должна быть меннее 1000 символов!')
                 return
         }
-
-        if (user.isAuth) {
-            console.log(Number(props.value));
-            if (file && Number(props.value)) {
-
-               if(String(cargo).split('-')[0] == '2'){ 
-                    if(city === '' || address === ''){
-                        alert('Пожалйста заполните адрес!')
-                        return
-                    }    
-                 
-                } 
-                const formData = new FormData();
-                formData.append("value", `${props.value}`);
-                formData.append("name", `${props.name}`);
-                formData.append(
-                    "description",
-                    `${props.description}  Доставка: ${cargo} ${city}, ${address}`
-                );
-                formData.append("descriptionText", descriptionText);
-                
-                formData.append("img", file);
-                formData.append("userId", `${user.user.id}`);
-
-console.log(String(file.type))
-                if (Number(file.size) < 900000 && String(file.type) == 'image/jpeg') {
-                    setSpinner(false);
-                    // alert(0)
-                    createItem(formData).then((data) => {
-                        console.log("00-конечная точка", data);
-                        window.location.href = data.confirmation.confirmation_url;
-                    }).catch((e) => {
-                        console.log(e.response.data.message)
-                        alert('Ошибка сервера! Пожалуйста обрптитесь к администрации сайта!')
-                      });
-                    
-                } else {
-                    console.log("00-", props.description, cargo);
-                    alert("Картинка должна быть менее 900Kb в формате 'JPG'");
-                }
-            } else {
-                alert("Не загружен файл или не сформированна цена!");
-            }
-        } else {
-            alert(
-                "Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с левой стороны!"
-            );
+        if (!file && !Number(props.value)){
+            alert("Не загружен файл или не сформированна цена!");
+            return;
         }
+        if(String(cargo).split('-')[0] === '2'){ 
+                    if(city === '' || address === ''){
+                        alert('Пожалйста заполните адрес!');
+                        return;
+                    }    
+        } 
+        if (file == null && Number(file.size) > 1e7 ) {
+
+        console.log("00-", props.description, cargo);
+            alert("Вставьте файл не более 10 Mb");
+        }
+
+             
+                const formData = new FormData();
+                    formData.append("value", `${props.value}`);
+                    formData.append("name", `${props.name}`);
+                    formData.append(
+                        "description",
+                        `${props.description}  Доставка: ${cargo} ${city}, ${address}`
+                    );
+                    formData.append("descriptionText", descriptionText);
+                    
+                    formData.append("img", file);
+                    formData.append("userId", `${user.user.id}`);
+
+                setSpinner(false);
+
+                createItem(formData).then((data) => {
+                    console.log("00-конечная точка", data);
+                    window.location.href = data.confirmation.confirmation_url;
+                }).catch((e) => {
+                    console.log(e.response.data.message)
+                    alert('Ошибка сервера! Пожалуйста обрптитесь к администрации сайта!')
+                    });
     };
 
     //  RETURN BLOCK
