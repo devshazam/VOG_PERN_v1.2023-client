@@ -89,7 +89,7 @@ const SendPay = observer((props) => {
                 </Form.Group>
                 <Form.Group as={Col} md="6" controlId="validationCustom03">
                     <Form.Label>
-                        Файл (Формат: jpg; Размер до: 900kB):
+                        Файл (до 10 Мб):
                     </Form.Label>
                     <Form.Control
                         type="file"

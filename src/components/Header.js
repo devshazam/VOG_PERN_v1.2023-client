@@ -28,8 +28,8 @@ const Header = () => {
 			<Navbar.Brand href="/">
             <img
               src="/file/logo.png"
-              width="280"
-              height="60"
+              width="200"
+              height="46"
               className="d-inline-block align-top"
               alt="React Bootstrap logo"
               id="logo-file"
@@ -69,8 +69,7 @@ const Header = () => {
                 </Nav>
 				<Navbar.Text>
 				<span className="label">
-					<a href='mailto: info@kopi34.ru'>Email: info@kopi34.ru</a><br></br>
-					Адрес: г. Волгоград, ул. Петропавловская 87
+					г. Волгоград, ул. Петропавловская 87
 					</span>
 				</Navbar.Text>
                 {/* <Form className="d-flex">
@@ -85,6 +84,8 @@ const Header = () => {
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
+
+          
         </Navbar>
 
 

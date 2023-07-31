@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 import SiteBar from "./components/SiteBar";
 import LoginPage from './components/modal/LoginPage';
 import RegPage from './components/modal/RegPage';
-
+import ReviewPage from './components/modal/ReviewPage';
 
 export default function  Layout(){
 
@@ -38,6 +38,7 @@ export default function  Layout(){
           <Footer />
           <LoginPage />
           <RegPage />
+          <ReviewPage />
 
     </>);
 }

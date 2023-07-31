@@ -1,7 +1,11 @@
 import React from 'react';
+import { Row } from 'react-bootstrap';
 
 import Carousel from 'react-bootstrap/Carousel';
 import Container from 'react-bootstrap/Container';
+import Col from'react-bootstrap/Col';
+import Figure from 'react-bootstrap/Figure';
+import Image from 'react-bootstrap/Image';  
 
 export default function  Home(){
 
@@ -13,46 +17,56 @@ export default function  Home(){
 
 
 
-	<Carousel data-bs-theme="dark">
+	<Carousel data-bs-theme="dark" className="mb-5 d-none d-sm-block" >
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/file/banner.jpg"
+          src="/file/main-banner/banner-2.jpg"
           alt="First slide"
         />
-        <Carousel.Caption>
+        {/* <Carousel.Caption>
           <h3>Полиграфия в Волгограде!</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
+        </Carousel.Caption> */}
       </Carousel.Item>
+
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="/file/banner.jpg"
+          src="/file/main-banner/banner-1.jpg"
           alt="Second slide"
         />
-
-        <Carousel.Caption>
+        {/* <Carousel.Caption>
           <h3>Second slide label</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
+        </Carousel.Caption> */}
       </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="/file/banner.jpg"
-          alt="Third slide"
-        />
 
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
     </Carousel>
 
+    <Row className="mb-5">
+      <Col xs={12} sm={6} lg={3} className="mb-3">
+      <a href="/banner">
+        <Image src="/file/home/banner.jpg" thumbnail className="img-mob"/>
+        </a>
+      </Col>
+      <Col xs={12} sm={6} lg={3} className="mb-3">
+      <a href="/vizitki">
+        <Image src="/file/home/vizitki.jpg" thumbnail  className="img-mob"/>
+          </a>
+      </Col>
+      <Col xs={12} sm={6}  lg={3} className="mb-3">
+        <a href="/samokleyka">
+          <Image src="/file/home/samokleyky.png" thumbnail className="img-mob" />
+          </a>
+      </Col>
+      <Col xs={12} sm={6}  lg={3} className="mb-3">
+        <a href="/samokleyka">
+          <Image src="/file/home/samokleyky.png" thumbnail  className="img-mob"/>
+        </a>
+      </Col>
+
+    </Row>
 
 
 

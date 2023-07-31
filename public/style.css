@@ -196,22 +196,22 @@ iframe{
 
 
 /* Новый стиль */
-#offcanvasNavbar-expand-lg{
+/* #offcanvasNavbar-expand-lg{
     background-color: white!important;
     border-radius: 30px;
-}
+} */
 
 #offcanvasNavbar-expand-lg .navbar-text{
     margin-right: 10px;
 }
-.navbar-expand-lg .navbar-nav .nav-link {
+/* .navbar-expand-lg .navbar-nav .nav-link {
     margin: 20px 10px 4px 4px;
     padding: 5px 8px;
     background-color: white;
     border-radius: 10px;
     font-weight: 700;
     font-size: 18px;
-}
+} */
 footer{
     margin-top: 160Px;
     width: 100%;
@@ -258,9 +258,11 @@ margin-right: 15px;
 #goods-image{
     width: 100%;
 }
-#logo-file{
+/* #logo-file{
     margin-top: 10px;
     margin-bottom: 10px;
+} */
+.img-mob{
+    width: 100%;
 }
-
 

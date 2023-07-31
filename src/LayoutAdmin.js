@@ -20,12 +20,12 @@ const LayoutAdmin = () => {
 
 <HeaderAbove />
 <Header />
-          <Container>
-            
+          {/* <Container> */}
+
     {/* <SiteBarAdmin />     */}
     {user.isAuth ? <Outlet /> : <Navigate to='/' />}
             
-          </Container>
+          {/* </Container> */}
           <Footer />
           {/* <LoginPage />
           <RegPage /> */}
