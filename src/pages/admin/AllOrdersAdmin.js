@@ -61,10 +61,6 @@ const AllOrdersAdmin = () => {
 		setId(event.target.value);
         }
 	}
-    // function resetFinding() {
-    //     setId('0')
-       
-	// }
     
 
     let midlItem1 = Math.ceil(count / limit)

@@ -44,7 +44,7 @@ import RazrabotkaSaitov from "./pages/razrabotka-saitov/RazrabotkaSaitov";
 import LayoutAdmin from "./LayoutAdmin";
 import AllOrdersAdmin from "./pages/admin/AllOrdersAdmin";
 import PrivateCab from "./pages/admin/PrivateCab.js";
-
+import AllGoods from "./pages/goods/AllGoods.js";
 
 
 import {check} from "./http/userAPI";
@@ -69,7 +69,8 @@ const App = observer(() => {
 
 
   if (loading) {
-    return <div id="mail-spinner"><Spinner animation="border" x /></div>;
+
+    return <div id="mail-spinner"><Spinner animation="border" /></div>;
   }
 
 
@@ -97,6 +98,8 @@ const App = observer(() => {
 
 {/* Самоклейки */}
               <Route path="/samokleyka" element={<Samokleyka />} />
+              <Route path="/goods" element={<AllGoods />} />
+              <Route path="/goods/:id" element={<AllGoods />} />
 
 
 {/* Печать на холсте */}

@@ -22,7 +22,6 @@ const Banner = observer(() => {
     const [luversCoast, setLuversCoast] = useState("0"); // Телефон
     const [number, setNumber] = useState('1');
 
-
     // const [file, setFile] = useState(null); // Файл
     const name = "Баннер";
 

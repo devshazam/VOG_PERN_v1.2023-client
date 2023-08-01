@@ -41,7 +41,7 @@ const ReviewPage = observer(() => {
 
       <Modal show={show} onHide={hideModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Форма входа на сайт</Modal.Title>
+          <Modal.Title>Оставьте свой отзыв:</Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
