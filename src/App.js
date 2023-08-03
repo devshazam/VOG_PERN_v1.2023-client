@@ -45,7 +45,7 @@ import LayoutAdmin from "./LayoutAdmin";
 import AllOrdersAdmin from "./pages/admin/AllOrdersAdmin";
 import PrivateCab from "./pages/admin/PrivateCab.js";
 import AllGoods from "./pages/goods/AllGoods.js";
-
+import CreateGoods from "./pages/admin/CreateGoods.js";
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
@@ -82,6 +82,8 @@ const App = observer(() => {
           <Route path="/admin/" element={<LayoutAdmin />}>
               <Route index element={<AllOrdersAdmin />} /> 
               <Route path="/admin/bar" element={<PrivateCab  />} />
+              <Route path="/admin/create" element={<CreateGoods  />} />
+
           </Route>
           
           <Route path="/" element={<Layout />}>

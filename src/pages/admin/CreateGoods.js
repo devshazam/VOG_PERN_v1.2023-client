@@ -9,52 +9,55 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
-
 import { createGoodsItem } from "../../http/goodsAPI";
 
-import isEmail from 'validator/lib/isEmail';
+import isEmail from "validator/lib/isEmail";
 //
 const PrivateCab = () => {
-    const [id, setId] = useState("0");
-    const [filter, setFilter] = useState("Баннер");
-    const [devices, setDevices] = useState({});
-    const [mail, setMail] = useState('');
-    const [count, setCount] = useState(0);
-    const [phone, setPhone] = useState('');
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [image, setImage] = useState(null);
+    const [group, setGroup] = useState("futbolki");
+
+    async function createGoodsItemFunction() {
+
+        if (!name ||!description ||!image ||!group) { alert("Не все поля заполнены!"); return; }
+
+        if(+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
+           
+
+            const formData = new FormData();
+                    formData.append("name", name);
+                    formData.append("descripton", description);
+                    formData.append("gorup", group);
+                    formData.append("img", image);
 
 
-
-    async function createGoodsItemFunction(){
-        
-        if(isEmail(mail)){
-            try{const data = await createGoodsItem(mail, phone)
-                console.log('11-', data)
-                alert('Данные успешно изменены!')
-            }catch(e){
-                console.log('00->changeCred->PrivateCab.js', e.code, e.message)
-                alert('Ошибка Сервера - Обратитесь к администратору!')
+            try {
+                const data = await createGoodsItem(formData);
+                console.log("+", data);
+                alert("Данные успешно внесены!");
+            } catch (e) {
+                console.log("+->changeCred->PrivateCab.js", e.code, e.message);
+                alert("Ошибка Сервера - Обратитесь к администратору!");
             }
-                window.location.reload();
-        }else{
-            alert("Не корректный email!")
-        }
-        
-    }
 
+
+    }
 
     // #########################################################################################
     return (
         <>
             <Container>
-                <Row>
-                    <Col xs={12} lg={12}>
+
                         <h1>Создание товара:</h1>
                         <hr></hr>
                         <Row className="mb-3">
                             <Form.Group
                                 as={Col}
-                                md="4"
-                                controlId="validationCustom01" >
+                                md="12"
+                                controlId="validationCustom01"
+                            >
                                 <Form.Label>Название товара:</Form.Label>
                                 <Form.Control
                                     required
@@ -66,7 +69,7 @@ const PrivateCab = () => {
 
                             <Form.Group
                                 as={Col}
-                                md="4"
+                                md="12"
                                 controlId="validationCustom02"
                             >
                                 <Form.Label>Описание товара:</Form.Label>
@@ -74,70 +77,48 @@ const PrivateCab = () => {
                                     required
                                     type="text"
                                     placeholder="Описание товара"
-                                    onChange={(e) => setHeight(e.target.value)}
+                                    onChange={(e) =>
+                                        setDescription(e.target.value)
+                                    }
                                 />
                             </Form.Group>
 
 
-                            <Form.Group
-                                as={Col}
-                                md="4"
-                                controlId="validationCustom02"
-                            >
-                                <Form.Label>Цена товара:</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    placeholder="Цена товара"
-                                    onChange={(e) => setCost(e.target.value)}
-                                />
+
+                            <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                <Form.Label>
+                                    Файл (Строго: 600 x 600 px; Расширение: jpg:
+                                </Form.Label>
+                                <Form.Control type="file" required onChange={(e) => setImage(e.target.files[0])} />
+
                             </Form.Group>
 
-
                             <Form.Group
                                 as={Col}
-                                md="6"
+                                md="12"
                                 controlId="validationCustomUsername"
                             >
-                                <Form.Label>
-                                    Группа товаров:
-                                </Form.Label>
-                                <InputGroup hasValidation>
+                                <Form.Label>Группа товаров:</Form.Label>
                                     <Form.Select
                                         aria-label="Default select example"
                                         onChange={(e) =>
-                                            setLuvers(e.target.value) }
-                                        value={luvers} >
-                                        <option value="0">Без люверсов</option>
-                                        <option value="200">
-                                            200 миллиметров
-                                        </option>
-                                        <option value="300">
-                                            300 миллиметров
-                                        </option>
-                                        <option value="400">
-                                            400 миллиметров
-                                        </option>
-                                        <option value="500">
-                                            500 миллиметров
-                                        </option>
+                                            setGroup(e.target.value)
+                                        }
+                                        value={group}
+                                    >   
+                                        <option value="futbolki">Футболки</option>
+                                        <option value="krujki">Кружки</option>
+                                        <option value="bagety">Багеты</option>
                                     </Form.Select>
-                                </InputGroup>
                             </Form.Group>
 
-
-                            <Button variant="danger" onClick={createGoodsItemFunction}>
-                                {spinner ? "КУПИТЬ" : <Spinner animation="border"></Spinner>}
+                            <Button
+                                variant="danger"
+                                onClick={createGoodsItemFunction}
+                            >Создать
                             </Button>
                         </Row>
-
-                        <hr></hr>
-
-                    </Col>
-                </Row>
-
             </Container>
-
         </>
     );
 };

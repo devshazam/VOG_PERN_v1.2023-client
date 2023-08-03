@@ -3,8 +3,8 @@ import jwt_decode from "jwt-decode";
 
 
 // Done
-export const createGoodsItem = async (device) => {
-    const {data} = await $authHost.post('/api/device', device)
+export const createGoodsItem = async (goods) => {
+    const {data} = await $authHost.post('/api/goods', goods)
     return data
 }
 

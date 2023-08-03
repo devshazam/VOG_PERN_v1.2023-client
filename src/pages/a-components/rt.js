@@ -43,11 +43,7 @@ const SendPay = observer((props) => {
                         return;
                     }    
         } 
-        if (file == null && Number(file.size) > 1e7 ) {
-
-        console.log("00-", props.description, cargo);
-            alert("Вставьте файл не более 10 Mb");
-        }
+        if(+file.size > 1e7 ) {alert("Вставьте файл не более 10 Mb");return;}
 
              
                 const formData = new FormData();

@@ -56,8 +56,8 @@ const Header = observer(() => {
                               <>
                               <NavDropdown.Divider />
                                 <NavDropdown.Item href="/admin">Список заказов</NavDropdown.Item>
-                                {/* <NavDropdown.Item href="/admin">Список товаров</NavDropdown.Item>
-                                <NavDropdown.Item href="/admin">Вставить товар</NavDropdown.Item> */}
+                                <NavDropdown.Item href="/admin/create">Создать товар</NavDropdown.Item>
+                                {/* <NavDropdown.Item href="/admin">Вставить товар</NavDropdown.Item> */}
                               </>
                             }
                           </NavDropdown>

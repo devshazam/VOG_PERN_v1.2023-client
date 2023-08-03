@@ -27,15 +27,15 @@ const Banner = observer(() => {
     // const [file, setFile] = useState(null); // Файл
     const name = "Баннер";
 
-    useEffect(() => {
-        createGoodsItem().then(data => {
-            setDevices(data.rows)
-            setCount(data.count)
-        }).catch((error) => { 
-            console.log(error.response.data.message);
-        });
+    // useEffect(() => {
+    //     createGoodsItem().then(data => {
+    //         setDevices(data.rows)
+    //         setCount(data.count)
+    //     }).catch((error) => { 
+    //         console.log(error.response.data.message);
+    //     });
 
-    }, [width, density, height, luvers, number]); // <- add the count variable here
+    // }, [width, density, height, luvers, number]); // <- add the count variable here
 
     return (
         <>
