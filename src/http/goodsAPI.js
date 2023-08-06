@@ -8,13 +8,18 @@ export const createGoodsItem = async (goods) => {
     return data
 }
 
+export const fetchGoodsList = async ( limit, page, category ) => {
+    const {data} = await $host.get('/api/goods/fetch-list', {params: {
+        limit, page, category
+        }})
+    return data
+}
 
-// export const fetchDevices = async (itemSort, orderSort, limit, page, filter, id, userId) => {
-//     const {data} = await $host.get('/api/device/admin/devices-view/', {params: {
-//         itemSort, orderSort, limit, page, filter, id, userId
-//         }})
-//     console.log(data)
-//     return data
-// }
+export const fetchOneGoods = async ( id ) => {
+    const {data} = await $host.get('/api/goods/fetch-one', {params: {
+        id
+        }})
+    return data
+}
 
 

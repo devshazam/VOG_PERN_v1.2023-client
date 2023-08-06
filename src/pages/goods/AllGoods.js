@@ -1,79 +1,88 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../index";
+import { useParams } from "react-router-dom";
 
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
+import Pagination from "react-bootstrap/Pagination";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { createGoodsItem } from '../../http/goodsAPI';
-import SendPay from "../a-components/rt";
+
+
+import { fetchGoodsList } from '../../http/goodsAPI';
 import { observer } from "mobx-react-lite";
 
-const Banner = observer(() => {
-    const [value, setValue] = useState(0); // цена товара - расчитаная
-    const [width, setWidth] = useState(""); // ширина баннеар
-    const [height, setHeight] = useState(""); // высота баннера
-    const [density, setDensity] = useState("400-440"); // плотность баннера
-    const [description, setDescription] = useState(""); // Телефон
+const AllGoods = observer(() => {
+    const [goodsCustom, setGoodsCustom] = useState({}); // цена товара - расчитаная
+    const [count, setCount] = useState(0); // цена товара - расчитаная
+    const [number, setNumber] = useState(0); // цена товара - расчитаная
+    const [page, setPage] = useState(1); 
 
-    const [luvers, setLuvers] = useState("0"); // Телефон
-    const [luversCoast, setLuversCoast] = useState("0"); // Телефон
-    const [number, setNumber] = useState('1');
+    let limit = 24;
 
-    // const [file, setFile] = useState(null); // Файл
-    const name = "Баннер";
 
-    // useEffect(() => {
-    //     createGoodsItem().then(data => {
-    //         setDevices(data.rows)
-    //         setCount(data.count)
-    //     }).catch((error) => { 
-    //         console.log(error.response.data.message);
-    //     });
+    const { category } = useParams();
 
-    // }, [width, density, height, luvers, number]); // <- add the count variable here
+    useEffect(() => {
+        fetchGoodsList( limit, page, category ).then(data => {
+            setGoodsCustom(data.rows)
+            setCount(data.count)
+        }).catch((e) => { 
+            console.log(e.response.data.message, e);
+        });
+
+    }, [ page ]); // <- add the count variable here
+
+    function choicePage(number){
+        setPage(number);
+    }
+
+    let midlItem1 = Math.ceil(count / limit)
+    let items = [];
+    for (let number = 1; number <= midlItem1; number++) {
+    items.push(
+        <Pagination.Item key={number} active={number === page} onClick={() => choicePage(number)}>
+        {number}
+        </Pagination.Item>,
+    );
+    }
+    const paginationBasic = (
+        <div>
+        <Pagination>{items}</Pagination>
+
+        </div>
+    );
 
     return (
         <>
         
             <Container>
                    <Row className="mb-5">
-
+                        {Object.keys(goodsCustom).length && goodsCustom.map(goods =>
                         <Col xs={12} sm={6} lg={3} className="mb-3">
-                        <a href="/banner">
+                        <a href={"/goods/one/"+goods.id}>
                                 <Card >
-                                <Card.Img variant="top" src="/file/home/vizitki.jpg" />
-                                <Card.Body>
-                                    <Card.Title>Кружка - 450 р</Card.Title>
-                                    {/* <Card.Text>
-                                    Цена: 450 р.
-                                    </Card.Text> */}
-                                    {/* <Button variant="primary" href="#">Смотреть товар</Button> */}
-                                </Card.Body>
+                                    <Card.Img variant="top" src={goods.image} />
+                                    <Card.Body>
+                                        <Card.Title>{goods.name} - {goods.price} р</Card.Title>
+                                        <Card.Text>
+                                        {goods.description}
+                                        </Card.Text>
+                                        {/* <Button variant="primary" href="#">Смотреть товар</Button> */}
+                                    </Card.Body>
                                 </Card>
                             </a>
                         </Col>
+                    ) 
+                    
+                    }
 
 
-                        <Col xs={12} sm={6} lg={3} className="mb-3">
-                        <a href="/vizitki">
-                            <Image src="/file/home/vizitki.jpg" thumbnail  className="img-mob"/>
-                            </a>
-                        </Col>
-                        <Col xs={12} sm={6}  lg={3} className="mb-3">
-                            <a href="/samokleyka">
-                            <Image src="/file/home/samokleyky.png" thumbnail className="img-mob" />
-                            </a>
-                        </Col>
-                        <Col xs={12} sm={6}  lg={3} className="mb-3">
-                            <a href="/samokleyka">
-                            <Image src="/file/home/samokleyky.png" thumbnail  className="img-mob"/>
-                            </a>
-                        </Col>
+
+{paginationBasic}
 
                     </Row>
             </Container>
@@ -81,4 +90,4 @@ const Banner = observer(() => {
     );
 });
 
-export default Banner;
+export default AllGoods;

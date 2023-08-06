@@ -12,25 +12,31 @@ import Container from "react-bootstrap/Container";
 import { createGoodsItem } from "../../http/goodsAPI";
 
 import isEmail from "validator/lib/isEmail";
+
 //
 const PrivateCab = () => {
+    const { user } = useContext(Context);
+
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
     const [group, setGroup] = useState("futbolki");
+    const [price, setPrice] = useState("");
 
     async function createGoodsItemFunction() {
-
-        if (!name ||!description ||!image ||!group) { alert("Не все поля заполнены!"); return; }
-
-        if(+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
-           
-
+        if (!user.user.id) {window.location.reload();}
+        if (!name ||!description ||!image ||!group ||!price) { alert("Не все поля заполнены!"); return; }
+        if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
+        if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
+        
+console.log()
             const formData = new FormData();
                     formData.append("name", name);
-                    formData.append("descripton", description);
-                    formData.append("gorup", group);
-                    formData.append("img", image);
+                    formData.append("description", description);
+                    formData.append("group", group);
+                    formData.append("image", image);
+                    formData.append("price", price);
+                    formData.append("userId", `${user.user.id}`);
 
 
             try {
@@ -38,7 +44,7 @@ const PrivateCab = () => {
                 console.log("+", data);
                 alert("Данные успешно внесены!");
             } catch (e) {
-                console.log("+->changeCred->PrivateCab.js", e.code, e.message);
+                console.log('err', e.response.data.message, e)
                 alert("Ошибка Сервера - Обратитесь к администратору!");
             }
 
@@ -58,12 +64,26 @@ const PrivateCab = () => {
                                 md="12"
                                 controlId="validationCustom01"
                             >
-                                <Form.Label>Название товара:</Form.Label>
+                                <Form.Label>Название товара (до 200 символов):</Form.Label>
                                 <Form.Control
                                     required
                                     type="text"
                                     placeholder="Название товара"
                                     onChange={(e) => setName(e.target.value)}
+                                />
+                            </Form.Group>
+
+                            <Form.Group
+                                as={Col}
+                                md="12"
+                                controlId="validationCustom01"
+                            >
+                                <Form.Label>Цена товара (руб.):</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    placeholder="Цена"
+                                    onChange={(e) => setPrice(e.target.value)}
                                 />
                             </Form.Group>
 

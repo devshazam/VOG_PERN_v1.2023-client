@@ -45,6 +45,7 @@ import LayoutAdmin from "./LayoutAdmin";
 import AllOrdersAdmin from "./pages/admin/AllOrdersAdmin";
 import PrivateCab from "./pages/admin/PrivateCab.js";
 import AllGoods from "./pages/goods/AllGoods.js";
+import OneGoods from "./pages/goods/OneGoods.js";
 import CreateGoods from "./pages/admin/CreateGoods.js";
 
 import {check} from "./http/userAPI";
@@ -101,7 +102,8 @@ const App = observer(() => {
 {/* Самоклейки */}
               <Route path="/samokleyka" element={<Samokleyka />} />
               <Route path="/goods" element={<AllGoods />} />
-              <Route path="/goods/:id" element={<AllGoods />} />
+              <Route path="/goods/:category" element={<AllGoods />} />
+              <Route path="/goods/one/:id" element={<OneGoods />} />
 
 
 {/* Печать на холсте */}
