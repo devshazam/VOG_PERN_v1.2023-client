@@ -11,9 +11,6 @@ import Container from "react-bootstrap/Container";
 
 import { createGoodsItem } from "../../http/goodsAPI";
 
-import isEmail from "validator/lib/isEmail";
-
-//
 const PrivateCab = () => {
     const { user } = useContext(Context);
 
@@ -28,8 +25,8 @@ const PrivateCab = () => {
         if (!name ||!description ||!image ||!group ||!price) { alert("Не все поля заполнены!"); return; }
         if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
         if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
+        if (image.name.split('.').reverse()[0] !== 'jpg'){alert("Формат файла только jpg");return}
         
-console.log()
             const formData = new FormData();
                     formData.append("name", name);
                     formData.append("description", description);
@@ -37,25 +34,19 @@ console.log()
                     formData.append("image", image);
                     formData.append("price", price);
                     formData.append("userId", `${user.user.id}`);
-
-
             try {
                 const data = await createGoodsItem(formData);
-                console.log("+", data);
+                console.log("dev", data);
                 alert("Данные успешно внесены!");
-            } catch (e) {
-                console.log('err', e.response.data.message, e)
+            } catch (error) {
+                console.log('dev', error.response.data.message, error)
                 alert("Ошибка Сервера - Обратитесь к администратору!");
             }
-
-
     }
-
-    // #########################################################################################
+// #########################################################################################
     return (
         <>
             <Container>
-
                         <h1>Создание товара:</h1>
                         <hr></hr>
                         <Row className="mb-3">

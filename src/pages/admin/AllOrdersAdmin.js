@@ -121,7 +121,7 @@ const AllOrdersAdmin = () => {
 
  
 
-
+        <Container>
             <Table striped bordered hover >
                 <thead>
                     <tr>
@@ -171,7 +171,7 @@ const AllOrdersAdmin = () => {
             </Table>
 
             {paginationBasic}
-   
+            </Container>
 
         </>
     );
