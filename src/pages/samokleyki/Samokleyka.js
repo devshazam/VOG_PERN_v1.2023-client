@@ -180,9 +180,8 @@ const Samokleyka = observer(() => {
 
 
         <h1>Цена: {value} p.</h1>
+        <h2>Интерьерная печать.</h2>
 <hr></hr>
-                 
-                            
                         <Row className="mb-3">
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
                             <Form.Label>Ширина (мм):</Form.Label>

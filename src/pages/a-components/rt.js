@@ -24,8 +24,6 @@ const SendPay = observer((props) => {
 
 
     const countPrice = () => {
-
-        // 
         if (!user.isAuth){alert("Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с левой стороны!");
             return
         }
@@ -33,7 +31,7 @@ const SendPay = observer((props) => {
                 alert('Длинна описания должна быть меннее 1000 символов!')
                 return
         }
-        if (!file && !Number(props.value)){
+        if (!file || !Number(props.value)){
             alert("Не загружен файл или не сформированна цена!");
             return;
         }
@@ -49,9 +47,7 @@ const SendPay = observer((props) => {
                 const formData = new FormData();
                     formData.append("value", `${props.value}`);
                     formData.append("name", `${props.name}`);
-                    formData.append(
-                        "description",
-                        `${props.description}  Доставка: ${cargo} ${city}, ${address}`
+                    formData.append("description", `${props.description}  Доставка: ${cargo} ${city}, ${address}`
                     );
                     formData.append("descriptionText", descriptionText);
                     

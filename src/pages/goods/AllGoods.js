@@ -11,21 +11,20 @@ import Container from "react-bootstrap/Container";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-
-import { fetchGoodsList } from '../../http/goodsAPI';
+import { fetchGoodsList, deleteItemByID } from '../../http/goodsAPI';
 import { observer } from "mobx-react-lite";
 
 const AllGoods = observer(() => {
+    const { user} = useContext(Context)
     const [goodsCustom, setGoodsCustom] = useState({}); // цена товара - расчитаная
     const [count, setCount] = useState(0); // цена товара - расчитаная
     const [number, setNumber] = useState(0); // цена товара - расчитаная
     const [page, setPage] = useState(1); 
-
+    const [flag, setFlag] = useState(1);
     let limit = 24;
 
 
     const { category } = useParams();
-
     useEffect(() => {
         fetchGoodsList( limit, page, category ).then(data => {
             setGoodsCustom(data.rows)
@@ -33,11 +32,20 @@ const AllGoods = observer(() => {
         }).catch((e) => { 
             console.log(e.response.data.message, e);
         });
-
-    }, [ page ]); // <- add the count variable here
+    }, [ page, flag ]); // <- add the count variable here
 
     function choicePage(number){
         setPage(number);
+    }
+
+    async function deleteItem (event, id){
+        event.preventDefault()
+        deleteItemByID( id ).then(res => {
+            console.log(res.data.message);
+        }).catch(e => {
+            console.log(e);
+        })
+        setFlag(flag + 1);
     }
 
     let midlItem1 = Math.ceil(count / limit)
@@ -52,7 +60,6 @@ const AllGoods = observer(() => {
     const paginationBasic = (
         <div>
         <Pagination>{items}</Pagination>
-
         </div>
     );
 
@@ -61,28 +68,30 @@ const AllGoods = observer(() => {
         
             <Container>
                    <Row className="mb-5">
-                        {Object.keys(goodsCustom).length && goodsCustom.map(goods =>
+                        {Object.keys(goodsCustom).length ? goodsCustom.map(goods =>
                         <Col xs={12} sm={6} lg={3} className="mb-3">
-                        <a href={"/goods/one/"+goods.id}>
                                 <Card >
-                                    <Card.Img variant="top" src={goods.image} />
+                                    <a href={"/goods/one/"+goods.id}>
+                                        <Card.Img variant="top" src={goods.image} />
+                                    </a>
                                     <Card.Body>
-                                        <Card.Title>{goods.name} - {goods.price} р</Card.Title>
+                                        <Card.Title>{goods.name} - Цена: {goods.price} р</Card.Title>
                                         <Card.Text>
                                         {goods.description}
                                         </Card.Text>
-                                        {/* <Button variant="primary" href="#">Смотреть товар</Button> */}
+                                        {user.user.role == 'ADMIN' && 
+                                           <>
+                                           <Button className="m-2" variant="danger" href="#" onClick={(event) => deleteItem(event, goods.id)}>Удалить</Button>
+                                           <Button variant="primary" href={"/goods/one-update/"+goods.id}>Править</Button>
+                                           </>
+                                        }
                                     </Card.Body>
                                 </Card>
-                            </a>
+                            
                         </Col>
-                    ) 
-                    
+                        )  : <h2>Нет товаров</h2>
                     }
-
-
-
-{paginationBasic}
+                    {paginationBasic}
 
                     </Row>
             </Container>

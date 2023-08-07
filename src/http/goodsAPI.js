@@ -22,4 +22,14 @@ export const fetchOneGoods = async ( id ) => {
     return data
 }
 
+export const deleteItemByID = async ( id ) => {
+    const {data} = await $authHost.get('/api/goods/delete-one', {params: {
+        id
+        }})
+    return data
+}
 
+export const updateItemByID = async ( goods ) => {
+    const {data} = await $authHost.post('/api/goods/update-one', goods)
+    return data
+}

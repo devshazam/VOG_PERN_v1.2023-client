@@ -1,26 +1,37 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../index";
+import { useParams } from "react-router-dom";
+import { fetchOneGoods, updateItemByID } from "../../http/goodsAPI";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
-import { createGoodsItem } from "../../http/goodsAPI";
-
-//
-const PrivateCab = () => {
+const UpdateGoods = () => {
     const { user } = useContext(Context);
+    const { id } = useParams();
+
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
     const [group, setGroup] = useState("futbolki");
     const [price, setPrice] = useState("");
+    const [goodsItem, setGoodsItem] = useState({ price});
 
-    async function createGoodsItemFunction() {
+        useEffect(() => {
+            fetchOneGoods( id ).then(data => {
+                setGoodsItem(data)
+            }).catch((e) => { 
+                console.log(e.response.data.message, e);
+            });
+        }, [ ]); 
+    
+
+    async function updateGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
         if (!name ||!description ||!image ||!group ||!price) { alert("Не все поля заполнены!"); return; }
         if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
@@ -34,12 +45,12 @@ const PrivateCab = () => {
                     formData.append("price", price);
                     formData.append("userId", `${user.user.id}`);
             try {
-                const data = await createGoodsItem(formData);
+                const data = await updateItemByID(formData);
                 console.log("dev", data);
                 alert("Данные успешно внесены!");
             } catch (error) {
                 console.log('dev', error.response.data.message, error)
-                alert("Ошибка Сервера - Обратитесь к администратору!");
+                alert("Ошибка: 501 - Обратитесь к администратору!");
             }
 
 
@@ -49,10 +60,20 @@ const PrivateCab = () => {
     return (
         <>
             <Container>
-
-                        <h1>Создание товара:</h1>
-                        <hr></hr>
-                        <Row className="mb-3">
+                <Row>
+                    <Col xs={12} md={6}>
+                        <Image
+                            src={goodsItem.image}
+                            id="goods-image"
+                            rounded
+                        />  
+                        <h2>Название: {goodsItem.name}</h2>
+                        <p>Описаниие: {goodsItem.description}</p>
+                        <p>Категория: {goodsItem.group}</p>
+                    </Col>
+                    <Col xs={12} lg={6}>
+                        <h2>Введите новые значения:</h2>
+                    <Row className="mb-3">
                             <Form.Group
                                 as={Col}
                                 md="12"
@@ -128,13 +149,18 @@ const PrivateCab = () => {
 
                             <Button
                                 variant="danger"
-                                onClick={createGoodsItemFunction}
+                                onClick={updateGoodsItemFunction}
                             >Создать
                             </Button>
                         </Row>
+                    </Col>
+                </Row>
+
             </Container>
+
+
         </>
     );
 };
 
-export default PrivateCab;
+export default UpdateGoods;
