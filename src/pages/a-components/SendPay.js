@@ -50,9 +50,9 @@ const SendPay = observer((props) => {
                     formData.append("description", `${props.description}  Доставка: ${cargo} ${city}, ${address}`
                     );
                     formData.append("descriptionText", descriptionText);
-                    
                     formData.append("img", file);
                     formData.append("userId", `${user.user.id}`);
+                    formData.append("goodId", props.id);
 
                 setSpinner(false);
 
@@ -100,7 +100,7 @@ const SendPay = observer((props) => {
                     />
                 </Form.Group> */}
             </Row>
-            <hr></hr>
+
             <Row className="mb-3">
 
                 <Form.Group as={Col} md="12" className="mb-3" controlId="validationCustom03">

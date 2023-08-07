@@ -107,21 +107,7 @@ import React from 'react';
 
 
 
-								<li className="eChild allow-dropdown nested">
-									<a href="/razrabotka-saitov" className="menuLink">
-										<span className="tb">
-											<span className="pc">
-												<img src="/file/pic/icons8-card-100.png"
-													alt="Срочная полиграфия" title="Срочная полиграфия"></img>
-												<span className="back"></span>
-											</span>
-											<span className="tx">
-												<span className="link-title">Разработка сайтов</span>
-												<span className="dropdown btn-simple btn-micro"></span>
-											</span>
-										</span>
-									</a>
-								</li>
+								
 							</ul>
 						</div>
 

@@ -8,75 +8,98 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { fetchOneGoods } from '../../http/goodsAPI';
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import { fetchOneGoods } from "../../http/goodsAPI";
 
-import SendPay from "../a-components/rt";
+import SendPay from "../a-components/SendPay";
 
 import { observer } from "mobx-react-lite";
 
 const OneGoods = observer(() => {
     const [goodsItem, setGoodsItem] = useState({});
     const { id } = useParams();
-    const [number, setNumber] = useState('1'); // кол-во товараов
-    const [value, setValue] = useState(0);  // стоимость товараов
-    const [description, setDescription] = useState('');
+    const [number, setNumber] = useState("1"); // кол-во товараов
+    const [value, setValue] = useState(0); // стоимость товараов
+    const [description, setDescription] = useState("");
 
-        useEffect(() => {
-            fetchOneGoods( id ).then(data => {
-                setGoodsItem(data)
-            }).catch((e) => { 
-                console.log(e.response.data.message, e);
+    useEffect(() => {
+        fetchOneGoods(id)
+            .then((data) => {
+                setGoodsItem(data);
+                console.log("dev", data);
+            })
+            .catch((error) => {
+                console.log("dev", error.response.data.message, error);
+                alert("Ошибка 506 - Обратитесь к администратору!");
             });
-        }, [ ]); // <- add the count variable here
-                            
-        useEffect(() => {
-            if(Object.keys(goodsItem).length === 0){ return;}
-            if(number.split('').length > 10  ){alert('Слишком большое значение!');return;}
-             console.log(+number)
-            if(!+number){alert('не допустимое значение!'); return;}
-           
-            
-            setValue(+goodsItem.price * number);
-            setDescription(goodsItem.description + '; Кол-во: ' + String(number) + '; Цена: ' + String(+goodsItem.price * number))
-        }, [ number, goodsItem ]); // <- add the count variable here
+    }, []); // <- add the count variable here
+
+    useEffect(() => {
+        if (Object.keys(goodsItem).length === 0) {
+            return;
+        }
+        if (number.split("").length > 10) {
+            alert("Слишком большое значение!");
+            return;
+        }
+        console.log(+number);
+        if (!+number) {
+            alert("не допустимое значение!");
+            return;
+        }
+        setValue(+goodsItem.price * +number);
+        setDescription(
+            "Название: " +
+                goodsItem.name +
+                "ID: " +
+                goodsItem.id +
+                "описание: " +
+                goodsItem.description +
+                "категория: " +
+                goodsItem.group +
+                "; кол-во: " +
+                number +
+                "; цена: " +
+                String(+goodsItem.price * +number)
+        );
+    }, [number, goodsItem]); // <- add the count variable here
 
     return (
         <>
             <Container>
                 <Row>
                     <Col xs={12} md={6}>
-                        <Image
-                            src={goodsItem.image}
-                            id="goods-image"
-                            rounded
-                        />
+                        <Image src={goodsItem.image} id="goods-image" rounded />
                     </Col>
                     <Col xs={12} lg={6}>
-                        <h1>Цена: {value} p. </h1>
-                        <h2>{goodsItem.name}</h2>
-                        <p>{goodsItem.description}</p>
+                        <h1>{goodsItem.name}</h1>
+                        <h2>Цена: {value} p. </h2>
+                        <p>Опивание: {goodsItem.description}</p>
                         <Row className="mb-3">
-
-                            <Form.Group as={Col} md="6" controlId="validationCustom02">
-                            <Form.Label>Кол-во:</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="Штуки"
-                                value={number}
-                                onChange={e => setNumber(e.target.value)}
-                            />
+                            <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId="validationCustom02"
+                            >
+                                <Form.Label>Кол-во:</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    placeholder="Штуки"
+                                    value={number}
+                                    onChange={(e) => setNumber(e.target.value)}
+                                />
                             </Form.Group>
                         </Row>
 
-                        <hr></hr>
+                        
 
                         <SendPay
                             value={value}
                             description={description}
                             name={goodsItem.name}
+                            id={goodsItem.id}
                         />
                     </Col>
                 </Row>

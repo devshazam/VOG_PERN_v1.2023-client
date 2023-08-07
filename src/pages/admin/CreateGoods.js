@@ -13,7 +13,6 @@ import { createGoodsItem } from "../../http/goodsAPI";
 //
 const PrivateCab = () => {
     const { user } = useContext(Context);
-
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
@@ -24,6 +23,7 @@ const PrivateCab = () => {
         if (!user.user.id) {window.location.reload();}
         if (!name ||!description ||!image ||!group ||!price) { alert("Не все поля заполнены!"); return; }
         if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
+        if(!+price){alert('Не допустимое значение цены!'); return;}
         if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
         if (image.name.split('.').reverse()[0] !== 'jpg'){alert("Формат файла только jpg");return}
         
@@ -39,8 +39,8 @@ const PrivateCab = () => {
                 console.log("dev", data);
                 alert("Данные успешно внесены!");
             } catch (error) {
-                console.log('dev', error.response.data.message, error)
-                alert("Ошибка Сервера - Обратитесь к администратору!");
+                console.log('dev', error.response.data.message, error);
+                 alert('Ошибка 506 - Обратитесь к администратору!');
             }
     }
 // #########################################################################################
@@ -48,7 +48,7 @@ const PrivateCab = () => {
         <>
             <Container>
                         <h1>Создание товара:</h1>
-                        <hr></hr>
+                     
                         <Row className="mb-3">
                             <Form.Group
                                 as={Col}

@@ -23,27 +23,35 @@ const AllGoods = observer(() => {
     const [flag, setFlag] = useState(1);
     let limit = 24;
     const { category } = useParams();
+
     useEffect(() => {
+        console.log(count)
+
         fetchGoodsList( limit, page, category ).then(data => {
             setGoodsCustom(data.rows)
             setCount(data.count)
+            console.log(count)
         }).catch((e) => { 
             console.log(e.response.data.message, e);
         });
-    }, [ page, flag ]); // <- add the count variable here
+        console.log(count)
+
+    }, [ page, flag, count ]); // <- add the count variable here
+    console.log(count)
 
     function choicePage(number){
         setPage(number);
     }
 
-    async function deleteItem (event, id){
-        event.preventDefault()
-        deleteItemByID( id ).then(res => {
-            console.log(res.data.message);
-        }).catch(e => {
-            console.log(e);
-        })
-        setFlag(flag + 1);
+    async function deleteItem (id){
+        try{
+            deleteItemByID( id );
+            console.log("dev", "Товар удален!");
+            setFlag(flag + 1);
+        }catch(error){
+            console.log('dev', error.response.data.message, error);
+             alert('Ошибка 506 - Обратитесь к администратору!');
+        }
     }
 
     let midlItem1 = Math.ceil(count / limit)
@@ -66,7 +74,7 @@ const AllGoods = observer(() => {
             <Container>
                    <Row className="mb-5">
                         {Object.keys(goodsCustom).length ? goodsCustom.map(goods =>
-                        <Col xs={12} sm={6} lg={3} className="mb-3">
+                        <Col xs={12} sm={6} lg={3} className="mb-3" key={goods.id}>
                                 <Card >
                                     <a href={"/goods/one/"+goods.id}>
                                         <Card.Img variant="top" src={goods.image} />
@@ -78,7 +86,7 @@ const AllGoods = observer(() => {
                                         </Card.Text>
                                         {user.user.role == 'ADMIN' && 
                                            <>
-                                           <Button className="m-2" variant="danger" href="#" onClick={(event) => deleteItem(event, goods.id)}>Удалить</Button>
+                                           <Button className="m-2" variant="danger" href="#" onClick={() => deleteItem(goods.id)}>Удалить</Button>
                                            <Button variant="primary" href={"/goods/one-update/"+goods.id}>Править</Button>
                                            </>
                                         }

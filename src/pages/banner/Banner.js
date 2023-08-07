@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
-import SendPay from "../a-components/rt";
+import SendPay from "../a-components/SendPay";
 import { observer } from "mobx-react-lite";
 
 const Banner = observer(() => {
@@ -20,19 +20,17 @@ const Banner = observer(() => {
 
     const [luvers, setLuvers] = useState("0"); // Телефон
     const [luversCoast, setLuversCoast] = useState("0"); // Телефон
-    const [number, setNumber] = useState('1');
-
-    // const [file, setFile] = useState(null); // Файл
+    const [number, setNumber] = useState("1");
     const name = "Баннер";
+    const goodsId = -1;
 
     useEffect(() => {
-
-                console.log(number)
-                if(!+number){
-                    setValue(0)
-                    alert('Не корректное значение в поле кол-во!')
-                    return
-                }
+        console.log(number);
+        if (!+number) {
+            setValue(0);
+            alert("Не корректное значение в поле кол-во!");
+            return;
+        }
 
         if (height && width) {
             if (
@@ -41,7 +39,8 @@ const Banner = observer(() => {
                 !isNaN(Number(width)) &&
                 !isNaN(Number(height))
             ) {
-                let midNum = (Number(width) * Number(height) * Number(number)) / 1000000;
+                let midNum =
+                    (Number(width) * Number(height) * Number(number)) / 1000000;
                 let midNum2;
                 if (midNum < 1) {
                     if (density == "400-440") {
@@ -97,7 +96,13 @@ const Banner = observer(() => {
                 if (Number(luvers) === 0) {
                     midNum14 = 0;
                 } else {
-                    midNum14 = Math.round((((Number(width) + Number(height)) * Number(number) * 2) / Number(luvers))) * 15;
+                    midNum14 =
+                        Math.round(
+                            ((Number(width) + Number(height)) *
+                                Number(number) *
+                                2) /
+                                Number(luvers)
+                        ) * 15;
                 }
 
                 console.log("Стоимость Люверсов", midNum14);
@@ -132,7 +137,7 @@ const Banner = observer(() => {
                     <Col xs={12} lg={6}>
                         <h1>Цена: {value} p. </h1>
                         <h2>(цена люверсов: {luversCoast}р.)</h2>
-                        <hr></hr>
+                      
                         <Row className="mb-3">
                             <Form.Group
                                 as={Col}
@@ -225,24 +230,29 @@ const Banner = observer(() => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="6" controlId="validationCustom02">
-                            <Form.Label>Кол-во:</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="Штуки"
-                                value={number}
-                                onChange={e => setNumber(e.target.value)}
-                            />
+                            <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId="validationCustom02"
+                            >
+                                <Form.Label>Кол-во:</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    placeholder="Штуки"
+                                    value={number}
+                                    onChange={(e) => setNumber(e.target.value)}
+                                />
                             </Form.Group>
                         </Row>
 
-                        <hr></hr>
+                       
 
                         <SendPay
                             value={value}
                             description={description}
                             name={name}
+                            id={goodsId}
                         />
                         <p style={{ fontSize: 12 }}>
                             * - кол-во люверсов может отличчаться на один, два в

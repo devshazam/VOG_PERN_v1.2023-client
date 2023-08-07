@@ -1,264 +1,312 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {Context} from "../../index";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../../index";
 
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
 
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image';
+import SendPay from "../a-components/SendPay";
+import { observer } from "mobx-react-lite";
 
-import SendPay from '../a-components/rt'
-import {observer} from "mobx-react-lite";
-
-import Container from 'react-bootstrap/Container';
-
-
+import Container from "react-bootstrap/Container";
 
 const Samokleyka = observer(() => {
-
-    const {user, device} = useContext(Context)
+    const { user, device } = useContext(Context);
     const [value, setValue] = useState(0); // цена товара - расчитаная
-    const [width, setWidth] = useState(''); // ширина баннеар
-    const [height, setHeight] = useState(''); // высота баннера
-    const [description, setDescription] = useState(''); // Телефон
-    const [vidSamo, setVidSamo] = useState('Белая');
-        const [number, setNumber] = useState('1');
+    const [width, setWidth] = useState(""); // ширина баннеар
+    const [height, setHeight] = useState(""); // высота баннера
+    const [description, setDescription] = useState(""); // Телефон
+    const [vidSamo, setVidSamo] = useState("Белая");
+    const [number, setNumber] = useState("1");
 
-    const name = 'Cамоклейка';
-
+    const name = "Cамоклейка";
 
     useEffect(() => {
         // console.log(number)
-        if(!+number){
-            setValue(0)
-            alert('Не корректное значение в поле кол-во!')
-            return
+        if (!+number) {
+            setValue(0);
+            alert("Не корректное значение в поле кол-во!");
+            return;
         }
 
-        if(width && height){
-                let m1 = Number(width) * Number(height) * Number(number) / 1000000
-                let m2
-                if(vidSamo == "Белая"){
-                            if(m1 < 1){
-                                m2 = m1*650;
-                        }else if(m1 >= 1 && m1 < 5){
-                            m2 = m1*600;
-                        }if(m1 >= 5 && m1 < 10){
-                            m2 = m1*550;
-                        }if(m1 >= 10){
-                            m2 = m1*500;
-                        }
-                }else if(vidSamo == "Черная"){
-                        if(m1 < 1){
-                            m2 = m1*700;
-                        }else if(m1 >= 1 && m1 < 5){
-                            m2 = m1*650;
-                        }if(m1 >= 5 && m1 < 10){
-                            m2 = m1*600;
-                        }if(m1 >= 10){
-                            m2 = m1*550;
-                        }
-                }else if(vidSamo == "Цветная"){
-                        if(m1 < 1){
-                            m2 = m1*900;
-                        }else if(m1 >= 1 && m1 < 5){
-                            m2 = m1*850;
-                        }if(m1 >= 5 && m1 < 10){
-                            m2 = m1*800;
-                        }if(m1 >= 10){
-                            m2 = m1*750;
-                        }
-                }else if(vidSamo == "Дизайнерская"){
-                        if(m1 < 1){
-                            m2 = m1*2500;
-                        }else if(m1 >= 1 && m1 < 5){
-                            m2 = m1*2300;
-                        }if(m1 >= 5 && m1 < 10){
-                            m2 = m1*2150;
-                        }if(m1 >= 10){
-                            m2 = m1*2000;
-                        }
-                }else if(vidSamo == "Фотолюминесцентная"){
-                        if(m1 < 1){
-                            m2 = m1*5000;
-                        }else if(m1 >= 1 && m1 < 5){
-                            m2 = m1*4700;
-                        }if(m1 >= 5 && m1 < 10){
-                            m2 = m1*4500;
-                        }if(m1 >= 10){
-                            m2 = m1*4200;
-                        }
-                }else if(vidSamo == "Перфорированная"){
-                        if(m1 < 1){
-                            m2 = m1*1000;
-                        }else if(m1 >= 1 && m1 < 5){
-                            m2 = m1*900;
-                        }if(m1 >= 5 && m1 < 10){
-                            m2 = m1*850;
-                        }if(m1 >= 10){
-                            m2 = m1*800;
-                        }
-                }else if(vidSamo == "Прозрачная"){
-                        if(m1 < 1){
-                            m2 = m1*700;
-                        }else if(m1 >= 1 && m1 < 5){
-                            m2 = m1*650;
-                        }if(m1 >= 5 && m1 < 10){
-                            m2 = m1*600;
-                        }if(m1 >= 10){
-                            m2 = m1*550;
-                        }
-                }else if(vidSamo == "Светоотражающая"){
-                    if(m1 < 1){
-                        m2 = m1*1500;
-                    }else if(m1 >= 1 && m1 < 5){
-                        m2 = m1*1400;
-                    }if(m1 >= 5 && m1 < 10){
-                        m2 = m1*1300;
-                    }if(m1 >= 10){
-                        m2 = m1*1200;
-                    }
+        if (width && height) {
+            let m1 =
+                (Number(width) * Number(height) * Number(number)) / 1000000;
+            let m2;
+            if (vidSamo === "Белая") {
+                if (m1 < 1) {
+                    m2 = m1 * 650;
+                } else if (m1 >= 1 && m1 < 5) {
+                    m2 = m1 * 600;
                 }
-                
-                if(Math.round((m2) * 100) / 100 <= 200){
-                    setValue(200);
-                }else{
-                    if(!isNaN(Math.round((m2) * 100) / 100)){
-                        setValue(Math.round((m2) * 100) / 100);
-                    }else{
-                        alert('Введите размеры корректно!')
-                    }
-                    
+                if (m1 >= 5 && m1 < 10) {
+                    m2 = m1 * 550;
                 }
-
-                setDescription(`// Наименование: ${name}; Вид самоклейки: ${vidSamo}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number};`)
+                if (m1 >= 10) {
+                    m2 = m1 * 500;
+                }
+            } else if (vidSamo === "Черная") {
+                if (m1 < 1) {
+                    m2 = m1 * 700;
+                } else if (m1 >= 1 && m1 < 5) {
+                    m2 = m1 * 650;
+                }
+                if (m1 >= 5 && m1 < 10) {
+                    m2 = m1 * 600;
+                }
+                if (m1 >= 10) {
+                    m2 = m1 * 550;
+                }
+            } else if (vidSamo === "Цветная") {
+                if (m1 < 1) {
+                    m2 = m1 * 900;
+                } else if (m1 >= 1 && m1 < 5) {
+                    m2 = m1 * 850;
+                }
+                if (m1 >= 5 && m1 < 10) {
+                    m2 = m1 * 800;
+                }
+                if (m1 >= 10) {
+                    m2 = m1 * 750;
+                }
+            } else if (vidSamo === "Дизайнерская") {
+                if (m1 < 1) {
+                    m2 = m1 * 2500;
+                } else if (m1 >= 1 && m1 < 5) {
+                    m2 = m1 * 2300;
+                }
+                if (m1 >= 5 && m1 < 10) {
+                    m2 = m1 * 2150;
+                }
+                if (m1 >= 10) {
+                    m2 = m1 * 2000;
+                }
+            } else if (vidSamo === "Фотолюминесцентная") {
+                if (m1 < 1) {
+                    m2 = m1 * 5000;
+                } else if (m1 >= 1 && m1 < 5) {
+                    m2 = m1 * 4700;
+                }
+                if (m1 >= 5 && m1 < 10) {
+                    m2 = m1 * 4500;
+                }
+                if (m1 >= 10) {
+                    m2 = m1 * 4200;
+                }
+            } else if (vidSamo === "Перфорированная") {
+                if (m1 < 1) {
+                    m2 = m1 * 1000;
+                } else if (m1 >= 1 && m1 < 5) {
+                    m2 = m1 * 900;
+                }
+                if (m1 >= 5 && m1 < 10) {
+                    m2 = m1 * 850;
+                }
+                if (m1 >= 10) {
+                    m2 = m1 * 800;
+                }
+            } else if (vidSamo === "Прозрачная") {
+                if (m1 < 1) {
+                    m2 = m1 * 700;
+                } else if (m1 >= 1 && m1 < 5) {
+                    m2 = m1 * 650;
+                }
+                if (m1 >= 5 && m1 < 10) {
+                    m2 = m1 * 600;
+                }
+                if (m1 >= 10) {
+                    m2 = m1 * 550;
+                }
+            } else if (vidSamo === "Светоотражающая") {
+                if (m1 < 1) {
+                    m2 = m1 * 1500;
+                } else if (m1 >= 1 && m1 < 5) {
+                    m2 = m1 * 1400;
+                }
+                if (m1 >= 5 && m1 < 10) {
+                    m2 = m1 * 1300;
+                }
+                if (m1 >= 10) {
+                    m2 = m1 * 1200;
+                }
             }
 
-      }, [width, height, vidSamo, number]); // <- add the count variable here
-  
-// console.log(value)
+            if (Math.round(m2 * 100) / 100 <= 200) {
+                setValue(200);
+            } else {
+                if (!isNaN(Math.round(m2 * 100) / 100)) {
+                    setValue(Math.round(m2 * 100) / 100);
+                } else {
+                    alert("Введите размеры корректно!");
+                }
+            }
 
+            setDescription(
+                `// Наименование: ${name}; Вид самоклейки: ${vidSamo}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number};`
+            );
+        }
+    }, [width, height, vidSamo, number]); // <- add the count variable here
+
+    // console.log(value)
 
     const functionWithSwitch = () => {
-        switch(vidSamo){
-        case "Белая" :
-            return "/file/samokleyki/belaya.jpg"
-        case "Черная": 
-            return "/file/samokleyki/chernaya.jpg"
-        case "Цветная": 
-            return "/file/samokleyki/cvetnaya.jpg"
-        case "Дизайнерская": 
-            return "/file/samokleyki/dezainerskaya.jpg"
-        case "Фотолюминесцентная": 
-            return "/file/samokleyki/fotoluminiscent.jpg"
-        case "Перфорированная": 
-            return "/file/samokleyki/perforirovanaya.jpg"
-        case "Прозрачная": 
-            return "/file/samokleyki/prozrachnaya.jpg"
-        case "Светоотражающая": 
-            return "/file/samokleyki/svetootrajaushaya.jpg"
-          default:
-            return "/file/samokleyki/belaya.jpg"
+        switch (vidSamo) {
+            case "Белая":
+                return "/file/samokleyki/belaya.jpg";
+            case "Черная":
+                return "/file/samokleyki/chernaya.jpg";
+            case "Цветная":
+                return "/file/samokleyki/cvetnaya.jpg";
+            case "Дизайнерская":
+                return "/file/samokleyki/dezainerskaya.jpg";
+            case "Фотолюминесцентная":
+                return "/file/samokleyki/fotoluminiscent.jpg";
+            case "Перфорированная":
+                return "/file/samokleyki/perforirovanaya.jpg";
+            case "Прозрачная":
+                return "/file/samokleyki/prozrachnaya.jpg";
+            case "Светоотражающая":
+                return "/file/samokleyki/svetootrajaushaya.jpg";
+            default:
+                return "/file/samokleyki/belaya.jpg";
         }
-      }
+    };
     //   console.log(functionWithSwitch())
-
 
     return (
         <>
-            
-        
-
-
-    <Container>
-            <Row>
-              <Col xs={12} md={6}>
-                <Image src={functionWithSwitch()}  id="goods-image" rounded />
-              </Col>
-              <Col xs={12} lg ={6}>
-
-
-        <h1>Цена: {value} p.</h1>
-        <h2>Интерьерная печать.</h2>
-<hr></hr>
+            <Container>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <Image
+                            src={functionWithSwitch()}
+                            id="goods-image"
+                            rounded
+                        />
+                    </Col>
+                    <Col xs={12} lg={6}>
+                        <h1>Цена: {value} p.</h1>
+                        <h2>Интерьерная печать.</h2>
+                        
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="6" controlId="validationCustom01">
-                            <Form.Label>Ширина (мм):</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="Миллиметры"
-                                onChange={e => setWidth(e.target.value)}
-                            />
-                            <Form.Control.Feedback  type="invalid">Введите ширину!</Form.Control.Feedback>
-                            </Form.Group>
-
-                            <Form.Group as={Col} md="6" controlId="validationCustom02">
-                            <Form.Label>Высота (мм):</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="Миллиметры"
-                                onChange={e => setHeight(e.target.value)}
-                            />
-                            <Form.Control.Feedback type="invalid">Введите высоту!</Form.Control.Feedback>
-                            </Form.Group>
-       
-                            <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-                            <Form.Label>Вид самоклейки</Form.Label>
-                            <InputGroup hasValidation>
-                                <Form.Select aria-label="Default select example" onChange={e => setVidSamo(e.target.value)} value={vidSamo}>
-                                    <option value="Белая" >Белая</option>
-                                    <option value="Черная" >Черная</option>
-                                    <option value="Цветная" >Цветная</option>
-                                    <option value="Дизайнерская" >Дизайнерская</option>
-                                    <option value="Фотолюминесцентная" >Фотолюминесцентная</option>
-                                    <option value="Перфорированная" >Перфорированная</option>
-                                    <option value="Прозрачная" >Прозрачная</option>
-                                    <option value="Светоотражающая" >Светоотражающая</option>
-                                </Form.Select>
+                            <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId="validationCustom01"
+                            >
+                                <Form.Label>Ширина (мм):</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    placeholder="Миллиметры"
+                                    onChange={(e) => setWidth(e.target.value)}
+                                />
                                 <Form.Control.Feedback type="invalid">
-                                Введите плотность.
+                                    Введите ширину!
                                 </Form.Control.Feedback>
-                            </InputGroup>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="6" controlId="validationCustom02">
-                            <Form.Label>Кол-во:</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="Штуки"
-                                value={number}
-                                onChange={e => setNumber(e.target.value)}
-                            />
+                            <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId="validationCustom02"
+                            >
+                                <Form.Label>Высота (мм):</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    placeholder="Миллиметры"
+                                    onChange={(e) => setHeight(e.target.value)}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Введите высоту!
+                                </Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId="validationCustomUsername"
+                            >
+                                <Form.Label>Вид самоклейки</Form.Label>
+                                <InputGroup hasValidation>
+                                    <Form.Select
+                                        aria-label="Default select example"
+                                        onChange={(e) =>
+                                            setVidSamo(e.target.value)
+                                        }
+                                        value={vidSamo}
+                                    >
+                                        <option value="Белая">Белая</option>
+                                        <option value="Черная">Черная</option>
+                                        <option value="Цветная">Цветная</option>
+                                        <option value="Дизайнерская">
+                                            Дизайнерская
+                                        </option>
+                                        <option value="Фотолюминесцентная">
+                                            Фотолюминесцентная
+                                        </option>
+                                        <option value="Перфорированная">
+                                            Перфорированная
+                                        </option>
+                                        <option value="Прозрачная">
+                                            Прозрачная
+                                        </option>
+                                        <option value="Светоотражающая">
+                                            Светоотражающая
+                                        </option>
+                                    </Form.Select>
+                                    <Form.Control.Feedback type="invalid">
+                                        Введите плотность.
+                                    </Form.Control.Feedback>
+                                </InputGroup>
+                            </Form.Group>
+
+                            <Form.Group
+                                as={Col}
+                                md="6"
+                                controlId="validationCustom02"
+                            >
+                                <Form.Label>Кол-во:</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    placeholder="Штуки"
+                                    value={number}
+                                    onChange={(e) => setNumber(e.target.value)}
+                                />
                             </Form.Group>
                         </Row>
 
-                        <hr></hr>
+                      
 
-                        
-
-                        <SendPay value={value} description={description} name={name} />
-                        
-                       
- 
-
-    
-    
-                        </Col>
-            </Row>
-            <h2>Самоклейки</h2>
-                <p>Самоклейки являются одним из наиболее эффективных и популярных способов рекламы и информационного обозначения. Печать самоклеек — это процесс создания крупноформатных материалов с помощью специального оборудования. Ниже приведен текст, описывающий процесс печати самоклеек:
-
-                Печать самоклеек – это профессиональный процесс, при котором создаются крупноформатные материалы с использованием специализированного оборудования и высококачественных материалов. Он предоставляет возможность эффективно привлекать внимание к продукту, услуге или событию.
-
-                Печать самоклеек начинается с подготовки дизайна и макета. Дизайнер создает графическое оформление баннера, учитывая его цель и целевую аудиторию. Он может включать в себя логотипы, изображения, текст и другие визуальные элементы.</p>
-            
-          </Container>
-          
-
+                        <SendPay
+                            value={value}
+                            description={description}
+                            name={name}
+                        />
+                    </Col>
+                </Row>
+                <h2>Самоклейки</h2>
+                <p>
+                    Самоклейки являются одним из наиболее эффективных и
+                    популярных способов рекламы и информационного обозначения.
+                    Печать самоклеек — это процесс создания крупноформатных
+                    материалов с помощью специального оборудования. Ниже
+                    приведен текст, описывающий процесс печати самоклеек: Печать
+                    самоклеек – это профессиональный процесс, при котором
+                    создаются крупноформатные материалы с использованием
+                    специализированного оборудования и высококачественных
+                    материалов. Он предоставляет возможность эффективно
+                    привлекать внимание к продукту, услуге или событию. Печать
+                    самоклеек начинается с подготовки дизайна и макета. Дизайнер
+                    создает графическое оформление баннера, учитывая его цель и
+                    целевую аудиторию. Он может включать в себя логотипы,
+                    изображения, текст и другие визуальные элементы.
+                </p>
+            </Container>
         </>
     );
 });
