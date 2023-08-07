@@ -47,6 +47,7 @@ import PrivateCab from "./pages/admin/PrivateCab.js";
 import AllGoods from "./pages/goods/AllGoods.js";
 import OneGoods from "./pages/goods/OneGoods.js";
 import CreateGoods from "./pages/admin/CreateGoods.js";
+import UpdateGoods from "./pages/admin/UpdateGoods.js";
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
@@ -58,7 +59,7 @@ const App = observer(() => {
 
       useEffect(() => {
         check().then(data => {
-          console.log('00-App->check->userData:', data)
+          console.log('dev', data)
             if(data){
               user.setUser(data)
               user.setIsAuth(true)
@@ -101,9 +102,10 @@ const App = observer(() => {
 
 {/* Самоклейки */}
               <Route path="/samokleyka" element={<Samokleyka />} />
-              <Route path="/goods" element={<AllGoods />} />
+              {/* <Route path="/goods" element={<AllGoods />} /> */}
               <Route path="/goods/:category" element={<AllGoods />} />
               <Route path="/goods/one/:id" element={<OneGoods />} />
+              <Route path="/goods/one-update/:id" element={<UpdateGoods />} />
 
 
 {/* Печать на холсте */}

@@ -50,7 +50,9 @@ const Header = observer(() => {
                             // menuVariant="dark"
                           >
                             <NavDropdown.Item href="/admin/bar">История заказов</NavDropdown.Item>
-                            <NavDropdown.Item onClick={showModalReview} >Оставить отзыв</NavDropdown.Item>
+                            {user.user.role == 'USER' && 
+                              <NavDropdown.Item onClick={showModalReview} >Оставить отзыв</NavDropdown.Item>
+                            }
                             <NavDropdown.Item onClick={logOut} >Выход</NavDropdown.Item>
                             {user.user.role == 'ADMIN' && 
                               <>

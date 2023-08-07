@@ -61,7 +61,9 @@ const Header = () => {
                   <NavDropdown
                     title="Купить"
                     id="offcanvasNavbarDropdown-expand-lg">
-                    <NavDropdown.Item href="#">Скоро</NavDropdown.Item>
+                    <NavDropdown.Item href="/goods/futbolki">Футболки</NavDropdown.Item>
+                    <NavDropdown.Item href="/goods/krujki">Кружки</NavDropdown.Item>
+                    <NavDropdown.Item href="/goods/bagety">Багетные рамки</NavDropdown.Item>
                     {/* <NavDropdown.Divider /> */}
                   </NavDropdown>
 

@@ -12,39 +12,91 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { fetchOneGoods } from '../../http/goodsAPI';
 
+import SendPay from "../a-components/rt";
+
 import { observer } from "mobx-react-lite";
 
 const OneGoods = observer(() => {
     const [goodsItem, setGoodsItem] = useState({});
     const { id } = useParams();
+    const [number, setNumber] = useState('1'); // кол-во товараов
+    const [value, setValue] = useState(0);  // стоимость товараов
+    const [description, setDescription] = useState('');
 
-    useEffect(() => {
-        fetchOneGoods( id ).then(data => {
-            setGoodsItem(data)
-        }).catch((e) => { 
-            console.log(e.response.data.message, e);
-        });
-
-    }, []); // <- add the count variable here
+        useEffect(() => {
+            fetchOneGoods( id ).then(data => {
+                setGoodsItem(data)
+            }).catch((e) => { 
+                console.log(e.response.data.message, e);
+            });
+        }, [ ]); // <- add the count variable here
+                            
+        useEffect(() => {
+            if(Object.keys(goodsItem).length === 0){ return;}
+            if(number.split('').length > 10  ){alert('Слишком большое значение!');return;}
+             console.log(+number)
+            if(!+number){alert('не допустимое значение!'); return;}
+           
+            
+            setValue(+goodsItem.price * number);
+            setDescription(goodsItem.description + '; Кол-во: ' + String(number) + '; Цена: ' + String(+goodsItem.price * number))
+        }, [ number, goodsItem ]); // <- add the count variable here
 
     return (
         <>
             <Container>
-                   <Row className="mb-5">
-                        <Col xs={12} sm={6} lg={3} className="mb-3">
-                            <a href="/banner">
-                                <Card>
-                                    <Card.Img variant="top" src={goodsItem.image} />
-                                    <Card.Body>
-                                        <Card.Title>{goodsItem.name}</Card.Title>
-                                        <Card.Text>
-                                        Цена: {goodsItem.price} р.
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </a>
-                        </Col>
-                    </Row>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <Image
+                            src={goodsItem.image}
+                            id="goods-image"
+                            rounded
+                        />
+                    </Col>
+                    <Col xs={12} lg={6}>
+                        <h1>Цена: {value} p. </h1>
+                        <h2>{goodsItem.name}</h2>
+                        <p>{goodsItem.description}</p>
+                        <Row className="mb-3">
+
+                            <Form.Group as={Col} md="6" controlId="validationCustom02">
+                            <Form.Label>Кол-во:</Form.Label>
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="Штуки"
+                                value={number}
+                                onChange={e => setNumber(e.target.value)}
+                            />
+                            </Form.Group>
+                        </Row>
+
+                        <hr></hr>
+
+                        <SendPay
+                            value={value}
+                            description={description}
+                            name={goodsItem.name}
+                        />
+                    </Col>
+                </Row>
+                <h2>Баннеры</h2>
+                <p>
+                    Баннеры являются одним из наиболее эффективных и популярных
+                    способов рекламы и информационного обозначения. Печать
+                    баннеров — это процесс создания крупноформатных материалов с
+                    помощью специального оборудования. Ниже приведен текст,
+                    описывающий процесс печати баннеров: Печать баннеров – это
+                    профессиональный процесс, при котором создаются
+                    крупноформатные материалы с использованием
+                    специализированного оборудования и высококачественных
+                    материалов. Он предоставляет возможность эффективно
+                    привлекать внимание к продукту, услуге или событию. Печать
+                    баннеров начинается с подготовки дизайна и макета. Дизайнер
+                    создает графическое оформление баннера, учитывая его цель и
+                    целевую аудиторию. Он может включать в себя логотипы,
+                    изображения, текст и другие визуальные элементы.
+                </p>
             </Container>
         </>
     );
