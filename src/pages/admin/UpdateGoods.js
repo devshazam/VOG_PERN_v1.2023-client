@@ -14,28 +14,30 @@ const UpdateGoods = () => {
     const { user } = useContext(Context);
     const { id } = useParams();
 
-
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
     const [group, setGroup] = useState("futbolki");
     const [price, setPrice] = useState("");
-    const [goodsItem, setGoodsItem] = useState({ price});
+    const [goodsItem, setGoodsItem] = useState({});
+    const [flag, setFlag] = useState(1);
 
         useEffect(() => {
             fetchOneGoods( id ).then(data => {
                 setGoodsItem(data)
-            }).catch((e) => { 
-                console.log(e.response.data.message, e);
+            }).catch((error) => { 
+                console.log('dev', error.response.data.message, error);
             });
-        }, [ ]); 
+        }, [ flag ]); 
     
 
     async function updateGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
         if (!name ||!description ||!image ||!group ||!price) { alert("Не все поля заполнены!"); return; }
         if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
+        if(!+price){alert('Не допустимое значение цены!'); return;}
         if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
+        if (image.name.split('.').reverse()[0] !== 'jpg'){alert("Формат файла только jpg");return}
         
             const formData = new FormData();
                     formData.append("name", name);
@@ -44,16 +46,16 @@ const UpdateGoods = () => {
                     formData.append("image", image);
                     formData.append("price", price);
                     formData.append("userId", `${user.user.id}`);
-            try {
-                const data = await updateItemByID(formData);
-                console.log("dev", data);
-                alert("Данные успешно внесены!");
-            } catch (error) {
-                console.log('dev', error.response.data.message, error)
-                alert("Ошибка: 501 - Обратитесь к администратору!");
-            }
+                    formData.append("id", `${id}`);
 
-
+                updateItemByID(formData).then((data) => {
+                    console.log("dev", data);
+                    alert("Данные успешно изменены!");
+                    setFlag(flag + 1);
+                }).catch((error) => { 
+                    console.log('dev', error.response.data.message, error)
+                    alert("Ошибка: 501 - Обратитесь к администратору!");
+                });
     }
 
     // #########################################################################################
@@ -68,6 +70,7 @@ const UpdateGoods = () => {
                             rounded
                         />  
                         <h2>Название: {goodsItem.name}</h2>
+                        <p>Цена: {goodsItem.price}</p>
                         <p>Описаниие: {goodsItem.description}</p>
                         <p>Категория: {goodsItem.group}</p>
                     </Col>

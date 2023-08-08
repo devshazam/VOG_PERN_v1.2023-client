@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../index";
 import { useParams } from "react-router-dom";
-
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -11,9 +10,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { fetchOneGoods } from "../../http/goodsAPI";
-
 import SendPay from "../a-components/SendPay";
-
 import { observer } from "mobx-react-lite";
 
 const OneGoods = observer(() => {
@@ -33,7 +30,7 @@ const OneGoods = observer(() => {
                 console.log("dev", error.response.data.message, error);
                 alert("Ошибка 506 - Обратитесь к администратору!");
             });
-    }, []); // <- add the count variable here
+    }, [ id ]); // <- add the count variable here
 
     useEffect(() => {
         if (Object.keys(goodsItem).length === 0) {
@@ -43,20 +40,20 @@ const OneGoods = observer(() => {
             alert("Слишком большое значение!");
             return;
         }
-        console.log(+number);
         if (!+number) {
             alert("не допустимое значение!");
             return;
         }
         setValue(+goodsItem.price * +number);
+
         setDescription(
             "Название: " +
                 goodsItem.name +
-                "ID: " +
+                "; ID: " +
                 goodsItem.id +
-                "описание: " +
+                "; описание: " +
                 goodsItem.description +
-                "категория: " +
+                "; категория: " +
                 goodsItem.group +
                 "; кол-во: " +
                 number +
@@ -103,7 +100,7 @@ const OneGoods = observer(() => {
                         />
                     </Col>
                 </Row>
-                <h2>Баннеры</h2>
+                <h2>Полиграфия</h2>
                 <p>
                     Баннеры являются одним из наиболее эффективных и популярных
                     способов рекламы и информационного обозначения. Печать
