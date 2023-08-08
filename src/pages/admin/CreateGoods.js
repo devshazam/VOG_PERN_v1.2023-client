@@ -32,7 +32,7 @@ const PrivateCab = () => {
                     formData.append("description", description);
                     formData.append("group", group);
                     formData.append("image", image);
-                    formData.append("price", price);
+                    formData.append("price", +price);
                     formData.append("userId", `${user.user.id}`);
             try {
                 const data = await createGoodsItem(formData);

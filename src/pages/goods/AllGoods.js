@@ -69,36 +69,42 @@ const AllGoods = observer(() => {
 
     return (
         <>
-            <Container>
-                <h1>Товары</h1>
-                   <Row className="mb-5">
-                        {Object.keys(goodsCustom).length ? goodsCustom.map(goods =>
-                        <Col xs={12} sm={6} lg={3} className="mb-3" key={goods.id}>
-                                <Card >
-                                    <a href={"/goods/one/"+goods.id}>
-                                        <Card.Img variant="top" src={goods.image} />
-                                    </a>
-                                    <Card.Body>
-                                        <Card.Title>{goods.name} - Цена: {goods.price} р</Card.Title>
-                                        <Card.Text>
-                                        {goods.description}
-                                        </Card.Text>
-                                        {user.user.role == 'ADMIN' && 
-                                           <>
-                                           <Button className="m-2" variant="danger" href="#" onClick={() => deleteItem(goods.id)}>Удалить</Button>
-                                           <Button variant="primary" href={"/goods/one-update/"+goods.id}>Править</Button>
-                                           </>
-                                        }
-                                    </Card.Body>
-                                </Card>
-                            
-                        </Col>
-                        )  : <h2>Нет товаров</h2>
-                    }
-                    {paginationBasic}
+        
+            <Row className="mb-5">
+                <Col xs={12} sm={3} lg={3} className="mb-3" >
+                    dfsf
+                </Col>
+                <Col xs={12} sm={9} lg={9} className="mb-3" >
+                        <Row className="mb-5">
+                                {Object.keys(goodsCustom).length ? goodsCustom.map(goods =>
+                                <Col xs={12} sm={6} lg={3} className="mb-3" key={goods.id}>
+                                        <Card >
+                                            <a href={"/goods/one/"+goods.id}>
+                                                <Card.Img variant="top" src={goods.image} />
+                                            </a>
+                                            <Card.Body>
+                                                <Card.Title>{goods.name}<br></br>Цена: {goods.price} р</Card.Title>
+                                                <Card.Text>
+                                                {goods.description}
+                                                </Card.Text>
+                                                {user.user.role == 'ADMIN' && 
+                                                <>
+                                                <Button className="m-2" variant="danger" href="#" onClick={() => deleteItem(goods.id)}>Удалить</Button>
+                                                <Button variant="primary" href={"/goods/one-update/"+goods.id}>Править</Button>
+                                                </>
+                                                }
+                                            </Card.Body>
+                                        </Card>
+                                    
+                                </Col>
+                                )  : <h2>Нет товаров</h2>
+                            }
+                            {paginationBasic}
 
-                    </Row>
-            </Container>
+                            </Row>
+                </Col>
+            </Row>
+        
         </>
     );
 });
