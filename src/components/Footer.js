@@ -28,15 +28,15 @@ function Footer(){
 			  <Col xs={12} lg ={3}>
 			  <div className="column">
 							<p className="heading">Адреса:</p>
-							<p className="hr">1) ул. Петропавловская 87<br></br>2) Казахская 25 <br></br>График работы с 09:00 до 19:00</p>
+							<p className="hr">1) ул. Петропавловская 87<br></br>2) ул. Казахская 25 <br></br>График работы с 09:00 до 19:00</p>
 
 						</div>		
               </Col>
 			  <Col xs={12} lg ={3}>
 			  <div className="column">
 							<p className="heading">Контакты:</p>
-							<a  href="mailto:<a href='mailto: info@kopi34.ru">Email: kopi34@yandex.ru</a><br></br>
-							<a href='tel:89093802519'>+7(909) 380-25-19</a>
+							<p>Email: <a  href="mailto:<a href='mailto: info@kopi34.ru">kopi34@yandex.ru</a></p>
+							<a href='tel:89093802519'>+7(909) 380-25-19</a><br></br>
 							<a href='tel:+78442599161'>+7 (8442) 59-91-61</a>
 							
 						</div>

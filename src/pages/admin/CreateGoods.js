@@ -32,7 +32,7 @@ const PrivateCab = () => {
                     formData.append("description", description);
                     formData.append("group", group);
                     formData.append("image", image);
-                    formData.append("price", +price);
+                    formData.append("price", Math.ceil(+price));
                     formData.append("userId", `${user.user.id}`);
             try {
                 const data = await createGoodsItem(formData);
@@ -69,11 +69,11 @@ const PrivateCab = () => {
                                 md="12"
                                 controlId="validationCustom01"
                             >
-                                <Form.Label>Цена товара (руб.):</Form.Label>
+                                <Form.Label>Цена товара (Только руб. - Без копеек.!):</Form.Label>
                                 <Form.Control
                                     required
                                     type="text"
-                                    placeholder="Цена"
+                                    placeholder="600"
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                             </Form.Group>
@@ -108,6 +108,7 @@ const PrivateCab = () => {
                                 as={Col}
                                 md="12"
                                 controlId="validationCustomUsername"
+                                className="mb-3"
                             >
                                 <Form.Label>Группа товаров:</Form.Label>
                                     <Form.Select
@@ -117,8 +118,8 @@ const PrivateCab = () => {
                                         }
                                         value={group}
                                     >   
-                                        <option value="futbolki">Футболки</option>
                                         <option value="krujki">Кружки</option>
+                                        <option value="futbolki">Футболки</option>
                                         <option value="bagety">Багеты</option>
                                     </Form.Select>
                             </Form.Group>

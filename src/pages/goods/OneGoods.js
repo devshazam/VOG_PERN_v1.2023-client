@@ -19,6 +19,7 @@ const OneGoods = observer(() => {
     const [number, setNumber] = useState("1"); // кол-во товараов
     const [value, setValue] = useState(0); // стоимость товараов
     const [description, setDescription] = useState("");
+    const [sale, setSale] = useState('');
 
     useEffect(() => {
         fetchOneGoods(id)
@@ -44,7 +45,23 @@ const OneGoods = observer(() => {
             alert("не допустимое значение!");
             return;
         }
-        setValue(+goodsItem.price * +number);
+
+        let midlItem1 = +goodsItem.price * +number;
+        if(midlItem1 >= 3000 && midlItem1 < 10000){
+            midlItem1 = midlItem1 * 0.97;
+            setSale('3%');
+        }else if(midlItem1 >= 10000 && midlItem1 < 50000){
+            midlItem1 = midlItem1 * 0.95
+            setSale('5%');
+        }else if(midlItem1 >= 50000 && midlItem1 < 100000){
+            midlItem1 = midlItem1 * 0.93
+            setSale('7%');
+        }else if(midlItem1 >= 100000){
+            midlItem1 = midlItem1 * 0.9
+            setSale('10%');
+        }
+
+        setValue(midlItem1);
 
         setDescription(
             "Название: " +
@@ -58,7 +75,7 @@ const OneGoods = observer(() => {
                 "; кол-во: " +
                 number +
                 "; цена: " +
-                String(+goodsItem.price * +number)
+                String(midlItem1)
         );
     }, [number, goodsItem]); // <- add the count variable here
 
@@ -71,7 +88,7 @@ const OneGoods = observer(() => {
                     </Col>
                     <Col xs={12} lg={6}>
                         <h1>{goodsItem.name}</h1>
-                        <h2>Цена: {value} p. </h2>
+                        <h2>Цена: {value} p. {sale && 'Скидка ' + sale}</h2>
                         <p>Опивание: {goodsItem.description}</p>
                         <Row className="mb-3">
                             <Form.Group

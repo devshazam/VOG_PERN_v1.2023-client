@@ -10,31 +10,35 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+
 
 import { fetchGoodsList, deleteItemByID } from '../../http/goodsAPI';
 import { observer } from "mobx-react-lite";
 
 const AllGoods = observer(() => {
     const { user} = useContext(Context)
+    const { category } = useParams();
     const [goodsCustom, setGoodsCustom] = useState({}); // цена товара - расчитаная
     const [count, setCount] = useState(0); // цена товара - расчитаная
     const [number, setNumber] = useState(0); // цена товара - расчитаная
     const [page, setPage] = useState(1); 
     const [flag, setFlag] = useState(1);
+    const [categoryIt, setCategoryIt] = useState(category);
+    const [itemSort, setItemSort] = useState('createdAt');
+    const [orderSort, setOrderSort] = useState('ASC');
     let limit = 24;
-    const { category } = useParams();
 
     useEffect(() => {
-            fetchGoodsList( limit, page, category ).then(data => {
+            fetchGoodsList( limit, page, categoryIt, itemSort, orderSort ).then(data => {
                 setGoodsCustom(data.rows)
                 setCount(data.count)
             }).catch((e) => { 
                 console.log(e.response.data.message, e);
             });
 
-    }, [ page, flag ]); // <- add the count variable here
-    console.log('c', count)
-    console.log('flag', flag)
+    }, [ page, flag, categoryIt, itemSort, orderSort  ]); // <- add the count variable here
 
     function choicePage(number){
         setPage(number);
@@ -72,7 +76,33 @@ const AllGoods = observer(() => {
         
             <Row className="mb-5">
                 <Col xs={12} sm={3} lg={3} className="mb-3" >
-                    dfsf
+                    <Form.Group as={Col} md="12" controlId="formGridState" className="mb-3">
+                        <FloatingLabel controlId="floatingPassword" label="Категория товаров:">
+                            <Form.Select aria-label="Default select example" onChange={(e) => setCategoryIt(e.target.value)} value={categoryIt}>
+                                        <option value="krujki">Кружки</option>
+                                        <option value="futbolki">Футболки</option>
+                                        <option value="bagety">Багетные рамки</option>
+                                        <option value="suveniry">Сувенирная продукция</option>
+                            </Form.Select>
+                        </FloatingLabel>
+                    </Form.Group>
+                    <Form.Group as={Col} md="12" controlId="formGridState" className="mb-3">
+                        <FloatingLabel controlId="floatingPassword" label="Сортировать по:">
+                            <Form.Select aria-label="Default select example" onChange={(e) => setItemSort(e.target.value)} value={itemSort}>
+                                        <option value="price">Стоимости</option>
+                                        <option value="createdAt">Новизне</option>
+                            </Form.Select>
+                        </FloatingLabel>
+                    </Form.Group>
+                    <Form.Group as={Col} md="12" controlId="formGridState" className="mb-3">
+                        <FloatingLabel controlId="floatingPassword" label="Порядок сортировки:">  
+                                <Form.Select aria-label="Default select example" onChange={(e) => setOrderSort(e.target.value)} value={orderSort}>
+                                            <option value="ASC">Возрастание</option>
+                                            <option value="DESC">Убывание</option>
+                                </Form.Select>
+                        </FloatingLabel>
+                    </Form.Group>
+                    
                 </Col>
                 <Col xs={12} sm={9} lg={9} className="mb-3" >
                         <Row className="mb-5">
@@ -83,9 +113,9 @@ const AllGoods = observer(() => {
                                                 <Card.Img variant="top" src={goods.image} />
                                             </a>
                                             <Card.Body>
-                                                <Card.Title>{goods.name}<br></br>Цена: {goods.price} р</Card.Title>
+                                                <Card.Title>{goods.name}</Card.Title>
                                                 <Card.Text>
-                                                {goods.description}
+                                                Цена: {goods.price} р
                                                 </Card.Text>
                                                 {user.user.role == 'ADMIN' && 
                                                 <>

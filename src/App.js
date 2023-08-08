@@ -15,7 +15,6 @@ import Vizitki from "./pages//vizitki/Vizitki";
 import Oferta from "./pages/Oferta";
 import Samokleyka from "./pages/samokleyki/Samokleyka";
 
-
 import LayoutAdmin from "./LayoutAdmin";
 import AllOrdersAdmin from "./pages/admin/AllOrdersAdmin";
 import PrivateCab from "./pages/admin/PrivateCab.js";
@@ -26,7 +25,6 @@ import UpdateGoods from "./pages/admin/UpdateGoods.js";
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
-// import RazrabotkaSaitov from "./pages/razrabotka-saitov/RazrabotkaSaitov";
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -39,11 +37,8 @@ const App = observer(() => {
               user.setUser(data)
               user.setIsAuth(true)
             }
-        }).catch((e) => console.log('00-Сработал catch при аутентификации:')).finally(() => setLoading(false))
+        }).catch((error) => console.log('dev', error.response.data.message, error )).finally(() => setLoading(false))
     }, [])
-
-
-
 
   if (loading) {
 
@@ -81,7 +76,6 @@ const App = observer(() => {
               <Route path="/oferta" element={<Oferta />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="*" element={<Empty />} />
-              {/* <Route path="/razrabotka-saitov" element={<RazrabotkaSaitov />} /> */}
             </Route>
       </Routes>
       
