@@ -121,6 +121,7 @@ const PrivateCab = () => {
                                         <option value="krujki">Кружки</option>
                                         <option value="futbolki">Футболки</option>
                                         <option value="bagety">Багеты</option>
+                                        <option value="suveniry">Сувенирная продукция</option>
                                     </Form.Select>
                             </Form.Group>
 

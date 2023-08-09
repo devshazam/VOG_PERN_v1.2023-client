@@ -44,7 +44,7 @@ const UpdateGoods = () => {
                     formData.append("description", description);
                     formData.append("group", group);
                     formData.append("image", image);
-                    formData.append("price", price);
+                    formData.append("price", Math.ceil(+price));
                     formData.append("userId", `${user.user.id}`);
                     formData.append("id", `${id}`);
 
@@ -147,6 +147,7 @@ const UpdateGoods = () => {
                                         <option value="futbolki">Футболки</option>
                                         <option value="krujki">Кружки</option>
                                         <option value="bagety">Багеты</option>
+                                        <option value="suveniry">Сувенирная продукция</option>
                                     </Form.Select>
                             </Form.Group>
 
