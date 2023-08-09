@@ -31,25 +31,15 @@ export const fetchDevices = async (itemSort, orderSort, limit, page, filter, id,
 
 
 export const deleteDevice = async (id) => {
-    const {data} = await $authHost.post('api/device/delete-item/', {id})
+    const {data} = await $authHost.post('api/device/basket/', {id})
     // const {data} = await $authHost.post('api/device/delete-item/', id)
     console.log(data)
     return data
 }
 
-// export const fetchBrands = async () => {
-//     const {data} = await $host.get('api/brand', )
-//     return data
-// }
 
-// export const createDevice = async (device) => {
-//     const {data} = await $authHost.post('api/device', device)
-//     return data
-// }
-
-// export const fetchDevices = async (typeId, brandId, page, limit= 5) => {
-//     const {data} = await $host.get('api/device', {params: {
-//             typeId, brandId, page, limit
-//         }})
-//     return data
-// }
+export const fetchBasketDevices = async (id) => {
+    const {data} = await $authHost.post('api/device/delete-item/', {id})
+    console.log(data)
+    return data
+}

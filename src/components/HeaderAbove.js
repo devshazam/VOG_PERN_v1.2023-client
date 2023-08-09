@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import {Context} from "../index";
 import Container from 'react-bootstrap/esm/Container';
+import Image from 'react-bootstrap/Image';
 
 import Nav from 'react-bootstrap/Nav';
 import {observer} from "mobx-react-lite";
@@ -63,6 +64,12 @@ const Header = observer(() => {
                               </>
                             }
                           </NavDropdown>
+                          <Nav.Item>
+                            <Nav.Link href="/admin" >
+                              <Image src="/file/icons8-basket-50.png" className="bascket_img" rounded />
+                              <span className="bascket-num">{user.user.basket}</span>
+                              </Nav.Link>
+                          </Nav.Item>
                         </>
                       :
                       <>

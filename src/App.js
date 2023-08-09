@@ -22,6 +22,7 @@ import AllGoods from "./pages/goods/AllGoods.js";
 import OneGoods from "./pages/goods/OneGoods.js";
 import CreateGoods from "./pages/admin/CreateGoods.js";
 import UpdateGoods from "./pages/admin/UpdateGoods.js";
+import UserBasket from "./pages/admin/UserBasket.js";
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
@@ -55,6 +56,7 @@ const App = observer(() => {
               <Route index element={<AllOrdersAdmin />} /> 
               <Route path="/admin/bar" element={<PrivateCab  />} />
               <Route path="/admin/create" element={<CreateGoods  />} />
+              <Route path="/admin/user-basket" element={<UserBasket  />} />
 
           </Route>
           <Route path="/" element={<Layout />}>

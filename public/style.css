@@ -204,6 +204,11 @@ iframe{
 #offcanvasNavbar-expand-lg .navbar-text{
     margin-right: 10px;
 }
+.justify-content-between{
+    background-color: white;
+    border-radius: 10px;
+    /* margin-right: 10px; */
+}
 /* .navbar-expand-lg .navbar-nav .nav-link {
     margin: 20px 10px 4px 4px;
     padding: 5px 8px;
@@ -274,4 +279,17 @@ margin-right: 15px;
 .img-mob{
     width: 100%;
 }
-
+.bascket_img{
+    width: 28px;
+}
+#nav-dropdown-dark-example{
+    margin-top: 8px;
+}
+.bascket-num{
+    color: white;
+    background-color: #63b03e;
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 15px;
+}
