@@ -151,7 +151,7 @@ const AllOrdersAdmin = () => {
                             {device.status_pay ? <p>оплачено</p> : <p>не оплачено</p>}</td>
                             
 
-                            <td>{device.createdAt}</td>
+                            <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
                             <td> 
                                 <button onClick={() => doneItem(device.id)}>Выполнить</button>
                                 </td>

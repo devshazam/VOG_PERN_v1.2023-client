@@ -168,7 +168,7 @@ const PrivateCab = () => {
                                     )}
                                 </td>
 
-                                <td>{device.createdAt}</td>
+                                <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
                             </tr>
                         ))
                     ) : (

@@ -47,7 +47,7 @@ const Header = observer(() => {
                         
                           <NavDropdown
                             id="nav-dropdown-dark-example"
-                            title="Личный кабинет"
+                            title={user.user.email}
                             // menuVariant="dark"
                           >
                             <NavDropdown.Item href="/admin/bar">История заказов</NavDropdown.Item>
@@ -65,9 +65,9 @@ const Header = observer(() => {
                             }
                           </NavDropdown>
                           <Nav.Item>
-                            <Nav.Link href="/admin" >
+                            <Nav.Link href="/admin/user-basket" >
                               <Image src="/file/icons8-basket-50.png" className="bascket_img" rounded />
-                              <span className="bascket-num">{user.user.basket}</span>
+                              <span className="bascket-num">{user.user.basket && user.user.basket}</span>
                               </Nav.Link>
                           </Nav.Item>
                         </>

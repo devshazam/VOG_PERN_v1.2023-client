@@ -23,9 +23,7 @@ const LoginPage = observer(() => {
   const makeLogin = () => {
 
     login(mail, password).then(data => {
-      
       alert('Успешный Вход в систему!');
-      
       helpers.setModalLogin(false)
       user.setIsAuth(true)
       window.location.reload();

@@ -29,17 +29,26 @@ export const fetchDevices = async (itemSort, orderSort, limit, page, filter, id,
     return data
 }
 
-
 export const deleteDevice = async (id) => {
-    const {data} = await $authHost.post('api/device/basket/', {id})
-    // const {data} = await $authHost.post('api/device/delete-item/', id)
+    const {data} = await $authHost.post('api/device/delete-item/', id)
     console.log(data)
     return data
 }
-
 
 export const fetchBasketDevices = async (id) => {
-    const {data} = await $authHost.post('api/device/delete-item/', {id})
+    const {data} = await $authHost.post('api/device/basket/', {id})
     console.log(data)
     return data
 }
+
+
+export const payBasketList = async (funcPrice) => {
+    const {data} = await $authHost.post('api/device/pay-basket-list/', {funcPrice})
+    console.log(data)
+    return data
+}
+// export const fetchBasketDevices = async (id) => {
+//     const {data} = await $authHost.post('api/device/delete-item/', {id})
+//     console.log(data)
+//     return data
+// }

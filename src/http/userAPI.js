@@ -17,14 +17,12 @@ export const check = async () => {
         const {data} = await $authHost.get('/api/user/auth' )
         localStorage.setItem('token', data.token)
         return jwt_decode(data.token)
-
 }
 
 export const changeCredencials = async (email, phone) => {
     const {data} = await $authHost.post('/api/user/change', {email, phone})
     localStorage.setItem('token', data.token)
     return jwt_decode(data.token)
-
 }
 
 

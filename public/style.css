@@ -135,7 +135,10 @@
     background: url(/file/b04ee18c22eaab05c343c45f3aa63a09.jpg) no-repeat center;
     background-size: cover;
 }
+.main-cont{
 
+    min-height: 40vw;
+}
 
 
 /* Banner */
@@ -146,6 +149,11 @@
     background: #73ca1a;
 
 
+}
+.sjdkit{
+    text-decoration: none;
+    cursor: auto;
+    color: #cccccc;
 }
 
 

@@ -23,7 +23,7 @@ export default function  Layout(){
 
 
       <Header />
-          <Container>
+          <Container className='main-cont'>
             
             {/* <Row>
               <Col xs={0} md={3} className="d-none d-lg-block">
