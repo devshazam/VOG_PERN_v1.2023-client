@@ -26,7 +26,7 @@ const UserBasket = () => {
                 setDevices(data.rows);
                 setCount(data.count);
                 setTotalPrice(data.rows.reduce((total, num) => {
-                    return total + num.price;}, 0));
+                    return total + +num.price;}, 0));
             })
             .catch((error) => {
                 console.log("dev", error.response.data.message, error);

@@ -29,10 +29,10 @@ const Banner = observer(() => {
     const [luversCoast, setLuversCoast] = useState(0); // Телефон
     const [description, setDescription] = useState(""); // Телефон
     const name = "Баннер";
-    const goodsId = 1;
+    const goodsId = null;
 
 
-
+    console.log(description)
     useEffect(() => {
         if (!width ||!height ||!number) { alert("Не все поля заполнены!"); return; }  
         if(width.split('').length > 200 && height.split('').length > 200 && number.split('').length > 200 ){alert('Не более 200 симолов!');return;} 
@@ -112,7 +112,7 @@ console.log(glue, midglue, midluversStep);
                 }
 
                 setDescription(
-                    `Наименование: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${densityArray[+density]} грамм; Люверсы: ${luversStep} мм; Проклейка: ${glueArray[+glueCoast]};`
+                    `Товар: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${densityArray[+density]} грамм; Шаг люверсов: ${luversStepArray[+luversStep]} мм; Проклейка: ${glueArray[+glue]}; Кол-во: ${number};`
                 );
         }, [width, density, height, luversStep, number, glue]); // <- add the count variable here
 
@@ -131,7 +131,6 @@ console.log(glue, midglue, midluversStep);
                         <h1>Итоговая цена: {value} p. </h1>
                         <h4>(цена люверсов: {luversCoast}р.)</h4>
                         <h4>(цена проклейки: {glueCoast}р.)</h4>
-                      
                         <Row className="mb-3">
                             <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
                                 <FloatingLabel controlId="floatingPassword" label="Ширина (мм):">
@@ -139,7 +138,7 @@ console.log(glue, midglue, midluversStep);
                                     type="text"
                                     placeholder="Ширина (мм):"
                                     onChange={(e) => setWidth(e.target.value)}
-                                />
+                                /> 
                                 </FloatingLabel>
                             </Form.Group>
                             <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
