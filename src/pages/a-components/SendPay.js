@@ -47,7 +47,7 @@ const SendPay = observer((props) => {
         formData.append("descriptionText", descriptionText);
         formData.append("img", file);
         formData.append("userId", `${user.user.id}`);
-        formData.append("goodId", {w:1});
+        formData.append("goodId", `${props.id}`);
 
         const formData2 = {value: undefined, name: null, description: 'undefined', descriptionText: 234, userId: 888}
 //qwerty

@@ -29,7 +29,7 @@ const Banner = observer(() => {
     const [luversCoast, setLuversCoast] = useState(0); // Телефон
     const [description, setDescription] = useState(""); // Телефон
     const name = "Баннер";
-    const goodsId = null;
+    const goodsId = 0; 
 
 
     console.log(description)
