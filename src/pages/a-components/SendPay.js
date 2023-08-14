@@ -47,13 +47,13 @@ const SendPay = observer((props) => {
         formData.append("descriptionText", descriptionText);
         formData.append("img", file);
         formData.append("userId", `${user.user.id}`);
-        formData.append("goodId", null);
+        formData.append("goodId", `${props.id}`);
 
         console.log(formData)
         const formData2 = {value: undefined, name: null, description: 'undefined', descriptionText: 234, userId: 888}
 
         setSpinner(false);
-        createItem(formData2)
+        createItem(formData)
             .then((data) => {
                 console.log("dev",  data);
                 setSpinner(true);
