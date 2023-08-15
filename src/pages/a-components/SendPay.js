@@ -49,13 +49,12 @@ const SendPay = observer((props) => {
         formData.append("userId", `${user.user.id}`);
         formData.append("goodId", `${props.id}`);
 
-        console.log(formData)
         const formData2 = {value: undefined, name: null, description: 'undefined', descriptionText: 234, userId: 888}
-
+//qwerty
         setSpinner(false);
         createItem(formData)
             .then((data) => {
-                console.log("dev",  data);
+                console.log("dev",  typeof data.goodId, data.goodId);
                 setSpinner(true);
             })
             .catch((error) => {
