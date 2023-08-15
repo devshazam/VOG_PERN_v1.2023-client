@@ -45,6 +45,14 @@ export const payBasketList = async (funcPrice) => {
     console.log(data)
     return data
 }
+
+export const reciveBasketCount = async (id) => {
+    const {data} = await $authHost.post('api/device/recive-basket-count/', {id})
+    console.log(data)
+    return data
+}
+
+
 // export const fetchBasketDevices = async (id) => {
 //     const {data} = await $authHost.post('api/device/delete-item/', {id})
 //     console.log(data)

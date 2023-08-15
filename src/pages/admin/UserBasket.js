@@ -64,9 +64,9 @@ const UserBasket = () => {
                         <thead>
                             <tr>
                                 <th>Название</th>
-                                <th>Цена</th>
                                 <th>Картинка</th>
                                 <th>Дата создания</th>
+                                <th>Цена</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,13 +75,9 @@ const UserBasket = () => {
                                 {devices.map((device) => (
                                     <tr key={device.id}>
                                         <td>{device.name}</td>
-                                        <td>{device.price} руб.</td>
-                                        <td>
-                                            <a href={device.img}>
-                                                Ссылка на картинку
-                                            </a>
-                                        </td>
+                                        <td>{device.feature}</td>
                                         <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
+                                        <td>{device.price} руб.</td>
                                     </tr>
                                 ))}
                                 <tr>

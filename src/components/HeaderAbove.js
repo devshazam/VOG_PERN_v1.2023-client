@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {Context} from "../index";
 import Container from 'react-bootstrap/esm/Container';
 import Image from 'react-bootstrap/Image';
@@ -9,11 +9,22 @@ import { useNavigate } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import Dropdown from 'react-bootstrap/Dropdown';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { reciveBasketCount } from "../http/deviceAPI";
 
 const Header = observer(() => { 
+  const [basketNumber, setBasketNumber] = useState('0');
   const navigate = useNavigate();
+  const {helpers, user} = useContext(Context)
+    useEffect(() => {
+      reciveBasketCount(user.user.id).then((res) => {
+          console.log(res)
+          setBasketNumber(res)
+      }).catch((error) => { 
+            console.log(error.response.data.message);
+        });
+      }, [])
 
-    const {helpers, user} = useContext(Context)
+    
     // console.log(user.user.phone)
     const showModalLogin = () => {
         helpers.setModalLogin(true);
@@ -67,7 +78,7 @@ const Header = observer(() => {
                           <Nav.Item>
                             <Nav.Link href="/admin/user-basket" >
                               <Image src="/file/icons8-basket-50.png" className="bascket_img" rounded />
-                              <span className="bascket-num">{user.user.basket && user.user.basket}</span>
+                              <span className="bascket-num">{basketNumber}</span>
                               </Nav.Link>
                           </Nav.Item>
                         </>

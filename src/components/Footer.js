@@ -2,10 +2,11 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Messanger from './Messanger';
 
 function Footer(){
     return (
-	
+	<>
 <footer>
 		<Container>
             
@@ -25,7 +26,7 @@ function Footer(){
               </Col>
 			  <Col xs={12} lg ={3}>
 			  <div className="column">
-							<p className="heading">Адреса:</p>
+							<p className="heading">Адреса в г.Волгоград:</p>
 							<p className="hr">1) ул. Петропавловская 87<br></br>2) ул. Казахская 25 <br></br>График работы с 09:00 до 19:00</p>
 
 						</div>		
@@ -47,6 +48,8 @@ function Footer(){
 
 
 		  </footer>
+		  <Messanger />
+	  </>
 
 		  
 

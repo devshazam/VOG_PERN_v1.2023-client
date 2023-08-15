@@ -274,8 +274,8 @@ margin-right: 15px;
     left: 0;
 }
 #mail-spinner{
-    margin-top: 33%;
-    margin-left: 48%;
+    margin-top: 48vh;
+    margin-left: 48vw;
 }
 #goods-image{
     width: 100%;
@@ -301,3 +301,67 @@ margin-right: 15px;
     text-align: center;
     border-radius: 15px;
 }
+
+
+
+.messenger {
+    display: block;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    width: 100px;
+    height: 100px;
+    z-index: 50;
+    /* overflow: hidden; */
+    }
+    .messenger-btn {
+      text-align: center;
+    padding: 14px;
+    display: block;
+    width: 90px;
+    height: 90px;
+    border-radius: 60px;
+    background-color: #f35858;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 2;
+    }
+    .messenger-btn img {
+        max-width: 100%;
+    /* width: 80px;
+    height: 80px; */
+    }
+    .messenger-links {
+    position: absolute;
+    width: 100px;
+    height: 400px;
+    left: 0px;
+    top: -100px;
+    transform: scale(0);
+    transform-origin: 100% 50%;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    z-index: 0;
+    }
+    .messenger-links.show {
+    top: -400px;
+    transform: scale(1);
+    }
+    .messenger-links a {
+    width: 40px;
+    margin-left: 4px;
+    }
+    .messenger-links img {
+      width: 90px;
+    max-width: 90px;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    }
+    .messenger-links a:hover img {
+    transform: scale(1.1);
+    text-decoration: none;
+    }

@@ -11,7 +11,7 @@ import Container from "react-bootstrap/Container";
 import { createGoodsItem } from "../../http/goodsAPI";
 
 //
-const PrivateCab = () => {
+const CreateGoods = () => {
     const { user } = useContext(Context);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -122,6 +122,7 @@ const PrivateCab = () => {
                                         <option value="futbolki">Футболки</option>
                                         <option value="bagety">Багеты</option>
                                         <option value="suveniry">Сувенирная продукция</option>
+                                        <option value="planketki">Планкетки</option>
                                     </Form.Select>
                             </Form.Group>
 
@@ -136,4 +137,4 @@ const PrivateCab = () => {
     );
 };
 
-export default PrivateCab;
+export default CreateGoods;
