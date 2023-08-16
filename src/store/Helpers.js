@@ -5,6 +5,7 @@ export default class HelpersStore {
         this._modalRegistration = false
         this._modalLogin = false
         this._modalReview = false
+        this._goodsNum = 0
         makeAutoObservable(this)
     }
 // Done
@@ -15,9 +16,13 @@ export default class HelpersStore {
     setModalLogin(modal) {
         this._modalLogin = modal
     }
-    // Done
+// Done
     setModalReview(modal) {
         this._modalReview = modal
+    }
+// Done
+    setReloadBasket(num) {
+        this._goodsNum = num
     }
 
 
@@ -28,13 +33,17 @@ export default class HelpersStore {
         return this._modalRegistration
     }
 // Done 
-get modalLogin() {
-    return this._modalLogin
-}
+    get modalLogin() {
+        return this._modalLogin
+    }
 // Done 
-get modalReview() {
-    return this._modalReview
-}
+    get modalReview() {
+        return this._modalReview
+    }
+// Done 
+    get reloadBasket() {
+        return this._goodsNum
+    }
 
 
 

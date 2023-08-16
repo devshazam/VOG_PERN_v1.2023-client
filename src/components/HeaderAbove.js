@@ -11,10 +11,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { reciveBasketCount } from "../http/deviceAPI";
 
-const Header = observer(() => { 
+const HeaderAbove = observer(() => { 
   const [basketNumber, setBasketNumber] = useState('0');
   const navigate = useNavigate();
   const {helpers, user} = useContext(Context)
+
     useEffect(() => {
       reciveBasketCount(user.user.id).then((res) => {
           console.log(res)
@@ -22,7 +23,7 @@ const Header = observer(() => {
       }).catch((error) => { 
             console.log(error.response.data.message);
         });
-      }, [])
+      }, [ helpers.reloadBasket ])
 
     
     // console.log(user.user.phone)
@@ -101,4 +102,4 @@ const Header = observer(() => {
     
 });
 
-export default Header;
+export default HeaderAbove;

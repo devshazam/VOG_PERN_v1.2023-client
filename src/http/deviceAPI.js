@@ -28,7 +28,13 @@ export const fetchDevices = async (itemSort, orderSort, limit, page, filter, id,
 }
 
 export const deleteDevice = async (id) => {
-    const {data} = await $authHost.post('api/device/delete-item/', id)
+    const {data} = await $authHost.post('api/device/delete-item/', {id})
+    console.log(data)
+    return data
+}
+
+export const deleteOneItem = async (id) => {
+    const {data} = await $authHost.post('api/device/delete-basket-item/', {id})
     console.log(data)
     return data
 }

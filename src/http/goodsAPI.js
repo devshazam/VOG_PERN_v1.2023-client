@@ -33,3 +33,11 @@ export const updateItemByID = async ( goods ) => {
     const {data} = await $authHost.post('/api/goods/update-one', goods)
     return data
 }
+
+export const fetchXslFile = async () => {
+    const {data} = await $authHost.get('/api/goods/fetch-xsl-file')
+    return data
+}
+
+
+

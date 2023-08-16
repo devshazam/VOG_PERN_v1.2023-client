@@ -17,12 +17,13 @@ import Samokleyka from "./pages/samokleyki/Samokleyka";
 
 import LayoutAdmin from "./LayoutAdmin";
 import AllOrdersAdmin from "./pages/admin/AllOrdersAdmin";
-import PrivateCab from "./pages/admin/PrivateCab.js";
 import AllGoods from "./pages/goods/AllGoods.js";
 import OneGoods from "./pages/goods/OneGoods.js";
 import CreateGoods from "./pages/admin/CreateGoods.js";
 import UpdateGoods from "./pages/admin/UpdateGoods.js";
-import UserBasket from "./pages/admin/UserBasket.js";
+
+import UserBasket from "./pages/admin-user/UserBasket.js";
+import PrivateCab from "./pages/admin-user/PrivateCab.js";
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";

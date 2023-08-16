@@ -4,12 +4,12 @@ import { Context } from "../../index";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { Row, Col } from "react-bootstrap";
-import { fetchBasketDevices, payBasketList } from "../../http/deviceAPI";
+import { fetchBasketDevices, payBasketList, deleteOneItem } from "../../http/deviceAPI";
 
 
 // получение всех товаров корзины + удаление элементов из корзины + оплата
 const UserBasket = () => {
-    const { device, user } = useContext(Context);
+    const { helpers, user } = useContext(Context);
 
     const [id, setId] = useState("0");
     const [filter, setFilter] = useState("Баннер");
@@ -26,13 +26,15 @@ const UserBasket = () => {
                 setDevices(data.rows);
                 setCount(data.count);
                 setTotalPrice(data.rows.reduce((total, num) => {
-                    return total + +num.price;}, 0));
+                    return total + +num.price;
+                
+                }, 0));
             })
             .catch((error) => {
                 console.log("dev", error.response.data.message, error);
                 alert("Ошибка 506 - Обратитесь к администратору!");
             });
-    }, [ flag]);
+    }, [ flag ]);
 
     function payForBasket(funcPrice) {
 		payBasketList(funcPrice).then(data => {
@@ -43,6 +45,16 @@ const UserBasket = () => {
             alert('Ошибка 506 - Обратитесь к администратору!');
         });
 	}
+    function removeOneItem(id) {
+		deleteOneItem(id).then(data => {
+            helpers.setReloadBasket(+helpers.reloadBasket + 1)
+                setFlag(flag + 1)
+        }).catch((error) => { 
+            console.log('dev', error.response.data.message, error);
+            alert('Ошибка 506 - Обратитесь к администратору!');
+        });
+	}
+
     
     // #########################################################################################
 
@@ -64,9 +76,10 @@ const UserBasket = () => {
                         <thead>
                             <tr>
                                 <th>Название</th>
-                                <th>Картинка</th>
+                                <th>Описание</th>
                                 <th>Дата создания</th>
                                 <th>Цена</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,10 +91,12 @@ const UserBasket = () => {
                                         <td>{device.feature}</td>
                                         <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
                                         <td>{device.price} руб.</td>
+                                        <td><Button variant="danger" onClick={() => removeOneItem(+device.id) }>Убрать</Button></td>
                                     </tr>
                                 ))}
                                 <tr>
                                     <td><b>ИТОГО:</b></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td><b>{totalPrice} руб.</b></td>
@@ -90,7 +105,6 @@ const UserBasket = () => {
                        
                          : (
                                 <tr>
-                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>

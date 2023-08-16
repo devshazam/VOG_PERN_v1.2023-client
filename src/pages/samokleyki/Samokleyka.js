@@ -20,7 +20,6 @@ const Samokleyka = observer(() => {
     const [description, setDescription] = useState(""); // Телефон
     const [vidSamo, setVidSamo] = useState("Белая");
     const [number, setNumber] = useState("1");
-
     const name = "Cамоклейка";
 
     useEffect(() => {

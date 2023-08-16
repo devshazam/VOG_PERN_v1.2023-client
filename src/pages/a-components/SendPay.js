@@ -14,12 +14,14 @@ import { observer } from "mobx-react-lite";
 
 const SendPay = observer((props) => {
     // CONTEXT
-    const { user, device } = useContext(Context);
+    const { user, helpers } = useContext(Context);
     // STATES
     const [spinner, setSpinner] = useState(true); // Запускает спиннер клика по купить
     const [file, setFile] = useState(null); // Файл
     const [descriptionText, setDescriptionText] = useState("Без описания"); // Файл
 
+    console.log(+helpers.reloadBasket)
+    
     const countPrice = () => {
         if (!user.isAuth) {
             alert(
@@ -56,6 +58,7 @@ const SendPay = observer((props) => {
             .then((data) => {
                 console.log("dev",  typeof data.goodId, data.goodId);
                 setSpinner(true);
+                helpers.setReloadBasket(+helpers.reloadBasket + 1)
             })
             .catch((error) => {
                 console.log("dev", error.response.data.message, error);
