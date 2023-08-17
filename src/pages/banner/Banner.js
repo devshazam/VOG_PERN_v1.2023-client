@@ -138,6 +138,7 @@ console.log(glue, midglue, midluversStep);
                                     type="text"
                                     placeholder="Ширина (мм):"
                                     onChange={(e) => setWidth(e.target.value)}
+                                    value={width}
                                 /> 
                                 </FloatingLabel>
                             </Form.Group>

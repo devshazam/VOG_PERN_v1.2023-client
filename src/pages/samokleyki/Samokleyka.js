@@ -23,7 +23,6 @@ const Samokleyka = observer(() => {
     const name = "Cамоклейка";
 
     useEffect(() => {
-        // console.log(number)
         if (!+number) {
             setValue(0);
             alert("Не корректное значение в поле кол-во!");

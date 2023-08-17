@@ -5,41 +5,37 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 import {observer} from "mobx-react-lite";
-
 import { createReview } from '../../http/reviewAPI'
 
 const ReviewPage = observer(() => {
-
   const {helpers, user} = useContext(Context)
-  const show = helpers.modalReview;
   const [subject, setSubject] = useState('')
   const [review, setReview] = useState('')
 
     const hideModal = () => {
-    helpers.setModalReview(false)
-  }
-
-// TODO - доделать аинхронную отправку
-  const sendReview = () => {
-    if (subject === '' || review === '') {
-      alert("Пожалуйста введите текст!")
-      return
+      helpers.setModalReview(false)
     }
-    createReview({subject, review}).then(data => {
-      alert('СПАСИБО ЗА ОТЗЫВ!');
-      helpers.setModalLogin(false);
-    }).catch((error) => { 
-        console.log(error.response.data.message, error)
-        alert('Ошибка: 501 - сообщите код ошибки администратору сайта');
-    });
-    
-  }
+
+      const sendReview = () => {
+        if (!subject || !review) {alert("Пожалуйста введите текст!"); return;}
+        if(!user.isAuth) {alert("Пожалуйста авторизируйтесь!"); return;}
+        if(subject.split('').length > 200 || review.split('').length > 1000){alert('Тема более 200 символов или описание более 1000 симолов!');return;} // длинну строки
+        
+        createReview({subject, review, userId: user.user.id}).then(data => {
+          alert('СПАСИБО ЗА ОТЗЫВ!');
+          console.log(data)
+          helpers.setModalLogin(false);
+        }).catch((error) => { 
+            console.log(error.response.data.message, error)
+            alert('Ошибка: 501 - сообщите код ошибки администратору сайта');
+        });
+    }
 
   return (
     <>
 
 
-      <Modal show={show} onHide={hideModal}>
+      <Modal show={helpers.modalReview} onHide={hideModal}>
         <Modal.Header closeButton>
           <Modal.Title>Оставьте свой отзыв:</Modal.Title>
         </Modal.Header>
@@ -48,11 +44,11 @@ const ReviewPage = observer(() => {
         <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                   <Form.Label>Тема:</Form.Label>
-                  <Form.Control type="text" placeholder="тема" onChange={e => setSubject(e.target.value)} />
+                  <Form.Control type="text" placeholder="тема" onChange={e => setSubject(e.target.value)}  value={subject}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                   <Form.Label>Отзыв:</Form.Label>
-                  <Form.Control type='text' onChange={e => setReview(e.target.value)} placeholder="отзыв" />
+                  <Form.Control type='text' onChange={e => setReview(e.target.value)} placeholder="отзыв" value={review} />
                 </Form.Group>
                 <Button variant="primary" onClick={ sendReview }>Отправить</Button>
           </Form>

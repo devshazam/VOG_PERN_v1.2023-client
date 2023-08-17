@@ -45,6 +45,7 @@ const UserBasket = () => {
             alert('Ошибка 506 - Обратитесь к администратору!');
         });
 	}
+    
     function removeOneItem(id) {
 		deleteOneItem(id).then(data => {
             helpers.setReloadBasket(+helpers.reloadBasket + 1)
