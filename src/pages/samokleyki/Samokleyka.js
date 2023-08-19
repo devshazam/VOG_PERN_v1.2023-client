@@ -6,10 +6,10 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 import SendPay from "../a-components/SendPay";
 import { observer } from "mobx-react-lite";
-
 import Container from "react-bootstrap/Container";
 
 const Samokleyka = observer(() => {
@@ -18,117 +18,53 @@ const Samokleyka = observer(() => {
     const [width, setWidth] = useState(""); // ширина баннеар
     const [height, setHeight] = useState(""); // высота баннера
     const [description, setDescription] = useState(""); // Телефон
-    const [vidSamo, setVidSamo] = useState("Белая");
+    const [vidSamo, setVidSamo] = useState('0');
     const [number, setNumber] = useState("1");
+    const [porezka, setPorezka] = useState('0');
     const name = "Cамоклейка";
+    const userId = 0;
 
+    const vidToValue = [
+        [650, 600, 550, 500], // белая
+        [700, 650, 600, 550], // черная
+        [900, 850, 800, 750], // цветная
+        [2500, 2330, 2150, 2000], // дизайнерская
+        [5000, 4700, 4500, 4200], // Фотолюминесцентная
+        [1000, 900, 850, 800], // Перфорированная
+        [700, 650, 600, 550], // Прозрачная
+        [1500, 1400, 1300, 1200], // Светоотражающая
+    ];
+    const vidToName = ['белая', 'черная', 'цветная', 'дизайнерская', 'фотолюминесцентная', 'перфорированная', 'прозрачная', 'светоотражающая'];
+    const vidToHref = [
+        "/file/samokleyki/belaya.jpg",
+        "/file/samokleyki/chernaya.jpg",
+        "/file/samokleyki/cvetnaya.jpg",
+        "/file/samokleyki/dezainerskaya.jpg",
+        "/file/samokleyki/fotoluminiscent.jpg",
+        "/file/samokleyki/perforirovanaya.jpg",
+        "/file/samokleyki/prozrachnaya.jpg",
+        "/file/samokleyki/svetootrajaushaya.jpg",
+    ]
     useEffect(() => {
         if (!+number) {
             setValue(0);
             alert("Не корректное значение в поле кол-во!");
             return;
         }
+        // if (width && height) { //ffff
 
-        if (width && height) {
-            let m1 =
-                (Number(width) * Number(height) * Number(number)) / 1000000;
-            let m2;
-            if (vidSamo === "Белая") {
-                if (m1 < 1) {
-                    m2 = m1 * 650;
-                } else if (m1 >= 1 && m1 < 5) {
-                    m2 = m1 * 600;
-                }
-                if (m1 >= 5 && m1 < 10) {
-                    m2 = m1 * 550;
-                }
-                if (m1 >= 10) {
-                    m2 = m1 * 500;
-                }
-            } else if (vidSamo === "Черная") {
-                if (m1 < 1) {
-                    m2 = m1 * 700;
-                } else if (m1 >= 1 && m1 < 5) {
-                    m2 = m1 * 650;
-                }
-                if (m1 >= 5 && m1 < 10) {
-                    m2 = m1 * 600;
-                }
-                if (m1 >= 10) {
-                    m2 = m1 * 550;
-                }
-            } else if (vidSamo === "Цветная") {
-                if (m1 < 1) {
-                    m2 = m1 * 900;
-                } else if (m1 >= 1 && m1 < 5) {
-                    m2 = m1 * 850;
-                }
-                if (m1 >= 5 && m1 < 10) {
-                    m2 = m1 * 800;
-                }
-                if (m1 >= 10) {
-                    m2 = m1 * 750;
-                }
-            } else if (vidSamo === "Дизайнерская") {
-                if (m1 < 1) {
-                    m2 = m1 * 2500;
-                } else if (m1 >= 1 && m1 < 5) {
-                    m2 = m1 * 2300;
-                }
-                if (m1 >= 5 && m1 < 10) {
-                    m2 = m1 * 2150;
-                }
-                if (m1 >= 10) {
-                    m2 = m1 * 2000;
-                }
-            } else if (vidSamo === "Фотолюминесцентная") {
-                if (m1 < 1) {
-                    m2 = m1 * 5000;
-                } else if (m1 >= 1 && m1 < 5) {
-                    m2 = m1 * 4700;
-                }
-                if (m1 >= 5 && m1 < 10) {
-                    m2 = m1 * 4500;
-                }
-                if (m1 >= 10) {
-                    m2 = m1 * 4200;
-                }
-            } else if (vidSamo === "Перфорированная") {
-                if (m1 < 1) {
-                    m2 = m1 * 1000;
-                } else if (m1 >= 1 && m1 < 5) {
-                    m2 = m1 * 900;
-                }
-                if (m1 >= 5 && m1 < 10) {
-                    m2 = m1 * 850;
-                }
-                if (m1 >= 10) {
-                    m2 = m1 * 800;
-                }
-            } else if (vidSamo === "Прозрачная") {
-                if (m1 < 1) {
-                    m2 = m1 * 700;
-                } else if (m1 >= 1 && m1 < 5) {
-                    m2 = m1 * 650;
-                }
-                if (m1 >= 5 && m1 < 10) {
-                    m2 = m1 * 600;
-                }
-                if (m1 >= 10) {
-                    m2 = m1 * 550;
-                }
-            } else if (vidSamo === "Светоотражающая") {
-                if (m1 < 1) {
-                    m2 = m1 * 1500;
-                } else if (m1 >= 1 && m1 < 5) {
-                    m2 = m1 * 1400;
-                }
-                if (m1 >= 5 && m1 < 10) {
-                    m2 = m1 * 1300;
-                }
-                if (m1 >= 10) {
-                    m2 = m1 * 1200;
-                }
+       
+        let m1 = (Number(width) * Number(height) * Number(number)) / 1000000; // кол-во кв. метров всего
+        let m2;
+
+            if (m1 < 1) {
+                m2 = m1 * vidToValue[+vidSamo][0]
+            } else if (m1 >= 1 && m1 < 5) {
+                m2 = m1 * vidToValue[+vidSamo][1]
+            } else if (m1 >= 5 && m1 < 10) {
+                m2 = m1 * vidToValue[+vidSamo][2]
+            } else if (m1 >= 10) {
+                m2 = m1 * vidToValue[+vidSamo][3]
             }
 
             if (Math.round(m2 * 100) / 100 <= 200) {
@@ -142,36 +78,11 @@ const Samokleyka = observer(() => {
             }
 
             setDescription(
-                `// Наименование: ${name}; Вид самоклейки: ${vidSamo}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number};`
+                `// Наименование: ${name}; Вид самоклейки: ${vidToName[+vidSamo]}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number};`
             );
-        }
+
     }, [width, height, vidSamo, number]); // <- add the count variable here
 
-    // console.log(value)
-
-    const functionWithSwitch = () => {
-        switch (vidSamo) {
-            case "Белая":
-                return "/file/samokleyki/belaya.jpg";
-            case "Черная":
-                return "/file/samokleyki/chernaya.jpg";
-            case "Цветная":
-                return "/file/samokleyki/cvetnaya.jpg";
-            case "Дизайнерская":
-                return "/file/samokleyki/dezainerskaya.jpg";
-            case "Фотолюминесцентная":
-                return "/file/samokleyki/fotoluminiscent.jpg";
-            case "Перфорированная":
-                return "/file/samokleyki/perforirovanaya.jpg";
-            case "Прозрачная":
-                return "/file/samokleyki/prozrachnaya.jpg";
-            case "Светоотражающая":
-                return "/file/samokleyki/svetootrajaushaya.jpg";
-            default:
-                return "/file/samokleyki/belaya.jpg";
-        }
-    };
-    //   console.log(functionWithSwitch())
 
     return (
         <>
@@ -179,7 +90,7 @@ const Samokleyka = observer(() => {
                 <Row>
                     <Col xs={12} md={6}>
                         <Image
-                            src={functionWithSwitch()}
+                            src={vidToHref[+vidSamo]}
                             id="goods-image"
                             rounded
                         />
@@ -189,92 +100,74 @@ const Samokleyka = observer(() => {
                         <h2>Интерьерная печать.</h2>
                         
                         <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustom01"
-                            >
-                                <Form.Label>Ширина (мм):</Form.Label>
+
+
+                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
+                                <FloatingLabel controlId="floatingPassword" label="Ширина (мм):">
                                 <Form.Control
-                                    required
                                     type="text"
-                                    placeholder="Миллиметры"
+                                    placeholder="Ширина (мм):"
                                     onChange={(e) => setWidth(e.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Введите ширину!
-                                </Form.Control.Feedback>
+                                    value={width}
+                                /> 
+                                </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustom02"
-                            >
-                                <Form.Label>Высота (мм):</Form.Label>
+                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
+                                <FloatingLabel controlId="floatingHeight" label="Высота (мм):">
                                 <Form.Control
-                                    required
                                     type="text"
                                     placeholder="Миллиметры"
                                     onChange={(e) => setHeight(e.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    Введите высоту!
-                                </Form.Control.Feedback>
+                                    value={height}
+                                /> 
+                                </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustomUsername"
-                            >
-                                <Form.Label>Вид самоклейки</Form.Label>
-                                <InputGroup hasValidation>
+                            <Form.Group as={Col} md="12" controlId="formGridState" className="mb-3">
+                                <FloatingLabel controlId="floatingSelect" label="Вид самоклейки:">
                                     <Form.Select
                                         aria-label="Default select example"
-                                        onChange={(e) =>
-                                            setVidSamo(e.target.value)
-                                        }
+                                        onChange={(e) =>setVidSamo(e.target.value)}
                                         value={vidSamo}
                                     >
-                                        <option value="Белая">Белая</option>
-                                        <option value="Черная">Черная</option>
-                                        <option value="Цветная">Цветная</option>
-                                        <option value="Дизайнерская">
-                                            Дизайнерская
-                                        </option>
-                                        <option value="Фотолюминесцентная">
-                                            Фотолюминесцентная
-                                        </option>
-                                        <option value="Перфорированная">
-                                            Перфорированная
-                                        </option>
-                                        <option value="Прозрачная">
-                                            Прозрачная
-                                        </option>
-                                        <option value="Светоотражающая">
-                                            Светоотражающая
-                                        </option>
-                                    </Form.Select>
-                                    <Form.Control.Feedback type="invalid">
-                                        Введите плотность.
-                                    </Form.Control.Feedback>
-                                </InputGroup>
+                                        <option value="0">Белая</option>
+                                        <option value="1">Черная</option>
+                                        <option value="2">Цветная</option>
+                                        <option value="3">Дизайнерская</option>
+                                        <option value="4">Фотолюминесцентная</option>
+                                        <option value="5">Перфорированная</option>
+                                        <option value="6">Прозрачная</option>
+                                        <option value="7">Светоотражающая</option>
+                                        </Form.Select>
+                                </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustom02"
-                            >
-                                <Form.Label>Кол-во:</Form.Label>
+                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
+                                <FloatingLabel controlId="floatingPassword" label="Кол-во:">
                                 <Form.Control
-                                    required
                                     type="text"
                                     placeholder="Штуки"
                                     value={number}
                                     onChange={(e) => setNumber(e.target.value)}
-                                />
+                                /> 
+                                </FloatingLabel>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
+                                <FloatingLabel controlId="floatingSelect" label="Формат порезки:">
+                                    <Form.Select aria-label="Floating label select example" 
+                                        onChange={(e) =>setPorezka(e.target.value)}
+                                        value={porezka}
+                                        >
+                                            <option value="0">А6</option>
+                                            <option value="1">А5</option>
+                                            <option value="2">А4</option>
+                                            <option value="3">А3</option>
+                                            <option value="4">А2</option>
+                                            <option value="5">А1</option>
+                                    </Form.Select>
+                                </FloatingLabel>
                             </Form.Group>
                         </Row>
 
@@ -284,6 +177,7 @@ const Samokleyka = observer(() => {
                             value={value}
                             description={description}
                             name={name}
+                            id={userId}
                         />
                     </Col>
                 </Row>
