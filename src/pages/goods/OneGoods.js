@@ -9,6 +9,8 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+
 import { fetchOneGoods } from "../../http/goodsAPI";
 import SendPay from "../a-components/SendPay";
 import { observer } from "mobx-react-lite";
@@ -25,26 +27,19 @@ const OneGoods = observer(() => {
         fetchOneGoods(id)
             .then((data) => {
                 setGoodsItem(data);
-                console.log("dev", data);
+                // console.log("dev", data);
             })
             .catch((error) => {
-                console.log("dev", error.response.data.message, error);
+                console.log("dev", error);
                 alert("Ошибка 506 - Обратитесь к администратору!");
             });
     }, [ id ]); // <- add the count variable here
 
     useEffect(() => {
-        if (Object.keys(goodsItem).length === 0) {
-            return;
-        }
+        if (Object.keys(goodsItem).length === 0) { return; }
         if (number.split("").length > 10) {
-            alert("Слишком большое значение!");
-            return;
-        }
-        if (!+number) {
-            alert("не допустимое значение!");
-            return;
-        }
+            alert("Слишком большое значение!"); return; }
+            if (!Number.isInteger(+number)) {alert("Введите только целое число!");return;}
 
         let midlItem1 = +goodsItem.price * +number;
         if(midlItem1 >= 3000 && midlItem1 < 10000){
@@ -60,54 +55,34 @@ const OneGoods = observer(() => {
             midlItem1 = midlItem1 * 0.9
             setSale('10%');
         }
-
         setValue(midlItem1);
 
-        setDescription(
-            "Название: " +
-                goodsItem.name +
-                "; ID: " +
-                goodsItem.id +
-                "; описание: " +
-                goodsItem.description +
-                "; категория: " +
-                goodsItem.group +
-                "; кол-во: " +
-                number +
-                "; цена: " +
-                String(midlItem1)
-        );
+        setDescription("Название: " + goodsItem.name + "; ID: " + goodsItem.id + "; описание: " + goodsItem.description + "; категория: " + goodsItem.group + "; кол-во: " + number + "; цена: " + String(midlItem1));
     }, [number, goodsItem]); // <- add the count variable here
-
     return (
         <>
             <Container>
-                <Row>
+                <Row className="mb-3">
                     <Col xs={12} md={6}>
                         <Image src={goodsItem.image} id="goods-image" rounded />
                     </Col>
                     <Col xs={12} lg={6}>
                         <h1>{goodsItem.name}</h1>
-                        <h2>Цена: {value} p. {sale && 'Скидка ' + sale}</h2>
-                        <p>Опивание: {goodsItem.description}</p>
+                        <h2 className="mb-3">Цена: {value} p. {sale && 'Скидка ' + sale}</h2>
+                        {/* <p>Опивание: {goodsItem.description}</p> */}
                         <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustom02"
-                            >
-                                <Form.Label>Кол-во:</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    placeholder="Штуки"
-                                    value={number}
-                                    onChange={(e) => setNumber(e.target.value)}
-                                />
-                            </Form.Group>
-                        </Row>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingPassword" label="Кол-во:"> {/* вставить сюда уникальный controlID */} 
+                            <Form.Control
+                                type="text"
+                                placeholder="Штуки"
+                                value={number}
+                                onChange={(e) => setNumber(e.target.value)}
+                            /> 
+                            </FloatingLabel>
+                        </Form.Group>
 
-                        
+                        </Row>
 
                         <SendPay
                             value={value}
@@ -117,22 +92,9 @@ const OneGoods = observer(() => {
                         />
                     </Col>
                 </Row>
-                <h2>Полиграфия</h2>
+                <h2>{goodsItem.name}</h2>
                 <p>
-                    Баннеры являются одним из наиболее эффективных и популярных
-                    способов рекламы и информационного обозначения. Печать
-                    баннеров — это процесс создания крупноформатных материалов с
-                    помощью специального оборудования. Ниже приведен текст,
-                    описывающий процесс печати баннеров: Печать баннеров – это
-                    профессиональный процесс, при котором создаются
-                    крупноформатные материалы с использованием
-                    специализированного оборудования и высококачественных
-                    материалов. Он предоставляет возможность эффективно
-                    привлекать внимание к продукту, услуге или событию. Печать
-                    баннеров начинается с подготовки дизайна и макета. Дизайнер
-                    создает графическое оформление баннера, учитывая его цель и
-                    целевую аудиторию. Он может включать в себя логотипы,
-                    изображения, текст и другие визуальные элементы.
+                    {goodsItem.description}
                 </p>
             </Container>
         </>

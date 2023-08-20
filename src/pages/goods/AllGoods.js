@@ -50,7 +50,7 @@ const AllGoods = observer(() => {
             console.log("dev", "Товар удален!");
             setFlag(flag + 1);
         }).catch((error) => { 
-            console.log('dev', error.response.data.message, error);
+            console.log('dev', error);
              alert('Ошибка 506 - Обратитесь к администратору!');
         });
 

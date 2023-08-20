@@ -44,44 +44,40 @@ const Samokleyka = observer(() => {
         "/file/samokleyki/perforirovanaya.jpg",
         "/file/samokleyki/prozrachnaya.jpg",
         "/file/samokleyki/svetootrajaushaya.jpg",
-    ]
-    useEffect(() => {
-        if (!+number) {
-            setValue(0);
-            alert("Не корректное значение в поле кол-во!");
-            return;
-        }
-        // if (width && height) { //ffff
+    ];
+    const porezkaName = ['Без порезки', 'A6', 'A5', 'A4', 'A3', 'A2', 'A1']; // фортмат порезки
+    const porezkaCoast = [0, 5, 7, 10, 25, 42, 51]; // цены на порезку 
 
-       
+
+    useEffect(() => {
+        if(!width || !height){return;}
+        if (!width || !height || !vidSamo || !number || !porezka) { alert("Не все поля заполнены!"); return; } 
+        if (width.split('').length > 200 || height.split('').length > 200) {alert('Не более 20 симолов!');return;}
+        if (!Number.isInteger(+width) || !Number.isInteger(+height) || !Number.isInteger(+number)) {alert("Введите только целое число!");return;}
+        
+
         let m1 = (Number(width) * Number(height) * Number(number)) / 1000000; // кол-во кв. метров всего
         let m2;
+        if (m1 < 1) {
+            m2 = m1 * vidToValue[+vidSamo][0]
+        } else if (m1 >= 1 && m1 < 5) {
+            m2 = m1 * vidToValue[+vidSamo][1]
+        } else if (m1 >= 5 && m1 < 10) {
+            m2 = m1 * vidToValue[+vidSamo][2]
+        } else if (m1 >= 10) {
+            m2 = m1 * vidToValue[+vidSamo][3]
+        }
 
-            if (m1 < 1) {
-                m2 = m1 * vidToValue[+vidSamo][0]
-            } else if (m1 >= 1 && m1 < 5) {
-                m2 = m1 * vidToValue[+vidSamo][1]
-            } else if (m1 >= 5 && m1 < 10) {
-                m2 = m1 * vidToValue[+vidSamo][2]
-            } else if (m1 >= 10) {
-                m2 = m1 * vidToValue[+vidSamo][3]
-            }
-
-            if (Math.round(m2 * 100) / 100 <= 200) {
-                setValue(200);
-            } else {
-                if (!isNaN(Math.round(m2 * 100) / 100)) {
-                    setValue(Math.round(m2 * 100) / 100);
-                } else {
-                    alert("Введите размеры корректно!");
-                }
-            }
+        if (Math.round((m2 + +number * porezkaCoast[+porezka]) * 100) / 100 <= 200) {
+            setValue(200);
+        } else {
+            setValue(Math.round((m2 + +number * porezkaCoast[+porezka]) * 100) / 100);
+        }
 
             setDescription(
-                `// Наименование: ${name}; Вид самоклейки: ${vidToName[+vidSamo]}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number};`
+                `Наименование: ${name}; Вид самоклейки: ${vidToName[+vidSamo]}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number}; Порезка: ${porezkaName[+porezka]};`
             );
-
-    }, [width, height, vidSamo, number]); // <- add the count variable here
+    }, [width, height, vidSamo, number, porezka]);
 
 
     return (
@@ -92,18 +88,19 @@ const Samokleyka = observer(() => {
                         <Image
                             src={vidToHref[+vidSamo]}
                             id="goods-image"
+                            alt="Самоклейка"
                             rounded
                         />
                     </Col>
                     <Col xs={12} lg={6}>
                         <h1>Цена: {value} p.</h1>
-                        <h2>Интерьерная печать.</h2>
+                        <h4>(Интерьерная печать)</h4>
                         
                         <Row className="mb-3">
 
 
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingPassword" label="Ширина (мм):">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingWidth" label="Ширина (мм):">
                                 <Form.Control
                                     type="text"
                                     placeholder="Ширина (мм):"
@@ -113,7 +110,7 @@ const Samokleyka = observer(() => {
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
+                            <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel controlId="floatingHeight" label="Высота (мм):">
                                 <Form.Control
                                     type="text"
@@ -124,8 +121,8 @@ const Samokleyka = observer(() => {
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="12" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingSelect" label="Вид самоклейки:">
+                            <Form.Group as={Col} md="12" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectVid" label="Вид самоклейки:">
                                     <Form.Select
                                         aria-label="Default select example"
                                         onChange={(e) =>setVidSamo(e.target.value)}
@@ -143,8 +140,8 @@ const Samokleyka = observer(() => {
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingPassword" label="Кол-во:">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingNumber" label="Кол-во:">
                                 <Form.Control
                                     type="text"
                                     placeholder="Штуки"
@@ -154,18 +151,19 @@ const Samokleyka = observer(() => {
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingSelect" label="Формат порезки:">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectPorezka" label="Формат порезки:">
                                     <Form.Select aria-label="Floating label select example" 
                                         onChange={(e) =>setPorezka(e.target.value)}
                                         value={porezka}
                                         >
-                                            <option value="0">А6</option>
-                                            <option value="1">А5</option>
-                                            <option value="2">А4</option>
-                                            <option value="3">А3</option>
-                                            <option value="4">А2</option>
-                                            <option value="5">А1</option>
+                                            <option value="0">Без порезки</option>
+                                            <option value="1">А6</option>
+                                            <option value="2">А5</option>
+                                            <option value="3">А4</option>
+                                            <option value="4">А3</option>
+                                            <option value="5">А2</option>
+                                            <option value="6">А1</option>
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>

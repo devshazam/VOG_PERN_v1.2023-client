@@ -26,7 +26,7 @@ const UpdateGoods = () => {
             fetchOneGoods( id ).then(data => {
                 setGoodsItem(data)
             }).catch((error) => { 
-                console.log('dev', error.response.data.message, error);
+                console.log('dev', error);
             });
         }, [ flag ]); 
     

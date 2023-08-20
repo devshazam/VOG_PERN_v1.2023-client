@@ -6,7 +6,7 @@ const Contacts = () => {
             
         
         <div className="col-sm-9" id="content">
-          <div class="fhrj">
+          <div className="fhrj">
                       <h1>Контакты</h1>
                       <div className="panel panel-default">
                         <div className="panel-body">

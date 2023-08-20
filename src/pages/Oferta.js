@@ -6,7 +6,7 @@ const Oferta = () => {
             
         
         <div className="col-sm-9" id="content">
-            <div class="fhdkfl">
+            <div className="fhdkfl">
             <h1 >ДОГОВОР ПУБЛИЧНОЙ ОФЕРТЫ</h1>
             <h2> ИП Мовсисян Эдик Нагапетович - г. Волгоград</h2>
             <p>

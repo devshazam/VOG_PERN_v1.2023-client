@@ -39,7 +39,7 @@ const CreateGoods = () => {
                 console.log("dev", data);
                 alert("Данные успешно внесены!");
             } catch (error) {
-                console.log('dev', error.response.data.message, error);
+                console.log('dev', error);
                  alert('Ошибка 506 - Обратитесь к администратору!');
             }
     }

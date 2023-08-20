@@ -7,25 +7,31 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 import SendPay from "../a-components/SendPay";
 import { observer } from "mobx-react-lite";
 import { vizit } from "../../arrays/vizitki.js";
 
 const Vizitki = observer(() => {
-    const [value, setValue] = useState("");
-    const [side, setSide] = useState("odnostoronnie");
-    const [vid, setVid] = useState("matovaya");
-    const [lam, setLam] = useState("bez");
-    const [num, setNum] = useState("96");
+    const [value, setValue] = useState(0);
+    const [side, setSide] = useState("0");
+    const [vid, setVid] = useState("0");
+    const [lam, setLam] = useState("0");
+    const [num, setNum] = useState("0");
     const [description, setDescription] = useState(""); // Телефон
     const name = "Визитки";
-    const goodsId = 1;
+    const goodsId = 0;
+    const vizSize = ['односторонние', 'двусторонние'];
+    const vizVid = ['матовая', 'глянцевая', 'дизайнерская'];
+    const vizLam = ['без ламинации', 'глянцевая', 'матовая'];
+    const vizNum = ['96', '200', '500', '1000'];
+
 
     useEffect(() => {
-        setValue(vizit[side][vid][lam][num]);
+        setValue(vizit[+side][+vid][+lam][+num]);
         setDescription(
-            `Наименование: ${name}; Цена: ${value} рублей; Кол-во сторон печати: ${side}; Бумага: ${vid}; Ламинация: ${lam}; Кол-во: ${num};`
+            `Наименование: ${name}; Цена: ${value} рублей; Кол-во сторон печати: ${vizSize[+side]}; Бумага: ${vizVid[+vid]}; Ламинация: ${vizLam[+lam]}; Кол-во: ${vizNum[+num]};`
         );
     }, [value, side, num, lam, vid]); // <- add the count variable here
 
@@ -37,110 +43,68 @@ const Vizitki = observer(() => {
                         <Image
                             src="/file/pic/vizitki.png"
                             id="goods-image"
+                            alt="Визитку"
                             rounded
                         />
                     </Col>
                     <Col xs={12} lg={6}>
-                        <h1>Цена: {value} p.</h1>
-                        <hr></hr>
+                        <h1 className="mb-3">Цена: {value} p.</h1>
                         <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustomUsername"
-                            >
-                                <Form.Label>Стороны печати:</Form.Label>
-                                <InputGroup hasValidation>
+
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectSide" label="Стороны печати:">
                                     <Form.Select
                                         aria-label="Default select example"
-                                        onChange={(e) =>
-                                            setSide(e.target.value)
-                                        }
-                                        value={side}
-                                    >
-                                        <option value="odnostoronnie">
-                                            Односторонние
-                                        </option>
-                                        <option value="dvustoronnie">
-                                            Двусторонние
-                                        </option>
+                                        onChange={(e) =>setSide(e.target.value)}
+                                        value={side} >
+                                        <option value="0">Односторонние</option>
+                                        <option value="1">Двусторонние</option>
                                     </Form.Select>
-                                </InputGroup>
+                                </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustomUsername"
-                            >
-                                <Form.Label>Бумага:</Form.Label>
-                                <InputGroup hasValidation>
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectVid" label="Бумага:">
                                     <Form.Select
                                         aria-label="Default select example"
                                         onChange={(e) => setVid(e.target.value)}
-                                        value={vid}
-                                    >
-                                        <option value="matovaya">
-                                            Матовая
-                                        </option>
-                                        <option value="glyancevaya">
-                                            Глянцевая
-                                        </option>
-                                        <option value="dizinerskaya">
-                                            Дизайнерская
-                                        </option>
+                                        value={vid} >
+                                        <option value="0">Матовая</option>
+                                        <option value="1">Глянцевая</option>
+                                        <option value="2">Дизайнерская</option>
                                     </Form.Select>
-                                </InputGroup>
+                                </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustomUsername"
-                            >
-                                <Form.Label>Ламинация:</Form.Label>
-                                <InputGroup hasValidation>
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectLam" label="Ламинация:">
                                     <Form.Select
                                         aria-label="Default select example"
                                         onChange={(e) => setLam(e.target.value)}
-                                        value={lam}
-                                    >
-                                        <option value="bez">
-                                            Без ламинации
-                                        </option>
-                                        <option value="glyancevaya">
-                                            Глянцевая
-                                        </option>
-                                        <option value="matovaya">
-                                            Матовая
-                                        </option>
+                                        value={lam} >
+                                        <option value="0">Без ламинации</option>
+                                        <option value="1">Глянцевая</option>
+                                        <option value="2">Матовая</option>
                                     </Form.Select>
-                                </InputGroup>
+                                </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group
-                                as={Col}
-                                md="6"
-                                controlId="validationCustomUsername"
-                            >
-                                <Form.Label>Кол-во:</Form.Label>
-                                <InputGroup hasValidation>
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectNum" label="Кол-во:">
                                     <Form.Select
                                         aria-label="Default select example"
                                         onChange={(e) => setNum(e.target.value)}
-                                        value={num}
-                                    >
-                                        <option value="96">96</option>
-                                        <option value="200">200</option>
-                                        <option value="500">500</option>
-                                        <option value="1000">1000</option>
+                                        value={num} >
+                                        <option value="0">96</option>
+                                        <option value="1">200</option>
+                                        <option value="2">500</option>
+                                        <option value="3">1000</option>
                                     </Form.Select>
-                                </InputGroup>
+                                </FloatingLabel>
                             </Form.Group>
+
                         </Row>
 
-                        <hr></hr>
-                        {/* Вспомогательный компонент */}
                         <SendPay
                             value={value}
                             description={description}

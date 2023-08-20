@@ -15,8 +15,8 @@ import { observer } from "mobx-react-lite";
 const Banner = observer(() => {
     const [value, setValue] = useState(0); // цена товара - расчитаная
 
-    const [width, setWidth] = useState('0'); // ширина баннеар
-    const [height, setHeight] = useState('0'); // высота баннера
+    const [width, setWidth] = useState(''); // ширина баннеар
+    const [height, setHeight] = useState(''); // высота баннера
     const [density, setDensity] = useState("0"); // плотность баннера
     const densityArray = ["400-440", "500"];
     const [luversStep, setLuversStep] = useState("0"); // Телефон
@@ -34,6 +34,7 @@ const Banner = observer(() => {
 
     console.log(description)
     useEffect(() => {
+        if (!width || !height) { return; }  
         if (!width ||!height ||!number) { alert("Не все поля заполнены!"); return; }  
         if(width.split('').length > 200 && height.split('').length > 200 && number.split('').length > 200 ){alert('Не более 200 симолов!');return;} 
         if (!Number.isInteger(+width) || !Number.isInteger(+height) ||!Number.isInteger(+number)) {
@@ -124,6 +125,7 @@ console.log(glue, midglue, midluversStep);
                         <Image
                             src="/file/pic/banner.jpg"
                             id="goods-image"
+                            alt="Баннеры"
                             rounded
                         />
                     </Col>
@@ -132,8 +134,8 @@ console.log(glue, midglue, midluversStep);
                         <h4>(цена люверсов: {luversCoast}р.)</h4>
                         <h4>(цена проклейки: {glueCoast}р.)</h4>
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingPassword" label="Ширина (мм):">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingWidth" label="Ширина (мм):">
                                 <Form.Control
                                     type="text"
                                     placeholder="Ширина (мм):"
@@ -142,18 +144,19 @@ console.log(glue, midglue, midluversStep);
                                 /> 
                                 </FloatingLabel>
                             </Form.Group>
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingPassword" label="Высота (мм):">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingHeight" label="Высота (мм):">
                                 <Form.Control
                                     type="text"
                                     placeholder="Высота (мм):"
                                     onChange={(e) => setHeight(e.target.value)}
+                                    value={height}
                                 />
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingSelect" label="Плотность (грамм):">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectDensity" label="Плотность (грамм):">
                                     <Form.Select aria-label="Floating label select example" onChange={(e) =>
                                             setDensity(e.target.value)
                                         }
@@ -164,8 +167,8 @@ console.log(glue, midglue, midluversStep);
                                 </FloatingLabel>
                             </Form.Group>
                             
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingSelect" label="Шаг люверсов*:">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectLuvers" label="Шаг люверсов*:">
                                     <Form.Select aria-label="Floating label select example" 
                                         onChange={(e) =>setLuversStep(e.target.value)}
                                         >
@@ -186,8 +189,8 @@ console.log(glue, midglue, midluversStep);
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingSelect" label="Проклейка:">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingSelectGlue" label="Проклейка:">
                                     <Form.Select aria-label="Floating label select example" onChange={(e) =>
                                             setGlue(e.target.value)
                                         }
@@ -197,8 +200,8 @@ console.log(glue, midglue, midluversStep);
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
-                            <Form.Group as={Col} md="6" controlId="formGridState" className="mb-3">
-                                <FloatingLabel controlId="floatingPassword" label="Кол-во:">
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel controlId="floatingNumber" label="Кол-во:">
                                 <Form.Control
                                     type="text"
                                     placeholder="Кол-во:"

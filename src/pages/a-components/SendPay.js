@@ -12,56 +12,47 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { createItem } from "../../http/deviceAPI.js";
 import { observer } from "mobx-react-lite";
 
+/*
+ PROPS: value:number:string; description:string; name:string; id:number; 
+
+*/
+
 const SendPay = observer((props) => {
-    // CONTEXT
     const { user, helpers } = useContext(Context);
-    // STATES
     const [spinner, setSpinner] = useState(true); // Запускает спиннер клика по купить
     const [file, setFile] = useState(null); // Файл
-    const [descriptionText, setDescriptionText] = useState("Без описания"); // Файл
-
-    console.log(+helpers.reloadBasket)
+    const [descriptionText, setDescriptionText] = useState(""); // Файл
     
     const countPrice = () => {
         if (!user.isAuth) {
             alert(
-                "Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с левой стороны!"
-            );
-            return;
-        }
+                "Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с правой стороны!"  ); return; }
         if (descriptionText.split("").length > 1000) {
-            alert("Длинна описания должна быть меннее 1000 символов!");
-            return;
-        }
-        if (!file || !Number(props.value)) {
-            alert("Не загружен файл или не сформированна цена!");
-            return;
-        }
+            alert("Длинна описания должна быть меннее 1000 символов!"); return; }
+        if (!file) {
+            alert("Не загружен файл!");  return; }
+        if (!Number.isInteger(+props.value)) {alert("Цена не сформирована!");return;}
         if (+file.size > 1e7) {
-            alert("Вставьте файл не более 10 Mb");
-            return;
-        }
+            alert("Вставьте файл не более 10 Mb"); return; }
+
 
         const formData = new FormData();
         formData.append("value", `${props.value}`);
         formData.append("name", `${props.name}`);
         formData.append("description", `${props.description}`);
-        formData.append("descriptionText", descriptionText);
+        formData.append("descriptionText", `${descriptionText}`);
         formData.append("img", file);
         formData.append("userId", `${user.user.id}`);
         formData.append("goodId", `${props.id}`);
 
-        const formData2 = {value: undefined, name: null, description: 'undefined', descriptionText: 234, userId: 888}
-//qwerty
         setSpinner(false);
         createItem(formData)
             .then((data) => {
-                console.log("dev",  typeof data.goodId, data.goodId);
                 setSpinner(true);
                 helpers.setReloadBasket(+helpers.reloadBasket + 1)
             })
             .catch((error) => {
-                console.log("dev", error.response.data.message, error);
+                console.log("dev", error);
                 alert("Ошибка 506 - Обратитесь к администратору!");
             });
     };
@@ -73,11 +64,10 @@ const SendPay = observer((props) => {
                 <Form.Group
                     as={Col}
                     md="12"
-                    controlId="formGridState"
                     className="mb-3"
                 >
                     <FloatingLabel
-                        controlId="floatingPassword"
+                        controlId="floatingFileOne"
                         label="Размер файла до 10 Mb"
                     >
                         <Form.Control
@@ -90,17 +80,17 @@ const SendPay = observer((props) => {
                 <Form.Group
                     as={Col}
                     md="12"
-                    controlId="formGridState"
                     className="mb-3"
                 >
                     <FloatingLabel
-                        controlId="floatingPassword"
-                        label="Описание: (cсылки на файлы, дополнительные условия)"
+                        controlId="floatingDescriptionItem"
+                        label="Описание (cсылки на файлы, дополнительные условия):"
                     >
                         <Form.Control
                             type="text"
                             placeholder="Ссылки на файлы, дополнительные условия"
                             onChange={(e) => setDescriptionText(e.target.value)}
+                            value={descriptionText}
                         />
                     </FloatingLabel>
                 </Form.Group>

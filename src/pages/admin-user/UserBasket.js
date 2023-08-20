@@ -31,7 +31,7 @@ const UserBasket = () => {
                 }, 0));
             })
             .catch((error) => {
-                console.log("dev", error.response.data.message, error);
+                console.log("dev", error);
                 alert("Ошибка 506 - Обратитесь к администратору!");
             });
     }, [ flag ]);
@@ -41,7 +41,7 @@ const UserBasket = () => {
 
                 setFlag(flag + 1)
         }).catch((error) => { 
-            console.log('dev', error.response.data.message, error);
+            console.log('dev', error);
             alert('Ошибка 506 - Обратитесь к администратору!');
         });
 	}
@@ -51,7 +51,7 @@ const UserBasket = () => {
             helpers.setReloadBasket(+helpers.reloadBasket + 1)
                 setFlag(flag + 1)
         }).catch((error) => { 
-            console.log('dev', error.response.data.message, error);
+            console.log('dev', error);
             alert('Ошибка 506 - Обратитесь к администратору!');
         });
 	}

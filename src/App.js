@@ -39,7 +39,7 @@ const App = observer(() => {
               user.setUser(data)
               user.setIsAuth(true)
             }
-        }).catch((error) => console.log('dev', error.response.data.message, error )).finally(() => setLoading(false))
+        }).catch((error) => console.log('dev', error )).finally(() => setLoading(false))
     }, [])
 
   if (loading) {

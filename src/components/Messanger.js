@@ -17,7 +17,7 @@ function Messanger(){
     return (
 	<>
 
-		  <div class="messenger">
+		  <div className="messenger">
 		  <div title="Чат с менеджером" className="messenger-btn" onClick={openMessanger}><img
 				  src="/file/2/chat.svg"
 				  alt="Чат с менеджером"

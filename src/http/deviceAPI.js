@@ -4,6 +4,8 @@ import jwt_decode from "jwt-decode";
 
 // Done
 export const createItem = async (device) => {
+    console.log(device)
+    alert(123)
     const {data} = await $authHost.post('/api/device', device)
     console.log(data)
     return data
