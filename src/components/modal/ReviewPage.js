@@ -24,7 +24,7 @@ const ReviewPage = observer(() => {
         createReview({subject, review, userId: user.user.id}).then(data => {
           alert('СПАСИБО ЗА ОТЗЫВ!');
           console.log(data)
-          helpers.setModalLogin(false);
+          helpers.setModalReview(false);
         }).catch((error) => { 
             console.log(error.response.data.message, error)
             alert('Ошибка: 501 - сообщите код ошибки администратору сайта');
