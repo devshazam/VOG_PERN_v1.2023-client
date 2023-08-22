@@ -66,7 +66,7 @@ const RegPage = observer(() => {
                         >
                             <Form.Label>Имя:</Form.Label>
                             <Form.Control
-                                type="name"
+                                type="text"
                                 placeholder="Иванов Иван Иванович"
                                 onChange={(e) => setName(e.target.value)}
                             />
@@ -88,7 +88,7 @@ const RegPage = observer(() => {
                         >
                             <Form.Label>Телефон для связи:</Form.Label>
                             <Form.Control
-                                type="text"
+                                type="tel"
                                 onChange={(e) => setPhone(e.target.value)}
                                 placeholder="+7 (999) 123-45-67"
                             />

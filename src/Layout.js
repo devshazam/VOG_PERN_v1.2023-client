@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import LoginPage from "./components/modal/LoginPage";
 import RegPage from "./components/modal/RegPage";
 import ReviewPage from "./components/modal/ReviewPage";
+import ChangeUserCred from "./components/modal/ChangeUserCred";
 
 export default function Layout() {
     return (
@@ -21,6 +22,7 @@ export default function Layout() {
             <LoginPage />
             <RegPage />
             <ReviewPage />
+            <ChangeUserCred />
         </>
     );
 }

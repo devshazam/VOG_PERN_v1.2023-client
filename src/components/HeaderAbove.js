@@ -10,6 +10,7 @@ import { Row, Col } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { reciveBasketCount } from "../http/deviceAPI";
+import { fetchXslFile } from "../http/goodsAPI";
 
 const HeaderAbove = observer(() => {
     const [basketNumber, setBasketNumber] = useState("0");
@@ -38,11 +39,30 @@ const HeaderAbove = observer(() => {
     const showModalReview = () => {
         helpers.setModalReview(true);
     };
+    const changeUserCred = () => {
+        helpers.setModalUserCred(true);
+    };
+
     const logOut = () => {
         user.setIsAuth(false);
         user.setUser({});
         localStorage.removeItem("token");
-        navigate("/");
+        window.location.reload();
+    };
+
+    
+    const fetchXsl = () => {
+        fetchXslFile()
+            .then((data) => {
+                alert("Успешный Вход в систему!");
+                helpers.setModalLogin(false);
+                user.setIsAuth(true);
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log('dev', error);
+                alert('Ошибка 502 - Обратитесь к администратору!');
+            });
     };
 
     return (
@@ -62,10 +82,10 @@ const HeaderAbove = observer(() => {
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
                                     title={user.user.email}
-                                    // menuVariant="dark"
                                 >
-                                    <NavDropdown.Item href="/admin/bar">
-                                        История заказов
+                                    <NavDropdown.Item href="/admin/bar">История заказов</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={changeUserCred}>
+                                        Изменить данные
                                     </NavDropdown.Item>
                                     {user.user.role == "USER" && (
                                         <NavDropdown.Item
@@ -86,7 +106,9 @@ const HeaderAbove = observer(() => {
                                             <NavDropdown.Item href="/admin/create">
                                                 Создать товар
                                             </NavDropdown.Item>
-                                            {/* <NavDropdown.Item href="/admin">Вставить товар</NavDropdown.Item> */}
+                                            <NavDropdown.Item onClick={fetchXsl}>
+                                                Скачать XLS товаров
+                                            </NavDropdown.Item>
                                         </>
                                     )}
                                 </NavDropdown>

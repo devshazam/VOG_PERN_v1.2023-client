@@ -35,25 +35,28 @@ export const deleteDevice = async (id) => {
     return data
 }
 
+// 
 export const deleteOneItem = async (id) => {
     const {data} = await $authHost.post('api/device/delete-basket-item/', {id})
     console.log(data)
     return data
 }
 
+// получение товаров корзины
 export const fetchBasketDevices = async (id) => {
     const {data} = await $authHost.post('api/device/basket/', {id})
     console.log(data)
     return data
 }
 
-
+// оплата товаров в корзине
 export const payBasketList = async (funcPrice) => {
     const {data} = await $authHost.post('api/device/pay-basket-list/', {funcPrice})
     console.log(data)
     return data
 }
 
+// кол-во товаров в корзине
 export const reciveBasketCount = async (id) => {
     const {data} = await $authHost.post('api/device/recive-basket-count/', {id})
     console.log(data)

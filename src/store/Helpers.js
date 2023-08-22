@@ -5,6 +5,7 @@ export default class HelpersStore {
         this._modalRegistration = false
         this._modalLogin = false
         this._modalReview = false
+        this._modalUserCred = false
         this._goodsNum = 0
         makeAutoObservable(this)
     }
@@ -24,8 +25,12 @@ export default class HelpersStore {
     setReloadBasket(num) {
         this._goodsNum = num
     }
+// Done
+    setModalUserCred(modal) {
+        this._modalUserCred = modal
+    }
 
-
+    
 
 
 // Done 
@@ -44,7 +49,9 @@ export default class HelpersStore {
     get reloadBasket() {
         return this._goodsNum
     }
-
+    get modalUserCred() {
+        return this._modalUserCred
+    }
 
 
 }
