@@ -43,7 +43,8 @@ const PrivateCab = () => {
                 setCount(data.count);
             })
             .catch((error) => {
-                if (error) alert(error.response.data.message);
+                console.log('dev', error);
+                alert('Ошибка 512 - Обратитесь к администратору!');
             });
     }, [itemSort, orderSort, limit, page, midOne, id, filter]);
 

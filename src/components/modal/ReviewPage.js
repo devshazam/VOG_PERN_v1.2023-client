@@ -26,8 +26,8 @@ const ReviewPage = observer(() => {
           console.log(data)
           helpers.setModalReview(false);
         }).catch((error) => { 
-            console.log(error.response.data.message, error)
-            alert('Ошибка: 501 - сообщите код ошибки администратору сайта');
+            console.log('dev', error);
+            alert('Ошибка 504 - Обратитесь к администратору!');
         });
     }
 

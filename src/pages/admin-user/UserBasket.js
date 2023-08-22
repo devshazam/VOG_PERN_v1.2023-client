@@ -32,7 +32,7 @@ const UserBasket = () => {
             })
             .catch((error) => {
                 console.log("dev", error);
-                alert("Ошибка 506 - Обратитесь к администратору!");
+                alert("Ошибка 513 - Обратитесь к администратору!");
             });
     }, [ flag ]);
 
@@ -42,7 +42,7 @@ const UserBasket = () => {
                 setFlag(flag + 1)
         }).catch((error) => { 
             console.log('dev', error);
-            alert('Ошибка 506 - Обратитесь к администратору!');
+            alert('Ошибка 514 - Обратитесь к администратору!');
         });
 	}
     
@@ -52,7 +52,7 @@ const UserBasket = () => {
                 setFlag(flag + 1)
         }).catch((error) => { 
             console.log('dev', error);
-            alert('Ошибка 506 - Обратитесь к администратору!');
+            alert('Ошибка 515 - Обратитесь к администратору!');
         });
 	}
 
@@ -63,6 +63,7 @@ const UserBasket = () => {
         <> <h2 className="mb-3">Ваши заказы:</h2>
             <Row className="mb-5">
                 <Col xs={12} sm={{span: 3,  order: 2 }} className="mb-3">
+
                     <h4 className="w-100 mb-3">К оплате: {totalPrice} руб.</h4>
                         <Button className="w-100 mb-3"
                             variant="danger"
@@ -73,6 +74,7 @@ const UserBasket = () => {
                 </Col>
                 <Col xs={12} sm={{span: 9,  order: 1 }} className="mb-3">
                    
+                    <h2 className="mb-3">Параметры доставки:</h2>
                     <Table striped bordered hover>
                         <thead>
                             <tr>

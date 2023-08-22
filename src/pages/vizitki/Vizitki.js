@@ -7,9 +7,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-import SendPay from "../a-components/SendPay";
+import SendToBasket from "../a-components/SendToBasket";
 import { observer } from "mobx-react-lite";
 import { vizit } from "../../arrays/vizitki.js";
 
@@ -22,16 +22,19 @@ const Vizitki = observer(() => {
     const [description, setDescription] = useState(""); // Телефон
     const name = "Визитки";
     const goodsId = 0;
-    const vizSize = ['односторонние', 'двусторонние'];
-    const vizVid = ['матовая', 'глянцевая', 'дизайнерская'];
-    const vizLam = ['без ламинации', 'глянцевая', 'матовая'];
-    const vizNum = ['96', '200', '500', '1000'];
-
+    const vizSize = ["односторонние", "двусторонние"];
+    const vizVid = ["матовая", "глянцевая", "дизайнерская"];
+    const vizLam = ["без ламинации", "глянцевая", "матовая"];
+    const vizNum = ["96", "200", "500", "1000"];
 
     useEffect(() => {
         setValue(vizit[+side][+vid][+lam][+num]);
         setDescription(
-            `Наименование: ${name}; Цена: ${value} рублей; Кол-во сторон печати: ${vizSize[+side]}; Бумага: ${vizVid[+vid]}; Ламинация: ${vizLam[+lam]}; Кол-во: ${vizNum[+num]};`
+            `Наименование: ${name}; Цена: ${value} рублей; Кол-во сторон печати: ${
+                vizSize[+side]
+            }; Бумага: ${vizVid[+vid]}; Ламинация: ${vizLam[+lam]}; Кол-во: ${
+                vizNum[+num]
+            };`
         );
     }, [value, side, num, lam, vid]); // <- add the count variable here
 
@@ -39,24 +42,29 @@ const Vizitki = observer(() => {
         <>
             <Container>
                 <Row>
-                    <Col xs={12} md={6}>
+                    <Col xs={12} md={6} className="wrap-image">
                         <Image
-                            src="/file/pic/vizitki.png"
+                            src="/file/pic/vizitki.jpg"
                             id="goods-image"
                             alt="Визитку"
-                            rounded
+                            thumbnail
                         />
                     </Col>
                     <Col xs={12} lg={6}>
                         <h1 className="mb-3">Цена: {value} p.</h1>
                         <Row className="mb-3">
-
                             <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel controlId="floatingSelectSide" label="Стороны печати:">
+                                <FloatingLabel
+                                    controlId="floatingSelectSide"
+                                    label="Стороны печати:"
+                                >
                                     <Form.Select
                                         aria-label="Default select example"
-                                        onChange={(e) =>setSide(e.target.value)}
-                                        value={side} >
+                                        onChange={(e) =>
+                                            setSide(e.target.value)
+                                        }
+                                        value={side}
+                                    >
                                         <option value="0">Односторонние</option>
                                         <option value="1">Двусторонние</option>
                                     </Form.Select>
@@ -64,11 +72,15 @@ const Vizitki = observer(() => {
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel controlId="floatingSelectVid" label="Бумага:">
+                                <FloatingLabel
+                                    controlId="floatingSelectVid"
+                                    label="Бумага:"
+                                >
                                     <Form.Select
                                         aria-label="Default select example"
                                         onChange={(e) => setVid(e.target.value)}
-                                        value={vid} >
+                                        value={vid}
+                                    >
                                         <option value="0">Матовая</option>
                                         <option value="1">Глянцевая</option>
                                         <option value="2">Дизайнерская</option>
@@ -77,11 +89,15 @@ const Vizitki = observer(() => {
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel controlId="floatingSelectLam" label="Ламинация:">
+                                <FloatingLabel
+                                    controlId="floatingSelectLam"
+                                    label="Ламинация:"
+                                >
                                     <Form.Select
                                         aria-label="Default select example"
                                         onChange={(e) => setLam(e.target.value)}
-                                        value={lam} >
+                                        value={lam}
+                                    >
                                         <option value="0">Без ламинации</option>
                                         <option value="1">Глянцевая</option>
                                         <option value="2">Матовая</option>
@@ -90,11 +106,15 @@ const Vizitki = observer(() => {
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel controlId="floatingSelectNum" label="Кол-во:">
+                                <FloatingLabel
+                                    controlId="floatingSelectNum"
+                                    label="Кол-во:"
+                                >
                                     <Form.Select
                                         aria-label="Default select example"
                                         onChange={(e) => setNum(e.target.value)}
-                                        value={num} >
+                                        value={num}
+                                    >
                                         <option value="0">96</option>
                                         <option value="1">200</option>
                                         <option value="2">500</option>
@@ -102,10 +122,9 @@ const Vizitki = observer(() => {
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
-
                         </Row>
 
-                        <SendPay
+                        <SendToBasket
                             value={value}
                             description={description}
                             name={name}

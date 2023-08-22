@@ -30,7 +30,6 @@ const UpdateGoods = () => {
             });
         }, [ flag ]); 
     
-
     async function updateGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
         if (!name ||!description ||!image ||!group ||!price) { alert("Не все поля заполнены!"); return; }
@@ -53,8 +52,8 @@ const UpdateGoods = () => {
                     alert("Данные успешно изменены!");
                     setFlag(flag + 1);
                 }).catch((error) => { 
-                    console.log('dev', error.response.data.message, error)
-                    alert("Ошибка: 501 - Обратитесь к администратору!");
+                    console.log('dev', error);
+                    alert('Ошибка 511 - Обратитесь к администратору!');
                 });
     }
 

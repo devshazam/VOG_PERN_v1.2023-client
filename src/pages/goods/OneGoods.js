@@ -9,10 +9,10 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import { fetchOneGoods } from "../../http/goodsAPI";
-import SendPay from "../a-components/SendPay";
+import SendToBasket from "../a-components/SendToBasket";
 import { observer } from "mobx-react-lite";
 
 const OneGoods = observer(() => {
@@ -21,7 +21,7 @@ const OneGoods = observer(() => {
     const [number, setNumber] = useState("1"); // кол-во товараов
     const [value, setValue] = useState(0); // стоимость товараов
     const [description, setDescription] = useState("");
-    const [sale, setSale] = useState('');
+    const [sale, setSale] = useState("");
 
     useEffect(() => {
         fetchOneGoods(id)
@@ -31,60 +31,88 @@ const OneGoods = observer(() => {
             })
             .catch((error) => {
                 console.log("dev", error);
-                alert("Ошибка 506 - Обратитесь к администратору!");
+                alert("Ошибка 518 - Обратитесь к администратору!");
             });
-    }, [ id ]); // <- add the count variable here
+    }, [id]); // <- add the count variable here
 
     useEffect(() => {
-        if (Object.keys(goodsItem).length === 0) { return; }
+        if (Object.keys(goodsItem).length === 0) {
+            return;
+        }
         if (number.split("").length > 10) {
-            alert("Слишком большое значение!"); return; }
-            if (!Number.isInteger(+number)) {alert("Введите только целое число!");return;}
+            alert("Слишком большое значение!");
+            return;
+        }
+        if (!Number.isInteger(+number)) {
+            alert("Введите только целое число!");
+            return;
+        }
 
         let midlItem1 = +goodsItem.price * +number;
-        if(midlItem1 >= 3000 && midlItem1 < 10000){
+        if (midlItem1 >= 3000 && midlItem1 < 10000) {
             midlItem1 = midlItem1 * 0.97;
-            setSale('3%');
-        }else if(midlItem1 >= 10000 && midlItem1 < 50000){
-            midlItem1 = midlItem1 * 0.95
-            setSale('5%');
-        }else if(midlItem1 >= 50000 && midlItem1 < 100000){
-            midlItem1 = midlItem1 * 0.93
-            setSale('7%');
-        }else if(midlItem1 >= 100000){
-            midlItem1 = midlItem1 * 0.9
-            setSale('10%');
+            setSale("3%");
+        } else if (midlItem1 >= 10000 && midlItem1 < 50000) {
+            midlItem1 = midlItem1 * 0.95;
+            setSale("5%");
+        } else if (midlItem1 >= 50000 && midlItem1 < 100000) {
+            midlItem1 = midlItem1 * 0.93;
+            setSale("7%");
+        } else if (midlItem1 >= 100000) {
+            midlItem1 = midlItem1 * 0.9;
+            setSale("10%");
         }
         setValue(midlItem1);
 
-        setDescription("Название: " + goodsItem.name + "; ID: " + goodsItem.id + "; описание: " + goodsItem.description + "; категория: " + goodsItem.group + "; кол-во: " + number + "; цена: " + String(midlItem1));
+        setDescription(
+            "Название: " +
+                goodsItem.name +
+                "; ID: " +
+                goodsItem.id +
+                "; описание: " +
+                goodsItem.description +
+                "; категория: " +
+                goodsItem.group +
+                "; кол-во: " +
+                number +
+                "; цена: " +
+                String(midlItem1)
+        );
     }, [number, goodsItem]); // <- add the count variable here
     return (
         <>
             <Container>
                 <Row className="mb-3">
-                    <Col xs={12} md={6}>
-                        <Image src={goodsItem.image} id="goods-image" rounded />
+                    <Col xs={12} md={6} className="wrap-image">
+                        <Image src={goodsItem.image} id="goods-image" thumbnail />
                     </Col>
                     <Col xs={12} lg={6}>
                         <h1>{goodsItem.name}</h1>
-                        <h2 className="mb-3">Цена: {value} p. {sale && 'Скидка ' + sale}</h2>
+                        <h2 className="mb-3">
+                            Цена: {value} p. {sale && "Скидка " + sale}
+                        </h2>
                         {/* <p>Опивание: {goodsItem.description}</p> */}
                         <Row className="mb-3">
-                        <Form.Group as={Col} md="12" className="mb-3">
-                            <FloatingLabel controlId="floatingPassword" label="Кол-во:"> {/* вставить сюда уникальный controlID */} 
-                            <Form.Control
-                                type="text"
-                                placeholder="Штуки"
-                                value={number}
-                                onChange={(e) => setNumber(e.target.value)}
-                            /> 
-                            </FloatingLabel>
-                        </Form.Group>
-
+                            <Form.Group as={Col} md="12" className="mb-3">
+                                <FloatingLabel
+                                    controlId="floatingPassword"
+                                    label="Кол-во:"
+                                >
+                                    {" "}
+                                    {/* вставить сюда уникальный controlID */}
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Штуки"
+                                        value={number}
+                                        onChange={(e) =>
+                                            setNumber(e.target.value)
+                                        }
+                                    />
+                                </FloatingLabel>
+                            </Form.Group>
                         </Row>
 
-                        <SendPay
+                        <SendToBasket
                             value={value}
                             description={description}
                             name={goodsItem.name}
@@ -93,9 +121,7 @@ const OneGoods = observer(() => {
                     </Col>
                 </Row>
                 <h2>{goodsItem.name}</h2>
-                <p>
-                    {goodsItem.description}
-                </p>
+                <p>{goodsItem.description}</p>
             </Container>
         </>
     );

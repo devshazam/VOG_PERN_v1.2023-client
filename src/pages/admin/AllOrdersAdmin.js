@@ -39,7 +39,8 @@ const AllOrdersAdmin = () => {
             setDevices(data.rows)
             setCount(data.count)
         }).catch((error) => { 
-            console.log(error.response.data.message);
+            console.log('dev', error);
+            alert('Ошибка 508 - Обратитесь к администратору!');
         });
     }, [itemSort, orderSort, limit, page, midOne, id, filter])
 
@@ -48,7 +49,8 @@ const AllOrdersAdmin = () => {
 		deleteDevice(id).then(data => {
                 setMidOne(midOne + 1)
         }).catch((error) => { 
-            if(error) alert(error.response.data.message)
+            console.log('dev', error);
+            alert('Ошибка 509 - Обратитесь к администратору!');
         });
 	}
     function choicePage(number){

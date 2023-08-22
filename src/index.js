@@ -18,8 +18,6 @@ root.render(
           device: new DeviceStore(),
           helpers: new HelpersStore(),
       }}>
-
-
           <App />
       </Context.Provider>,
 );

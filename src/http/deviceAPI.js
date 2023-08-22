@@ -61,8 +61,3 @@ export const reciveBasketCount = async (id) => {
 }
 
 
-// export const fetchBasketDevices = async (id) => {
-//     const {data} = await $authHost.post('api/device/delete-item/', {id})
-//     console.log(data)
-//     return data
-// }

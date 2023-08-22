@@ -6,9 +6,9 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-import SendPay from "../a-components/SendPay";
+import SendToBasket from "../a-components/SendToBasket";
 import { observer } from "mobx-react-lite";
 import Container from "react-bootstrap/Container";
 
@@ -18,9 +18,9 @@ const Samokleyka = observer(() => {
     const [width, setWidth] = useState(""); // ширина баннеар
     const [height, setHeight] = useState(""); // высота баннера
     const [description, setDescription] = useState(""); // Телефон
-    const [vidSamo, setVidSamo] = useState('0');
+    const [vidSamo, setVidSamo] = useState("0");
     const [number, setNumber] = useState("1");
-    const [porezka, setPorezka] = useState('0');
+    const [porezka, setPorezka] = useState("0");
     const name = "Cамоклейка";
     const userId = 0;
 
@@ -34,7 +34,16 @@ const Samokleyka = observer(() => {
         [700, 650, 600, 550], // Прозрачная
         [1500, 1400, 1300, 1200], // Светоотражающая
     ];
-    const vidToName = ['белая', 'черная', 'цветная', 'дизайнерская', 'фотолюминесцентная', 'перфорированная', 'прозрачная', 'светоотражающая'];
+    const vidToName = [
+        "белая",
+        "черная",
+        "цветная",
+        "дизайнерская",
+        "фотолюминесцентная",
+        "перфорированная",
+        "прозрачная",
+        "светоотражающая",
+    ];
     const vidToHref = [
         "/file/samokleyki/belaya.jpg",
         "/file/samokleyki/chernaya.jpg",
@@ -45,133 +54,182 @@ const Samokleyka = observer(() => {
         "/file/samokleyki/prozrachnaya.jpg",
         "/file/samokleyki/svetootrajaushaya.jpg",
     ];
-    const porezkaName = ['Без порезки', 'A6', 'A5', 'A4', 'A3', 'A2', 'A1']; // фортмат порезки
-    const porezkaCoast = [0, 5, 7, 10, 25, 42, 51]; // цены на порезку 
-
+    const porezkaName = ["Без порезки", "A6", "A5", "A4", "A3", "A2", "A1"]; // фортмат порезки
+    const porezkaCoast = [0, 5, 7, 10, 25, 42, 51]; // цены на порезку
 
     useEffect(() => {
-        if(!width || !height){return;}
-        if (!width || !height || !vidSamo || !number || !porezka) { alert("Не все поля заполнены!"); return; } 
-        if (width.split('').length > 200 || height.split('').length > 200) {alert('Не более 20 симолов!');return;}
-        if (!Number.isInteger(+width) || !Number.isInteger(+height) || !Number.isInteger(+number)) {alert("Введите только целое число!");return;}
-        
+        if (!width || !height) {
+            return;
+        }
+        if (!width || !height || !vidSamo || !number || !porezka) {
+            alert("Не все поля заполнены!");
+            return;
+        }
+        if (width.split("").length > 200 || height.split("").length > 200) {
+            alert("Не более 20 симолов!");
+            return;
+        }
+        if (
+            !Number.isInteger(+width) ||
+            !Number.isInteger(+height) ||
+            !Number.isInteger(+number)
+        ) {
+            alert("Введите только целое число!");
+            return;
+        }
 
         let m1 = (Number(width) * Number(height) * Number(number)) / 1000000; // кол-во кв. метров всего
         let m2;
         if (m1 < 1) {
-            m2 = m1 * vidToValue[+vidSamo][0]
+            m2 = m1 * vidToValue[+vidSamo][0];
         } else if (m1 >= 1 && m1 < 5) {
-            m2 = m1 * vidToValue[+vidSamo][1]
+            m2 = m1 * vidToValue[+vidSamo][1];
         } else if (m1 >= 5 && m1 < 10) {
-            m2 = m1 * vidToValue[+vidSamo][2]
+            m2 = m1 * vidToValue[+vidSamo][2];
         } else if (m1 >= 10) {
-            m2 = m1 * vidToValue[+vidSamo][3]
+            m2 = m1 * vidToValue[+vidSamo][3];
         }
 
-        if (Math.round((m2 + +number * porezkaCoast[+porezka]) * 100) / 100 <= 200) {
+        if (
+            Math.round((m2 + +number * porezkaCoast[+porezka]) * 100) / 100 <=
+            200
+        ) {
             setValue(200);
         } else {
-            setValue(Math.round((m2 + +number * porezkaCoast[+porezka]) * 100) / 100);
+            setValue(
+                Math.round((m2 + +number * porezkaCoast[+porezka]) * 100) / 100
+            );
         }
 
-            setDescription(
-                `Наименование: ${name}; Вид самоклейки: ${vidToName[+vidSamo]}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number}; Порезка: ${porezkaName[+porezka]};`
-            );
+        setDescription(
+            `Наименование: ${name}; Вид самоклейки: ${
+                vidToName[+vidSamo]
+            }; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number}; Порезка: ${
+                porezkaName[+porezka]
+            };`
+        );
     }, [width, height, vidSamo, number, porezka]);
-
 
     return (
         <>
             <Container>
                 <Row>
-                    <Col xs={12} md={6}>
+                    <Col xs={12} md={6} className="wrap-image">
                         <Image
                             src={vidToHref[+vidSamo]}
                             id="goods-image"
                             alt="Самоклейка"
-                            rounded
+                            thumbnail
                         />
                     </Col>
                     <Col xs={12} lg={6}>
                         <h1>Цена: {value} p.</h1>
                         <h4>(Интерьерная печать)</h4>
-                        
+
                         <Row className="mb-3">
-
-
                             <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel controlId="floatingWidth" label="Ширина (мм):">
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Ширина (мм):"
-                                    onChange={(e) => setWidth(e.target.value)}
-                                    value={width}
-                                /> 
+                                <FloatingLabel
+                                    controlId="floatingWidth"
+                                    label="Ширина (мм):"
+                                >
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Ширина (мм):"
+                                        onChange={(e) =>
+                                            setWidth(e.target.value)
+                                        }
+                                        value={width}
+                                    />
                                 </FloatingLabel>
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel controlId="floatingHeight" label="Высота (мм):">
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Миллиметры"
-                                    onChange={(e) => setHeight(e.target.value)}
-                                    value={height}
-                                /> 
+                                <FloatingLabel
+                                    controlId="floatingHeight"
+                                    label="Высота (мм):"
+                                >
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Миллиметры"
+                                        onChange={(e) =>
+                                            setHeight(e.target.value)
+                                        }
+                                        value={height}
+                                    />
                                 </FloatingLabel>
                             </Form.Group>
 
                             <Form.Group as={Col} md="12" className="mb-3">
-                                <FloatingLabel controlId="floatingSelectVid" label="Вид самоклейки:">
+                                <FloatingLabel
+                                    controlId="floatingSelectVid"
+                                    label="Вид самоклейки:"
+                                >
                                     <Form.Select
                                         aria-label="Default select example"
-                                        onChange={(e) =>setVidSamo(e.target.value)}
+                                        onChange={(e) =>
+                                            setVidSamo(e.target.value)
+                                        }
                                         value={vidSamo}
                                     >
                                         <option value="0">Белая</option>
                                         <option value="1">Черная</option>
                                         <option value="2">Цветная</option>
                                         <option value="3">Дизайнерская</option>
-                                        <option value="4">Фотолюминесцентная</option>
-                                        <option value="5">Перфорированная</option>
+                                        <option value="4">
+                                            Фотолюминесцентная
+                                        </option>
+                                        <option value="5">
+                                            Перфорированная
+                                        </option>
                                         <option value="6">Прозрачная</option>
-                                        <option value="7">Светоотражающая</option>
-                                        </Form.Select>
+                                        <option value="7">
+                                            Светоотражающая
+                                        </option>
+                                    </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel controlId="floatingNumber" label="Кол-во:">
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Штуки"
-                                    value={number}
-                                    onChange={(e) => setNumber(e.target.value)}
-                                /> 
+                                <FloatingLabel
+                                    controlId="floatingNumber"
+                                    label="Кол-во:"
+                                >
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Штуки"
+                                        value={number}
+                                        onChange={(e) =>
+                                            setNumber(e.target.value)
+                                        }
+                                    />
                                 </FloatingLabel>
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel controlId="floatingSelectPorezka" label="Формат порезки:">
-                                    <Form.Select aria-label="Floating label select example" 
-                                        onChange={(e) =>setPorezka(e.target.value)}
+                                <FloatingLabel
+                                    controlId="floatingSelectPorezka"
+                                    label="Формат порезки:"
+                                >
+                                    <Form.Select
+                                        aria-label="Floating label select example"
+                                        onChange={(e) =>
+                                            setPorezka(e.target.value)
+                                        }
                                         value={porezka}
-                                        >
-                                            <option value="0">Без порезки</option>
-                                            <option value="1">А6</option>
-                                            <option value="2">А5</option>
-                                            <option value="3">А4</option>
-                                            <option value="4">А3</option>
-                                            <option value="5">А2</option>
-                                            <option value="6">А1</option>
+                                    >
+                                        <option value="0">Без порезки</option>
+                                        <option value="1">А6</option>
+                                        <option value="2">А5</option>
+                                        <option value="3">А4</option>
+                                        <option value="4">А3</option>
+                                        <option value="5">А2</option>
+                                        <option value="6">А1</option>
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
                         </Row>
 
-                      
-
-                        <SendPay
+                        <SendToBasket
                             value={value}
                             description={description}
                             name={name}

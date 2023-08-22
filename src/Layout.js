@@ -1,44 +1,26 @@
-import React from 'react';
+import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import HeaderAbove from "./components/HeaderAbove";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-
+import Container from "react-bootstrap/Container";
 import Footer from "./components/Footer";
+import LoginPage from "./components/modal/LoginPage";
+import RegPage from "./components/modal/RegPage";
+import ReviewPage from "./components/modal/ReviewPage";
 
-import SiteBar from "./components/SiteBar";
-import LoginPage from './components/modal/LoginPage';
-import RegPage from './components/modal/RegPage';
-import ReviewPage from './components/modal/ReviewPage';
+export default function Layout() {
+    return (
+        <>
+            <HeaderAbove />
 
-export default function  Layout(){
-
-    return ( <>
-
-<HeaderAbove />
-
-
-
-      <Header />
-          <Container className='main-cont'>
-            
-            {/* <Row>
-              <Col xs={0} md={3} className="d-none d-lg-block">
-              <SiteBar />
-              </Col>
-              <Col xs={12} lg ={9}>
-              <Outlet />
-              </Col>
-            </Row> */}
-            <Outlet />
-          </Container>
-          <Footer />
-          <LoginPage />
-          <RegPage />
-          <ReviewPage />
-
-    </>);
+            <Header />
+            <Container className="main-cont">
+                <Outlet />
+            </Container>
+            <Footer />
+            <LoginPage />
+            <RegPage />
+            <ReviewPage />
+        </>
+    );
 }

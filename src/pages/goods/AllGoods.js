@@ -34,8 +34,9 @@ const AllGoods = observer(() => {
             fetchGoodsList( limit, page, categoryIt, itemSort, orderSort ).then(data => {
                 setGoodsCustom(data.rows)
                 setCount(data.count)
-            }).catch((e) => { 
-                console.log(e.response.data.message, e);
+            }).catch((error) => { 
+                console.log('dev', error);
+                alert('Ошибка 516 - Обратитесь к администратору!');
             });
 
     }, [ page, flag, categoryIt, itemSort, orderSort  ]); // <- add the count variable here
@@ -51,7 +52,7 @@ const AllGoods = observer(() => {
             setFlag(flag + 1);
         }).catch((error) => { 
             console.log('dev', error);
-             alert('Ошибка 506 - Обратитесь к администратору!');
+             alert('Ошибка 517 - Обратитесь к администратору!');
         });
 
     }

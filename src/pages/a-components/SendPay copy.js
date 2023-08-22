@@ -59,9 +59,9 @@ const SendPay = observer((props) => {
                 createItem(formData).then((data) => {
                     console.log("00-конечная точка", data);
                     window.location.href = data.confirmation.confirmation_url;
-                }).catch((e) => {
-                    console.log(e.response.data.message)
-                    alert('Ошибка сервера! Пожалуйста обрптитесь к администрации сайта!')
+                }).catch((error) => {
+                    console.log('dev', error);
+                    alert('Ошибка 506 - Обратитесь к администратору!');
                     });
     };
 

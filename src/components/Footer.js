@@ -37,16 +37,11 @@ function Footer(){
 							<p>Email: <a  href="mailto:<a href='mailto: info@kopi34.ru">kopi34@yandex.ru</a></p>
 							<a href='tel:89093802519'>+7(909) 380-25-19</a><br></br>
 							<a href='tel:+78442599161'>+7 (8442) 59-91-61</a>
-							
 						</div>
-
               </Col>
-			  
             </Row>
 			<p >2023 © Копи-Принт - полиграфические услуги. Все права защищены.</p>
           </Container>
-
-
 		  </footer>
 		  <Messanger />
 	  </>
