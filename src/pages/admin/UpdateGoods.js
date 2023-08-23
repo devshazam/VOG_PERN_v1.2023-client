@@ -14,13 +14,14 @@ const UpdateGoods = () => {
     const { user } = useContext(Context);
     const { id } = useParams();
 
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
     const [group, setGroup] = useState("futbolki");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState('');
     const [goodsItem, setGoodsItem] = useState({});
     const [flag, setFlag] = useState(1);
+    const [artikul, setArtikul] = useState('');
 
         useEffect(() => {
             fetchOneGoods( id ).then(data => {
@@ -46,6 +47,7 @@ const UpdateGoods = () => {
                     formData.append("price", Math.ceil(+price));
                     formData.append("userId", `${user.user.id}`);
                     formData.append("id", `${id}`);
+                    formData.append("artikul", `${artikul}`);
 
                 updateItemByID(formData).then((data) => {
                     console.log("dev", data);
@@ -68,10 +70,6 @@ const UpdateGoods = () => {
                             id="goods-image"
                             rounded
                         />  
-                        <h2>Название: {goodsItem.name}</h2>
-                        <p>Цена: {goodsItem.price}</p>
-                        <p>Описаниие: {goodsItem.description}</p>
-                        <p>Категория: {goodsItem.group}</p>
                     </Col>
                     <Col xs={12} lg={6}>
                         <h2>Введите новые значения:</h2>
@@ -79,14 +77,26 @@ const UpdateGoods = () => {
                             <Form.Group
                                 as={Col}
                                 md="12"
-                                controlId="validationCustom01"
                             >
                                 <Form.Label>Название товара (до 200 символов):</Form.Label>
                                 <Form.Control
-                                    required
                                     type="text"
-                                    placeholder="Название товара"
+                                    placeholder={goodsItem.name}
                                     onChange={(e) => setName(e.target.value)}
+                                    value={name}
+                                />
+                            </Form.Group>
+
+                            <Form.Group
+                                as={Col}
+                                md="12"
+                            >
+                                <Form.Label>Артикул:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder={goodsItem.artikul}
+                                    onChange={(e) => setArtikul(e.target.value)}
+                                    value={artikul}
                                 />
                             </Form.Group>
 
@@ -97,10 +107,10 @@ const UpdateGoods = () => {
                             >
                                 <Form.Label>Цена товара (руб.):</Form.Label>
                                 <Form.Control
-                                    required
                                     type="text"
-                                    placeholder="Цена"
+                                    placeholder={goodsItem.price}
                                     onChange={(e) => setPrice(e.target.value)}
+                                    value={price}
                                 />
                             </Form.Group>
 
@@ -111,12 +121,10 @@ const UpdateGoods = () => {
                             >
                                 <Form.Label>Описание товара:</Form.Label>
                                 <Form.Control
-                                    required
                                     type="text"
-                                    placeholder="Описание товара"
-                                    onChange={(e) =>
-                                        setDescription(e.target.value)
-                                    }
+                                    placeholder={goodsItem.description}
+                                    onChange={(e) => setDescription(e.target.value) }
+                                    value={description}
                                 />
                             </Form.Group>
 
@@ -133,7 +141,6 @@ const UpdateGoods = () => {
                             <Form.Group
                                 as={Col}
                                 md="12"
-                                controlId="validationCustomUsername"
                             >
                                 <Form.Label>Группа товаров:</Form.Label>
                                     <Form.Select

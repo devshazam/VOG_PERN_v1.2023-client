@@ -64,3 +64,7 @@ export const reciveBasketCount = async (id) => {
 }
 
 
+export const fetchUsersOrders = async ( params ) => {
+    const {data} = await $authHost.post('/api/device/user-pay-goods', params)
+    return data
+}

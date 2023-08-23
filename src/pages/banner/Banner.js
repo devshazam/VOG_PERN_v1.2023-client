@@ -216,7 +216,7 @@ const Banner = observer(() => {
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
                                     controlId="floatingSelectLuvers"
-                                    label="Шаг люверсов*:"
+                                    label="Шаг люверсов**:"
                                 >
                                     <Form.Select
                                         aria-label="Floating label select example"
@@ -283,7 +283,7 @@ const Banner = observer(() => {
                             id={goodsId}
                         />
                         <p style={{ fontSize: 12 }}>
-                            * - кол-во люверсов может отличчаться на один, два в
+                            ** - кол-во люверсов может отличчаться на один, два в
                             большую сторону
                         </p>
                     </Col>

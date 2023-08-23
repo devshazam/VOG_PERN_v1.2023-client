@@ -91,7 +91,7 @@ const OneGoods = observer(() => {
                         <h2 className="mb-3">
                             Цена: {value} p. {sale && "Скидка " + sale}
                         </h2>
-                        {/* <p>Опивание: {goodsItem.description}</p> */}
+                        <p>Опивание: {goodsItem.artikul}</p>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="12" className="mb-3">
                                 <FloatingLabel

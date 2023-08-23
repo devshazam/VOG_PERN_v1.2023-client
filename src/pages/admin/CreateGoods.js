@@ -18,6 +18,7 @@ const CreateGoods = () => {
     const [image, setImage] = useState(null);
     const [group, setGroup] = useState("futbolki");
     const [price, setPrice] = useState("");
+    const [artikul, setArtikul] = useState('');
 
     async function createGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
@@ -34,6 +35,7 @@ const CreateGoods = () => {
                     formData.append("image", image);
                     formData.append("price", Math.ceil(+price));
                     formData.append("userId", `${user.user.id}`);
+                    formData.append("artikul", `${artikul}`);
             try {
                 const data = await createGoodsItem(formData);
                 console.log("dev", data);
@@ -57,10 +59,23 @@ const CreateGoods = () => {
                             >
                                 <Form.Label>Название товара (до 200 символов):</Form.Label>
                                 <Form.Control
-                                    required
                                     type="text"
                                     placeholder="Название товара"
                                     onChange={(e) => setName(e.target.value)}
+                                />
+                            </Form.Group>
+                            
+                            <Form.Group
+                                as={Col}
+                                md="12"
+                                controlId="validationCustom01"
+                            >
+                                <Form.Label>Артикул:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Название товара"
+                                    onChange={(e) => setArtikul(e.target.value)}
+                                    value={artikul}
                                 />
                             </Form.Group>
 
@@ -93,8 +108,6 @@ const CreateGoods = () => {
                                     }
                                 />
                             </Form.Group>
-
-
 
                             <Form.Group as={Col} md="12" controlId="validationCustom03">
                                 <Form.Label>

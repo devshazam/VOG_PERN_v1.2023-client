@@ -100,7 +100,7 @@ const SendToBasket = observer((props) => {
             </Row>
             <Row className="mb-3">
             <Form.Group as={Col} md="12" className="mb-3">
-                <FloatingLabel controlId="floatingSelect" label="Доставка**:">  {/* вставить сюда уникальный controlID */} 
+                <FloatingLabel controlId="floatingSelect" label="Доставка*:">  {/* вставить сюда уникальный controlID */} 
                     <Form.Select 
                         aria-label="Default select example"
                         onChange={(e) => setCargo(e.target.value)}
@@ -129,9 +129,12 @@ const SendToBasket = observer((props) => {
             }
                 </Row>
 
-            <Button variant="danger" onClick={countPrice} className="w-100">
+            <Button variant="danger" onClick={countPrice} className="w-100 mb-3">
                 {spinner ? "В корзину" : <Spinner animation="border"></Spinner>}
             </Button>
+            <p style={{ fontSize: 12 }}>
+                            * - доставка в течении 3 дней после оплаты
+                        </p>
         </>
     );
 });

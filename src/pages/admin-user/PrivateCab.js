@@ -4,29 +4,21 @@ import { Context } from "../../index";
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 
-import { fetchDevices, deleteDevice } from "../../http/deviceAPI";
+import { fetchUsersOrders } from "../../http/deviceAPI";
 
 
 
 // Таблица заказанных товаров
 const PrivateCab = () => {
     const { user } = useContext(Context);
-
-    const [itemSort, setItemSort] = useState("createdAt");
-    const [orderSort, setOrderSort] = useState("ASC");
-    // const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
-    const [midOne, setMidOne] = useState(1);
-
-    const [id, setId] = useState("0");
-    const [filter, setFilter] = useState("Баннер");
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
 
 
 // Загрузка всех заказов пользователя
     useEffect(() => {
-        fetchDevices(itemSort, orderSort, '10', page, id, filter, user.user.id)
+        fetchUsersOrders({page, userId: user.user.id})
             .then((data) => {
                 setDevices(data.rows);
                 setCount(data.count);
@@ -35,7 +27,7 @@ const PrivateCab = () => {
                 console.log('dev', error);
                 alert('Ошибка 512 - Обратитесь к администратору!');
             });
-    }, [itemSort, orderSort, page, midOne, id, filter]);
+    }, [page]);
 
 
     function choicePage(number){

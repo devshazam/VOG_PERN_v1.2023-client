@@ -54,10 +54,7 @@ const HeaderAbove = observer(() => {
     const fetchXsl = () => {
         fetchXslFile()
             .then((data) => {
-                alert("Успешный Вход в систему!");
-                helpers.setModalLogin(false);
-                user.setIsAuth(true);
-                window.location.reload();
+                document.location.href = data.fileLocation;
             })
             .catch((error) => {
                 console.log('dev', error);
