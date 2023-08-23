@@ -5,16 +5,13 @@ import Image from "react-bootstrap/Image";
 
 import Nav from "react-bootstrap/Nav";
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-import Dropdown from "react-bootstrap/Dropdown";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { reciveBasketCount } from "../http/deviceAPI";
 import { fetchXslFile } from "../http/goodsAPI";
 
 const HeaderAbove = observer(() => {
     const [basketNumber, setBasketNumber] = useState("0");
-    const navigate = useNavigate();
     const { helpers, user } = useContext(Context);
 
     useEffect(() => {
@@ -50,7 +47,6 @@ const HeaderAbove = observer(() => {
         window.location.reload();
     };
 
-    
     const fetchXsl = () => {
         fetchXslFile()
             .then((data) => {

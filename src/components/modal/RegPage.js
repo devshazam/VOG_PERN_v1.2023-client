@@ -12,8 +12,7 @@ import { registration } from "../../http/userAPI";
 
 const RegPage = observer(() => {
     const { helpers } = useContext(Context);
-    const show = helpers.modalRegistration;
-    const [mail, setMail] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [name, setName] = useState("");
@@ -23,38 +22,25 @@ const RegPage = observer(() => {
     };
 
     const makeReg = async () => {
-        try {
-            if (mail && password && name && phone) {
-                if (isEmail(mail)) {
-                    try {
-                        let data = await registration(
-                            mail,
-                            password,
-                            name,
-                            phone
-                        );
-                        console.log(data);
-                        alert("success!");
-                        helpers.setModalRegistration(false);
-                        window.location.reload();
-                    } catch (e) {
-                        alert("Ошибка Сервера - Обратитесь к администратору!");
-                    }
-                } else {
-                    alert("Не корректный email!");
-                }
-            } else {
-                alert("Нужно заполнить все поля!");
-            }
-        } catch (error) {
-            console.log('dev', error);
-            alert('Ошибка 503 - Обратитесь к администратору!');
-        }
+
+        if (!email || !password || !phone || !name) {alert("Оба поля должны быть заполнены!");return;}
+        if(email.split('').length > 200 || password.split('').length > 200 || phone.split('').length > 200 || name.split('').length > 200){alert('Одно из значений более 200 символов!');return;} // длинну строки
+        if(!isEmail(email)) {alert("Email не корректен!"); return;}
+
+        registration(email, password, name, phone).then((data) => {
+                alert("Успешная регистрация!");
+                helpers.setModalRegistration(false);
+                // user.setIsAuth(true);
+                window.location.reload();
+            }).catch((error) => {
+                console.log('dev', error);
+                alert('Ошибка 503 - Обратитесь к администратору!');
+            });
     };
 
     return (
         <>
-            <Modal show={show} onHide={hideModal}>
+            <Modal show={helpers.modalRegistration} onHide={hideModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Форма регистрации на сайте</Modal.Title>
                 </Modal.Header>
@@ -69,6 +55,7 @@ const RegPage = observer(() => {
                                 type="text"
                                 placeholder="Иванов Иван Иванович"
                                 onChange={(e) => setName(e.target.value)}
+                                value={name}
                             />
                         </Form.Group>
                         <Form.Group
@@ -79,7 +66,8 @@ const RegPage = observer(() => {
                             <Form.Control
                                 type="email"
                                 placeholder="name@example.com"
-                                onChange={(e) => setMail(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
                             />
                         </Form.Group>
                         <Form.Group
@@ -91,6 +79,7 @@ const RegPage = observer(() => {
                                 type="tel"
                                 onChange={(e) => setPhone(e.target.value)}
                                 placeholder="+7 (999) 123-45-67"
+                                value={phone}
                             />
                         </Form.Group>
                         <Form.Group
@@ -102,6 +91,7 @@ const RegPage = observer(() => {
                                 type="password"
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="password"
+                                value={password}
                             />
                         </Form.Group>
                         <Button variant="primary" onClick={makeReg}>
@@ -109,14 +99,6 @@ const RegPage = observer(() => {
                         </Button>
                     </Form>
                 </Modal.Body>
-                {/* <Modal.Footer>
-          <Button variant="secondary">
-            Close
-          </Button>
-          <Button variant="primary">
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
             </Modal>
         </>
     );

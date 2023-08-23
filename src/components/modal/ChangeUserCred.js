@@ -10,27 +10,26 @@ import isEmail from 'validator/lib/isEmail';
 
 const ChangeUserCred = observer(() => {
   const {helpers, user} = useContext(Context)
-  const [mail, setMail] = useState(user.user.email);
+  const [email, setEmail] = useState(user.user.email);
   const [phone, setPhone] = useState(user.user.phone);
 
     const hideModal = () => {
       helpers.setModalUserCred(false)
     }
-console.log(typeof mail, typeof phone)
+
     const changeCred = () => {
-        if (!mail || !phone) {alert("Оба поля должны быть заполнены!");return;}
+        if (!email || !phone) {alert("Оба поля должны быть заполнены!");return;}
         if(!user.isAuth) {alert("Пожалуйста авторизируйтесь!"); return;}
-        if(mail.split('').length > 200 || phone.split('').length > 200){alert('Одно из значений более 200 символов!');return;} // длинну строки
-        if(!isEmail(mail)) {alert("Email не корректен!"); return;}
+        if(email.split('').length > 200 || phone.split('').length > 200){alert('Одно из значений более 200 символов!');return;} // длинну строки
+        if(!isEmail(email)) {alert("Email не корректен!"); return;}
         
-        changeCredencials(mail, phone).then(data => {
+        changeCredencials(email, phone).then(data => {
           alert('Данные изменены!');
           // helpers.setModalUserCred(false);
           user.setIsAuth(false);
           user.setUser({});
           localStorage.removeItem("token");
           window.location.reload();
-
         }).catch((error) => { 
             console.log('dev', error);
             alert('Ошибка 504 - Обратитесь к администратору!');
@@ -50,8 +49,8 @@ console.log(typeof mail, typeof phone)
                       <Form.Control
                               type="email"
                               placeholder="email"
-                              onChange={(e) => setMail(e.target.value)}
-                              value={mail}
+                              onChange={(e) => setEmail(e.target.value)}
+                              value={email}
                           />
                   </Form.Group>
                   <Form.Group className="mb-3" >

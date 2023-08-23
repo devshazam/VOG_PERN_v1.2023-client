@@ -33,15 +33,12 @@ const ReviewPage = observer(() => {
 
   return (
     <>
-
-
       <Modal show={helpers.modalReview} onHide={hideModal}>
         <Modal.Header closeButton>
           <Modal.Title>Оставьте свой отзыв:</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
-        <Form>
+          <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                   <Form.Label>Тема:</Form.Label>
                   <Form.Control type="text" placeholder="тема" onChange={e => setSubject(e.target.value)}  value={subject}/>
@@ -51,19 +48,8 @@ const ReviewPage = observer(() => {
                   <Form.Control type='text' onChange={e => setReview(e.target.value)} placeholder="отзыв" value={review} />
                 </Form.Group>
                 <Button variant="primary" onClick={ sendReview }>Отправить</Button>
-          </Form>
-
-
-          
+            </Form>
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary">
-            Close
-          </Button>
-          <Button variant="primary">
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
       </Modal>
     </>
   );

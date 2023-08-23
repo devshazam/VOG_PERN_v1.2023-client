@@ -5,25 +5,28 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
 import { observer } from "mobx-react-lite";
-
 import { login } from "../../http/userAPI";
+import isEmail from 'validator/lib/isEmail';
 
 const LoginPage = observer(() => {
     const { helpers, user } = useContext(Context);
-    const show = helpers.modalLogin;
-    const [mail, setMail] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const hideModal = () => {
         helpers.setModalLogin(false);
     };
 
     // TODO - доделать аинхронную отправку
     const makeLogin = () => {
-        login(mail, password)
-            .then((data) => {
+        if (!email || !password) {alert("Оба поля должны быть заполнены!");return;}
+        if(email.split('').length > 200 || password.split('').length > 200){alert('Одно из значений более 200 символов!');return;} // длинну строки
+        if(!isEmail(email)) {alert("Email не корректен!"); return;}
+
+        login(email, password).then((data) => {
                 alert("Успешный Вход в систему!");
                 helpers.setModalLogin(false);
-                user.setIsAuth(true);
+                // user.setIsAuth(true);
                 window.location.reload();
             })
             .catch((error) => {
@@ -34,7 +37,7 @@ const LoginPage = observer(() => {
 
     return (
         <>
-            <Modal show={show} onHide={hideModal}>
+            <Modal show={helpers.modalLogin} onHide={hideModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Форма входа на сайт</Modal.Title>
                 </Modal.Header>
@@ -48,7 +51,8 @@ const LoginPage = observer(() => {
                             <Form.Control
                                 type="email"
                                 placeholder="name@example.com"
-                                onChange={(e) => setMail(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
                             />
                         </Form.Group>
                         <Form.Group
@@ -59,7 +63,8 @@ const LoginPage = observer(() => {
                             <Form.Control
                                 type="password"
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="password"
+                                value={password}
+                                placeholder="Введите пароль"
                             />
                         </Form.Group>
                         <Button variant="primary" onClick={makeLogin}>
@@ -67,14 +72,6 @@ const LoginPage = observer(() => {
                         </Button>
                     </Form>
                 </Modal.Body>
-                {/* <Modal.Footer>
-          <Button variant="secondary">
-            Close
-          </Button>
-          <Button variant="primary">
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
             </Modal>
         </>
     );

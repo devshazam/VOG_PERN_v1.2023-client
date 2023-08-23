@@ -3,7 +3,6 @@ import { Context } from "../../index";
 
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
@@ -14,24 +13,23 @@ import { observer } from "mobx-react-lite";
 
 const Banner = observer(() => {
     const [value, setValue] = useState(0); // цена товара - расчитаная
-
     const [width, setWidth] = useState(""); // ширина баннеар
     const [height, setHeight] = useState(""); // высота баннера
     const [density, setDensity] = useState("0"); // плотность баннера
-    const densityArray = ["400-440", "500"];
-    const [luversStep, setLuversStep] = useState("0"); // Телефон
-    const luversStepArray = ["0", "200", "300", "400", "500"]; //
-    const [number, setNumber] = useState("1"); // кол-во баннеров
-    const [glue, setGlue] = useState("0");
-    const glueArray = ["без проклейки", "с проклейкой"];
-
     const [glueCoast, setGlueCoast] = useState(0);
     const [luversCoast, setLuversCoast] = useState(0); // Телефон
     const [description, setDescription] = useState(""); // Телефон
-    const name = "Баннер";
-    const goodsId = 0;
+    const [luversStep, setLuversStep] = useState("0"); // Телефон
+    const [number, setNumber] = useState("1"); // кол-во баннеров
+    const [glue, setGlue] = useState("0");
 
-    console.log(description);
+    const name = "Баннер";
+    const goodsId = '0';
+
+    const glueArray = ["без проклейки", "с проклейкой"];
+    const luversStepArray = ["0", "200", "300", "400", "500"]; //
+    const densityArray = ["400-440", "500"];
+
     useEffect(() => {
         if (!width || !height) {
             return;
@@ -277,7 +275,7 @@ const Banner = observer(() => {
                         </Row>
 
                         <SendToBasket
-                            value={value}
+                            value={`${value}`}
                             description={description}
                             name={name}
                             id={goodsId}

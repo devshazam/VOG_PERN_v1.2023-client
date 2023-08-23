@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import { createItem } from "../../http/deviceAPI.js";
@@ -28,16 +27,10 @@ const SendToBasket = observer((props) => {
     
     const countPrice = () => {
         if (!user.isAuth) {
-            alert(
-                "Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с правой стороны!"  ); return; }
-        if (descriptionText.split("").length > 1000) {
-            alert("Длинна описания должна быть меннее 1000 символов!"); return; }
-        if (!file) {
-            alert("Не загружен файл!");  return; }
-        if (!Number.isInteger(+props.value)) {alert("Цена не сформирована!");return;}
-        if (+file.size > 1e7) {
-            alert("Вставьте файл не более 10 Mb"); return; }
-
+            alert("Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с правой стороны!"  ); return; }
+        if (descriptionText.split("").length > 1000) {alert("Длинна описания должна быть меннее 1000 символов!"); return; }
+        if (!file) {alert("Не загружен файл!");  return; }
+        if (+file.size > 1e7) {alert("Вставьте файл не более 10 Mb"); return; }
 
         const formData = new FormData();
         formData.append("value", `${props.value}`);
@@ -49,8 +42,7 @@ const SendToBasket = observer((props) => {
         formData.append("goodId", `${props.id}`);
 
         setSpinner(false);
-        createItem(formData)
-            .then((data) => {
+        createItem(formData).then((data) => {
                 setSpinner(true);
                 helpers.setReloadBasket(+helpers.reloadBasket + 1)
             })
