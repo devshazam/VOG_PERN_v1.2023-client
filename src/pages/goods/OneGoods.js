@@ -27,7 +27,7 @@ const OneGoods = observer(() => {
         fetchOneGoods(id)
             .then((data) => {
                 setGoodsItem(data);
-                // console.log("dev", data);
+                console.log("dev", data);
             })
             .catch((error) => {
                 console.log("dev", error);
@@ -113,11 +113,12 @@ const OneGoods = observer(() => {
                         </Row>
 
                         <SendToBasket
-                            value={value}
+                            value={`${value}`}
                             description={description}
                             name={goodsItem.name}
-                            id={goodsItem.id}
+                            id={`${goodsItem.id}`}
                         />
+  
                     </Col>
                 </Row>
                 <h2>{goodsItem.name}</h2>

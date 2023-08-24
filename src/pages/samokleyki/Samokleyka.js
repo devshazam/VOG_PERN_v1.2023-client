@@ -22,7 +22,7 @@ const Samokleyka = observer(() => {
     const [number, setNumber] = useState("1");
     const [porezka, setPorezka] = useState("0");
     const name = "Cамоклейка";
-    const userId = 0;
+    const goodsId = '0';
 
     const vidToValue = [
         [650, 600, 550, 500], // белая
@@ -230,10 +230,10 @@ const Samokleyka = observer(() => {
                         </Row>
 
                         <SendToBasket
-                            value={value}
+                            value={`${value}`}
                             description={description}
                             name={name}
-                            id={userId}
+                            id={goodsId}
                         />
                     </Col>
                 </Row>

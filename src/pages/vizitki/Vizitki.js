@@ -21,7 +21,7 @@ const Vizitki = observer(() => {
     const [num, setNum] = useState("0");
     const [description, setDescription] = useState(""); // Телефон
     const name = "Визитки";
-    const goodsId = 0;
+    const goodsId = '0';
     const vizSize = ["односторонние", "двусторонние"];
     const vizVid = ["матовая", "глянцевая", "дизайнерская"];
     const vizLam = ["без ламинации", "глянцевая", "матовая"];
@@ -125,11 +125,12 @@ const Vizitki = observer(() => {
                         </Row>
 
                         <SendToBasket
-                            value={value}
+                            value={`${value}`}
                             description={description}
                             name={name}
                             id={goodsId}
                         />
+                        
                     </Col>
                 </Row>
 

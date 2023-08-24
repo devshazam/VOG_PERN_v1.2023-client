@@ -15,13 +15,13 @@ const Banner = observer(() => {
     const [value, setValue] = useState(0); // цена товара - расчитаная
     const [width, setWidth] = useState(""); // ширина баннеар
     const [height, setHeight] = useState(""); // высота баннера
-    const [density, setDensity] = useState("0"); // плотность баннера
     const [glueCoast, setGlueCoast] = useState(0);
     const [luversCoast, setLuversCoast] = useState(0); // Телефон
     const [description, setDescription] = useState(""); // Телефон
     const [luversStep, setLuversStep] = useState("0"); // Телефон
     const [number, setNumber] = useState("1"); // кол-во баннеров
     const [glue, setGlue] = useState("0");
+    const [density, setDensity] = useState("0"); // плотность баннера
 
     const name = "Баннер";
     const goodsId = '0';
@@ -39,8 +39,8 @@ const Banner = observer(() => {
             return;
         }
         if (
-            width.split("").length > 200 &&
-            height.split("").length > 200 &&
+            width.split("").length > 200 ||
+            height.split("").length > 200 ||
             number.split("").length > 200
         ) {
             alert("Не более 200 симолов!");
@@ -105,14 +105,14 @@ const Banner = observer(() => {
                 midNum2 = midNum * 340;
             }
         }
-        console.log("Стоимость баннера", midNum2);
+
 
         let midluversStep = 0; // стоимость
         if (luversStep !== "0") {
             midluversStep =
                 Math.round(
                     ((+width + +height) * +number * 2) /
-                        luversStepArray[+luversStep]
+                        +luversStepArray[+luversStep]
                 ) * 15;
         }
         let midglue = 0; // проклейка
@@ -122,18 +122,17 @@ const Banner = observer(() => {
             );
         }
 
-        console.log(glue, midglue, midluversStep);
 
         setLuversCoast(midluversStep);
         setGlueCoast(midglue);
         if (
-            Math.round((midNum2 + midluversStep + midglue) * 100) / 100 <=
+            Math.round(+(midNum2 + +midluversStep + +midglue) * 100) / 100 <=
             200
         ) {
             setValue(200);
         } else {
             setValue(
-                Math.round((midNum2 + midluversStep + midglue) * 100) / 100
+                Math.round((+midNum2 + +midluversStep + +midglue) * 100) / 100
             );
         }
 
@@ -202,8 +201,8 @@ const Banner = observer(() => {
                                     <Form.Select
                                         aria-label="Floating label select example"
                                         onChange={(e) =>
-                                            setDensity(e.target.value)
-                                        }
+                                            setDensity(e.target.value)}
+                                            value={density}
                                     >
                                         <option value="0">400-440</option>
                                         <option value="1">500</option>
@@ -219,8 +218,8 @@ const Banner = observer(() => {
                                     <Form.Select
                                         aria-label="Floating label select example"
                                         onChange={(e) =>
-                                            setLuversStep(e.target.value)
-                                        }
+                                            setLuversStep(e.target.value)}
+                                            value={luversStep}
                                     >
                                         <option value="0">Без люверсов</option>
                                         <option value="1">
@@ -247,8 +246,8 @@ const Banner = observer(() => {
                                     <Form.Select
                                         aria-label="Floating label select example"
                                         onChange={(e) =>
-                                            setGlue(e.target.value)
-                                        }
+                                            setGlue(e.target.value)}
+                                            value={glue}
                                     >
                                         <option value="0">Без проклейки</option>
                                         <option value="1">

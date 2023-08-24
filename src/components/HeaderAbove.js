@@ -18,7 +18,7 @@ const HeaderAbove = observer(() => {
       if (!user.isAuth) { return; }
         reciveBasketCount(user.user.id)
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 setBasketNumber(res);
             })
             .catch((error) => {

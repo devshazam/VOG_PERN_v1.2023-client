@@ -15,7 +15,7 @@ export const callPay = async () => {
     const {data} = await $authHost.post('/api/device/getpay', {
         payinfo, orderid
       })
-    console.log(data)
+    // console.log(data)
     return data
 }
 
@@ -23,41 +23,41 @@ export const fetchDevices = async (itemSort, orderSort, limit, page, filter, id,
     const {data} = await $host.get('/api/device/admin/devices-view/', {params: {
         itemSort, orderSort, limit, page, filter, id, userId
         }})
-    console.log(data)
+    // console.log(data)
     return data
 }
 
 export const deleteDevice = async (id) => {
     const {data} = await $authHost.post('api/device/delete-item/', {id})
-    console.log(data)
+    // console.log(data)
     return data
 }
 
 // 
 export const deleteOneItem = async (id) => {
     const {data} = await $authHost.post('api/device/delete-basket-item/', {id})
-    console.log(data)
+    // console.log(data)
     return data
 }
 
 // получение товаров корзины
 export const fetchBasketDevices = async (id) => {
     const {data} = await $authHost.post('api/device/basket/', {id})
-    console.log(data)
+    // console.log(data)
     return data
 }
 
 // оплата товаров в корзине
 export const payBasketList = async (funcPrice) => {
     const {data} = await $authHost.post('api/device/pay-basket-list/', {funcPrice})
-    console.log(data)
+    // console.log(data)
     return data
 }
 
 // кол-во товаров в корзине
 export const reciveBasketCount = async (id) => {
     const {data} = await $authHost.post('api/device/recive-basket-count/', {id})
-    console.log(data)
+    // console.log(data)
     return data
 }
 

@@ -24,11 +24,12 @@ const SendToBasket = observer((props) => {
     const [cargo, setCargo] = useState('0');
     const [address, setAddress] = useState('');
     const deliveryType = ['Петропавловская 87', 'Казахская 25', 'СДЕК (до пункта выдачи)', 'СДЕК (до вашего адреса)', 'Почта (до пункта выдачи)',  'Почта (до вашего адреса)']
-    
+
     const countPrice = () => {
         if (!user.isAuth) {
             alert("Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с правой стороны!"  ); return; }
         if (descriptionText.split("").length > 1000) {alert("Длинна описания должна быть меннее 1000 символов!"); return; }
+        if (props.value == '0' || isNaN(props.value)) {alert("Не сформирована цена!");  return; }
         if (!file) {alert("Не загружен файл!");  return; }
         if (+file.size > 1e7) {alert("Вставьте файл не более 10 Mb"); return; }
 

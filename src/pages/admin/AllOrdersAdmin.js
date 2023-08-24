@@ -127,7 +127,8 @@ const AllOrdersAdmin = () => {
             <Table striped bordered hover >
                 <thead>
                     <tr>
-                    <th>ID</th>
+                    <th>ID клиента</th>
+                    <th>ID заказа</th>
                     <th>Имя</th>
                     <th>Описание заказа</th>
                     <th>Описание </th>
@@ -135,11 +136,13 @@ const AllOrdersAdmin = () => {
                     <th>Картинка</th>
                     <th>Статус Готовности и Оплаты</th>
                     <th>Дата создания</th>
+                    <th>Действия</th>
                     </tr>
                 </thead>
                 <tbody>
                     {Object.keys(devices).length ? devices.map(device =>
                         <tr key={device.id}>
+                            <td>{device.userId}</td>
                             <td>{device.id}</td>
                             <td>{device.name}</td>
                             <td>{device.feature}</td>
@@ -160,6 +163,9 @@ const AllOrdersAdmin = () => {
                         </tr>
                     ) : 
                         <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>

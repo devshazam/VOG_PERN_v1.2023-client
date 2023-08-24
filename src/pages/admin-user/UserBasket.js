@@ -10,14 +10,15 @@ import { fetchBasketDevices, payBasketList, deleteOneItem } from "../../http/dev
 // получение всех товаров корзины + удаление элементов из корзины + оплата
 const UserBasket = () => {
     const { helpers, user } = useContext(Context);
-
-    const [id, setId] = useState("0");
-    const [filter, setFilter] = useState("Баннер");
+    
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [flag, setFlag] = useState(0);
+    const [ordersId, setOrdersId] = useState([]);
 
+
+    console.log(ordersId)
     // Загрузка всех заказов пользователя
     useEffect(() => {
         fetchBasketDevices(user.user.id)
@@ -26,9 +27,12 @@ const UserBasket = () => {
                 setDevices(data.rows);
                 setCount(data.count);
                 setTotalPrice(data.rows.reduce((total, num) => {
-                    return total + +num.price;
+                    return total + Math.ceil(+num.price * 100) / 100;
                 
                 }, 0));
+                setOrdersId(data.rows.map((item) => {
+                    return +item.id;
+                }))
             })
             .catch((error) => {
                 console.log("dev", error);
@@ -74,7 +78,6 @@ const UserBasket = () => {
                 </Col>
                 <Col xs={12} sm={{span: 9,  order: 1 }} className="mb-3">
                    
-                    <h2 className="mb-3">Параметры доставки:</h2>
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -94,7 +97,7 @@ const UserBasket = () => {
                                         <td>{device.feature}</td>
                                         <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
                                         <td>{device.price} руб.</td>
-                                        <td><Button variant="danger" onClick={() => removeOneItem(+device.id) }>Убрать</Button></td>
+                                        <td><Button variant="danger" onClick={() => removeOneItem(device.id) }>Убрать</Button></td>
                                     </tr>
                                 ))}
                                 <tr>
