@@ -22,8 +22,8 @@ const CreateGoods = () => {
 
     async function createGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
-        if (!name ||!description ||!image ||!group ||!price) { alert("Не все поля заполнены!"); return; }
-        if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
+        if (!name || !description || !image || !group || !price || !artikul) { alert("Не все поля заполнены!"); return; }
+        if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250 || artikul.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
         if(!+price){alert('Не допустимое значение цены!'); return;}
         if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
         if (image.name.split('.').reverse()[0] !== 'jpg'){alert("Формат файла только jpg");return}

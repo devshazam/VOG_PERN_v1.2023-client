@@ -17,6 +17,7 @@ import { fetchDevices, deleteDevice } from '../../http/deviceAPI'
 // Страница с формой для входа (логин) на сайт
 
 const AllOrdersAdmin = () => {
+    const {device} = useContext(Context)
     const [itemSort, setItemSort] = useState('createdAt');
     const [orderSort, setOrderSort] = useState('ASC');
     const [limit, setLimit] = useState(10);
@@ -26,11 +27,9 @@ const AllOrdersAdmin = () => {
     const [id, setId] = useState('0');
     const [filter, setFilter] = useState('Баннер');
 
-
-
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
-    const {device} = useContext(Context)
+
     const userId = undefined;
 
 
@@ -64,7 +63,8 @@ const AllOrdersAdmin = () => {
         }
 	}
     
-
+console.log(devices)
+console.log()
     let midlItem1 = Math.ceil(count / limit)
     let items = [];
     for (let number = 1; number <= midlItem1; number++) {
@@ -132,7 +132,6 @@ const AllOrdersAdmin = () => {
                     <th>Имя</th>
                     <th>Описание заказа</th>
                     <th>Описание </th>
-                    <th>Описание Клиента</th>
                     <th>Картинка</th>
                     <th>Статус Готовности и Оплаты</th>
                     <th>Дата создания</th>
@@ -147,7 +146,6 @@ const AllOrdersAdmin = () => {
                             <td>{device.name}</td>
                             <td>{device.feature}</td>
                             <td>{device.descriptionText}</td>
-                            <td>{device.userDescription}</td>
                             
                             <td>
                                 <a href={device.img}> Ссылка на картинку</a>

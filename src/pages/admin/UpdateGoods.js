@@ -3,6 +3,7 @@ import { Context } from "../../index";
 import { useParams } from "react-router-dom";
 import { fetchOneGoods, updateItemByID } from "../../http/goodsAPI";
 
+import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -14,6 +15,7 @@ const UpdateGoods = () => {
     const { user } = useContext(Context);
     const { id } = useParams();
 
+    const [spinner, setSpinner] = useState(true); // Запускает спиннер клика по купить
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
@@ -23,6 +25,8 @@ const UpdateGoods = () => {
     const [flag, setFlag] = useState(1);
     const [artikul, setArtikul] = useState('');
 
+
+    console.log(goodsItem)
         useEffect(() => {
             fetchOneGoods( id ).then(data => {
                 setGoodsItem(data)
@@ -49,8 +53,11 @@ const UpdateGoods = () => {
                     formData.append("id", `${id}`);
                     formData.append("artikul", `${artikul}`);
 
+                    setSpinner(false)
+
                 updateItemByID(formData).then((data) => {
-                    console.log("dev", data);
+                    // console.log("dev", data);
+                    setSpinner(true)
                     alert("Данные успешно изменены!");
                     setFlag(flag + 1);
                 }).catch((error) => { 
@@ -157,11 +164,20 @@ const UpdateGoods = () => {
                                     </Form.Select>
                             </Form.Group>
 
+                            
+                            {spinner ? 
                             <Button
                                 variant="danger"
                                 onClick={updateGoodsItemFunction}
-                            >Создать
-                            </Button>
+                            >Обновить
+                            </Button> 
+                            : 
+                            <Button
+                                variant="danger"
+                            >
+                            <Spinner animation="border"></Spinner>
+                            </Button> 
+                            }
                         </Row>
                     </Col>
                 </Row>

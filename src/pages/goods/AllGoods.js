@@ -18,20 +18,22 @@ import { fetchGoodsList, deleteItemByID } from '../../http/goodsAPI';
 import { observer } from "mobx-react-lite";
 
 const AllGoods = observer(() => {
-    const { user} = useContext(Context)
+    const { user } = useContext(Context)
     const { category } = useParams();
-    const [goodsCustom, setGoodsCustom] = useState({}); // цена товара - расчитаная
-    const [count, setCount] = useState(0); // цена товара - расчитаная
-    const [number, setNumber] = useState(0); // цена товара - расчитаная
-    const [page, setPage] = useState(1); 
+
+    const [goodsCustom, setGoodsCustom] = useState({}); 
+    const [count, setCount] = useState(0); 
     const [flag, setFlag] = useState(1);
+
+    const limit = '24';
+    const [page, setPage] = useState(1); 
     const [categoryIt, setCategoryIt] = useState(category);
     const [itemSort, setItemSort] = useState('createdAt');
     const [orderSort, setOrderSort] = useState('ASC');
-    let limit = 24;
+
 
     useEffect(() => {
-            fetchGoodsList( limit, page, categoryIt, itemSort, orderSort ).then(data => {
+            fetchGoodsList( limit, `${page}`, categoryIt, itemSort, orderSort ).then(data => {
                 setGoodsCustom(data.rows)
                 setCount(data.count)
             }).catch((error) => { 
@@ -46,15 +48,14 @@ const AllGoods = observer(() => {
     }
 
     async function deleteItem (id){
-
         deleteItemByID(id).then(data => {
-            console.log("dev", "Товар удален!");
+            console.log(data)
             setFlag(flag + 1);
+            alert("Товар удален!");
         }).catch((error) => { 
             console.log('dev', error);
              alert('Ошибка 517 - Обратитесь к администратору!');
         });
-
     }
 
     let midlItem1 = Math.ceil(count / limit)

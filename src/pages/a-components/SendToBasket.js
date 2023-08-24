@@ -46,6 +46,7 @@ const SendToBasket = observer((props) => {
         createItem(formData).then((data) => {
                 setSpinner(true);
                 helpers.setReloadBasket(+helpers.reloadBasket + 1)
+                alert('Заказ добавлен в корзину!')
             })
             .catch((error) => {
                 console.log("dev", error);
@@ -122,9 +123,17 @@ const SendToBasket = observer((props) => {
             }
                 </Row>
 
-            <Button variant="danger" onClick={countPrice} className="w-100 mb-3">
-                {spinner ? "В корзину" : <Spinner animation="border"></Spinner>}
-            </Button>
+                {spinner ? 
+                    <Button variant="danger" onClick={countPrice} className="w-100 mb-3">
+                            В корзину
+                    </Button> 
+                : 
+                    <Button variant="danger" className="w-100 mb-3">
+                    <Spinner animation="border"></Spinner>
+                    </Button> 
+                }
+
+
             <p style={{ fontSize: 12 }}>
                             * - доставка в течении 3 дней после оплаты
                         </p>

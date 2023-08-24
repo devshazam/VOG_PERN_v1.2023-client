@@ -6,8 +6,6 @@ import Pagination from "react-bootstrap/Pagination";
 
 import { fetchUsersOrders } from "../../http/deviceAPI";
 
-
-
 // Таблица заказанных товаров
 const PrivateCab = () => {
     const { user } = useContext(Context);
@@ -15,10 +13,9 @@ const PrivateCab = () => {
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
 
-
 // Загрузка всех заказов пользователя
     useEffect(() => {
-        fetchUsersOrders({page, userId: user.user.id})
+        fetchUsersOrders({page: `${page}`, userId: `${user.user.id}`})
             .then((data) => {
                 setDevices(data.rows);
                 setCount(data.count);
@@ -28,7 +25,6 @@ const PrivateCab = () => {
                 alert('Ошибка 512 - Обратитесь к администратору!');
             });
     }, [page]);
-
 
     function choicePage(number){
         setPage(number);
