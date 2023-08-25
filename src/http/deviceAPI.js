@@ -11,7 +11,7 @@ export const createItem = async (device) => {
 
 export const callPay = async () => {
     const payinfo = localStorage.getItem('payid')
-    const orderid = localStorage.getItem('orderid')
+    const orderid = localStorage.getItem('ordersId')
     const {data} = await $authHost.post('/api/device/getpay', {
         payinfo, orderid
       })
@@ -48,9 +48,13 @@ export const fetchBasketDevices = async (id) => {
 }
 
 // оплата товаров в корзине
-export const payBasketList = async (funcPrice) => {
-    const {data} = await $authHost.post('api/device/pay-basket-list/', {funcPrice})
-    // console.log(data)
+export const payBasketList = async (value, ordersId) => {
+    console.log(123)
+    console.log(ordersId)
+    localStorage.setItem('ordersId', JSON.stringify(ordersId));
+    const {data} = await $authHost.post('api/device/pay-basket-list/', {value})
+    // console.log(data.id)
+    localStorage.setItem('payid', String(data.id));
     return data
 }
 

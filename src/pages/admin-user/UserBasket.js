@@ -40,10 +40,11 @@ const UserBasket = () => {
             });
     }, [ flag ]);
 
-    function payForBasket(funcPrice) {
-		payBasketList(funcPrice).then(data => {
+    function payForBasket(value) {
+		payBasketList(value, ordersId).then(data => {
+            console.log(data.id)
+            window.location.href = data.confirmation.confirmation_url;
 
-                setFlag(flag + 1)
         }).catch((error) => { 
             console.log('dev', error);
             alert('Ошибка 514 - Обратитесь к администратору!');
@@ -60,7 +61,7 @@ const UserBasket = () => {
         });
 	}
 
-    
+    console.log(totalPrice)
     // #########################################################################################
 
     return (
@@ -71,7 +72,7 @@ const UserBasket = () => {
                     <h4 className="w-100 mb-3">К оплате: {totalPrice} руб.</h4>
                         <Button className="w-100 mb-3"
                             variant="danger"
-                            onClick={payForBasket}
+                            onClick={() => payForBasket(totalPrice)}
                         >Оплатить 
                         </Button>
                      <p style={{fontSize: 12}}>Оплата производится с помощью сервиса онлайн платежей <a href="https://yoomoney.ru/">Юмани</a></p>

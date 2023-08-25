@@ -8,11 +8,13 @@ const Contacts = () => {
     useEffect(() => {
         callPay()
             .then((data) => {
+                console.log(data.status)
                 if (data.status == "success") {
                     setValue("Оплата прошла успешно!");
                 } else {
                     setValue("Оплата НЕ прошла!");
                 }
+                setTimeout(function() {window.location.href = '/'; }, 10000); 
             })
             .catch((error) => {
                 console.log('dev', error);
@@ -22,9 +24,11 @@ const Contacts = () => {
 
     return (
         <>
-            <div className="col-sm-9" id="content">
+            <div className="col-sm-9" id="contentIdPay">
                 <h1>{value}</h1>
+                <p>В течении 10 секунд вы будете перенаправлены на главную страницу!</p>
             </div>
+
         </>
     );
 };
