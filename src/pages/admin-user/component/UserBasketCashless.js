@@ -40,16 +40,6 @@ const UserBasket = () => {
             });
     }, [ flag ]);
 
-    function payForBasket(value) {
-		payBasketList(value, ordersId).then(data => {
-            console.log(data.id)
-            window.location.href = data.confirmation.confirmation_url;
-
-        }).catch((error) => { 
-            console.log('dev', error);
-            alert('Ошибка 514 - Обратитесь к администратору!');
-        });
-	}
     
     function removeOneItem(id) {
 		deleteOneItem(id).then(data => {
@@ -65,20 +55,7 @@ const UserBasket = () => {
     // #########################################################################################
 
     return (
-        <> <h2 className="mb-3">Ваши заказы:</h2>
-            <Row className="mb-5">
-                <Col xs={12} sm={{span: 3,  order: 2 }} className="mb-3">
-
-                    <h4 className="w-100 mb-3">К оплате: {totalPrice} руб.</h4>
-                        <Button className="w-100 mb-3"
-                            variant="danger"
-                            onClick={() => payForBasket(totalPrice)}
-                        >Оплатить 
-                        </Button>
-                     <p style={{fontSize: 12}}>Оплата производится с помощью сервиса онлайн платежей <a href="https://yoomoney.ru/">Юмани</a></p>
-                    <p>Перейти к <a href="https://yoomoney.ru/">безналичной оплате.</a></p>
-                </Col>
-                <Col xs={12} sm={{span: 9,  order: 1 }} className="mb-3">
+        <> 
                    
                     <Table striped bordered hover>
                         <thead>
@@ -122,9 +99,7 @@ const UserBasket = () => {
                             )}
                         </tbody>
                     </Table>
-                </Col>
-                
-            </Row>
+
         </>
     );
 };
