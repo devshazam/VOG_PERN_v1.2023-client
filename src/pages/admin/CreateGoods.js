@@ -18,11 +18,12 @@ const CreateGoods = () => {
     const [image, setImage] = useState(null);
     const [group, setGroup] = useState("futbolki");
     const [price, setPrice] = useState("");
+    const [priceImg, setPriceImg] = useState("");
     const [artikul, setArtikul] = useState('');
 
     async function createGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
-        if (!name || !description || !image || !group || !price || !artikul) { alert("Не все поля заполнены!"); return; }
+        if (!name || !description || !image || !group || !price || !artikul || !priceImg) { alert("Не все поля заполнены!"); return; }
         if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250 || artikul.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
         if(!+price){alert('Не допустимое значение цены!'); return;}
         if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
@@ -34,6 +35,7 @@ const CreateGoods = () => {
                     formData.append("group", group);
                     formData.append("image", image);
                     formData.append("price", Math.ceil(+price));
+                    formData.append("priceImg", Math.ceil(+priceImg));
                     formData.append("userId", `${user.user.id}`);
                     formData.append("artikul", `${artikul}`);
             try {
@@ -90,6 +92,19 @@ const CreateGoods = () => {
                                     type="text"
                                     placeholder="600"
                                     onChange={(e) => setPrice(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Form.Group
+                                as={Col}
+                                md="12"
+                                controlId="validationCustom01"
+                            >
+                                <Form.Label>Цена товара (Только руб. - Без копеек.!):</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    placeholder="600"
+                                    onChange={(e) => setPriceImg(e.target.value)}
                                 />
                             </Form.Group>
 

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../../index";
+import { Context } from "../../../index";
 
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-import { fetchBasketDevices, payBasketList, deleteOneItem } from "../../http/deviceAPI";
+import { fetchBasketDevices, payBasketList, deleteOneItem } from "../../../http/deviceAPI";
 
 
 // получение всех товаров корзины + удаление элементов из корзины + оплата
-const CashlessTable = observer((props) => {
+const CashlessTable = (props) => {
 
     const { helpers } = useContext(Context);
 
@@ -64,6 +64,6 @@ const CashlessTable = observer((props) => {
 
         </>
     );
-});
+};
 
 export default CashlessTable;

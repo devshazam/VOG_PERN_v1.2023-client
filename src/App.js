@@ -22,6 +22,7 @@ import OneGoods from "./pages/goods/OneGoods.js";
 import CreateGoods from "./pages/admin/CreateGoods.js";
 import UpdateGoods from "./pages/admin/UpdateGoods.js";
 
+import UserBasketCashless from './pages/admin-user/UserBasketCashless';
 import UserBasket from "./pages/admin-user/UserBasket.js";
 import PrivateCab from "./pages/admin-user/PrivateCab.js";
 
@@ -58,6 +59,7 @@ const App = observer(() => {
               <Route path="/admin/bar" element={<PrivateCab  />} />
               <Route path="/admin/create" element={<CreateGoods  />} />
               <Route path="/admin/user-basket" element={<UserBasket  />} />
+              <Route path="/admin/user-basket-cashless" element={<UserBasketCashless  />} />
 
           </Route>
           <Route path="/" element={<Layout />}>

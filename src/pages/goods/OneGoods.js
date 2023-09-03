@@ -12,7 +12,7 @@ import Card from "react-bootstrap/Card";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import { fetchOneGoods } from "../../http/goodsAPI";
-import SendToBasket from "../a-components/SendToBasket";
+import SendToBasketGoods from "../a-components/SendToBasketGoods";
 import { observer } from "mobx-react-lite";
 
 const OneGoods = observer(() => {
@@ -22,6 +22,8 @@ const OneGoods = observer(() => {
     const [value, setValue] = useState(0); // стоимость товараов
     const [description, setDescription] = useState("");
     const [sale, setSale] = useState("");
+    const [goodsImg, setGoodsImg] = useState("0");
+    const arrayGoodsItem = ['без картинки', 'с картинкой'];
 
     useEffect(() => {
         fetchOneGoods(id)
@@ -47,9 +49,16 @@ const OneGoods = observer(() => {
             alert("Введите только целое число!");
             return;
         }
-
-        let midlItem1 = +goodsItem.price * +number;
-        if (midlItem1 >= 3000 && midlItem1 < 10000) {
+        let midlItem1;
+        if(+goodsImg){
+            midlItem1 = +goodsItem.price_img * +number;
+        }else{
+            midlItem1 = +goodsItem.price * +number;
+        }
+        
+        if (midlItem1 < 3000) {
+            setSale("");
+        } else if (midlItem1 >= 3000 && midlItem1 < 10000) {
             midlItem1 = midlItem1 * 0.97;
             setSale("3%");
         } else if (midlItem1 >= 10000 && midlItem1 < 50000) {
@@ -62,11 +71,13 @@ const OneGoods = observer(() => {
             midlItem1 = midlItem1 * 0.9;
             setSale("10%");
         }
-        setValue(midlItem1);
+        setValue(Math.ceil(midlItem1 * 100) / 100 );
 
         setDescription(
             "Название: " +
                 goodsItem.name +
+                "; Картинка: " +
+                arrayGoodsItem[goodsImg] +
                 "; ID: " +
                 goodsItem.id +
                 "; описание: " +
@@ -78,7 +89,7 @@ const OneGoods = observer(() => {
                 "; цена: " +
                 String(midlItem1)
         );
-    }, [number, goodsItem]); // <- add the count variable here
+    }, [number, goodsItem, goodsImg]); // <- add the count variable here
     return (
         <>
             <Container>
@@ -93,7 +104,7 @@ const OneGoods = observer(() => {
                         </h2>
                         <p>Артикул: {goodsItem.artikul}</p>
                         <Row className="mb-3">
-                            <Form.Group as={Col} md="12" className="mb-3">
+                            <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
                                     controlId="floatingPassword"
                                     label="Кол-во:"
@@ -110,13 +121,31 @@ const OneGoods = observer(() => {
                                     />
                                 </FloatingLabel>
                             </Form.Group>
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel
+                                    controlId="floatingGoodsImg"
+                                    label="Оформление:"
+                                >
+                                    {" "}
+                                    {/* вставить сюда уникальный controlID */}
+                                    <Form.Select 
+                                        aria-label="Default select example"
+                                        onChange={(e) => setGoodsImg(e.target.value)}
+                                        value={goodsImg} >
+                                            <option value="0">Без оформления</option>
+                                            <option value="1">Приложить картинку</option>
+                                    </Form.Select>
+                                </FloatingLabel>
+                            </Form.Group>
                         </Row>
 
-                        <SendToBasket
+                        <SendToBasketGoods
                             value={`${value}`}
                             description={description}
                             name={goodsItem.name}
                             id={`${goodsItem.id}`}
+                            goodsFlag={goodsImg}
+
                         />
   
                     </Col>

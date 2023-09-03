@@ -70,3 +70,17 @@ export const fetchUsersOrders = async ( params ) => {
     const {data} = await $authHost.post('/api/device/user-pay-goods', params)
     return data
 }
+
+
+export const fetchRequisites = async (array) => {
+    const {data} = await $authHost.post('/api/device/fetch-requisites', array)
+    // console.log(data)
+    return data
+}
+
+
+export const createRequisites = async (array) => {
+    const {data} = await $authHost.post('/api/device/create-requisites', array)
+    // console.log(data)
+    return data
+}
