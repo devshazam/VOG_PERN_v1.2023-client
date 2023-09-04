@@ -147,7 +147,7 @@ const CashlessTable = () => {
                                         В корзину
                                 </Button> 
                             : 
-                                <Button variant="danger" className="w-100 mb-3">
+                                <Button variant="danger" onClick={doCreateRequisites} className="w-100 mb-3">
                                     <Spinner animation="border"></Spinner>
                                 </Button> 
                             }

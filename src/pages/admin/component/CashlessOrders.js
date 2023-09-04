@@ -1,26 +1,21 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {Context} from "../../index";
+import {Context} from "../../../index";
 
-import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
-
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 import Pagination from 'react-bootstrap/Pagination';
-import { fetchDevices, deleteDevice } from '../../http/deviceAPI'
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-
-import CashlessOrders from './component/CashlessOrders';
+import Table from 'react-bootstrap/Table';
 
 
-// Страница с формой для входа (логин) на сайт
+import { createRequisites } from "../../../http/deviceAPI";
 
-const AllOrdersAdmin = () => {
+// получение всех товаров корзины + удаление элементов из корзины + оплата
+const CashlessOrder = () => {
     const {device} = useContext(Context)
     const [itemSort, setItemSort] = useState('createdAt');
     const [orderSort, setOrderSort] = useState('ASC');
@@ -37,24 +32,24 @@ const AllOrdersAdmin = () => {
     const userId = undefined;
 
 
-    useEffect(() => {
-        fetchDevices(itemSort, orderSort, limit, page, filter, id, userId).then(data => {
-            setDevices(data.rows)
-            setCount(data.count)
-        }).catch((error) => { 
-            console.log('dev', error);
-            alert('Ошибка 508 - Обратитесь к администратору!');
-        });
-    }, [itemSort, orderSort, limit, page, midOne, id, filter])
+    // useEffect(() => {
+    //     fetchDevices(itemSort, orderSort, limit, page, filter, id, userId).then(data => {
+    //         setDevices(data.rows)
+    //         setCount(data.count)
+    //     }).catch((error) => { 
+    //         console.log('dev', error);
+    //         alert('Ошибка 508 - Обратитесь к администратору!');
+    //     });
+    // }, [itemSort, orderSort, limit, page, midOne, id, filter])
 
     
     function doneItem(id) {
-		deleteDevice(id).then(data => {
-                setMidOne(midOne + 1)
-        }).catch((error) => { 
-            console.log('dev', error);
-            alert('Ошибка 509 - Обратитесь к администратору!');
-        });
+		// deleteDevice(id).then(data => {
+        //         setMidOne(midOne + 1)
+        // }).catch((error) => { 
+        //     console.log('dev', error);
+        //     alert('Ошибка 509 - Обратитесь к администратору!');
+        // });
 	}
     function choicePage(number){
         setPage(number);
@@ -84,17 +79,11 @@ console.log()
 
         </div>
     );
-    
+
+    // #########################################################################################
     return (
         <>
-
-    <Tabs
-      defaultActiveKey="home"
-      id="uncontrolled-tab-example"
-      className="mb-3"
-    >
-            <Tab eventKey="home" title="Интернет оплата">
-                <Container>
+                              <Container>
                         <Row>
                         <Col xs={12} md={3}>
                                     <Form.Label>Поиск по ID</Form.Label>
@@ -186,16 +175,9 @@ console.log()
 
                         {paginationBasic}
                         </Container>
-            </Tab>
-            <Tab eventKey="cashless" title="Безналичный расчет">
-                    <CashlessOrders />
-            </Tab>
-
-    </Tabs>
-
 
         </>
     );
 };
 
-export default AllOrdersAdmin;
+export default CashlessOrder;
