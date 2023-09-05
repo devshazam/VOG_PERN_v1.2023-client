@@ -57,9 +57,8 @@ const PrivateCab = () => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Название</th>
-                        <th>Описание заказа</th>
-                        <th>Статус готовности</th>
+                        <th>Цена</th>
+                        <th>Статус оплаты</th>
                         <th>Дата создания</th>
                     </tr>
                 </thead>
@@ -67,13 +66,12 @@ const PrivateCab = () => {
                     {Object.keys(devices).length ? 
                         devices.map((device) => (
                             <tr key={device.id}>
-                                <td>{device.name}</td>
-                                <td>{device.feature}</td>
+                                <td>{device.value}</td>
                                 <td>
-                                    {device.status_done ? (
-                                        <p>готово</p>
+                                    {device.status ? (
+                                        <p>оплачено</p>
                                     ) : (
-                                        <p>не готово</p>
+                                        <p><a href='#'>не оплачено</a></p>
                                     )}
                                 </td>
                                 <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
@@ -81,7 +79,6 @@ const PrivateCab = () => {
                         ))
                      : 
                         <tr>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

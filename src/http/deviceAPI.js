@@ -48,12 +48,8 @@ export const fetchBasketDevices = async (id) => {
 }
 
 // оплата товаров в корзине
-export const payBasketList = async (value, ordersId) => {
-    console.log(123)
-    console.log(ordersId)
-    localStorage.setItem('ordersId', JSON.stringify(ordersId));
-    const {data} = await $authHost.post('api/device/pay-basket-list/', {value})
-    console.log(data.id)
+export const payBasketList = async (value, id) => {
+    const {data} = await $authHost.post('api/device/pay-basket-list/', {value, id})
     localStorage.setItem('payid', String(data.id));
     return data
 }

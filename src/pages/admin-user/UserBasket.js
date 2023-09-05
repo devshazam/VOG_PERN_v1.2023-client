@@ -24,13 +24,13 @@ const UserBasket = () => {
         fetchBasketDevices(user.user.id)
             .then((data) => {
                 console.log(data)
-                setDevices(data.rows);
-                setCount(data.count);
-                setTotalPrice(data.rows.reduce((total, num) => {
+                setDevices(data);
+                // setCount(data.count);
+                setTotalPrice(data.reduce((total, num) => {
                     return total + Math.ceil(+num.price * 100) / 100;
                 
                 }, 0));
-                setOrdersId(data.rows.map((item) => {
+                setOrdersId(data.map((item) => {
                     return +item.id;
                 }))
             })
@@ -41,7 +41,7 @@ const UserBasket = () => {
     }, [ flag ]);
 
     function payForBasket(value) {
-		payBasketList(value, ordersId).then(data => {
+		payBasketList(value, user.user.id).then(data => {
             console.log(data.id)
             window.location.href = data.confirmation.confirmation_url;
 

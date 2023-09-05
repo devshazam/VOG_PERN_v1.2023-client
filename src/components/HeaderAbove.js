@@ -76,41 +76,52 @@ const HeaderAbove = observer(() => {
                                     id="nav-dropdown-dark-example"
                                     title={user.user.email}
                                 >
-                                    <NavDropdown.Item href="/admin/bar">История заказов</NavDropdown.Item>
                                     <NavDropdown.Item onClick={changeUserCred}>
                                         Изменить данные
                                     </NavDropdown.Item>
-                                    {user.user.role == "USER" && (
-                                        <NavDropdown.Item
-                                            onClick={showModalReview}
-                                        >
-                                            Оставить отзыв
-                                        </NavDropdown.Item>
-                                    )}
+                                    <NavDropdown.Item onClick={showModalReview} >
+                                        Оставить отзыв
+                                    </NavDropdown.Item>
                                     <NavDropdown.Item onClick={logOut}>
                                         Выход
                                     </NavDropdown.Item>
                                     {user.user.role == "ADMIN" && (
                                         <>
                                             <NavDropdown.Divider />
-                                            <NavDropdown.Item href="/admin">
+                                            <NavDropdown.Item href="/admin" className="redLink">
                                                 Список заказов
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item href="/admin/create">
+                                            <NavDropdown.Item href="/admin/create" className="redLink">
                                                 Создать товар
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item onClick={fetchXsl}>
+                                            <NavDropdown.Item onClick={fetchXsl} className="redLink">
                                                 Скачать XLS товаров
                                             </NavDropdown.Item>
                                         </>
                                     )}
                                 </NavDropdown>
                                 <Nav.Item>
+                                    <Nav.Link href="/admin/bar">
+                                        <Image
+                                            src="/file/icons8-box-50.png"
+                                            className="bascket_img"
+                                            rounded
+                                            alt="Заказы"
+                                            title="Заказы"
+                                        />
+                                        <span className="bascket-num">
+                                            {basketNumber}
+                                        </span>
+                                    </Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
                                     <Nav.Link href="/admin/user-basket">
                                         <Image
                                             src="/file/icons8-basket-50.png"
                                             className="bascket_img"
                                             rounded
+                                            alt="Корзина"
+                                            title="Корзина"
                                         />
                                         <span className="bascket-num">
                                             {basketNumber}
