@@ -40,7 +40,7 @@ const SendToBasket = observer((props) => {
         formData.append("descriptionText", `${descriptionText}`);
         formData.append("img", file);
         formData.append("userId", `${user.user.id}`);
-        formData.append("goodId", `${props.id}`);
+        // formData.append("goodId", `${props.id}`);
 
         setSpinner(false);
         createItem(formData).then((data) => {
