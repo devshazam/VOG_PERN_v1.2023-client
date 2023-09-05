@@ -1,4 +1,5 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../../../index";
 
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -12,6 +13,7 @@ import { createRequisites } from "../../../http/deviceAPI";
 
 // получение всех товаров корзины + удаление элементов из корзины + оплата
 const CashlessTable = () => {
+    const { user } = useContext(Context);
 
     const [directorFullName, setDirectorFullName] = useState('');
     const [inn, setInn] = useState('');
@@ -27,8 +29,9 @@ const CashlessTable = () => {
 
 
     function doCreateRequisites() {
+        if (!user.user.id) {window.location.reload();}
         setSpinner(false)
-		createRequisites({directorFullName, inn, ogrn, bik, checkingAccount, bankName, bankAddress, korAccount, orgFullName, legalAddress}).then(data => {
+		createRequisites({directorFullName, inn, ogrn, bik, checkingAccount, bankName, bankAddress, korAccount, orgFullName, legalAddress, userId: user.user.id}).then(data => {
             setSpinner(true)
         }).catch((error) => { 
             console.log('dev', error);

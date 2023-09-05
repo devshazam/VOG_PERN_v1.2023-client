@@ -17,13 +17,16 @@ const UserBasket = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [ordersId, setOrdersId] = useState([]);
     const [flag, setFlag] = useState(0);
+    const [requisites, setRequisites] = useState({});
 
-    console.log(flag)
+    console.log(requisites)
 
     useEffect(() => {
         fetchRequisites({id: user.user.id})
             .then((data) => {
-                if(data){setFlag(flag + 1)}
+                console.log(data)
+                setRequisites(data)
+                setFlag(flag + 1)
  console.log(flag)
             })
             .catch((error) => {
@@ -82,7 +85,7 @@ const UserBasket = () => {
                             <Button className="w-100 mb-3"
                                 variant="danger"
                                 onClick={() => payForBasket(totalPrice)}
-                            >Оплатить 
+                            >Выставить счет 
                             </Button></>
                     }
                 </Col>
@@ -93,9 +96,12 @@ const UserBasket = () => {
                                 <CashlessInputs />
                             </>
                         :
-                            <CashlessTable
-                                devices={devices}
-                            />
+                            <>
+                                <p>Ваши реквизиты: ИНН: {requisites.inn}; ОГРН: {requisites.ogrn};</p>
+                                <CashlessTable
+                                    devices={devices}
+                                />
+                            </>
                     }
                 </Col>
                 
