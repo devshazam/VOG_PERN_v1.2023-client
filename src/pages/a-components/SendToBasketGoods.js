@@ -22,7 +22,7 @@ const SendToBasket = observer((props) => {
     const [file, setFile] = useState(null); // Файл
     const [descriptionText, setDescriptionText] = useState(""); // Файл
     const [cargo, setCargo] = useState('0');
-    const [address, setAddress] = useState('');
+    const [address, setAddress] = useState('');ч
     const deliveryType = ['Петропавловская 87', 'Казахская 25', 'СДЕК (до пункта выдачи)', 'СДЕК (до вашего адреса)', 'Почта (до пункта выдачи)',  'Почта (до вашего адреса)']
 
     const countPrice = () => {
