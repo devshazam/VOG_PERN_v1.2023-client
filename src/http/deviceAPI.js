@@ -1,28 +1,34 @@
 import {$authHost, $host} from "./index";
-import jwt_decode from "jwt-decode";
 
 
-// Done
-export const createItem = async (device) => {
-    const {data} = await $authHost.post('/api/device', device)
-    // console.log(data)
+export const createDevice = async (device) => {
+    const {data} = await $authHost.post('/api/device/create-device', device)
     return data
 }
 
-export const callPay = async () => {
+export const createRequisites = async (array) => {
+    const {data} = await $authHost.post('/api/device/create-requisites', array)
+    return data
+}
+
+export const ordersAdminList = async (array) => {
+    const {data} = await $authHost.post('/api/device/orders-admin-list/', array)
+    return data
+}
+
+
+
+
+
+
+export const checkPayStatus = async () => {
     const orderId = localStorage.getItem('order_id')
     const {data} = await $authHost.post('/api/device/getpay', {orderId})
     // console.log(data)
     return data
 }
 
-export const fetchDevices = async (itemSort, orderSort, limit, page, filter, id, userId) => {
-    const {data} = await $host.get('/api/device/admin/devices-view/', {params: {
-        itemSort, orderSort, limit, page, filter, id, userId
-        }})
-    // console.log(data)
-    return data
-}
+
 
 export const deleteDevice = async (id) => {
     const {data} = await $authHost.post('api/device/delete-item/', {id})
@@ -72,11 +78,7 @@ export const fetchRequisites = async (array) => {
 }
 
 
-export const createRequisites = async (array) => {
-    const {data} = await $authHost.post('/api/device/create-requisites', array)
-    // console.log(data)
-    return data
-}
+
 
 export const reciveOrderCount = async (userId) => {
     const {data} = await $authHost.post('api/device/recive-order-count/', {userId})

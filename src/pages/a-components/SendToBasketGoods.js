@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-import { createItem } from "../../http/deviceAPI.js";
+import { createDevice } from "../../http/deviceAPI.js";
 import { observer } from "mobx-react-lite";
 
 /*
@@ -43,7 +43,7 @@ const SendToBasket = observer((props) => {
         formData.append("goodId", `${props.id}`);
 
         setSpinner(false);
-        createItem(formData).then((data) => {
+        createDevice(formData).then((data) => {
                 setSpinner(true);
                 helpers.setReloadBasket(+helpers.reloadBasket + 1)
                 alert('Заказ добавлен в корзину!')

@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {Context} from "../../index";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../../index";
 
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
@@ -7,84 +7,57 @@ import Button from 'react-bootstrap/Button';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 
 import Pagination from 'react-bootstrap/Pagination';
-import { fetchDevices, deleteDevice } from '../../http/deviceAPI'
+import { ordersAdminList, deleteDevice } from '../../http/deviceAPI'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 import CashlessOrders from './component/CashlessOrders';
 
 
-// Страница с формой для входа (логин) на сайт
-
 const AllOrdersAdmin = () => {
-    const {device} = useContext(Context)
+    const { user } = useContext(Context);
+
     const [itemSort, setItemSort] = useState('createdAt');
     const [orderSort, setOrderSort] = useState('ASC');
-    const [limit, setLimit] = useState(10);
-    const [page, setPage] = useState(1);
-    const [midOne, setMidOne] = useState(1);
-    
-    const [id, setId] = useState('0');
-    const [filter, setFilter] = useState('Баннер');
+    const [page, setPage] = useState('1');
+    const [flag, setFlag] = useState(1);
 
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
 
-    const userId = undefined;
-
-
     useEffect(() => {
-        fetchDevices(itemSort, orderSort, limit, page, filter, id, userId).then(data => {
+        ordersAdminList({ itemSort, orderSort, page, userId: user.user.id }).then(data => {
             setDevices(data.rows)
             setCount(data.count)
         }).catch((error) => { 
             console.log('dev', error);
             alert('Ошибка 508 - Обратитесь к администратору!');
         });
-    }, [itemSort, orderSort, limit, page, midOne, id, filter])
+    }, [itemSort, orderSort, page, flag])
 
-    
-    function doneItem(id) {
-		deleteDevice(id).then(data => {
-                setMidOne(midOne + 1)
-        }).catch((error) => { 
-            console.log('dev', error);
-            alert('Ошибка 509 - Обратитесь к администратору!');
-        });
-	}
     function choicePage(number){
         setPage(number);
     }
-    function findItem(event) {
-        if(isNaN(event.target.value) || event.target.value == ''){
-            alert('Строку должна содержать цифру ID!')
-        }else{
-		setId(event.target.value);
-        }
-	}
-    
-console.log(devices)
-console.log()
-    let midlItem1 = Math.ceil(count / limit)
+
+    let midlItem1 = Math.ceil(+count / 10 )
     let items = [];
     for (let number = 1; number <= midlItem1; number++) {
-    items.push(
-        <Pagination.Item key={number} active={number === page} onClick={() => choicePage(number)}>
-        {number}
-        </Pagination.Item>,
-    );
+        items.push(
+            <Pagination.Item key={number} active={number === page} onClick={() => choicePage(number)}>
+            {number}
+            </Pagination.Item>,
+        );
     }
     const paginationBasic = (
         <div>
-        <Pagination>{items}</Pagination>
-
+            <Pagination>{items}</Pagination>
         </div>
     );
-    
+
+    // #########################################################################################
     return (
         <>
 
@@ -94,18 +67,8 @@ console.log()
       className="mb-3"
     >
             <Tab eventKey="home" title="Интернет оплата">
-                <Container>
+                <Container className="mb-3">
                         <Row>
-                        <Col xs={12} md={3}>
-                                    <Form.Label>Поиск по ID</Form.Label>
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        placeholder="Миллиметры"
-                                        value={id}  onChange={findItem}
-                                    />
-                                    <Button variant="outline-primary" onClick={() => setId('0')}>Сбросить</Button>
-                        </Col>
                         <Col xs={12} lg ={3}>
                         <Form.Label>Элемент сортировки</Form.Label>
                                 <Form.Select aria-label="Default select example" value={itemSort} onChange={e => setItemSort(e.target.value)}>
@@ -120,69 +83,50 @@ console.log()
                                 <option value="DESC" >По возрастанию</option>
                                 </Form.Select>
                         </Col>
-                        <Col xs={12} lg ={3}>
-                        <Form.Label>Элемент сортировки</Form.Label>
-                                <Form.Select aria-label="Default select example" value={filter} onChange={e => setFilter(e.target.value)}>
-                                <option value="Баннер" >Баннер</option>
-                                <option value="Cамоклейка" >Cамоклейка</option>
-                                <option value="Визитки" >Визитка</option>
-                                </Form.Select>
-                        </Col>
+
                         </Row>
                     </Container>
                     
                     <Container>
-                        <Table striped bordered hover >
-                            <thead>
-                                <tr>
-                                <th>ID клиента</th>
-                                <th>ID заказа</th>
-                                <th>Имя</th>
-                                <th>Описание заказа</th>
-                                <th>Описание </th>
-                                <th>Картинка</th>
-                                <th>Статус Готовности и Оплаты</th>
-                                <th>Дата создания</th>
-                                <th>Действия</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {Object.keys(devices).length ? devices.map(device =>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>ID:</th>
+                                <th>Цена:</th>
+                                <th>Статус оплаты:</th>
+                                <th>Дата создания:</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Object.keys(devices).length ? 
+                                devices.map((device) => (
                                     <tr key={device.id}>
-                                        <td>{device.userId}</td>
                                         <td>{device.id}</td>
-                                        <td>{device.name}</td>
-                                        <td>{device.feature}</td>
-                                        <td>{device.descriptionText}</td>
-                                        
+                                        <td>{device.value}</td>
                                         <td>
-                                            <a href={device.img}> Ссылка на картинку</a>
+                                            {device.status ? (
+                                                <p>оплачено</p>
+                                            ) : (
+                                                <p><span href='#' style={{fontSize: 18, color: 'red'}}>не оплачено</span>
+                                                    <a href='#' >   - оплатить</a>
+                                                </p>
+                                            )}
                                         </td>
-                                        <td>{device.status_done ? <p>готово</p> : <p>не готово</p>}<br></br>
-                                        {device.status_pay ? <p>оплачено</p> : <p>не оплачено</p>}</td>
-                                        
-
                                         <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
-                                        <td> 
-                                            <button onClick={() => doneItem(device.id)}>Выполнить</button>
-                                            </td>
+                                        <td><a href={"/admin/bar/"+device.id} >  подробнее</a></td>
                                     </tr>
-                                ) : 
-                                    <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </Table>
+                                ))
+                            : 
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </Table>
 
                         {paginationBasic}
                         </Container>

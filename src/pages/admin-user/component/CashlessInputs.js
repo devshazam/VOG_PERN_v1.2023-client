@@ -28,7 +28,7 @@ const CashlessTable = () => {
     const [spinner, setSpinner] = useState(true);
 
 
-    function doCreateRequisites() {
+    function callFromCashlessInputs() {
         if (!user.user.id) {window.location.reload();}
         setSpinner(false)
 		createRequisites({directorFullName, inn, ogrn, bik, checkingAccount, bankName, bankAddress, korAccount, orgFullName, legalAddress, userId: user.user.id}).then(data => {
@@ -146,11 +146,10 @@ const CashlessTable = () => {
                             </Form.Group>
 
                             {spinner ? 
-                                <Button variant="danger" onClick={doCreateRequisites} className="w-100 mb-3">
-                                        В корзину
-                                </Button> 
+                                <Button variant="danger" onClick={callFromCashlessInputs} className="w-100 mb-3">
+                                        В корзину </Button> 
                             : 
-                                <Button variant="danger" onClick={doCreateRequisites} className="w-100 mb-3">
+                                <Button variant="danger" onClick={callFromCashlessInputs} className="w-100 mb-3">
                                     <Spinner animation="border"></Spinner>
                                 </Button> 
                             }

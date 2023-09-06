@@ -12,8 +12,6 @@ import Pagination from 'react-bootstrap/Pagination';
 import Table from 'react-bootstrap/Table';
 
 
-import { createRequisites } from "../../../http/deviceAPI";
-
 // получение всех товаров корзины + удаление элементов из корзины + оплата
 const CashlessOrder = () => {
     const {device} = useContext(Context)

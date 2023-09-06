@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-import { callPay } from "../http/deviceAPI";
+import { checkPayStatus } from "../http/deviceAPI";
 
 const Contacts = () => {
     const [value, setValue] = useState("");
     useEffect(() => {
-        callPay()
+        checkPayStatus()
             .then((data) => {
                 console.log(data.status)
                 if (data.status == "success") {

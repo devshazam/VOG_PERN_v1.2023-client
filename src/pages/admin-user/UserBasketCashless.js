@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../index";
 import CashlessTable from "./component/CashlessTable";
-import CashlessInputs from "./component/CashlessInpts";
+import CashlessInputs from "./component/CashlessInputs";
 
 import Button from "react-bootstrap/Button";
 import { Row, Col } from "react-bootstrap";
