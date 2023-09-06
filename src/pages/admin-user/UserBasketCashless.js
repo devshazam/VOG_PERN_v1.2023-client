@@ -13,21 +13,15 @@ const UserBasket = () => {
     const { helpers, user } = useContext(Context);
     
     const [devices, setDevices] = useState({});
-    const [count, setCount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
-    const [ordersId, setOrdersId] = useState([]);
     const [flag, setFlag] = useState(0);
     const [requisites, setRequisites] = useState({});
-
-    console.log(requisites)
 
     useEffect(() => {
         fetchRequisites({id: user.user.id})
             .then((data) => {
-                console.log(data)
                 setRequisites(data)
                 setFlag(flag + 1)
- console.log(flag)
             })
             .catch((error) => {
                 console.log("dev", error);
@@ -35,21 +29,15 @@ const UserBasket = () => {
             });
     }, [ ]);
 
-
     // Загрузка всех заказов пользователя
     useEffect(() => {
         fetchBasketDevices(user.user.id)
             .then((data) => {
-                console.log(data)
-                setDevices(data.rows);
-                setCount(data.count);
-                setTotalPrice(data.rows.reduce((total, num) => {
+                setDevices(data);
+                setTotalPrice(data.reduce((total, num) => {
                     return total + Math.ceil(+num.price * 100) / 100;
                 
                 }, 0));
-                setOrdersId(data.rows.map((item) => {
-                    return +item.id;
-                }))
             })
             .catch((error) => {
                 console.log("dev", error);
@@ -57,8 +45,10 @@ const UserBasket = () => {
             });
     }, [ helpers.reloadBasket ]);
 
+
+
     function payForBasket(value) {
-		payBasketList(value, ordersId).then(data => {
+		payBasketList(value, user.user.id).then(data => {
             console.log(data.id)
             window.location.href = data.confirmation.confirmation_url;
 
@@ -97,7 +87,7 @@ const UserBasket = () => {
                             </>
                         :
                             <>
-                                <p>Ваши реквизиты: ИНН: {requisites.inn}; ОГРН: {requisites.ogrn};</p>
+                                <p>Ваш ИНН: {requisites.inn};</p>
                                 <CashlessTable
                                     devices={devices}
                                 />

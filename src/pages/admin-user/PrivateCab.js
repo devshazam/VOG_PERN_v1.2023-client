@@ -60,6 +60,7 @@ const PrivateCab = () => {
                         <th>Цена</th>
                         <th>Статус оплаты</th>
                         <th>Дата создания</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,14 +72,18 @@ const PrivateCab = () => {
                                     {device.status ? (
                                         <p>оплачено</p>
                                     ) : (
-                                        <p><a href='#'>не оплачено</a></p>
+                                        <p><span href='#' style={{fontSize: 18, color: 'red'}}>не оплачено</span>
+                                            <a href='#' >   - оплатить</a>
+                                        </p>
                                     )}
                                 </td>
                                 <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
+                                <td><a href={"/admin/bar/"+device.id} >  подробнее</a></td>
                             </tr>
                         ))
                      : 
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

@@ -8,7 +8,7 @@ import { fetchBasketDevices, payBasketList, deleteOneItem } from "../../../http/
 
 // получение всех товаров корзины + удаление элементов из корзины + оплата
 const CashlessTable = (props) => {
-
+console.log(props)
     const { helpers } = useContext(Context);
 
     function removeOneItem(id) {

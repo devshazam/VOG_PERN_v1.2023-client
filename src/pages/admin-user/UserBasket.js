@@ -14,31 +14,24 @@ const UserBasket = () => {
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
-    const [flag, setFlag] = useState(0);
-    const [ordersId, setOrdersId] = useState([]);
 
-
-    console.log(ordersId)
+console.log(devices)
     // Загрузка всех заказов пользователя
     useEffect(() => {
         fetchBasketDevices(user.user.id)
             .then((data) => {
-                console.log(data)
                 setDevices(data);
                 // setCount(data.count);
                 setTotalPrice(data.reduce((total, num) => {
                     return total + Math.ceil(+num.price * 100) / 100;
                 
                 }, 0));
-                setOrdersId(data.map((item) => {
-                    return +item.id;
-                }))
             })
             .catch((error) => {
                 console.log("dev", error);
                 alert("Ошибка 513 - Обратитесь к администратору!");
             });
-    }, [ flag ]);
+    }, [ helpers.reloadBasket ]);
 
     function payForBasket(value) {
 		payBasketList(value, user.user.id).then(data => {
@@ -51,19 +44,16 @@ const UserBasket = () => {
         });
 	}
     
-    function removeOneItem(id) {
-		deleteOneItem(id).then(data => {
+    function removeOneItem(deviceId) {
+		deleteOneItem(deviceId, user.user.id).then(data => {
             helpers.setReloadBasket(+helpers.reloadBasket + 1)
-                setFlag(flag + 1)
         }).catch((error) => { 
             console.log('dev', error);
             alert('Ошибка 515 - Обратитесь к администратору!');
         });
 	}
 
-    console.log(totalPrice)
-    // #########################################################################################
-
+    //############################################################################
     return (
         <> <h2 className="mb-3">Ваши заказы:</h2>
             <Row className="mb-5">

@@ -10,11 +10,8 @@ export const createItem = async (device) => {
 }
 
 export const callPay = async () => {
-    const payinfo = localStorage.getItem('payid')
-    const orderid = localStorage.getItem('ordersId')
-    const {data} = await $authHost.post('/api/device/getpay', {
-        payinfo, orderid
-      })
+    const orderId = localStorage.getItem('order_id')
+    const {data} = await $authHost.post('/api/device/getpay', {orderId})
     // console.log(data)
     return data
 }
@@ -34,15 +31,15 @@ export const deleteDevice = async (id) => {
 }
 
 // 
-export const deleteOneItem = async (id) => {
-    const {data} = await $authHost.post('api/device/delete-basket-item/', {id})
+export const deleteOneItem = async (deviceId, userId) => {
+    const {data} = await $authHost.post('api/device/delete-basket-item/', {deviceId, userId})
     // console.log(data)
     return data
 }
 
 // получение товаров корзины
-export const fetchBasketDevices = async (id) => {
-    const {data} = await $authHost.post('api/device/basket/', {id})
+export const fetchBasketDevices = async (userId) => {
+    const {data} = await $authHost.post('api/device/basket/', {userId})
     // console.log(data)
     return data
 }
@@ -50,13 +47,13 @@ export const fetchBasketDevices = async (id) => {
 // оплата товаров в корзине
 export const payBasketList = async (value, id) => {
     const {data} = await $authHost.post('api/device/pay-basket-list/', {value, id})
-    localStorage.setItem('payid', String(data.id));
+    localStorage.setItem('order_id', String(data.metadata.order_id));
     return data
 }
 
 // кол-во товаров в корзине
-export const reciveBasketCount = async (id) => {
-    const {data} = await $authHost.post('api/device/recive-basket-count/', {id})
+export const reciveBasketCount = async (userId) => {
+    const {data} = await $authHost.post('api/device/recive-basket-count/', {userId})
     // console.log(data)
     return data
 }
@@ -77,6 +74,20 @@ export const fetchRequisites = async (array) => {
 
 export const createRequisites = async (array) => {
     const {data} = await $authHost.post('/api/device/create-requisites', array)
+    // console.log(data)
+    return data
+}
+
+export const reciveOrderCount = async (userId) => {
+    const {data} = await $authHost.post('api/device/recive-order-count/', {userId})
+    // console.log(data)
+    return data
+}
+
+
+
+export const fetchOrderItems = async (id) => {
+    const {data} = await $authHost.post('api/device/fetch-order-item/', {id})
     // console.log(data)
     return data
 }

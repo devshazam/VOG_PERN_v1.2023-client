@@ -7,11 +7,12 @@ import Nav from "react-bootstrap/Nav";
 import { observer } from "mobx-react-lite";
 import { Row, Col } from "react-bootstrap";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { reciveBasketCount } from "../http/deviceAPI";
+import { reciveBasketCount, reciveOrderCount } from "../http/deviceAPI";
 import { fetchXslFile } from "../http/goodsAPI";
 
 const HeaderAbove = observer(() => {
     const [basketNumber, setBasketNumber] = useState("0");
+    const [orderNumber, setOrderNumber] = useState("0");
     const { helpers, user } = useContext(Context);
 
     useEffect(() => {
@@ -25,6 +26,15 @@ const HeaderAbove = observer(() => {
                 console.log('dev', error);
                 alert('Ошибка 501 - Обратитесь к администратору!');
             });
+        reciveOrderCount(user.user.id)
+        .then((res) => {
+            // console.log(res);
+            setOrderNumber(res);
+        })
+        .catch((error) => {
+            console.log('dev', error);
+            alert('Ошибка 501 - Обратитесь к администратору!');
+        });
     }, [helpers.reloadBasket]);
 
     const showModalLogin = () => {
@@ -62,7 +72,7 @@ const HeaderAbove = observer(() => {
         <Container>
             <Row>
                 <Col xs={12} lg={4}></Col>
-                <Col xs={12} lg={{ span: 4, offset: 4 }}>
+                <Col xs={12} lg={{ span: 6, offset: 2 }}>
                     <Nav
                         style={{
                             justifyContent: "right",
@@ -110,7 +120,7 @@ const HeaderAbove = observer(() => {
                                             title="Заказы"
                                         />
                                         <span className="bascket-num">
-                                            {basketNumber}
+                                            {orderNumber}
                                         </span>
                                     </Nav.Link>
                                 </Nav.Item>

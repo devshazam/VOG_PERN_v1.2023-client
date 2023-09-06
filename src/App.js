@@ -25,6 +25,7 @@ import UpdateGoods from "./pages/admin/UpdateGoods.js";
 import UserBasketCashless from './pages/admin-user/UserBasketCashless';
 import UserBasket from "./pages/admin-user/UserBasket.js";
 import PrivateCab from "./pages/admin-user/PrivateCab.js";
+import ListOfOrders from "./pages/admin-user/sub-page/ListOfOrders.js"
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
@@ -57,6 +58,7 @@ const App = observer(() => {
           <Route path="/admin/" element={<LayoutAdmin />}>
               <Route index element={<AllOrdersAdmin />} /> 
               <Route path="/admin/bar" element={<PrivateCab  />} />
+              <Route path="/admin/bar/:id" element={<ListOfOrders  />} />
               <Route path="/admin/create" element={<CreateGoods  />} />
               <Route path="/admin/user-basket" element={<UserBasket  />} />
               <Route path="/admin/user-basket-cashless" element={<UserBasketCashless  />} />
