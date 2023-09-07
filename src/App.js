@@ -2,7 +2,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "./index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {observer} from "mobx-react-lite";
+import {observer} from "mobx-react-lite"; 
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Layout from './Layout';
@@ -25,7 +25,8 @@ import UpdateGoods from "./pages/admin/UpdateGoods.js";
 import UserBasketCashless from './pages/admin-user/UserBasketCashless';
 import UserBasket from "./pages/admin-user/UserBasket.js";
 import PrivateCab from "./pages/admin-user/PrivateCab.js";
-import ListOfOrders from "./pages/admin-user/sub-page/ListOfOrders.js"
+import ListOfUserOrders from "./pages/admin-user/sub-page/ListOfUserOrders.js"
+import ListOfOrders from "./pages/admin/sub-page/ListOfOrders.js"
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
@@ -57,8 +58,9 @@ const App = observer(() => {
       <Routes>
           <Route path="/admin/" element={<LayoutAdmin />}>
               <Route index element={<AllOrdersAdmin />} /> 
+              <Route path="/admin/all-orders/:orderId" element={<ListOfOrders  />} />
               <Route path="/admin/bar" element={<PrivateCab  />} />
-              <Route path="/admin/bar/:id" element={<ListOfOrders  />} />
+              <Route path="/admin/bar/:orderId" element={<ListOfUserOrders  />} />
               <Route path="/admin/create" element={<CreateGoods  />} />
               <Route path="/admin/user-basket" element={<UserBasket  />} />
               <Route path="/admin/user-basket-cashless" element={<UserBasketCashless  />} />

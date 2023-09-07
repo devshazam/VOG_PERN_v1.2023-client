@@ -1,24 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../../../index";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 
-import { fetchOrderItems } from "../../../http/deviceAPI";
+import { fetchAllDevicesFromOneOrder } from "../../../http/deviceAPI";
 
-// Таблица заказанных товаров
-const PrivateCab = () => {
-    const { id } = useParams();
+// Просмотр товаров одного заказа
+const ListOfUserOrders = () => {
+    const { orderId } = useParams();
 
-    const { user } = useContext(Context);
     const [page, setPage] = useState(1);
     const [devices, setDevices] = useState({});
     const [count, setCount] = useState(0);
 
-// Загрузка всех заказов пользователя
+    // Загрузка всех товаров одного заказа пользователя
     useEffect(() => {
-        fetchOrderItems(id)
+        fetchAllDevicesFromOneOrder({orderId})
             .then((data) => {
                 setDevices(data);
                 setCount(data.length)
@@ -61,7 +59,7 @@ const PrivateCab = () => {
                                 <tr>
                                 <th>Имя</th>
                                 <th>Описание заказа</th>
-                                <th>Описание </th>
+                                <th>Описание от клиента</th>
                                 <th>Статус готовности</th>
                                 <th>Дата создания</th>
                                 </tr>
@@ -98,4 +96,4 @@ const PrivateCab = () => {
     );
 };
 
-export default PrivateCab;
+export default ListOfUserOrders;

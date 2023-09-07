@@ -4,11 +4,13 @@ import { Context } from "../../index";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { Row, Col } from "react-bootstrap";
-import { fetchBasketDevices, payBasketList, deleteOneItem } from "../../http/deviceAPI";
+import { fetchBasketDevices, payBasketList, deleteItemFromBasket } from "../../http/deviceAPI";
+import {observer} from "mobx-react-lite";
+
 
 
 // получение всех товаров корзины + удаление элементов из корзины + оплата
-const UserBasket = () => {
+const UserBasket = observer(() => {
     const { helpers, user } = useContext(Context);
     
     const [devices, setDevices] = useState({});
@@ -18,7 +20,7 @@ const UserBasket = () => {
 console.log(devices)
     // Загрузка всех заказов пользователя
     useEffect(() => {
-        fetchBasketDevices(user.user.id)
+        fetchBasketDevices({ userId: user.user.id })
             .then((data) => {
                 setDevices(data);
                 // setCount(data.count);
@@ -43,9 +45,9 @@ console.log(devices)
             alert('Ошибка 514 - Обратитесь к администратору!');
         });
 	}
-    
-    function removeOneItem(deviceId) {
-		deleteOneItem(deviceId, user.user.id).then(data => {
+
+    function callDeleteItemFromBasket(deviceId) {
+		deleteItemFromBasket({deviceId, userId: user.user.id}).then(data => {
             helpers.setReloadBasket(+helpers.reloadBasket + 1)
         }).catch((error) => { 
             console.log('dev', error);
@@ -89,7 +91,7 @@ console.log(devices)
                                         <td>{device.feature}</td>
                                         <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
                                         <td>{device.price} руб.</td>
-                                        <td><Button variant="danger" onClick={() => removeOneItem(device.id) }>Убрать</Button></td>
+                                        <td><Button variant="danger" onClick={() => callDeleteItemFromBasket(device.id) }>Убрать</Button></td>
                                     </tr>
                                 ))}
                                 <tr>
@@ -117,6 +119,6 @@ console.log(devices)
             </Row>
         </>
     );
-};
+});
 
 export default UserBasket;

@@ -3,18 +3,51 @@ import {$authHost, $host} from "./index";
 
 export const createDevice = async (device) => {
     const {data} = await $authHost.post('/api/device/create-device', device)
+    console.log(data)
     return data
 }
 
 export const createRequisites = async (array) => {
     const {data} = await $authHost.post('/api/device/create-requisites', array)
+    console.log(data)
     return data
 }
 
 export const ordersAdminList = async (array) => {
     const {data} = await $authHost.post('/api/device/orders-admin-list/', array)
+    console.log(data)
     return data
 }
+
+export const fetchAllDevicesFromOneOrder = async (array) => {
+    const {data} = await $authHost.post('api/device/fetch-order-item/', array)
+    console.log(data)
+    return data
+}
+
+export const changeDoneStatusToDone = async (array) => {
+    const {data} = await $authHost.post('api/device/delete-item/', array)
+    console.log(data)
+    return data
+}
+
+export const deleteItemFromBasket = async (array) => {
+    const {data} = await $authHost.post('api/device/delete-basket-item/', array)
+    console.log(data)
+    return data
+}
+
+export const fetchBasketDevices = async (array) => {
+    const {data} = await $authHost.post('api/device/basket/', array)
+    console.log(data)
+    return data
+}
+
+
+
+
+
+
 
 
 
@@ -28,27 +61,11 @@ export const checkPayStatus = async () => {
     return data
 }
 
-
-
-export const deleteDevice = async (id) => {
-    const {data} = await $authHost.post('api/device/delete-item/', {id})
-    // console.log(data)
-    return data
-}
-
 // 
-export const deleteOneItem = async (deviceId, userId) => {
-    const {data} = await $authHost.post('api/device/delete-basket-item/', {deviceId, userId})
-    // console.log(data)
-    return data
-}
+
 
 // получение товаров корзины
-export const fetchBasketDevices = async (userId) => {
-    const {data} = await $authHost.post('api/device/basket/', {userId})
-    // console.log(data)
-    return data
-}
+
 
 // оплата товаров в корзине
 export const payBasketList = async (value, id) => {
@@ -88,8 +105,3 @@ export const reciveOrderCount = async (userId) => {
 
 
 
-export const fetchOrderItems = async (id) => {
-    const {data} = await $authHost.post('api/device/fetch-order-item/', {id})
-    // console.log(data)
-    return data
-}

@@ -3,16 +3,15 @@ import { Context } from "../../../index";
 
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-import { fetchBasketDevices, payBasketList, deleteOneItem } from "../../../http/deviceAPI";
+import { deleteItemFromBasket } from "../../../http/deviceAPI";
 
 
 // получение всех товаров корзины + удаление элементов из корзины + оплата
 const CashlessTable = (props) => {
-console.log(props)
-    const { helpers } = useContext(Context);
+    const { helpers, user } = useContext(Context);
 
-    function removeOneItem(id) {
-		deleteOneItem(id).then(data => {
+    function callDeleteItemFromBasket(deviceId) {
+		deleteItemFromBasket({deviceId, userId: user.user.id}).then(data => {
             helpers.setReloadBasket(+helpers.reloadBasket + 1)
         }).catch((error) => { 
             console.log('dev', error);
@@ -44,7 +43,7 @@ console.log(props)
                                         <td>{device.feature}</td>
                                         <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
                                         <td>{device.price} руб.</td>
-                                        <td><Button variant="danger" onClick={() => removeOneItem(device.id) }>Убрать</Button></td>
+                                        <td><Button variant="danger" onClick={() => callDeleteItemFromBasket(device.id) }>Убрать</Button></td>
                                     </tr>
                                 ))}
 

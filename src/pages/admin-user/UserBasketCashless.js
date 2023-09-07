@@ -5,7 +5,7 @@ import CashlessInputs from "./component/CashlessInputs";
 
 import Button from "react-bootstrap/Button";
 import { Row, Col } from "react-bootstrap";
-import { fetchBasketDevices, payBasketList, deleteOneItem, fetchRequisites } from "../../http/deviceAPI";
+import { fetchBasketDevices, payBasketList, fetchRequisites } from "../../http/deviceAPI";
 
 
 // получение всех товаров корзины + удаление элементов из корзины + оплата
