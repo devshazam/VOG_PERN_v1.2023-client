@@ -5,7 +5,7 @@ import CashlessInputs from "./component/CashlessInputs";
 
 import Button from "react-bootstrap/Button";
 import { Row, Col } from "react-bootstrap";
-import { fetchBasketDevices, payBasketList, fetchRequisites } from "../../http/deviceAPI";
+import { fetchBasketDevices, paymentForCartItems, fetchRequisites } from "../../http/deviceAPI";
 
 
 // получение всех товаров корзины + удаление элементов из корзины + оплата
@@ -48,7 +48,7 @@ const UserBasket = () => {
 
 
     function payForBasket(value) {
-		payBasketList(value, user.user.id).then(data => {
+		paymentForCartItems({value, userId: user.user.id}).then(data => {
             console.log(data.id)
             window.location.href = data.confirmation.confirmation_url;
 

@@ -43,7 +43,11 @@ export const fetchBasketDevices = async (array) => {
     return data
 }
 
-
+export const paymentForCartItems = async (array) => {
+    const {data} = await $authHost.post('api/device/pay-basket-list/', array)
+    localStorage.setItem('order_id', String(data.metadata.order_id));
+    return data
+}
 
 
 
@@ -68,11 +72,7 @@ export const checkPayStatus = async () => {
 
 
 // оплата товаров в корзине
-export const payBasketList = async (value, id) => {
-    const {data} = await $authHost.post('api/device/pay-basket-list/', {value, id})
-    localStorage.setItem('order_id', String(data.metadata.order_id));
-    return data
-}
+
 
 // кол-во товаров в корзине
 export const reciveBasketCount = async (userId) => {

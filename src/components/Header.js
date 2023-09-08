@@ -77,6 +77,7 @@ const Header = () => {
                                 <Nav.Link href="/goods/krujki">Кружки</Nav.Link>
                                 <Nav.Link href="/goods/futbolki">Футболки</Nav.Link>
                                 <Nav.Link href="/goods/planketki">Планкетки</Nav.Link>
+                                <Nav.Link href="/goods/kancelyariya">Канцелярия</Nav.Link>
                                 <Nav.Link href="/contacts">Контакты</Nav.Link>
                             </Nav>
                             <Navbar.Text>

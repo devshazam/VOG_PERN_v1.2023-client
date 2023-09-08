@@ -4,7 +4,7 @@ import { Context } from "../../index";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { Row, Col } from "react-bootstrap";
-import { fetchBasketDevices, payBasketList, deleteItemFromBasket } from "../../http/deviceAPI";
+import { fetchBasketDevices, paymentForCartItems, deleteItemFromBasket } from "../../http/deviceAPI";
 import {observer} from "mobx-react-lite";
 
 
@@ -17,16 +17,16 @@ const UserBasket = observer(() => {
     const [count, setCount] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
 
-console.log(devices)
+console.log(helpers.reloadBasket)
     // Загрузка всех заказов пользователя
     useEffect(() => {
         fetchBasketDevices({ userId: user.user.id })
             .then((data) => {
+                console.log(data)
                 setDevices(data);
                 // setCount(data.count);
                 setTotalPrice(data.reduce((total, num) => {
                     return total + Math.ceil(+num.price * 100) / 100;
-                
                 }, 0));
             })
             .catch((error) => {
@@ -36,7 +36,7 @@ console.log(devices)
     }, [ helpers.reloadBasket ]);
 
     function payForBasket(value) {
-		payBasketList(value, user.user.id).then(data => {
+		paymentForCartItems({value, userId: user.user.id}).then(data => {
             console.log(data.id)
             window.location.href = data.confirmation.confirmation_url;
 
@@ -48,7 +48,9 @@ console.log(devices)
 
     function callDeleteItemFromBasket(deviceId) {
 		deleteItemFromBasket({deviceId, userId: user.user.id}).then(data => {
-            helpers.setReloadBasket(+helpers.reloadBasket + 1)
+            helpers.setReloadBasket( helpers.reloadBasket + 1)
+            console.log(helpers.reloadBasket);
+            console.log(3445)
         }).catch((error) => { 
             console.log('dev', error);
             alert('Ошибка 515 - Обратитесь к администратору!');
