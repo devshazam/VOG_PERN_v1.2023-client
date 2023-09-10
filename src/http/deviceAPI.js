@@ -49,21 +49,20 @@ export const paymentForCartItems = async (array) => {
     return data
 }
 
-
-
-
-
-
-
-
-
-
 export const checkPayStatus = async () => {
     const orderId = localStorage.getItem('order_id')
     const {data} = await $authHost.post('/api/device/getpay', {orderId})
-    // console.log(data)
     return data
 }
+
+
+
+
+
+
+
+
+
 
 // 
 
