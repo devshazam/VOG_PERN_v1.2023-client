@@ -56,51 +56,31 @@ export const checkPayStatus = async () => {
 }
 
 
-
-
-
-
-
-
-
-
-// 
-
-
-// получение товаров корзины
-
-
-// оплата товаров в корзине
-
-
-// кол-во товаров в корзине
-export const reciveBasketCount = async (userId) => {
-    const {data} = await $authHost.post('api/device/recive-basket-count/', {userId})
-    // console.log(data)
+export const reciveBasketCount = async (array) => {
+    const {data} = await $authHost.post('api/device/recive-basket-count/', array)
     return data
 }
 
 
-export const fetchUsersOrders = async ( params ) => {
-    const {data} = await $authHost.post('/api/device/user-pay-goods', params)
+export const fetchUsersOrders = async ( array ) => {
+    const {data} = await $authHost.post('/api/device/user-pay-goods', array)
     return data
 }
 
 
 export const fetchRequisites = async (array) => {
     const {data} = await $authHost.post('/api/device/fetch-requisites', array)
-    // console.log(data)
     return data
 }
 
 
-
-
-export const reciveOrderCount = async (userId) => {
-    const {data} = await $authHost.post('api/device/recive-order-count/', {userId})
-    // console.log(data)
+export const reciveOrderCount = async (array) => {
+    const {data} = await $authHost.post('api/device/recive-order-count/', array)
     return data
 }
 
 
-
+export const fetchUserByOrderId = async (array) => {
+    const {data} = await $authHost.post('/api/device/fetch-user-by-order-id', array)
+    return data
+}

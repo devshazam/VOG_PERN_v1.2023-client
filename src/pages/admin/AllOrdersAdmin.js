@@ -69,12 +69,12 @@ const AllOrdersAdmin = () => {
     return (
         <>
 
-    <Tabs
+    {/* <Tabs
       defaultActiveKey="home"
       id="uncontrolled-tab-example"
       className="mb-3"
     >
-            <Tab eventKey="home" title="Интернет оплата">
+            <Tab eventKey="home" title="Интернет оплата"> */}
 
                     
                     <Container>
@@ -84,6 +84,7 @@ const AllOrdersAdmin = () => {
                                 <th>ID:</th>
                                 <th>Цена:</th>
                                 <th>Дата создания:</th>
+                                <th>Нал./Без нал.</th>
                                 <th>Статус оплаты:</th>
                                 <th>Статус готовности:</th>
                                 <th>Развернуть товары:</th>
@@ -97,6 +98,12 @@ const AllOrdersAdmin = () => {
                                         <td>{order.id}</td>
                                         <td>{order.value}</td>
                                         <td>{order.createdAt.split('T')[0] + ' / ' + order.createdAt.split('T')[1].split('.')[0]}</td>
+                                        <td>{order.cashless_status ?
+                                                <p>Без наличная</p>
+                                                :
+                                                <p>Наличная</p>
+                                            }
+                                        </td>
                                         <td>
                                             {order.status_pay ? (
                                                 <p>оплачено</p>
@@ -108,7 +115,7 @@ const AllOrdersAdmin = () => {
                                         </td>
                                         <td>
                                             {order.status_done ? (
-                                                <p>готово</p>
+                                                <p><span href='#' style={{fontSize: 18, color: 'green'}}> готово</span></p>
                                                 ) : (
                                                 <p><span href='#' style={{fontSize: 18, color: 'red'}}>не готово</span>
                                                     {/* <a href='#' >   - оплатить</a> */}
@@ -132,12 +139,12 @@ const AllOrdersAdmin = () => {
 
                         {paginationBasic}
                         </Container>
-            </Tab>
+            {/* </Tab>
             <Tab eventKey="cashless" title="Безналичный расчет">
                     <CashlessOrders />
             </Tab>
 
-    </Tabs>
+    </Tabs> */}
 
 
         </>

@@ -17,7 +17,7 @@ const HeaderAbove = observer(() => {
 
     useEffect(() => {
       if (!user.isAuth) { return; }
-        reciveBasketCount(user.user.id)
+        reciveBasketCount({userId: user.user.id})
             .then((res) => {
                 // console.log(res);
                 setBasketNumber(res);
@@ -26,7 +26,7 @@ const HeaderAbove = observer(() => {
                 console.log('dev', error);
                 alert('Ошибка 501 - Обратитесь к администратору!');
             });
-        reciveOrderCount(user.user.id)
+        reciveOrderCount({ userId: user.user.id})
         .then((res) => {
             // console.log(res);
             setOrderNumber(res);

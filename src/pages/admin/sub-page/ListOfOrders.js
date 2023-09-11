@@ -4,16 +4,17 @@ import { useParams } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 
-import { fetchAllDevicesFromOneOrder } from "../../../http/deviceAPI";
+import { fetchAllDevicesFromOneOrder, fetchUserByOrderId } from "../../../http/deviceAPI";
 
 // 
 const ListOfOrders = () => {
     const { orderId } = useParams();
-    
     const [page, setPage] = useState(1);
-    const [devices, setDevices] = useState({});
+    const [devices, setDevices] = useState([]);
     const [count, setCount] = useState(0);
+    const [user, setUser] = useState({});
 
+    console.log(user)
 // Загрузка всех заказов пользователя
     useEffect(() => {
         fetchAllDevicesFromOneOrder({orderId})
@@ -24,6 +25,20 @@ const ListOfOrders = () => {
             .catch((error) => {
                 console.log('dev', error);
                 alert('Ошибка 512 - Обратитесь к администратору!');
+            });
+    }, [page]);
+
+    useEffect(() => {
+        fetchUserByOrderId({orderId})
+            .then((data) => {
+                if(data){
+                    setUser(data.user);
+                }
+                
+            })
+            .catch((error) => {
+                console.log('dev', error);
+                alert('Ошибка 528 - Обратитесь к администратору!');
             });
     }, [page]);
 
@@ -55,27 +70,28 @@ const ListOfOrders = () => {
 
     return (
         <>
+        {user ? 
+            <p>Заказчик: {user.name} / {user.phone} / {user.email}</p>
+            :
+            <p>Заказчик: </p>
+        }
+        
             <Table striped bordered hover >
                             <thead>
                                 <tr>
                                 <th>Имя</th>
                                 <th>Описание заказа</th>
                                 <th>Описание </th>
-                                <th>Статус готовности</th>
                                 <th>Дата создания</th>
-                                <th>Действие</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {Object.keys(devices).length ? devices.map(device =>
+                                {devices.length ? devices.map(device =>
                                     <tr key={device.id}>
                                         <td>{device.name}</td>
                                         <td>{device.feature}</td>
                                         <td>{device.descriptionText}</td>
                                         
-                                        <td>{device.status_done ? <p>готово</p> : <p>не готово</p>}</td>
-                                        
-
                                         <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
                                         
                                     

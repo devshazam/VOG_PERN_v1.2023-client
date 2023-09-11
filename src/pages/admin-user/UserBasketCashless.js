@@ -14,14 +14,14 @@ const UserBasket = () => {
     
     const [devices, setDevices] = useState({});
     const [totalPrice, setTotalPrice] = useState(0);
-    const [flag, setFlag] = useState(0);
+    // const [flag, setFlag] = useState(0);
     const [requisites, setRequisites] = useState({});
 
     useEffect(() => {
         fetchRequisites({id: user.user.id})
             .then((data) => {
                 setRequisites(data)
-                setFlag(flag + 1)
+                // setFlag(flag + 1)
             })
             .catch((error) => {
                 console.log("dev", error);
@@ -31,7 +31,7 @@ const UserBasket = () => {
 
     // Загрузка всех заказов пользователя
     useEffect(() => {
-        fetchBasketDevices(user.user.id)
+        fetchBasketDevices({userId: user.user.id})
             .then((data) => {
                 setDevices(data);
                 setTotalPrice(data.reduce((total, num) => {
@@ -68,7 +68,7 @@ const UserBasket = () => {
             <Row className="mb-5">
                 <Col xs={12} sm={{span: 3,  order: 2 }} className="mb-3">
                     {
-                    flag == 0 ?
+                    !requisites ?
                             <p>Кнопка оплаты появится после успешной отправки реквизитов.</p>
                             :
                             <><h4 className="w-100 mb-3">К оплате: {totalPrice} руб.</h4>
@@ -80,7 +80,7 @@ const UserBasket = () => {
                     }
                 </Col>
                 <Col xs={12} sm={{span: 9,  order: 1 }} className="mb-3">
-                   { flag == 0 ?
+                   { !requisites ?
                             <>
                                 <h3>Введите данные своего юридического лица для выставления счета:</h3>
                                 <CashlessInputs />

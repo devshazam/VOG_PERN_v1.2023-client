@@ -22,7 +22,7 @@ console.log(helpers.reloadBasket)
     useEffect(() => {
         fetchBasketDevices({ userId: user.user.id })
             .then((data) => {
-                console.log(data)
+                // console.log(data)
                 setDevices(data);
                 // setCount(data.count);
                 setTotalPrice(data.reduce((total, num) => {
@@ -49,8 +49,6 @@ console.log(helpers.reloadBasket)
     function callDeleteItemFromBasket(deviceId) {
 		deleteItemFromBasket({deviceId, userId: user.user.id}).then(data => {
             helpers.setReloadBasket( helpers.reloadBasket + 1)
-            console.log(helpers.reloadBasket);
-            console.log(3445)
         }).catch((error) => { 
             console.log('dev', error);
             alert('Ошибка 515 - Обратитесь к администратору!');

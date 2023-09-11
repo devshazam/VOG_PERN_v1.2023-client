@@ -4,27 +4,50 @@ import { Context } from "../../index";
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 
-import { fetchUsersOrders } from "../../http/deviceAPI";
+import { fetchUsersOrders, checkPayStatus } from "../../http/deviceAPI";
 
 // Таблица заказанных товаров
 const PrivateCab = () => {
     const { user } = useContext(Context);
     const [page, setPage] = useState(1);
-    const [devices, setDevices] = useState({});
+    const [orders, setOrders] = useState([]);
     const [count, setCount] = useState(0);
+    const [flag, setFlag] = useState(0);
 
+    
 // Загрузка всех заказов пользователя
     useEffect(() => {
         fetchUsersOrders({page: `${page}`, userId: `${user.user.id}`})
             .then((data) => {
-                setDevices(data.rows);
+                setOrders(data.rows);
                 setCount(data.count);
             })
             .catch((error) => {
                 console.log('dev', error);
                 alert('Ошибка 512 - Обратитесь к администратору!');
             });
-    }, [page]);
+    }, [page, flag]);
+
+
+    useEffect(() => {
+        if(orders.length <= 0){ return;}
+
+        const fetchDataMid = async () => {
+            for (let x of orders) {
+                if(x.status_pay == false){
+                    await checkPayStatus({orderId: x.id});
+                }
+            }
+            setFlag(flag + 1)
+        }
+        fetchDataMid()
+        .catch((error) => {
+            console.log('dev', error);
+            alert('Ошибка 528 - Обратитесь к администратору!');
+        });
+    }, [ ]);
+
+
 
     function choicePage(number){
         setPage(number);
@@ -58,27 +81,34 @@ const PrivateCab = () => {
                 <thead>
                     <tr>
                         <th>Цена</th>
+                        <th>Наличная / Безналичная</th>
                         <th>Статус оплаты</th>
                         <th>Дата создания</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(devices).length ? 
-                        devices.map((device) => (
-                            <tr key={device.id}>
-                                <td>{device.value}</td>
+                    {orders.length > 0 ? 
+                        orders.map((order) => (
+                            <tr key={order.id}>
+                                <td>{order.value}</td>
+                                <td>{order.cashless_status ?
+                                        <p>Без наличная</p>
+                                        :
+                                        <p>Наличная</p>
+                                    }
+                                </td>
                                 <td>
-                                    {device.status ? (
-                                        <p>оплачено</p>
+                                    {order.status_pay ? (
+                                        <p><span href='#' style={{fontSize: 18, color: 'green'}}> оплачено</span></p>
                                     ) : (
                                         <p><span href='#' style={{fontSize: 18, color: 'red'}}>не оплачено</span>
-                                            <a href='#' >   - оплатить</a>
+                                            {/* <a href='#' >   - оплатить</a> */}
                                         </p>
                                     )}
                                 </td>
-                                <td>{device.createdAt.split('T')[0] + ' / ' + device.createdAt.split('T')[1].split('.')[0]}</td>
-                                <td><a href={"/admin/bar/"+device.id} >  подробнее</a></td>
+                                <td>{order.createdAt.split('T')[0] + ' / ' + order.createdAt.split('T')[1].split('.')[0]}</td>
+                                <td><a href={"/admin/bar/"+order.id} >  подробнее</a></td>
                             </tr>
                         ))
                      : 
