@@ -108,7 +108,7 @@ const Samokleyka = observer(() => {
                 porezkaName[+porezka]
             };`
         );
-    }, [width, height, vidSamo, number, porezka]);
+    }, [width, height, vidSamo, number, porezka, value]);
 
     return (
         <>

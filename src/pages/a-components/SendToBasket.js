@@ -24,7 +24,7 @@ const SendToBasket = observer((props) => {
     const [cargo, setCargo] = useState('0');
     const [address, setAddress] = useState('');
     const deliveryType = ['Петропавловская 87', 'Казахская 25', 'СДЕК (до пункта выдачи)', 'СДЕК (до вашего адреса)', 'Почта (до пункта выдачи)',  'Почта (до вашего адреса)']
-
+console.log(props.value, props.description)
     const countPrice = () => {
         if (!user.isAuth) {
             alert("Пожалуйста Авторизуйтесь или Зарегистрируйтесь! Кнопки входа и регистрации в самом верху с правой стороны!"  ); return; }

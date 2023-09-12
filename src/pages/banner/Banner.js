@@ -143,7 +143,7 @@ const Banner = observer(() => {
                 luversStepArray[+luversStep]
             } мм; Проклейка: ${glueArray[+glue]}; Кол-во: ${number};`
         );
-    }, [width, density, height, luversStep, number, glue]); // <- add the count variable here
+    }, [width, density, height, luversStep, number, glue, value]); // <- add the count variable here
 
     return (
         <>
