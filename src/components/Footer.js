@@ -13,8 +13,9 @@ function Footer(){
             <Row>
               <Col xs={12} lg={3}>
 			  <div className="column">
-							<p className="heading">Договор оферта</p>
-							<a href="/oferta"><p>Ссылка на документ</p></a>
+							<p className="heading">Документы:</p>
+							<ul>
+							<li><a href="/oferta">Договор офетры</a></li></ul>
 						</div>
               </Col>
               <Col xs={12} lg ={3}>
@@ -26,21 +27,26 @@ function Footer(){
               </Col>
 			  <Col xs={12} lg ={3}>
 			  <div className="column">
-							<p className="heading">Адреса в г.Волгоград:</p>
-							<p className="hr">1) ул. Петропавловская 87<br></br>2) ул. Казахская 25 <br></br>График работы с 09:00 до 19:00</p>
-
+				
+							<p className="heading">Адреса:</p>
+							<ul><li className="hr">ул. Петропавловская 87</li>
+							<li className="hr">ул. Казахская 25 </li>
+							<li className="hr">ул. 2-я Динамовская д. 6 (производство)</li>
+</ul>
 						</div>		
               </Col>
 			  <Col xs={12} lg ={3}>
 			  <div className="column">
 							<p className="heading">Контакты:</p>
-							<p>Email: <a  href="mailto:<a href='mailto: info@kopi34.ru">kopi34@yandex.ru</a></p>
-							<a href='tel:89093802519'>+7(909) 380-25-19</a><br></br>
-							<a href='tel:+78442599161'>+7 (8442) 59-91-61</a>
+							<ul>
+							<li>Email: <a  href="mailto:<a href='mailto: info@kopi34.ru">kopi34@yandex.ru</a></li>
+							<li>Тел: <a href='tel:89093802519'>+7(909) 380-25-19</a></li>
+							<li>Тел: <a href='tel:+78442599161'>+7 (8442) 59-91-61</a></li></ul>
+							<p>График работы с 09:00 до 19:00</p>
 						</div>
               </Col>
             </Row>
-			<p >2023 © Копи-Принт - полиграфические услуги. Все права защищены.</p>
+			<p >2023 © Копи-Принт - полиграфические услуги. Фирма работает с 2011г.</p>
           </Container>
 		  </footer>
 		  <Messanger />

@@ -22,8 +22,6 @@ export const fetchGoodsList = async ( limit, page, categoryIt, itemSort, orderSo
 }
 
 
-
-
 export const updateItemByID = async ( goods ) => {
     const {data} = await $authHost.post('/api/goods/update-one', goods)
     return data
@@ -43,6 +41,11 @@ export const fetchXslFile = async () => {
     return data
 }
 
+
+export const fetchListOfGoods = async ( param ) => {
+    const {data} = await $authHost.post('/api/goods/fetch-list-of-goods', param)
+    return data
+}
 
 
 

@@ -19,12 +19,15 @@ const HeaderAbove = observer(() => {
       if (!user.isAuth) { return; }
         reciveBasketCount({userId: user.user.id})
             .then((res) => {
-                // console.log(res);
                 setBasketNumber(res);
             })
             .catch((error) => {
-                console.log('dev', error);
-                alert('Ошибка 501 - Обратитесь к администратору!');
+                if(error.response.status == 500){
+                    alert(error.response.data.message);
+                }else{
+                    console.log('dev', error.response.data.message);
+                    alert('Ошибка 501 - Обратитесь к администратору!');
+                }
             });
         reciveOrderCount({ userId: user.user.id})
         .then((res) => {
@@ -100,6 +103,9 @@ const HeaderAbove = observer(() => {
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item href="/admin" className="redLink">
                                                 Список заказов
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item href="/admin/list-of-goods" className="redLink">
+                                                База товаров
                                             </NavDropdown.Item>
                                             <NavDropdown.Item href="/admin/create" className="redLink">
                                                 Создать товар

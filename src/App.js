@@ -30,6 +30,7 @@ import ListOfOrders from "./pages/admin/sub-page/ListOfOrders.js"
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
+import ListOfGoods from './pages/admin/ListOfGoods';
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -58,7 +59,8 @@ const App = observer(() => {
       <Routes>
           <Route path="/admin/" element={<LayoutAdmin />}>
               <Route index element={<AllOrdersAdmin />} /> 
-              <Route path="/admin/all-orders/:orderId" element={<ListOfOrders  />} />
+              <Route path="/admin/list-of-goods" element={<ListOfGoods   />} />
+              <Route path="/admin/all-orders/:orderId" element={<ListOfOrders   />} />
               <Route path="/admin/bar" element={<PrivateCab  />} />
               <Route path="/admin/bar/:orderId" element={<ListOfUserOrders  />} />
               <Route path="/admin/create" element={<CreateGoods  />} />
