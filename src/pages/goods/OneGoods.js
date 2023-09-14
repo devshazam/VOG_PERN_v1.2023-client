@@ -17,7 +17,7 @@ import { observer } from "mobx-react-lite";
 
 const OneGoods = observer(() => {
     const [goodsItem, setGoodsItem] = useState({});
-    const { id } = useParams();
+    const { goodsId } = useParams();
     const [number, setNumber] = useState("1"); // кол-во товараов
     const [value, setValue] = useState(0); // стоимость товараов
     const [description, setDescription] = useState("");
@@ -26,7 +26,7 @@ const OneGoods = observer(() => {
     const arrayGoodsItem = ['без картинки', 'с картинкой'];
 
     useEffect(() => {
-        fetchOneGoods(id)
+        fetchOneGoods({goodsId})
             .then((data) => {
                 setGoodsItem(data);
                 console.log("dev", data);
@@ -35,7 +35,7 @@ const OneGoods = observer(() => {
                 console.log("dev", error);
                 alert("Ошибка 518 - Обратитесь к администратору!");
             });
-    }, [id]); // <- add the count variable here
+    }, [goodsId]); // <- add the count variable here
 
     useEffect(() => {
         if (Object.keys(goodsItem).length === 0) {

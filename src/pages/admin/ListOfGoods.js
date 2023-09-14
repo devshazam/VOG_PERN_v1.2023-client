@@ -76,7 +76,7 @@ const ListOfGoods = () => {
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="formGridState" className="mb-3">
-                        <FloatingLabel controlId="floatingPassword" label="Категория товаров:">
+                        <FloatingLabel controlId="floatingFilter" label="Категория товаров:">
                             <Form.Select aria-label="Default select example" onChange={(e) => setFilter(e.target.value)} value={filter}>
                                         <option value="krujki">Кружки</option>
                                         <option value="futbolki">Футболки</option>
@@ -86,7 +86,7 @@ const ListOfGoods = () => {
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="formGridState" className="mb-3">
-                        <FloatingLabel controlId="floatingPassword" label="Сортировать по:">
+                        <FloatingLabel controlId="floatingItemSort" label="Сортировать по:">
                             <Form.Select aria-label="Default select example" onChange={(e) => setItemSort(e.target.value)} value={itemSort}>
                                         <option value="price">Стоимости</option>
                                         <option value="createdAt">Новизне</option>
@@ -94,7 +94,7 @@ const ListOfGoods = () => {
                         </FloatingLabel>
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="formGridState" className="mb-3">
-                        <FloatingLabel controlId="floatingPassword" label="Порядок сортировки:">  
+                        <FloatingLabel controlId="floatingOrderSort" label="Порядок сортировки:">  
                                 <Form.Select aria-label="Default select example" onChange={(e) => setOrderSort(e.target.value)} value={orderSort}>
                                             <option value="ASC">Возрастание</option>
                                             <option value="DESC">Убывание</option>

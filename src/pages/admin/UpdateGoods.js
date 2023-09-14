@@ -13,7 +13,7 @@ import Container from "react-bootstrap/Container";
 
 const UpdateGoods = () => {
     const { user } = useContext(Context);
-    const { id } = useParams();
+    const { goodsId } = useParams();
 
     const [spinner, setSpinner] = useState(true); // Запускает спиннер клика по купить
     const [name, setName] = useState('');
@@ -28,7 +28,7 @@ const UpdateGoods = () => {
 
     console.log(goodsItem)
         useEffect(() => {
-            fetchOneGoods( id ).then(data => {
+            fetchOneGoods( {goodsId} ).then(data => {
                 setGoodsItem(data)
             }).catch((error) => { 
                 console.log('dev', error);
@@ -50,7 +50,7 @@ const UpdateGoods = () => {
                     formData.append("image", image);
                     formData.append("price", Math.ceil(+price));
                     formData.append("userId", `${user.user.id}`);
-                    formData.append("id", `${id}`);
+                    formData.append("id", `${goodsId}`);
                     formData.append("artikul", `${artikul}`);
 
                     setSpinner(false)

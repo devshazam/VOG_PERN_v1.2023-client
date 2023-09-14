@@ -79,8 +79,8 @@ const App = observer(() => {
 {/* Самоклейки */}
               <Route path="/samokleyka" element={<Samokleyka />} />
               <Route path="/goods/:category" element={<AllGoods />} />
-              <Route path="/goods/one/:id" element={<OneGoods />} />
-              <Route path="/goods/one-update/:id" element={<UpdateGoods />} />
+              <Route path="/goods/one/:goodsId" element={<OneGoods />} />
+              <Route path="/goods/one-update/:goodsId" element={<UpdateGoods />} />
 
               
 

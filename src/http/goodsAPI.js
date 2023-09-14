@@ -8,8 +8,8 @@ export const createGoodsItem = async (goods) => {
 }
 
 
-export const fetchOneGoods = async ( id ) => {
-    const {data} = await $host.get('/api/goods/fetch-one', {params: {id}})
+export const fetchOneGoods = async ( params ) => {
+    const {data} = await $host.post('/api/goods/fetch-one', params)
     return data
 }
 
@@ -46,6 +46,12 @@ export const fetchListOfGoods = async ( param ) => {
     const {data} = await $authHost.post('/api/goods/fetch-list-of-goods', param)
     return data
 }
+
+export const ChangeGoodsParams = async ( param ) => {
+    const {data} = await $authHost.post('/api/goods/change-goods-params', param)
+    return data
+}
+
 
 
 
