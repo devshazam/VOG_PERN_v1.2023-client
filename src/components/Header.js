@@ -5,6 +5,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Image from "react-bootstrap/Image";
+
 
 const Header = () => {
     return (
@@ -73,12 +75,30 @@ const Header = () => {
                                     </NavDropdown.Item> */}
                                     {/* <NavDropdown.Divider /> */}
                                 </NavDropdown>
+                                <NavDropdown
+                                    title="Прайс"
+                                    id="offcanvasNavbarDropdown-expand-lg"
+                                >
+                                     <NavDropdown.Item href="/goods/bagety">
+                                        Ламинация
+                                    </NavDropdown.Item>
+                                   {/* <NavDropdown.Item href="/goods/suveniry">
+                                        Сувенирная продукция
+                                    </NavDropdown.Item> */}
+                                </NavDropdown>
 
                                 <Nav.Link href="/goods/krujki">Кружки</Nav.Link>
-                                <Nav.Link href="/goods/futbolki">Футболки</Nav.Link>
-                                <Nav.Link href="/goods/planketki">Планкетки</Nav.Link>
                                 <Nav.Link href="/goods/kancelyariya">Канцелярия</Nav.Link>
                                 <Nav.Link href="/contacts">Контакты</Nav.Link>
+                                <Nav.Link href="/admin/bar">
+                                    <Image
+                                        src="/file/icons8-3d-50.jpg"
+                                        className="bascket_img"
+                                        rounded
+                                        alt="Заказы"
+                                        title="Заказы"
+                                    /> 3D-детали
+                                </Nav.Link>
                             </Nav>
                             <Navbar.Text>
                                 <span className="label">

@@ -382,3 +382,8 @@ margin-right: 15px;
     .redLink{
         color: #f35858!important;
     }
+.input-class{
+    width: 100%;
+    border: none;
+    text-align: center;
+}
