@@ -8,6 +8,7 @@ import LoginPage from "./components/modal/LoginPage";
 import RegPage from "./components/modal/RegPage";
 import ReviewPage from "./components/modal/ReviewPage";
 import ChangeUserCred from "./components/modal/ChangeUserCred";
+import BanForSite from "./components/modal/BanForSite";
 
 export default function Layout() {
     return (
@@ -23,6 +24,7 @@ export default function Layout() {
             <RegPage />
             <ReviewPage />
             <ChangeUserCred />
+            <BanForSite />
         </>
     );
 }

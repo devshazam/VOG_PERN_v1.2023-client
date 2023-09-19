@@ -9,6 +9,7 @@ import { Row, Col } from "react-bootstrap";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { reciveBasketCount, reciveOrderCount } from "../http/deviceAPI";
 import { fetchXslFile } from "../http/goodsAPI";
+import BanButton from './components/BanButton'
 
 const HeaderAbove = observer(() => {
     const [basketNumber, setBasketNumber] = useState("0");
@@ -113,6 +114,7 @@ const HeaderAbove = observer(() => {
                                             <NavDropdown.Item onClick={fetchXsl} className="redLink">
                                                 Скачать XLS товаров
                                             </NavDropdown.Item>
+                                            <BanButton />
                                         </>
                                     )}
                                 </NavDropdown>
