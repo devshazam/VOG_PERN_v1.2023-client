@@ -10,33 +10,17 @@ import { fetchUsersOrders, checkPayStatus } from "../../http/deviceAPI";
 const CreatePrice = () => {
     const [newPrice, setNewPrice] = useState([{ a: '1', b: '2', c: '3'}, { a: '1', b: '2', c: '3'},{ a: '1', b: '2', c: '3'}]);
 
-
 console.log(newPrice)
-// Загрузка всех заказов пользователя
-    useEffect(() => {
-        // fetchUsersOrders({page: `${page}`, userId: `${user.user.id}`})
-        //     .then((data) => {
-        //         setOrders(data.rows);
-        //         setCount(data.count);
-        //     })
-        //     .catch((error) => {
-        //         console.log('dev', error);
-        //         alert('Ошибка 512 - Обратитесь к администратору!');
-        //     });
-    }, []);
 
-const handleSecondFriend = (fIndex, key, event) => {
+const handleTable = (fIndex, key, event) => {
     setNewPrice(
             newPrice.map((price, index) =>
-                // Here you accept a id argument to the function and replace it with hard coded 🤪 2, to make it dynamic.
                 fIndex == index
                     ? { ...price, [key]: event.target.value }
                     : { ...price }
             )
         );
     };
-
-
 
 
     // #########################################################################################
@@ -61,13 +45,10 @@ const handleSecondFriend = (fIndex, key, event) => {
                         newPrice.map((price, index) => (
                             <tr key={index}>
                                 {Object.keys(price).map((item) => 
-                            
                                     (<>
-                                    <td><input type="text" className="input-class" onChange={event => handleSecondFriend(index, item, event)} value={price[item]}></input></td>
+                                    <td><input type="text" className="input-class" onChange={event => handleTable(index, item, event)} value={price[item]}></input></td>
                                 
                                     </>))}
-                                                                
-                            
                             </tr>
                         ))
                     }
