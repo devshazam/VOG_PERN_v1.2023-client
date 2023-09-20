@@ -31,7 +31,8 @@ import ListOfOrders from "./pages/admin/sub-page/ListOfOrders.js"
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
 import ListOfGoods from './pages/admin/ListOfGoods';
-import CreatePrice from './pages/prices/CreatePrice'
+import UpdatePrices from './pages/admin/UpdatePrices';
+import CreatePrice from './pages/prices/CreatePrice';
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -68,6 +69,7 @@ const App = observer(() => {
               <Route path="/admin/user-basket" element={<UserBasket  />} />
               <Route path="/admin/user-basket-cashless" element={<UserBasketCashless  />} />
               <Route path="/admin/create-price" element={<CreatePrice  />} />
+              <Route path="/admin/update-price" element={<UpdatePrices  />} />
 
           </Route>
           <Route path="/" element={<Layout />}>

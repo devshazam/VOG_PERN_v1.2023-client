@@ -11,9 +11,11 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import SendToBasket from "../a-components/SendToBasket";
 import { observer } from "mobx-react-lite";
-import { vizit } from "../../arrays/vizitki.js";
+// import { vizit } from "../../arrays/vizitki.js";
+import { fetchArrayPriceOfVizits } from "../../http/jsonAPI";
 
 const Vizitki = observer(() => {
+    const [vizit, setVizit] = useState([]);
     const [value, setValue] = useState(0);
     const [side, setSide] = useState("0");
     const [vid, setVid] = useState("0");
@@ -26,8 +28,19 @@ const Vizitki = observer(() => {
     const vizVid = ["матовая", "глянцевая", "дизайнерская"];
     const vizLam = ["без ламинации", "глянцевая", "матовая"];
     const vizNum = ["96", "200", "500", "1000"];
+console.log(vizit)
+    useEffect(() => {
+        fetchArrayPriceOfVizits().then(data => {
+            setVizit(JSON.parse(data.value))
+        }).catch((error) => { 
+            console.log('dev', error);
+            alert('Ошибка 508 - Обратитесь к администратору!');
+        });
+    }, [ ])
+
 
     useEffect(() => {
+        if(vizit.length == 0) return;
         setValue(vizit[+side][+vid][+lam][+num]);
         setDescription(
             `Наименование: ${name}; Цена: ${value} рублей; Кол-во сторон печати: ${
@@ -36,7 +49,7 @@ const Vizitki = observer(() => {
                 vizNum[+num]
             };`
         );
-    }, [value, side, num, lam, vid]); // <- add the count variable here
+    }, [value, side, num, lam, vid, vizit]); // <- add the count variable here
 
     return (
         <>

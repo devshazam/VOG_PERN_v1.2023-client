@@ -14,5 +14,15 @@ export const updateJson = async () => {
 }
 
 
+export const updatePriceByExel = async ( params ) => {
+    const {data} = await $host.post('/api/jsona/update-price-by-exel', params)
+    return data
+}
+
+export const fetchArrayPriceOfVizits = async ( params ) => {
+    const {data} = await $host.post('/api/jsona/fetch-array-price-of-vizits', params)
+    return data
+}
+
 
 
