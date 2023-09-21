@@ -112,7 +112,10 @@ const HeaderAbove = observer(() => {
                                                 Создать товар
                                             </NavDropdown.Item>
                                             <NavDropdown.Item onClick={fetchXsl} className="redLink">
-                                                Скачать XLS товаров
+                                                Скачать XLSX товаров
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item href="/admin/update-price"  className="redLink">
+                                                Обновить цены XLSX
                                             </NavDropdown.Item>
                                             <BanButton />
                                         </>

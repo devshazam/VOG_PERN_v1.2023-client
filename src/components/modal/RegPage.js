@@ -33,8 +33,12 @@ const RegPage = observer(() => {
                 // user.setIsAuth(true);
                 window.location.reload();
             }).catch((error) => {
-                console.log('dev', error);
-                alert('Ошибка 503 - Обратитесь к администратору!');
+                if(error.response.status == 500){
+                    alert(error.response.data.message);
+                }else{
+                    console.log('dev', error);
+                    alert('Ошибка 503 - Обратитесь к администратору!');
+                }
             });
     };
 

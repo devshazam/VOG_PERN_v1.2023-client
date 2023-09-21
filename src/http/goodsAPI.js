@@ -52,7 +52,10 @@ export const ChangeGoodsParams = async ( param ) => {
     return data
 }
 
-
+export const increasePriceByProcent = async ( param ) => {
+    const {data} = await $authHost.post('/api/goods/increase-price-by-procent', param)
+    return data
+}
 
 
 

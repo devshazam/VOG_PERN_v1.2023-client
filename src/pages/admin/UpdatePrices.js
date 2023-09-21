@@ -6,9 +6,11 @@ import Button from "react-bootstrap/Button";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Container from "react-bootstrap/Container";
 
 import { updatePriceByExel } from "../../http/jsonAPI";
+import ProcentInput from './component/ProcentInput'
 
 //
 const UpdatePrices = () => {
@@ -28,31 +30,42 @@ const UpdatePrices = () => {
                 console.log("dev", data);
                 alert("Данные успешно внесены!");
             } catch (error) {
-                console.log('dev', error);
-                 alert('Ошибка 510 - Обратитесь к администратору!');
+                if(error.response.status == 432){
+                    alert(error.response.data.message);
+                }else{
+                    console.log('dev', error);
+                    alert('Ошибка 510 - Обратитесь к администратору!');
+                }
             }
     }
 // #########################################################################################
     return (
         <>
             <Container>
-                        <h1>Создание товара:</h1>
+                        <h1>Обновление цен товаров и прайсов:</h1>
                      
                         <Row className="mb-3">
+                            <Col xs={12} lg={6}>
+                                <Form.Group as={Col} md="12" className="mb-3">
+                                    <FloatingLabel controlId="floatingPassword" label="Визитки (Строго xlsx):"> {/* вставить сюда уникальный controlID */} 
+                                        <Form.Control
+                                            type="file"
+                                            placeholder="Размер файла до 10 Mb"
+                                            onChange={(e) => setImage(e.target.files[0])} 
+                                        />
+                                    </FloatingLabel>
+                                </Form.Group>
 
-                            <Form.Group as={Col} md="12" controlId="validationCustom03">
-                                <Form.Label>
-                                    Файл (Строго xlsx):
-                                </Form.Label>
-                                <Form.Control type="file" required onChange={(e) => setImage(e.target.files[0])} />
-                            </Form.Group>
-
-                            <Button
-                                variant="danger"
-                                onClick={createGoodsItemFunction}
-                            >Создать
-                            </Button>
-
+                                <Button
+                                    variant="danger"
+                                    onClick={createGoodsItemFunction}
+                                >Создать
+                                </Button>
+                            </Col>
+                            <Col xs={12} lg={6}>
+                                <ProcentInput />
+                            </Col>
+                             
                         </Row>
             </Container>
         </>

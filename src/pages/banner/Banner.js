@@ -29,6 +29,7 @@ const Banner = observer(() => {
     const glueArray = ["без проклейки", "с проклейкой"];
     const luversStepArray = ["0", "200", "300", "400", "500"]; //
     const densityArray = ["400-440", "500"];
+    // [[550, 650], [], [], [], [], [], []]
 
     useEffect(() => {
         if (!width || !height) {

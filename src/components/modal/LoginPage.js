@@ -30,8 +30,13 @@ const LoginPage = observer(() => {
                 window.location.reload();
             })
             .catch((error) => {
-                console.log('dev', error);
-                alert('Ошибка 502 - Обратитесь к администратору!');
+                if(error.response.status == 500){
+                    alert(error.response.data.message);
+                }else{
+                    console.log('dev', error);
+                    alert('Ошибка 502 - Обратитесь к администратору!'); 
+                }
+                
             });
     };
 
