@@ -47,7 +47,7 @@ export const fetchListOfGoods = async ( param ) => {
     return data
 }
 
-export const ChangeGoodsParams = async ( param ) => {
+export const changeGoodsParams = async ( param ) => {
     const {data} = await $authHost.post('/api/goods/change-goods-params', param)
     return data
 }

@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
 import Pagination from 'react-bootstrap/Pagination';
-import { fetchOneGoods, ChangeGoodsParams } from '../../../http/goodsAPI'
+import { fetchOneGoods, changeGoodsParams } from '../../../http/goodsAPI'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
@@ -55,7 +55,7 @@ const ListOfGoods = () => {
     }, [ goods ])
 
     function callChangeGoodsParams(){
-        ChangeGoodsParams({goodsId: goods.id, price, priceImg, summa}).then(data => {
+        changeGoodsParams({goodsId: goods.id, price, priceImg, summa}).then(data => {
 console.log(data)
             setFlag(flag + 1);
             alert('Изменения внесенны!')

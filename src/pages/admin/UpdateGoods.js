@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../index";
 import { useParams } from "react-router-dom";
-import { fetchOneGoods, updateItemByID } from "../../http/goodsAPI";
+import { fetchOneGoods, changeGoodsParams } from "../../http/goodsAPI";
 
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
@@ -11,19 +11,25 @@ import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+
 const UpdateGoods = () => {
     const { user } = useContext(Context);
     const { goodsId } = useParams();
 
     const [spinner, setSpinner] = useState(true); // Запускает спиннер клика по купить
+
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState(null);
-    const [group, setGroup] = useState("futbolki");
+    const [group, setGroup] = useState("");
     const [price, setPrice] = useState('');
+    const [artikul, setArtikul] = useState('');
+    const [priceImg, setPriceImg] = useState('');
+    const [summa, setSumma] = useState('');
+    const [barcode, setBarcode] = useState('');
+
     const [goodsItem, setGoodsItem] = useState({});
     const [flag, setFlag] = useState(1);
-    const [artikul, setArtikul] = useState('');
 
 
     console.log(goodsItem)
@@ -34,28 +40,43 @@ const UpdateGoods = () => {
                 console.log('dev', error);
             });
         }, [ flag ]); 
+
+        useEffect(() => {
+            if(Object.keys(goodsItem).length == 0){
+                setDescription('')
+                setBarcode('')
+                setGroup('')
+                setName('')
+                setArtikul('')
+                setPrice('')
+                setPriceImg('')
+                setSumma('')
+            }else{
+                setDescription(goodsItem.description)
+                setBarcode(goodsItem.barcode)
+                setGroup(goodsItem.group)
+                setName(goodsItem.name)
+                setArtikul(goodsItem.artikul)
+                setPrice(goodsItem.price)
+                setPriceImg(goodsItem.price_img)
+                setSumma(goodsItem.summa)
+                
+            }
+    
+        }, [ goodsItem ])
     
     async function updateGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
-        if (!name ||!description ||!image ||!group ||!price) { alert("Не все поля заполнены!"); return; }
+        if (!name ||!description ||!group ||!price) { alert("Не все поля заполнены!"); return; }
         if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
         if (!+price){alert('Не допустимое значение цены!'); return;}
-        if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
-        if (image.name.split('.').reverse()[0] !== 'jpg'){alert("Формат файла только jpg");return}
-        
-            const formData = new FormData();
-                    formData.append("name", name);
-                    formData.append("description", description);
-                    formData.append("group", group);
-                    formData.append("image", image);
-                    formData.append("price", Math.ceil(+price));
-                    formData.append("userId", `${user.user.id}`);
-                    formData.append("id", `${goodsId}`);
-                    formData.append("artikul", `${artikul}`);
+        // if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
+        // if (image.name.split('.').reverse()[0] !== 'jpg'){alert("Формат файла только jpg");return}
+    
 
                     setSpinner(false)
 
-                updateItemByID(formData).then((data) => {
+                    changeGoodsParams({name, description, group, price, artikul, priceImg, goodsId, barcode, summa}).then((data) => {
                     // console.log("dev", data);
                     setSpinner(true)
                     alert("Данные успешно изменены!");
@@ -81,88 +102,89 @@ const UpdateGoods = () => {
                     <Col xs={12} lg={6}>
                         <h2>Введите новые значения:</h2>
                     <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                md="12"
-                            >
-                                <Form.Label>Название товара (до 200 символов):</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder={goodsItem.name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    value={name}
-                                />
-                            </Form.Group>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingName" label="Название товара (до 200 символов):">
+                            <Form.Control
+                                type="text"
+                                placeholder='Название товара'
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                            />
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingArtikul" label="Артикул:">
+                            <Form.Control
+                                type="text"
+                                placeholder='Артикул'
+                                onChange={(e) => setArtikul(e.target.value)}
+                                value={artikul}
+                            />
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingPrice" label="Цена товара (руб.):">
+                            <Form.Control
+                                type="text"
+                                placeholder='Цена товара (руб.):'
+                                onChange={(e) => setPrice(e.target.value)}
+                                value={price}
+                            />
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingPriceImg" label="Цена товара с оформлением (руб.):">
+                            <Form.Control
+                                type="text"
+                                placeholder='Цена товара (руб.):'
+                                onChange={(e) => setPriceImg(e.target.value)}
+                                value={priceImg}
+                            />
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingSumma" label="Кол-во:">
+                            <Form.Control
+                                type="text"
+                                placeholder='кол-во'
+                                onChange={(e) => setSumma(e.target.value)}
+                                value={summa}
+                            />
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingSumma" label="Описание:">
+                            <Form.Control
+                                type="text"
+                                placeholder='Описание товара'
+                                onChange={(e) => setDescription(e.target.value) }
+                                value={description}
+                            />
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingSumma" label="Штрихкод:">
+                            <Form.Control
+                                type="text"
+                                placeholder='Описание товара'
+                                onChange={(e) => setBarcode(e.target.value) }
+                                value={barcode}
+                            />
+                            </FloatingLabel>
+                        </Form.Group>
 
-                            <Form.Group
-                                as={Col}
-                                md="12"
-                            >
-                                <Form.Label>Артикул:</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder={goodsItem.artikul}
-                                    onChange={(e) => setArtikul(e.target.value)}
-                                    value={artikul}
-                                />
-                            </Form.Group>
-
-                            <Form.Group
-                                as={Col}
-                                md="12"
-                                controlId="validationCustom01"
-                            >
-                                <Form.Label>Цена товара (руб.):</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder={goodsItem.price}
-                                    onChange={(e) => setPrice(e.target.value)}
-                                    value={price}
-                                />
-                            </Form.Group>
-
-                            <Form.Group
-                                as={Col}
-                                md="12"
-                                controlId="validationCustom02"
-                            >
-                                <Form.Label>Описание товара:</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder={goodsItem.description}
-                                    onChange={(e) => setDescription(e.target.value) }
-                                    value={description}
-                                />
-                            </Form.Group>
-
-
-
-                            <Form.Group as={Col} md="12" controlId="validationCustom03">
-                                <Form.Label>
-                                    Файл (Строго: 600 x 600 px; Расширение: jpg:
-                                </Form.Label>
-                                <Form.Control type="file" required onChange={(e) => setImage(e.target.files[0])} />
-
-                            </Form.Group>
-
-                            <Form.Group
-                                as={Col}
-                                md="12"
-                            >
-                                <Form.Label>Группа товаров:</Form.Label>
-                                    <Form.Select
-                                        aria-label="Default select example"
-                                        onChange={(e) =>
-                                            setGroup(e.target.value)
-                                        }
-                                        value={group}
-                                    >   
-                                        <option value="futbolki">Футболки</option>
-                                        <option value="krujki">Кружки</option>
-                                        <option value="bagety">Багеты</option>
-                                        <option value="suveniry">Сувенирная продукция</option>
-                                    </Form.Select>
-                            </Form.Group>
+                        <Form.Group as={Col} md="12" className="mb-3">
+                            <FloatingLabel controlId="floatingSumma" label="Штрихкод:">
+                            <Form.Select aria-label="Floating label select example" 
+                                onChange={(e) =>setGroup(e.target.value)}
+                                value={group} >
+                                <option value="futbolki">Футболки</option>
+                                <option value="krujki">Кружки</option>
+                                <option value="bagety">Багеты</option>
+                                <option value="suveniry">Сувенирная продукция</option>
+                            </Form.Select>
+                            </FloatingLabel>
+                        </Form.Group>
 
                             
                             {spinner ? 
