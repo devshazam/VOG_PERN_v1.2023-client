@@ -46,6 +46,7 @@ const UpdatePrices = () => {
                      
                         <Row className="mb-3">
                             <Col xs={12} lg={6}>
+                                <h4>Обновление прайса визиток</h4>
                                 <Form.Group as={Col} md="12" className="mb-3">
                                     <FloatingLabel controlId="floatingPassword" label="Визитки (Строго xlsx):"> {/* вставить сюда уникальный controlID */} 
                                         <Form.Control
@@ -63,6 +64,7 @@ const UpdatePrices = () => {
                                 </Button>
                             </Col>
                             <Col xs={12} lg={6}>
+                            <h4>Обновление цен всех товаров на % по категориям</h4>
                                 <ProcentInput />
                             </Col>
                              

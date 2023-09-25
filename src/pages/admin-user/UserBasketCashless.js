@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../../index";
 import CashlessTable from "./component/CashlessTable";
-import CashlessInputs from "./component/CashlessInputs";
+// import CashlessInputs from "./component/CashlessInputs";
 
 import Button from "react-bootstrap/Button";
 import { Row, Col } from "react-bootstrap";
@@ -15,19 +15,19 @@ const UserBasket = () => {
     const [devices, setDevices] = useState({});
     const [totalPrice, setTotalPrice] = useState(0);
     // const [flag, setFlag] = useState(0);
-    const [requisites, setRequisites] = useState({});
+    // const [requisites, setRequisites] = useState({});
 
-    useEffect(() => {
-        fetchRequisites({id: user.user.id})
-            .then((data) => {
-                setRequisites(data)
-                // setFlag(flag + 1)
-            })
-            .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 513 - Обратитесь к администратору!");
-            });
-    }, [ ]);
+    // useEffect(() => {
+    //     fetchRequisites({id: user.user.id})
+    //         .then((data) => {
+    //             setRequisites(data)
+    //             // setFlag(flag + 1)
+    //         })
+    //         .catch((error) => {
+    //             console.log("dev", error);
+    //             alert("Ошибка 513 - Обратитесь к администратору!");
+    //         });
+    // }, [ ]);
 
     // Загрузка всех заказов пользователя
     useEffect(() => {
@@ -35,7 +35,7 @@ const UserBasket = () => {
             .then((data) => {
                 setDevices(data);
                 setTotalPrice(data.reduce((total, num) => {
-                    return total + Math.ceil(+num.price * 100) / 100;
+                    return total + Math.ceil(+num.price * 1.1 * 100) / 100;
                 
                 }, 0));
             })
@@ -59,7 +59,6 @@ const UserBasket = () => {
 	}
     
 
-
     // #########################################################################################
 
 
@@ -67,7 +66,15 @@ const UserBasket = () => {
         <>
             <Row className="mb-5">
                 <Col xs={12} sm={{span: 3,  order: 2 }} className="mb-3">
-                    {
+                <><h4 className="w-100 mb-3">Итого: {totalPrice} руб. (вкл. 10%)</h4>
+                <p>ВНИМАНИЕ: в итоговую сумму вклучена наценка 10% за безналичный расчет!</p>
+                    <Button className="w-100 mb-3"
+                        variant="danger"
+                        onClick={() => payForBasket(totalPrice)}
+                    >Оплатить в Сбербанк Бизнес
+                    </Button>
+                </>
+                    {/* {
                     !requisites ?
                             <p>Кнопка оплаты появится после успешной отправки реквизитов.</p>
                             :
@@ -77,10 +84,13 @@ const UserBasket = () => {
                                 onClick={() => payForBasket(totalPrice)}
                             >Выставить счет 
                             </Button></>
-                    }
+                    } */}
                 </Col>
                 <Col xs={12} sm={{span: 9,  order: 1 }} className="mb-3">
-                   { !requisites ?
+                <CashlessTable
+                                    devices={devices}
+                                />
+                   {/* { !requisites ?
                             <>
                                 <h3>Введите данные своего юридического лица для выставления счета:</h3>
                                 <CashlessInputs />
@@ -92,7 +102,7 @@ const UserBasket = () => {
                                     devices={devices}
                                 />
                             </>
-                    }
+                    } */}
                 </Col>
                 
             </Row>

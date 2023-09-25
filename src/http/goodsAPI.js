@@ -57,5 +57,12 @@ export const increasePriceByProcent = async ( param ) => {
     return data
 }
 
-
+export const createPriceTable = async ( params ) => {
+    const {data} = await $host.post('/api/goods/create-price-table', params)
+    return data
+}
+export const fetchOnePrice = async ( params ) => {
+    const {data} = await $host.post('/api/goods/fetch-one-price', params)
+    return data
+}
 

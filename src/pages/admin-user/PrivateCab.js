@@ -13,7 +13,7 @@ const PrivateCab = () => {
     const [orders, setOrders] = useState([]);
     const [count, setCount] = useState(0);
     const [flag, setFlag] = useState(0);
-
+console.log(orders)
     
 // Загрузка всех заказов пользователя
     useEffect(() => {
@@ -30,10 +30,11 @@ const PrivateCab = () => {
 
 
     useEffect(() => {
-        if(orders.length <= 0){ return;}
+        if(!orders.length) return;
 
         const fetchDataMid = async () => {
             for (let x of orders) {
+                console.log(x.id)
                 if(x.status_pay == false){
                     await checkPayStatus({orderId: x.id});
                 }
@@ -45,7 +46,7 @@ const PrivateCab = () => {
             console.log('dev', error);
             alert('Ошибка 528 - Обратитесь к администратору!');
         });
-    }, [ ]);
+    }, [ JSON.stringify(orders) ]);
 
 
 

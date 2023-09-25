@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
+import Accordion from 'react-bootstrap/Accordion';
 
 
 const Header = () => {
@@ -79,9 +80,24 @@ const Header = () => {
                                     title="Прайс"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
-                                     <NavDropdown.Item href="/goods/bagety">
-                                        Ламинация
-                                    </NavDropdown.Item>
+                                     
+                                    <Accordion defaultActiveKey="0">
+                                        <Accordion.Item eventKey="1">
+                                            <Accordion.Header>Ламинация</Accordion.Header>
+                                            <Accordion.Body>
+                                                <NavDropdown.Item href="/one-price/1">
+                                                    Ламинация листовая (глянец)
+                                                </NavDropdown.Item>
+                                                <NavDropdown.Item href="/admin" className="redLink">
+                                                    Список заказов
+                                                </NavDropdown.Item>
+                                                <NavDropdown.Item href="/admin" className="redLink">
+                                                    Список заказов
+                                                </NavDropdown.Item>
+                                    
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
                                    {/* <NavDropdown.Item href="/goods/suveniry">
                                         Сувенирная продукция
                                     </NavDropdown.Item> */}

@@ -11,6 +11,7 @@ import { reciveBasketCount, reciveOrderCount } from "../http/deviceAPI";
 import { fetchXslFile } from "../http/goodsAPI";
 import BanButton from './components/BanButton'
 
+
 const HeaderAbove = observer(() => {
     const [basketNumber, setBasketNumber] = useState("0");
     const [orderNumber, setOrderNumber] = useState("0");
@@ -96,6 +97,7 @@ const HeaderAbove = observer(() => {
                                     <NavDropdown.Item onClick={showModalReview} >
                                         Оставить отзыв
                                     </NavDropdown.Item>
+
                                     <NavDropdown.Item onClick={logOut}>
                                         Выход
                                     </NavDropdown.Item>
@@ -116,6 +118,9 @@ const HeaderAbove = observer(() => {
                                             </NavDropdown.Item>
                                             <NavDropdown.Item href="/admin/update-price"  className="redLink">
                                                 Обновить цены XLSX
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item href="/admin/create-price"  className="redLink">
+                                                Создать прайс
                                             </NavDropdown.Item>
                                             <BanButton />
                                         </>
