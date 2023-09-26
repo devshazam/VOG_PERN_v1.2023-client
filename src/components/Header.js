@@ -81,26 +81,65 @@ const Header = () => {
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
                                      
-                                    <Accordion defaultActiveKey="0">
-                                        <Accordion.Item eventKey="1">
+                                    <Accordion defaultActiveKey="0" className="menu-accordion">
+                                        <Accordion.Item eventKey="1" className="item-accordion">
                                             <Accordion.Header>Ламинация</Accordion.Header>
                                             <Accordion.Body>
                                                 <NavDropdown.Item href="/one-price/1">
                                                     Ламинация листовая (глянец)
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/admin" className="redLink">
-                                                    Список заказов
+                                                <NavDropdown.Item href="/one-price/2">
+                                                    Ламинация листовая (матовая)
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/admin" className="redLink">
-                                                    Список заказов
+                                                <NavDropdown.Item href="/one-price/4">
+                                                    Глянцевая рулонная ламинация
+                                                </NavDropdown.Item>
+                                                <NavDropdown.Item href="/one-price/5">
+                                                    Матовая рулонная ламинация
                                                 </NavDropdown.Item>
                                     
                                             </Accordion.Body>
                                         </Accordion.Item>
                                     </Accordion>
-                                   {/* <NavDropdown.Item href="/goods/suveniry">
-                                        Сувенирная продукция
-                                    </NavDropdown.Item> */}
+                                    <Accordion defaultActiveKey="0" className="menu-accordion">
+                                        <Accordion.Item eventKey="1" className="item-accordion">
+                                            <Accordion.Header>Копирование</Accordion.Header>
+                                            <Accordion.Body>
+                                                <NavDropdown.Item href="/one-price/6">
+                                                    Сканирование
+                                                </NavDropdown.Item>
+                                                <NavDropdown.Item href="/one-price/7">
+                                                    Распечатка текста и чертежей
+                                                </NavDropdown.Item>
+                                                <NavDropdown.Item href="/one-price/8">
+                                                    Ксерокопия
+                                                </NavDropdown.Item>
+                                    
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
+                                    <Accordion defaultActiveKey="0" className="menu-accordion">
+                                        <Accordion.Item eventKey="1" className="item-accordion">
+                                            <Accordion.Header>Печать</Accordion.Header>
+                                            <Accordion.Body>
+                                            <NavDropdown.Item href="/one-price/11">
+                                                Лазерная печать А4, А3
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item href="/one-price/12">
+                                                Струйная печать, глянцевая бумага
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item href="/one-price/13">
+                                                Струйная печать, матовая бумага
+                                            </NavDropdown.Item>
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
+                                    <NavDropdown.Item href="/one-price/9">
+                                        Печать на холсте
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/one-price/10">
+                                        Тиражирование на ризографе
+                                    </NavDropdown.Item>
                                 </NavDropdown>
 
                                 <Nav.Link href="/goods/krujki">Кружки</Nav.Link>

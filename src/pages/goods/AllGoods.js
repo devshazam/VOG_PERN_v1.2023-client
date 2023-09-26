@@ -12,6 +12,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Spinner from "react-bootstrap/Spinner";
+
 
 
 import { fetchGoodsList, deleteItemByID } from '../../http/goodsAPI';
@@ -129,7 +131,7 @@ const AllGoods = observer(() => {
                                         </Card>
                                     
                                 </Col>
-                                )  : <h2>Нет товаров</h2>
+                                )  :  <Spinner className="goods-spiner" animation="border"></Spinner>
                             }
                             {paginationBasic}
 

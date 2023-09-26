@@ -424,3 +424,18 @@ margin-right: 15px;
     border-radius: 5px;
 
 }
+
+.menu-accordion .accordion-button{
+    padding: 5px;
+    padding-left: 16px;
+}
+.menu-accordion .item-accordion{
+    border: none;
+}
+
+.goods-spiner{
+    position: absolute;
+    left: 48%;
+    top: 48%;
+
+}

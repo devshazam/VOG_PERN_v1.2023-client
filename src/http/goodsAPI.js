@@ -66,3 +66,12 @@ export const fetchOnePrice = async ( params ) => {
     return data
 }
 
+export const updatePriceTable = async ( params ) => {
+    const {data} = await $host.post('/api/goods/update-price-table', params)
+    return data
+}
+
+export const updateGoodsByExel = async ( params ) => {
+    const {data} = await $host.post('/api/goods/update-by-exel', params)
+    return data
+}

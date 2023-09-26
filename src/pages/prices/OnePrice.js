@@ -7,7 +7,7 @@ import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 
 
-import { fetchOnePrice } from "../../http/goodsAPI";
+import { fetchOnePrice, updatePriceTable } from "../../http/goodsAPI";
 
 // Таблица заказанных товаров
 const CreatePrice = () => {
@@ -18,7 +18,8 @@ const CreatePrice = () => {
     const [name, setName] = useState('');
     const [flag, setFlag] = useState(true);
 console.log(newPrice)
-console.log(user.user.role)
+console.log(note)
+console.log(name)
     const { priceId } = useParams();
 
 
@@ -44,8 +45,23 @@ console.log(user.user.role)
                 console.log('dev', error);
                 alert('Ошибка 512 - Обратитесь к администратору!');
             });
-    }, []);
+    }, [flag]);
 
+    const callCreatePriceTable = () => {
+ 
+        updatePriceTable({name, note, price: newPrice, priceId}).then((data) => {
+
+        })
+        .catch((error) => {
+            console.log('dev', error);
+            alert('Ошибка 512 - Обратитесь к администратору!');
+        });
+    };
+
+    const handleAdmin = () => {
+        setFlag(false)
+    };
+    
 
     // #########################################################################################
 
@@ -68,24 +84,24 @@ console.log(user.user.role)
                             </tr>
                         ))}
                         {user.user.role == "ADMIN" &&
-                        <Button variant="danger" onClick={handleTable} >Создать</Button> }</>
+                        <Button variant="danger" onClick={handleAdmin} >Править таблицу</Button> }</>
                         :
-                        newPrice.map((price, index) => (
-                            <tr key={index}>
-                                {Object.keys(price).map((item) => 
-                                    (
-                                    <td  key={item}><input type="text" className="input-class" onChange={event => handleTable(index, item, event)} value={price[item]}></input></td>
-                                
-                                    ))}
-                            </tr>
-                        ))
+                        <>
+                            {newPrice.map((price, index) => (
+                                <tr key={index}>
+                                    {Object.keys(price).map((item) => 
+                                        (
+                                        <td  key={item}><input type="text" className="input-class" onChange={event => handleTable(index, item, event)} value={price[item]}></input></td>
+                                    
+                                        ))}
+                                </tr>
+                            ))}
+                            <Button variant="danger" onClick={callCreatePriceTable} >Изменить данные</Button>
+                        </>
                     }
 
-                    //STOPer
-                    {flag ? <>{user.user.role == "ADMIN" &&
-                        <Button variant="danger" onClick={handleTable} >Создать</Button> }</>
-                    :
-                    "0"}
+               
+                 
                 </tbody>
             </Table>
 <p>{note}</p>
