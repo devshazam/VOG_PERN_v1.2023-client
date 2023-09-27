@@ -27,7 +27,7 @@ const AllGoods = observer(() => {
     const [count, setCount] = useState(0); 
     const [flag, setFlag] = useState(1);
 
-    const limit = '24';
+    const limit = '12';
     const [page, setPage] = useState(1); 
     const [categoryIt, setCategoryIt] = useState(category);
     const [itemSort, setItemSort] = useState('createdAt');
@@ -85,8 +85,14 @@ const AllGoods = observer(() => {
                             <Form.Select aria-label="Default select example" onChange={(e) => setCategoryIt(e.target.value)} value={categoryIt}>
                                         <option value="krujki">Кружки</option>
                                         <option value="futbolki">Футболки</option>
-                                        <option value="bagety">Багетные рамки</option>
+                                        <option value="bagety">Багеты</option>
                                         <option value="suveniry">Сувенирная продукция</option>
+                                        <option value="planketki">Плакетки</option>
+                                        <option value="shtender">Штендеры</option>
+                                        <option value="magnit">Магнитики</option>
+                                        <option value="brelok">Брелоки</option>
+                                        <option value="plenka-avery">Пленка AVERY</option>
+                                        <option value="3d-nit">Нить для 3D печати</option>
                             </Form.Select>
                         </FloatingLabel>
                     </Form.Group>

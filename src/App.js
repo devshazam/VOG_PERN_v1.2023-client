@@ -34,6 +34,7 @@ import ListOfGoods from './pages/admin/ListOfGoods';
 import UpdatePrices from './pages/admin/UpdatePrices';
 import CreatePrice from './pages/prices/CreatePrice';
 import OnePrice from './pages/prices/OnePrice';
+import ThreeDdetails from './pages/ThreeDdetails';
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -90,6 +91,7 @@ const App = observer(() => {
               <Route path="/one-price/:priceId" element={<OnePrice  />} />
               
 
+              <Route path="/3d-details" element={<ThreeDdetails />} />
               <Route path="/oferta" element={<Oferta />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="*" element={<Empty />} />

@@ -67,8 +67,9 @@ const UpdateGoods = () => {
     
     async function updateGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
-        if (!name ||!description ||!group ||!price) { alert("Не все поля заполнены!"); return; }
-        if (name.split('').length > 250 || description.split('').length > 1000 || price.split('').length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
+        if (!name ||!description ||!group ||!price || !artikul || !priceImg || !summa) { alert("Не все поля заполнены!"); return; }
+        if (summa.length > 250 || artikul.length > 250 || priceImg.length > 250 || name.length > 250 || description.length > 1000 || price.length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
+        if(!Number.isInteger(+price) || !Number.isInteger(+priceImg)) { alert("Цены могут быть только целым ччислом!"); return; }
         if (!+price){alert('Не допустимое значение цены!'); return;}
         // if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
         // if (image.name.split('.').reverse()[0] !== 'jpg'){alert("Формат файла только jpg");return}

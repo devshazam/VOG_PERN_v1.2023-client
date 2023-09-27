@@ -439,3 +439,7 @@ margin-right: 15px;
     top: 48%;
 
 }
+.youtube-video {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+  }

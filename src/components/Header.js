@@ -59,25 +59,28 @@ const Header = () => {
                                     title="Купить"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
-                                  {/*  <NavDropdown.Item href="/goods/futbolki">
+                                   <NavDropdown.Item href="/goods/futbolki">
                                         Футболки
                                     </NavDropdown.Item>
                                      <NavDropdown.Item href="/goods/krujki">
                                         Кружки
-                                    </NavDropdown.Item> */}
+                                    </NavDropdown.Item>
                                      <NavDropdown.Item href="/goods/bagety">
                                         Багетные рамки
                                     </NavDropdown.Item>
                                    <NavDropdown.Item href="/goods/suveniry">
                                         Сувенирная продукция
                                     </NavDropdown.Item>
-                                   {/*  <NavDropdown.Item href="/goods/planketki">
-                                        Планкетки
-                                    </NavDropdown.Item> */}
+                                    <NavDropdown.Item href="/goods/planketki">
+                                        Плакетки
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/goods/shtender">
+                                        Штендеры
+                                    </NavDropdown.Item>
                                     {/* <NavDropdown.Divider /> */}
                                 </NavDropdown>
                                 <NavDropdown
-                                    title="Прайс"
+                                    title="Прайсы"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
                                      
@@ -142,10 +145,9 @@ const Header = () => {
                                     </NavDropdown.Item>
                                 </NavDropdown>
 
-                                <Nav.Link href="/goods/krujki">Кружки</Nav.Link>
+                                {/* <Nav.Link href="/goods/krujki">Кружки</Nav.Link> */}
                                 <Nav.Link href="/goods/kancelyariya">Канцелярия</Nav.Link>
-                                <Nav.Link href="/contacts">Контакты</Nav.Link>
-                                <Nav.Link href="/admin/bar">
+                                <Nav.Link href="/3d-details">
                                     <Image
                                         src="/file/icons8-3d-50.jpg"
                                         className="bascket_img"
@@ -154,6 +156,7 @@ const Header = () => {
                                         title="Заказы"
                                     /> 3D-детали
                                 </Nav.Link>
+                                <Nav.Link href="/contacts">Контакты</Nav.Link>
                             </Nav>
                             <Navbar.Text>
                                 <span className="label">

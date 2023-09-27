@@ -16,17 +16,18 @@ import SendToBasketGoods from "../a-components/SendToBasketGoods";
 import { observer } from "mobx-react-lite";
 
 const OneGoods = observer(() => {
-    const [goodsItem, setGoodsItem] = useState({});
     const { goodsId } = useParams();
+
+    const [goodsItem, setGoodsItem] = useState({});
     const [number, setNumber] = useState("1"); // кол-во товараов
     const [value, setValue] = useState(0); // стоимость товараов
     const [description, setDescription] = useState("");
     const [sale, setSale] = useState("");
     const [goodsImg, setGoodsImg] = useState("0");
-    const arrayGoodsItem = ['без картинки', 'с картинкой'];
+    const arrayGoodsItem = ["без картинки", "с картинкой"];
 
     useEffect(() => {
-        fetchOneGoods({goodsId})
+        fetchOneGoods({ goodsId })
             .then((data) => {
                 setGoodsItem(data);
                 console.log("dev", data);
@@ -35,12 +36,10 @@ const OneGoods = observer(() => {
                 console.log("dev", error);
                 alert("Ошибка 518 - Обратитесь к администратору!");
             });
-    }, [goodsId]); // <- add the count variable here
+    }, [goodsId]);
 
     useEffect(() => {
-        if (Object.keys(goodsItem).length === 0) {
-            return;
-        }
+        if (Object.keys(goodsItem).length === 0) return;
         if (number.split("").length > 10) {
             alert("Слишком большое значение!");
             return;
@@ -49,13 +48,14 @@ const OneGoods = observer(() => {
             alert("Введите только целое число!");
             return;
         }
+
         let midlItem1;
-        if(+goodsImg){
-            midlItem1 = +goodsItem.price_img * +number;
-        }else{
+        if (+goodsImg) {
+            midlItem1 = (+goodsItem.price + +goodsItem.price_img)  * +number;
+        } else {
             midlItem1 = +goodsItem.price * +number;
         }
-        
+
         if (midlItem1 < 3000) {
             setSale("");
         } else if (midlItem1 >= 3000 && midlItem1 < 10000) {
@@ -71,7 +71,7 @@ const OneGoods = observer(() => {
             midlItem1 = midlItem1 * 0.9;
             setSale("10%");
         }
-        setValue(Math.ceil(midlItem1 * 100) / 100 );
+        setValue(Math.ceil(midlItem1 * 100) / 100);
 
         setDescription(
             "Название: " +
@@ -95,7 +95,11 @@ const OneGoods = observer(() => {
             <Container>
                 <Row className="mb-3">
                     <Col xs={12} md={6} className="wrap-image">
-                        <Image src={goodsItem.image} id="goods-image" thumbnail />
+                        <Image
+                            src={goodsItem.image}
+                            id="goods-image"
+                            thumbnail
+                        />
                     </Col>
                     <Col xs={12} lg={6}>
                         <h1>{goodsItem.name}</h1>
@@ -128,12 +132,19 @@ const OneGoods = observer(() => {
                                 >
                                     {" "}
                                     {/* вставить сюда уникальный controlID */}
-                                    <Form.Select 
+                                    <Form.Select
                                         aria-label="Default select example"
-                                        onChange={(e) => setGoodsImg(e.target.value)}
-                                        value={goodsImg} >
-                                            <option value="0">Без оформления</option>
-                                            <option value="1">Приложить картинку</option>
+                                        onChange={(e) =>
+                                            setGoodsImg(e.target.value)
+                                        }
+                                        value={goodsImg}
+                                    >
+                                        <option value="0">
+                                            Без оформления
+                                        </option>
+                                        <option value="1">
+                                            Прикрепить изображение
+                                        </option>
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
@@ -145,9 +156,7 @@ const OneGoods = observer(() => {
                             name={goodsItem.name}
                             id={`${goodsItem.id}`}
                             goodsFlag={goodsImg}
-
                         />
-  
                     </Col>
                 </Row>
                 <h2>{goodsItem.name}</h2>
