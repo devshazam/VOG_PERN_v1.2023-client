@@ -23,6 +23,7 @@ const AllGoods = observer(() => {
     const { user } = useContext(Context)
     const { category } = useParams();
 
+    const [spiner, setSpiner] = useState(false);
     const [goodsCustom, setGoodsCustom] = useState({}); 
     const [count, setCount] = useState(0); 
     const [flag, setFlag] = useState(1);
@@ -36,11 +37,14 @@ const AllGoods = observer(() => {
 
     useEffect(() => {
             fetchGoodsList( limit, `${page}`, categoryIt, itemSort, orderSort ).then(data => {
+                console.log(data)
                 setGoodsCustom(data.rows)
                 setCount(data.count)
             }).catch((error) => { 
                 console.log('dev', error);
                 alert('Ошибка 516 - Обратитесь к администратору!');
+            }).finally(() =>{
+                setSpiner(true)
             });
 
     }, [ page, flag, categoryIt, itemSort, orderSort  ]); // <- add the count variable here
@@ -77,8 +81,8 @@ const AllGoods = observer(() => {
 
     return (
         <>
-        
             <Row className="mb-5">
+        
                 <Col xs={12} sm={3} lg={3} className="mb-3" >
                     <Form.Group as={Col} md="12" controlId="formGridState" className="mb-3">
                         <FloatingLabel controlId="floatingPassword" label="Категория товаров:">
@@ -86,7 +90,6 @@ const AllGoods = observer(() => {
                                         <option value="krujki">Кружки</option>
                                         <option value="futbolki">Футболки</option>
                                         <option value="bagety">Багеты</option>
-                                        <option value="suveniry">Сувенирная продукция</option>
                                         <option value="planketki">Плакетки</option>
                                         <option value="shtender">Штендеры</option>
                                         <option value="magnit">Магнитики</option>
@@ -116,16 +119,17 @@ const AllGoods = observer(() => {
                 </Col>
                 <Col xs={12} sm={9} lg={9} className="mb-3" >
                         <Row className="mb-5">
-                                {Object.keys(goodsCustom).length ? goodsCustom.map(goods =>
+                            {spiner ?
+                                <>{Object.keys(goodsCustom).length ? goodsCustom.map(goods =>
                                 <Col xs={12} sm={6} lg={3} className="mb-3" key={goods.id}>
                                         <Card >
                                             <a href={"/goods/one/"+goods.id}>
                                                 <Card.Img variant="top" src={goods.image} />
                                             </a>
                                             <Card.Body>
-                                                <Card.Title>{goods.name}</Card.Title>
+                                                <Card.Title>Цена: {goods.price} р</Card.Title>
                                                 <Card.Text>
-                                                Цена: {goods.price} р
+                                                {goods.name}
                                                 </Card.Text>
                                                 {user.user.role == 'ADMIN' && 
                                                 <>
@@ -137,8 +141,11 @@ const AllGoods = observer(() => {
                                         </Card>
                                     
                                 </Col>
-                                )  :  <Spinner className="goods-spiner" animation="border"></Spinner>
-                            }
+                                )  :  <h3>В данной категории нет товаров!</h3>
+                                }</>
+                            :
+                            <Spinner className="goods-spiner" animation="border"></Spinner>
+                        }
                             {paginationBasic}
 
                             </Row>

@@ -169,7 +169,6 @@ const CreateGoods = () => {
                                         <option value="krujki">Кружки</option>
                                         <option value="futbolki">Футболки</option>
                                         <option value="bagety">Багеты</option>
-                                        <option value="suveniry">Сувенирная продукция</option>
                                         <option value="planketki">Плакетки</option>
                                         <option value="shtender">Штендеры</option>
                                         <option value="magnit">Магнитики</option>

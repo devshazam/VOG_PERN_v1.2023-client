@@ -67,9 +67,9 @@ const UpdateGoods = () => {
     
     async function updateGoodsItemFunction() {
         if (!user.user.id) {window.location.reload();}
-        if (!name ||!description ||!group ||!price || !artikul || !priceImg || !summa) { alert("Не все поля заполнены!"); return; }
+        if (!name ||!description ||!group ||!price || !artikul || !priceImg) { alert("Не все поля заполнены!"); return; }
         if (summa.length > 250 || artikul.length > 250 || priceImg.length > 250 || name.length > 250 || description.length > 1000 || price.length > 250) { alert("Превышенно кол-во символов для данного поля!"); return; }
-        if(!Number.isInteger(+price) || !Number.isInteger(+priceImg)) { alert("Цены могут быть только целым ччислом!"); return; }
+        if(!Number.isInteger(+price) || !Number.isInteger(+priceImg) || !Number.isInteger(+summa)) { alert("Цены и кол-во могут быть только целым числом!"); return; }
         if (!+price){alert('Не допустимое значение цены!'); return;}
         // if (+image.size > 102400){alert("Вставьте файл не более 100Kb");return}
         // if (image.name.split('.').reverse()[0] !== 'jpg'){alert("Формат файла только jpg");return}
@@ -179,10 +179,16 @@ const UpdateGoods = () => {
                             <Form.Select aria-label="Floating label select example" 
                                 onChange={(e) =>setGroup(e.target.value)}
                                 value={group} >
-                                <option value="futbolki">Футболки</option>
+
                                 <option value="krujki">Кружки</option>
+                                <option value="futbolki">Футболки</option>
                                 <option value="bagety">Багеты</option>
-                                <option value="suveniry">Сувенирная продукция</option>
+                                <option value="planketki">Плакетки</option>
+                                <option value="shtender">Штендеры</option>
+                                <option value="magnit">Магнитики</option>
+                                <option value="brelok">Брелоки</option>
+                                <option value="plenka-avery">Пленка AVERY</option>
+                                <option value="3d-nit">Нить для 3D печати</option>
                             </Form.Select>
                             </FloatingLabel>
                         </Form.Group>

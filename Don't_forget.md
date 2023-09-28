@@ -5,3 +5,11 @@ x&qkw4bH%VG*
 
 secret_key=live_k25GTirGEy6mpQ9SrTNrIVf1XX9spgXAWz96GBER9UQ
 shop_id=322722
+
+4. Список категорий товаров 
+    - CreateGoods
+    - UpdateGoods
+    - AllGoods
+    - Header
+    - admin/ListofGoods
+    - src\pages\admin\component\ProcentInput.js

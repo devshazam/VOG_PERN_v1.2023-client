@@ -128,7 +128,7 @@ const ListOfGoods = () => {
                                         <td>{good.id}</td>
                                         <td>{good.price}</td>
                                         <td>{good.price_img}</td>
-                                        <td>{good.description}</td>
+                                        <td>{good.name}</td>
                                         <td><a href={good.image}>ссылка</a></td>
                                         <td>{good.barcode}</td>
                                         <td>{good.artikul}</td>
