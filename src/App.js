@@ -25,8 +25,9 @@ import UpdateGoods from "./pages/admin/UpdateGoods.js";
 import UserBasketCashless from './pages/admin-user/UserBasketCashless';
 import UserBasket from "./pages/admin-user/UserBasket.js";
 import PrivateCab from "./pages/admin-user/PrivateCab.js";
-import ListOfUserOrders from "./pages/admin-user/sub-page/ListOfUserOrders.js"
-import ListOfOrders from "./pages/admin/sub-page/ListOfOrders.js"
+import ListOfUserOrders from "./pages/admin-user/sub-page/ListOfUserOrders.js";
+import ListOfOrders from "./pages/admin/sub-page/ListOfOrders.js";
+import VizitsPrice from "./pages/prices/VizitsPrice";
 
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
@@ -89,6 +90,7 @@ const App = observer(() => {
               <Route path="/goods/one-update/:goodsId" element={<UpdateGoods />} />
 {/* Прайсы */}
               <Route path="/one-price/:priceId" element={<OnePrice  />} />
+              <Route path="/vizits-price" element={<VizitsPrice  />} />
               
 
               <Route path="/3d-details" element={<ThreeDdetails />} />

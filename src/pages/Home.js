@@ -60,9 +60,9 @@ export default function Home() {
                         </a>
                     </Col>
                     <Col xs={12} sm={6} lg={3} className="mb-3">
-                        <a href="/goods/krujki">
+                        <a href="/3d-details">
                             <Image
-                                src="/file/home/krujka.png"
+                                src="/file/home/3d.jpg"
                                 thumbnail
                                 className="img-mob"
                             />

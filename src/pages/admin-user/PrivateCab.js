@@ -5,6 +5,8 @@ import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 
 import { fetchUsersOrders, checkPayStatus } from "../../http/deviceAPI";
+import Spinner from "react-bootstrap/Spinner";
+
 
 // Таблица заказанных товаров
 const PrivateCab = () => {
@@ -13,6 +15,7 @@ const PrivateCab = () => {
     const [orders, setOrders] = useState([]);
     const [count, setCount] = useState(0);
     const [flag, setFlag] = useState(0);
+    const [spiner, setSpiner] = useState(true);
 console.log(orders)
     
 // Загрузка всех заказов пользователя
@@ -45,7 +48,10 @@ console.log(orders)
         .catch((error) => {
             console.log('dev', error);
             alert('Ошибка 528 - Обратитесь к администратору!');
-        });
+        }).finally(() => { // выполниться в не зависимости от резуольтата 
+            console.log(`All Tasks is Done`); 
+            setSpiner(false)
+          });
     }, [ JSON.stringify(orders) ]);
 
 
@@ -100,13 +106,17 @@ console.log(orders)
                                     }
                                 </td>
                                 <td>
-                                    {order.status_pay ? (
-                                        <p><span href='#' style={{fontSize: 18, color: 'green'}}> оплачено</span></p>
-                                    ) : (
-                                        <p><span href='#' style={{fontSize: 18, color: 'red'}}>не оплачено</span>
-                                            {/* <a href='#' >   - оплатить</a> */}
-                                        </p>
-                                    )}
+                                    {spiner ?
+                                            <Spinner animation="border" variant="danger"  />
+                                        :
+                                            <>{order.status_pay ? (
+                                                <p><span href='#' style={{fontSize: 18, color: 'green'}}> оплачено</span></p>
+                                            ) : (
+                                                <p><span href='#' style={{fontSize: 18, color: 'red'}}>не оплачено</span>
+                                                    {/* <a href='#' >   - оплатить</a> */}
+                                                </p>
+                                            )}</>
+                                    }
                                 </td>
                                 <td>{order.createdAt.split('T')[0] + ' / ' + order.createdAt.split('T')[1].split('.')[0]}</td>
                                 <td><a href={"/admin/bar/"+order.id} >  подробнее</a></td>

@@ -105,22 +105,23 @@ const HeaderAbove = observer(() => {
                                         <>
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item href="/admin" className="redLink">
-                                                Список заказов
+                                                База заказов
                                             </NavDropdown.Item>
                                             <NavDropdown.Item href="/admin/list-of-goods" className="redLink">
                                                 База товаров
                                             </NavDropdown.Item>
+                                            <NavDropdown.Item href="/admin/update-price"  className="redLink">
+                                                Обновить цены XLSX -??? убрать
+                                            </NavDropdown.Item>
                                             <NavDropdown.Item href="/admin/create" className="redLink">
                                                 Создать товар
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item onClick={fetchXsl} className="redLink">
-                                                Скачать XLSX товаров
-                                            </NavDropdown.Item>
-                                            <NavDropdown.Item href="/admin/update-price"  className="redLink">
-                                                Обновить цены XLSX
-                                            </NavDropdown.Item>
                                             <NavDropdown.Item href="/admin/create-price"  className="redLink">
                                                 Создать прайс
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item onClick={fetchXsl} className="fioLink">
+                                                Скачать базу товаров (xlsx)
                                             </NavDropdown.Item>
                                             <BanButton />
                                         </>

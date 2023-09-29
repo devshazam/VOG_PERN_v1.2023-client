@@ -27,7 +27,7 @@ const BanForSite = () => {
     return (
         <>
 
-            <NavDropdown.Item onClick={blockSite} className="redLink">
+            <NavDropdown.Item onClick={blockSite} className="fioLink">
                 Блокировать сайт
             </NavDropdown.Item>
 

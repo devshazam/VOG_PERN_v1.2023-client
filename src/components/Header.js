@@ -40,7 +40,7 @@ const Header = () => {
                         <Offcanvas.Body className="justify-content-between">
                             <Nav className="justify-content-end  pe-3 my-2 my-lg-0">
                                 <NavDropdown
-                                    title="Заказать"
+                                    title="Заказать товары"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
                                     <NavDropdown.Item href="/vizitki">
@@ -56,7 +56,7 @@ const Header = () => {
                                 </NavDropdown>
 
                                 <NavDropdown
-                                    title="Купить"
+                                    title="Купить товары"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
                                    <NavDropdown.Item href="/goods/futbolki">
@@ -89,7 +89,7 @@ const Header = () => {
                                 </NavDropdown>
 
                                 <NavDropdown
-                                    title="Прайсы"
+                                    title="Прайсы услуг"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
                                      
@@ -152,10 +152,13 @@ const Header = () => {
                                     <NavDropdown.Item href="/one-price/10">
                                         Тиражирование на ризографе
                                     </NavDropdown.Item>
+                                    <NavDropdown.Item href="/vizits-price">
+                                        Визитки
+                                    </NavDropdown.Item>
                                 </NavDropdown>
 
                                 {/* <Nav.Link href="/goods/krujki">Кружки</Nav.Link> */}
-                                <Nav.Link href="/goods/kancelyariya">Канцелярия</Nav.Link>
+                                {/* <Nav.Link href="/goods/kancelyariya">Канцелярия</Nav.Link> */}
                                 <Nav.Link href="/3d-details">
                                     <Image
                                         src="/file/icons8-3d-50.jpg"
@@ -163,7 +166,7 @@ const Header = () => {
                                         rounded
                                         alt="Заказы"
                                         title="Заказы"
-                                    /> 3D-детали
+                                    /> 3D детали
                                 </Nav.Link>
                                 <Nav.Link href="/contacts">Контакты</Nav.Link>
                             </Nav>
