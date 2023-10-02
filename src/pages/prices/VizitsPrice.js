@@ -3,8 +3,10 @@ import { Context } from "../../index";
 
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 
-import { fetchOnePrice, updatePriceTable } from "../../http/goodsAPI";
+
+import { fetchOnePrice, updatePriceTableB} from "../../http/goodsAPI";
 
 const VizitsPrice = () => {
     const { user } = useContext(Context);
@@ -40,7 +42,7 @@ const VizitsPrice = () => {
     }, [flag]);
 
     const callCreatePriceTable = () => {
-        updatePriceTable({ name, note, price: newPrice, priceId: 15 })
+        updatePriceTableB({ name, note, price: newPrice })
             .then((data) => {
                 alert('Данные успешно сохранены!')
                 window.location.reload();
@@ -59,23 +61,30 @@ const VizitsPrice = () => {
 
     return (
         <>
+        <div className="scroll-div">
             <h1>{name}</h1>
 
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <td>Сторонность:</td>
-                        <td>Вид:</td>
-                        <td>Ламинация:</td>
-                        <td>96 шт</td>
-                        <td>204 шт</td>
-                        <td>500 шт</td>
-                        <td>1000 шт</td>
+                        <th>Сторонность:</th>
+                        <th>Вид:</th>
+                        <th>Ламинация:</th>
+                        <th>96 шт</th>
+                        <th>204 шт</th>
+                        <th>500 шт</th>
+                        <th>1000 шт</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    {flag ? 
+
+                {newPrice.length === 0 ?
+                        <Spinner  className="vizits-price-spiner" animation="border" />
+                :
+
+           
+                    <>{flag ? 
 
 
                         newPrice.map((price, index) => (
@@ -129,7 +138,11 @@ const VizitsPrice = () => {
                                     ))}
                                 </tr>
                             ))
-                    }
+                    }</>
+                }
+
+
+                    
                 </tbody>
             </Table>
             <p>{note}</p>
@@ -150,6 +163,7 @@ const VizitsPrice = () => {
                 </Button>
               
             }
+            </div>
         </>
     );
 };

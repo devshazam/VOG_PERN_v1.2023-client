@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
+
 
 import { fetchOnePrice, updatePriceTable } from "../../http/goodsAPI";
 
@@ -61,11 +63,17 @@ const CreatePrice = () => {
 
     return (
         <>
+        <div className="scroll-div">
             <h1>{name}</h1>
 
             <Table striped bordered hover>
                 <tbody>
-                    {flag ? 
+                {newPrice.length === 0 ?
+                        <Spinner  className="vizits-price-spiner" animation="border" />
+                :
+
+           
+                    <>{flag ? 
                             newPrice.map((price, index) => (
                                 <tr key={index}>
                                     {Object.keys(price).map((item) => (
@@ -94,7 +102,9 @@ const CreatePrice = () => {
                                     ))}
                                 </tr>
                             ))
-                    }
+                    }</>
+                }
+
                 </tbody>
             </Table>
             <p>{note}</p>
@@ -115,6 +125,7 @@ const CreatePrice = () => {
                 </Button>
               
             }
+        </div>
         </>
     );
 };

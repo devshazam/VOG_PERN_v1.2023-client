@@ -134,7 +134,7 @@ const AllGoods = observer(() => {
                                                 {user.user.role == 'ADMIN' && 
                                                 <>
                                                 {/* <Button className="m-2" variant="danger" onClick={() => deleteItem(goods.id)}>Удалить</Button> */}
-                                                <Button variant="primary" href={"/goods/one-update/"+goods.id}>Править</Button>
+                                                <Button variant="primary" href={"/admin/update-goods/"+goods.id}>Править</Button>
                                                 </>
                                                 }
                                             </Card.Body>

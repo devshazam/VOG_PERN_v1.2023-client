@@ -446,3 +446,10 @@ margin-right: 15px;
     aspect-ratio: 16 / 9;
     width: 100%;
   }
+.scroll-div{
+    overflow: auto;
+}
+.vizits-price-spiner{
+    margin-left: 45%;
+    margin-top: 5px;
+}

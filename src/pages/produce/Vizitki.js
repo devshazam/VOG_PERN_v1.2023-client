@@ -9,10 +9,10 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-import SendToBasket from "../a-components/SendToBasket";
+import SendToBasket from "../../components/basket/SendToBasket";
 import { observer } from "mobx-react-lite";
 // import { vizit } from "../../arrays/vizitki.js";
-import { fetchArrayPriceOfVizits } from "../../http/jsonAPI";
+import { fetchPriceOfProduce } from "../../http/jsonAPI";
 
 const Vizitki = observer(() => {
     const [vizit, setVizit] = useState([]);
@@ -23,24 +23,25 @@ const Vizitki = observer(() => {
     const [num, setNum] = useState("0");
     const [description, setDescription] = useState(""); // Телефон
     const name = "Визитки";
-    const goodsId = '0';
+    const goodsId = "0";
     const vizSize = ["односторонние", "двусторонние"];
     const vizVid = ["матовая", "глянцевая", "дизайнерская"];
     const vizLam = ["без ламинации", "глянцевая", "матовая"];
     const vizNum = ["96", "200", "500", "1000"];
-console.log(vizit)
+    console.log(vizit);
     useEffect(() => {
-        fetchArrayPriceOfVizits().then(data => {
-            setVizit(JSON.parse(data.value))
-        }).catch((error) => { 
-            console.log('dev', error);
-            alert('Ошибка 508 - Обратитесь к администратору!');
-        });
-    }, [ ])
-
+        fetchPriceOfProduce({jsonId: 2})
+            .then((data) => {
+                setVizit(JSON.parse(data.value));
+            })
+            .catch((error) => {
+                console.log("dev", error);
+                alert("Ошибка 508 - Обратитесь к администратору!");
+            });
+    }, []);
 
     useEffect(() => {
-        if(vizit.length == 0) return;
+        if (vizit.length == 0) return;
         setValue(vizit[+side][+vid][+lam][+num]);
         setDescription(
             `Наименование: ${name}; Цена: ${value} рублей; Кол-во сторон печати: ${
@@ -143,7 +144,6 @@ console.log(vizit)
                             name={name}
                             id={goodsId}
                         />
-                        
                     </Col>
                 </Row>
 

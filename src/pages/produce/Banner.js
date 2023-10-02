@@ -8,7 +8,7 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
-import SendToBasket from "../a-components/SendToBasket";
+import SendToBasket from "../../components/basket/SendToBasket";
 import { observer } from "mobx-react-lite";
 
 const Banner = observer(() => {
@@ -24,12 +24,14 @@ const Banner = observer(() => {
     const [density, setDensity] = useState("0"); // плотность баннера
 
     const name = "Баннер";
-    const goodsId = '0';
+    const goodsId = "0";
 
     const glueArray = ["без проклейки", "с проклейкой"];
     const luversStepArray = ["0", "200", "300", "400", "500"]; //
     const densityArray = ["400-440", "500"];
-    // [[550, 650], [], [], [], [], [], []]
+    // const coastOfBanner = [[550, 600], [500, 600], [400, 500], [350, 450], [300, 400], [280, 380], [240, 340]];
+    // const coastOfGlue = 60;
+    // const coastOfluvers = 15;
 
     useEffect(() => {
         if (!width || !height) {
@@ -107,22 +109,20 @@ const Banner = observer(() => {
             }
         }
 
-
         let midluversStep = 0; // стоимость
         if (luversStep !== "0") {
             midluversStep =
                 Math.round(
                     ((+width + +height) * +number * 2) /
                         +luversStepArray[+luversStep]
-                ) * 15;
+                ) * 15; /// цена люверса
         }
         let midglue = 0; // проклейка
         if (glue === "1") {
             midglue = Math.ceil(
-                (((+width + +height) * +number * 2) / 1000) * 60
+                (((+width + +height) * +number * 2) / 1000) * 60 // цена проклейки за 1 мерт
             );
         }
-
 
         setLuversCoast(midluversStep);
         setGlueCoast(midglue);
@@ -202,8 +202,9 @@ const Banner = observer(() => {
                                     <Form.Select
                                         aria-label="Floating label select example"
                                         onChange={(e) =>
-                                            setDensity(e.target.value)}
-                                            value={density}
+                                            setDensity(e.target.value)
+                                        }
+                                        value={density}
                                     >
                                         <option value="0">400-440</option>
                                         <option value="1">500</option>
@@ -219,8 +220,9 @@ const Banner = observer(() => {
                                     <Form.Select
                                         aria-label="Floating label select example"
                                         onChange={(e) =>
-                                            setLuversStep(e.target.value)}
-                                            value={luversStep}
+                                            setLuversStep(e.target.value)
+                                        }
+                                        value={luversStep}
                                     >
                                         <option value="0">Без люверсов</option>
                                         <option value="1">
@@ -247,8 +249,9 @@ const Banner = observer(() => {
                                     <Form.Select
                                         aria-label="Floating label select example"
                                         onChange={(e) =>
-                                            setGlue(e.target.value)}
-                                            value={glue}
+                                            setGlue(e.target.value)
+                                        }
+                                        value={glue}
                                     >
                                         <option value="0">Без проклейки</option>
                                         <option value="1">
@@ -281,8 +284,8 @@ const Banner = observer(() => {
                             id={goodsId}
                         />
                         <p style={{ fontSize: 12 }}>
-                            ** - кол-во люверсов может отличчаться на один, два в
-                            большую сторону
+                            ** - кол-во люверсов может отличчаться на один, два
+                            в большую сторону
                         </p>
                     </Col>
                 </Row>

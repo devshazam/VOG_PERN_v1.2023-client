@@ -41,7 +41,7 @@ export default function Home() {
 
                 <Row className="mb-5">
                     <Col xs={12} sm={6} lg={3} className="mb-3">
-                        <a href="/banner">
+                        <a href="/produce/banner">
                             <Image
                                 src="/file/home/banner.jpg"
                                 thumbnail
@@ -51,7 +51,7 @@ export default function Home() {
                     </Col>
                     
                     <Col xs={12} sm={6} lg={3} className="mb-3">
-                        <a href="/samokleyka">
+                        <a href="/produce/samokleyka">
                             <Image
                                 src="/file/home/samokleyky.png"
                                 thumbnail
@@ -69,7 +69,7 @@ export default function Home() {
                         </a>
                     </Col>
                     <Col xs={12} sm={6} lg={3} className="mb-3">
-                        <a href="/vizitki">
+                        <a href="/produce/vizitki">
                             <Image
                                 src="/file/home/vizitki.jpg"
                                 thumbnail

@@ -17,6 +17,8 @@ import ChangeGoodsParams from './component/ChangeGoodsParams'
 import CashlessOrders from './component/CashlessOrders';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
+import ProcentInput from './component/ProcentInput' 
+import UpdateGoodsByXlsx from './component/UpdateGoodsByXlsx' 
 
 const ListOfGoods = () => {
     const [barcode, setBarcode] = useState('');
@@ -64,6 +66,16 @@ const ListOfGoods = () => {
         <>
                 <ChangeGoodsParams />
                 <Row className="mb-3">
+                    <Col xs={12} lg={4}>
+                        <h4>Обновление товаров по XSLX</h4>
+                        <UpdateGoodsByXlsx />
+                    </Col>
+                    <Col xs={12} lg={8}>
+                        <h4>Обновление цен всех товаров на % по категориям</h4>
+                        <ProcentInput />
+                    </Col>
+                </Row>
+                <Row className="mb-3">
                     <h2>Фильтрация результатов:</h2>
                     <Form.Group as={Col} md="3" className="mb-3">
                         <FloatingLabel controlId="floatingBarcode" label="Поиск по штрих-коду"> 
@@ -101,6 +113,8 @@ const ListOfGoods = () => {
                                 </Form.Select>
                         </FloatingLabel>
                     </Form.Group>
+
+              
                     
                 </Row>
 

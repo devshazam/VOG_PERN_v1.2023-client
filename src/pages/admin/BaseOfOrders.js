@@ -17,7 +17,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import CashlessOrders from './component/CashlessOrders';
 
 
-const AllOrdersAdmin = () => {
+const BaseOfOrders = () => {
 
     // const [itemSort, setItemSort] = useState('createdAt');
     // const [orderSort, setOrderSort] = useState('ASC');
@@ -122,7 +122,7 @@ const AllOrdersAdmin = () => {
                                                 </p>
                                             )}
                                         </td>
-                                        <td><a href={"/admin/all-orders/"+order.id} >  подробнее</a></td>
+                                        <td><a href={"/admin/base-of-orders/"+order.id} >  подробнее</a></td>
                                         <td><button onClick={() => callChangeDoneStatusToDone(order.id)}>Выполнить</button></td>
                                     </tr>
                                 ))
@@ -151,4 +151,4 @@ const AllOrdersAdmin = () => {
     );
 };
 
-export default AllOrdersAdmin;
+export default BaseOfOrders;

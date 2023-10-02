@@ -68,7 +68,7 @@ console.log(helpers.reloadBasket)
                         >Оплатить 
                         </Button>
                      <p style={{fontSize: 12}}>Оплата производится с помощью сервиса онлайн платежей <a href="https://yoomoney.ru/">Юмани</a></p>
-                    <p>Перейти к <a href="/admin/user-basket-cashless">безналичной оплате.</a></p>
+                    <p>Перейти к <a href="/admin/user/basket-cashless">безналичной оплате.</a></p>
                 </Col>
                 <Col xs={12} sm={{span: 9,  order: 1 }} className="mb-3">
                    

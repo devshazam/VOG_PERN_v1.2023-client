@@ -12,7 +12,7 @@ import Card from "react-bootstrap/Card";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import { fetchOneGoods } from "../../http/goodsAPI";
-import SendToBasketGoods from "../a-components/SendToBasketGoods";
+import SendToBasketGoods from "../../components/basket/SendToBasketGoods";
 import { observer } from "mobx-react-lite";
 
 const OneGoods = observer(() => {
@@ -51,7 +51,7 @@ const OneGoods = observer(() => {
 
         let midlItem1;
         if (+goodsImg) {
-            midlItem1 = (+goodsItem.price + +goodsItem.price_img)  * +number;
+            midlItem1 = (+goodsItem.price + +goodsItem.price_img) * +number;
         } else {
             midlItem1 = +goodsItem.price * +number;
         }

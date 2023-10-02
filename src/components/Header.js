@@ -43,13 +43,13 @@ const Header = () => {
                                     title="Заказать товары"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
-                                    <NavDropdown.Item href="/vizitki">
+                                    <NavDropdown.Item href="/produce/vizitki">
                                         Визитки
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/banner">
+                                    <NavDropdown.Item href="/produce/banner">
                                         Баннеры
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/samokleyka">
+                                    <NavDropdown.Item href="/produce/samokleyka">
                                         Самоклейки
                                     </NavDropdown.Item>
                                     {/* <NavDropdown.Divider /> */}
@@ -97,16 +97,16 @@ const Header = () => {
                                         <Accordion.Item eventKey="1" className="item-accordion">
                                             <Accordion.Header>Ламинация</Accordion.Header>
                                             <Accordion.Body>
-                                                <NavDropdown.Item href="/one-price/1">
+                                                <NavDropdown.Item href="/prices/1">
                                                     Ламинация листовая (глянец)
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/one-price/2">
+                                                <NavDropdown.Item href="/prices/2">
                                                     Ламинация листовая (матовая)
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/one-price/4">
+                                                <NavDropdown.Item href="/prices/4">
                                                     Глянцевая рулонная ламинация
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/one-price/5">
+                                                <NavDropdown.Item href="/prices/5">
                                                     Матовая рулонная ламинация
                                                 </NavDropdown.Item>
                                     
@@ -117,13 +117,13 @@ const Header = () => {
                                         <Accordion.Item eventKey="1" className="item-accordion">
                                             <Accordion.Header>Копирование</Accordion.Header>
                                             <Accordion.Body>
-                                                <NavDropdown.Item href="/one-price/6">
+                                                <NavDropdown.Item href="/prices/6">
                                                     Сканирование
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/one-price/7">
+                                                <NavDropdown.Item href="/prices/7">
                                                     Распечатка текста и чертежей
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/one-price/8">
+                                                <NavDropdown.Item href="/prices/8">
                                                     Ксерокопия
                                                 </NavDropdown.Item>
                                     
@@ -134,26 +134,32 @@ const Header = () => {
                                         <Accordion.Item eventKey="1" className="item-accordion">
                                             <Accordion.Header>Печать</Accordion.Header>
                                             <Accordion.Body>
-                                            <NavDropdown.Item href="/one-price/11">
+                                            <NavDropdown.Item href="/prices/11">
                                                 Лазерная печать А4, А3
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item href="/one-price/12">
+                                            <NavDropdown.Item href="/prices/12">
                                                 Струйная печать, глянцевая бумага
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item href="/one-price/13">
+                                            <NavDropdown.Item href="/prices/13">
                                                 Струйная печать, матовая бумага
                                             </NavDropdown.Item>
                                             </Accordion.Body>
                                         </Accordion.Item>
                                     </Accordion>
-                                    <NavDropdown.Item href="/one-price/9">
+                                    <NavDropdown.Item href="/prices/9">
                                         Печать на холсте
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/one-price/10">
+                                    <NavDropdown.Item href="/prices/10">
                                         Тиражирование на ризографе
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/vizits-price">
+                                    <NavDropdown.Item href="/prices/18">
+                                        Значки
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/vizits-price">
                                         Визитки
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/samokleyka-price">
+                                        Самоклейка
                                     </NavDropdown.Item>
                                 </NavDropdown>
 

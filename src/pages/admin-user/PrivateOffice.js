@@ -9,7 +9,7 @@ import Spinner from "react-bootstrap/Spinner";
 
 
 // Таблица заказанных товаров
-const PrivateCab = () => {
+const PrivateOffice = () => {
     const { user } = useContext(Context);
     const [page, setPage] = useState(1);
     const [orders, setOrders] = useState([]);
@@ -119,7 +119,7 @@ console.log(orders)
                                     }
                                 </td>
                                 <td>{order.createdAt.split('T')[0] + ' / ' + order.createdAt.split('T')[1].split('.')[0]}</td>
-                                <td><a href={"/admin/bar/"+order.id} >  подробнее</a></td>
+                                <td><a href={"/admin/user/private-office/"+order.id} >  подробнее</a></td>
                             </tr>
                         ))
                      : 
@@ -138,4 +138,4 @@ console.log(orders)
     );
 };
 
-export default PrivateCab;
+export default PrivateOffice;

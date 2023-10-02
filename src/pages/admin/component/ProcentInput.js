@@ -44,7 +44,8 @@ const UpdatePrices = () => {
 // #########################################################################################
     return (
         <>
-            <Form.Group as={Col} md="12" className="mb-3">
+        <Row>
+            <Form.Group as={Col} md="6" className="mb-3">
                 <FloatingLabel controlId="floatingProcent" label="Введите процент:">
                 <Form.Control
                     type="text"
@@ -54,7 +55,7 @@ const UpdatePrices = () => {
                 /> 
                 </FloatingLabel>
             </Form.Group>
-            <Form.Group as={Col} md="12" className="mb-3">
+            <Form.Group as={Col} md="6" className="mb-3">
                 <FloatingLabel controlId="floatingSelect" label="Категория товаров:">  {/* вставить сюда уникальный controlID */} 
                 <Form.Select
                         aria-label="Default select example"
@@ -71,12 +72,12 @@ const UpdatePrices = () => {
                     </Form.Select>
                 </FloatingLabel>
             </Form.Group>
+        </Row>
 
-
-            <Button
+            <Button className="w-100"
                 variant="danger"
                 onClick={createGoodsItemFunction}
-            >{ spiner ? 'Создать' : <Spinner animation="border" /> }
+            >{ spiner ? 'Обновить' : <Spinner animation="border" /> }
             </Button>
                            
         </>

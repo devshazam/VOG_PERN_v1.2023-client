@@ -19,8 +19,8 @@ export const updatePriceByExel = async ( params ) => {
     return data
 }
 
-export const fetchArrayPriceOfVizits = async ( params ) => {
-    const {data} = await $host.post('/api/jsona/fetch-array-price-of-vizits', params)
+export const fetchPriceOfProduce = async ( params ) => {
+    const {data} = await $host.post('/api/jsona/fetch-price-of-produce', params)
     return data
 }
 

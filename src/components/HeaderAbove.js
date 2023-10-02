@@ -9,8 +9,7 @@ import { Row, Col } from "react-bootstrap";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { reciveBasketCount, reciveOrderCount } from "../http/deviceAPI";
 import { fetchXslFile } from "../http/goodsAPI";
-import BanButton from './components/BanButton'
-
+import BanButton from "./BanButton";
 
 const HeaderAbove = observer(() => {
     const [basketNumber, setBasketNumber] = useState("0");
@@ -18,28 +17,30 @@ const HeaderAbove = observer(() => {
     const { helpers, user } = useContext(Context);
 
     useEffect(() => {
-      if (!user.isAuth) { return; }
-        reciveBasketCount({userId: user.user.id})
+        if (!user.isAuth) {
+            return;
+        }
+        reciveBasketCount({ userId: user.user.id })
             .then((res) => {
                 setBasketNumber(res);
             })
             .catch((error) => {
-                if(error.response.status == 500){
+                if (error.response.status == 500) {
                     alert(error.response.data.message);
-                }else{
-                    console.log('dev', error.response.data.message);
-                    alert('Ошибка 501 - Обратитесь к администратору!');
+                } else {
+                    console.log("dev", error.response.data.message);
+                    alert("Ошибка 501 - Обратитесь к администратору!");
                 }
             });
-        reciveOrderCount({ userId: user.user.id})
-        .then((res) => {
-            // console.log(res);
-            setOrderNumber(res);
-        })
-        .catch((error) => {
-            console.log('dev', error);
-            alert('Ошибка 501 - Обратитесь к администратору!');
-        });
+        reciveOrderCount({ userId: user.user.id })
+            .then((res) => {
+                // console.log(res);
+                setOrderNumber(res);
+            })
+            .catch((error) => {
+                console.log("dev", error);
+                alert("Ошибка 501 - Обратитесь к администратору!");
+            });
     }, [helpers.reloadBasket]);
 
     const showModalLogin = () => {
@@ -68,8 +69,8 @@ const HeaderAbove = observer(() => {
                 document.location.href = data.fileLocation;
             })
             .catch((error) => {
-                console.log('dev', error);
-                alert('Ошибка 502 - Обратитесь к администратору!');
+                console.log("dev", error);
+                alert("Ошибка 502 - Обратитесь к администратору!");
             });
     };
 
@@ -94,7 +95,7 @@ const HeaderAbove = observer(() => {
                                     <NavDropdown.Item onClick={changeUserCred}>
                                         Изменить данные
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item onClick={showModalReview} >
+                                    <NavDropdown.Item onClick={showModalReview}>
                                         Оставить отзыв
                                     </NavDropdown.Item>
 
@@ -104,23 +105,35 @@ const HeaderAbove = observer(() => {
                                     {user.user.role == "ADMIN" && (
                                         <>
                                             <NavDropdown.Divider />
-                                            <NavDropdown.Item href="/admin" className="redLink">
+                                            <NavDropdown.Item
+                                                href="/admin/base-of-orders"
+                                                className="redLink"
+                                            >
                                                 База заказов
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item href="/admin/list-of-goods" className="redLink">
+                                            <NavDropdown.Item
+                                                href="/admin/list-of-goods"
+                                                className="redLink"
+                                            >
                                                 База товаров
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item href="/admin/update-price"  className="redLink">
-                                                Обновить цены XLSX -??? убрать
-                                            </NavDropdown.Item>
-                                            <NavDropdown.Item href="/admin/create" className="redLink">
+                                            <NavDropdown.Item
+                                                href="/admin/create"
+                                                className="redLink"
+                                            >
                                                 Создать товар
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item href="/admin/create-price"  className="redLink">
+                                            <NavDropdown.Item
+                                                href="/admin/create-price"
+                                                className="redLink"
+                                            >
                                                 Создать прайс
                                             </NavDropdown.Item>
                                             <NavDropdown.Divider />
-                                            <NavDropdown.Item onClick={fetchXsl} className="fioLink">
+                                            <NavDropdown.Item
+                                                onClick={fetchXsl}
+                                                className="fioLink"
+                                            >
                                                 Скачать базу товаров (xlsx)
                                             </NavDropdown.Item>
                                             <BanButton />
@@ -128,7 +141,7 @@ const HeaderAbove = observer(() => {
                                     )}
                                 </NavDropdown>
                                 <Nav.Item>
-                                    <Nav.Link href="/admin/bar">
+                                    <Nav.Link href="/admin/user/private-office">
                                         <Image
                                             src="/file/icons8-box-50.png"
                                             className="bascket_img"
@@ -142,7 +155,7 @@ const HeaderAbove = observer(() => {
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link href="/admin/user-basket">
+                                    <Nav.Link href="/admin/user/basket">
                                         <Image
                                             src="/file/icons8-basket-50.png"
                                             className="bascket_img"
