@@ -10,6 +10,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 import SendToBasket from "../../components/basket/SendToBasket";
 import { observer } from "mobx-react-lite";
+import { fetchPriceOfProduce } from "../../http/jsonAPI";
 
 const Banner = observer(() => {
     const [value, setValue] = useState(0); // цена товара - расчитаная
@@ -22,6 +23,9 @@ const Banner = observer(() => {
     const [number, setNumber] = useState("1"); // кол-во баннеров
     const [glue, setGlue] = useState("0");
     const [density, setDensity] = useState("0"); // плотность баннера
+    const [coastOfBanner, setCoastOfBanner] = useState([]);
+    const [coastOfluvers, setCoastOfluvers] = useState(0);
+    const [coastOfGlue, setCoastOfGlue] = useState(0);
 
     const name = "Баннер";
     const goodsId = "0";
@@ -29,9 +33,21 @@ const Banner = observer(() => {
     const glueArray = ["без проклейки", "с проклейкой"];
     const luversStepArray = ["0", "200", "300", "400", "500"]; //
     const densityArray = ["400-440", "500"];
-    // const coastOfBanner = [[550, 600], [500, 600], [400, 500], [350, 450], [300, 400], [280, 380], [240, 340]];
-    // const coastOfGlue = 60;
-    // const coastOfluvers = 15;
+console.log(coastOfBanner)
+
+    useEffect(() => {
+        fetchPriceOfProduce({jsonId: 4})
+            .then((data) => {
+                setCoastOfBanner(JSON.parse(data.value)[0]);
+                setCoastOfluvers(JSON.parse(data.value)[1]);
+                setCoastOfGlue(JSON.parse(data.value)[2]);
+            })
+            .catch((error) => {
+                console.log("dev", error);
+                alert("Ошибка 532 - Обратитесь к администратору!");
+            });
+    }, []);
+
 
     useEffect(() => {
         if (!width || !height) {
@@ -60,54 +76,13 @@ const Banner = observer(() => {
 
         let midNum = (+width * +height * +number) / 1000000;
         let midNum2;
-        if (midNum < 1) {
-            if (density === "0") {
-                midNum2 = midNum * 550;
-            } else {
-                midNum2 = midNum * 650;
-            }
-        } else if (midNum >= 1 && midNum < 5) {
-            if (density === "0") {
-                midNum2 = midNum * 500;
-            } else {
-                midNum2 = midNum * 600;
-            }
-        }
-        if (midNum >= 5 && midNum < 10) {
-            if (density === "0") {
-                midNum2 = midNum * 400;
-            } else {
-                midNum2 = midNum * 500;
-            }
-        }
-        if (midNum >= 10 && midNum < 50) {
-            if (density === "0") {
-                midNum2 = midNum * 350;
-            } else {
-                midNum2 = midNum * 450;
-            }
-        }
-        if (midNum >= 50 && midNum < 100) {
-            if (density === "0") {
-                midNum2 = midNum * 300;
-            } else {
-                midNum2 = midNum * 400;
-            }
-        }
-        if (midNum >= 100 && midNum < 500) {
-            if (density === "0") {
-                midNum2 = midNum * 280;
-            } else {
-                midNum2 = midNum * 380;
-            }
-        }
-        if (midNum >= 500) {
-            if (density === "0") {
-                midNum2 = midNum * 240;
-            } else {
-                midNum2 = midNum * 340;
-            }
-        }
+        if (midNum < 1) {midNum2 = midNum * coastOfBanner[0][+density];
+        } else if (midNum >= 1 && midNum < 5) { midNum2 = midNum * coastOfBanner[1][+density];
+        } else if (midNum >= 5 && midNum < 10) { midNum2 = midNum * coastOfBanner[2][+density];
+        } else if (midNum >= 10 && midNum < 50) { midNum2 = midNum * coastOfBanner[3][+density];
+        } else if (midNum >= 50 && midNum < 100) { midNum2 = midNum * coastOfBanner[4][+density];
+        } else if (midNum >= 100 && midNum < 500) { midNum2 = midNum * coastOfBanner[5][+density];
+        } else if (midNum >= 500) { midNum2 = midNum * coastOfBanner[6][+density]; }
 
         let midluversStep = 0; // стоимость
         if (luversStep !== "0") {
@@ -115,12 +90,12 @@ const Banner = observer(() => {
                 Math.round(
                     ((+width + +height) * +number * 2) /
                         +luversStepArray[+luversStep]
-                ) * 15; /// цена люверса
+                ) * coastOfluvers; /// цена люверса
         }
         let midglue = 0; // проклейка
         if (glue === "1") {
             midglue = Math.ceil(
-                (((+width + +height) * +number * 2) / 1000) * 60 // цена проклейки за 1 мерт
+                (((+width + +height) * +number * 2) / 1000) * coastOfGlue // цена проклейки за 1 мерт
             );
         }
 

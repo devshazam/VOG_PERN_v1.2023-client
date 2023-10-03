@@ -175,6 +175,7 @@ const CreateGoods = () => {
                                         <option value="brelok">Брелоки</option>
                                         <option value="plenka-avery">Пленка AVERY</option>
                                         <option value="3d-nit">Нить для 3D печати</option>
+                                        <option value="stands">Информационные стенды</option>
                                     </Form.Select>
                             </Form.Group>
 

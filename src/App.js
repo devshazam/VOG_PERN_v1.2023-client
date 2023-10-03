@@ -37,6 +37,7 @@ import ListOfUserOrders from "./pages/admin-user/ListOfUserOrders.js";
 
 import VizitsPrice from "./pages/prices/VizitsPrice";
 import SamokleykaPrice from "./pages/prices/SamokleykaPrice";
+import BannerPrice from "./pages/prices/BannerPrice";
 
 import {Spinner} from "react-bootstrap";
 import CreatePrice from './pages/admin/CreatePrice';
@@ -105,6 +106,7 @@ const App = observer(() => {
               <Route path="/prices/:priceId" element={<OnePrice  />} />
               <Route path="/prices/vizits-price" element={<VizitsPrice  />} />
               <Route path="/prices/samokleyka-price" element={<SamokleykaPrice  />} />
+              <Route path="/prices/banner-price" element={<BannerPrice  />} />
               
             </Route>
       </Routes>

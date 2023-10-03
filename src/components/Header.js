@@ -86,13 +86,24 @@ const Header = () => {
                                     <NavDropdown.Item href="/goods/3d-nit">
                                         Нить для 3D печати
                                     </NavDropdown.Item>
+                                    <NavDropdown.Item href="/goods/stands">
+                                        Информационные стенды
+                                    </NavDropdown.Item>
                                 </NavDropdown>
 
                                 <NavDropdown
                                     title="Прайсы услуг"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
-                                     
+                                    <NavDropdown.Item href="/prices/vizits-price">
+                                        Визитки
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/samokleyka-price">
+                                        Самоклейка
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/banner-price">
+                                        Баннеры
+                                    </NavDropdown.Item>
                                     <Accordion defaultActiveKey="0" className="menu-accordion">
                                         <Accordion.Item eventKey="1" className="item-accordion">
                                             <Accordion.Header>Ламинация</Accordion.Header>
@@ -155,12 +166,7 @@ const Header = () => {
                                     <NavDropdown.Item href="/prices/18">
                                         Значки
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/prices/vizits-price">
-                                        Визитки
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href="/prices/samokleyka-price">
-                                        Самоклейка
-                                    </NavDropdown.Item>
+                                    
                                 </NavDropdown>
 
                                 {/* <Nav.Link href="/goods/krujki">Кружки</Nav.Link> */}

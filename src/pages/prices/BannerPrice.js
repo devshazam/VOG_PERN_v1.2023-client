@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 
 
-import { fetchOnePrice, updatePriceTableC} from "../../http/goodsAPI";
+import { fetchOnePrice, updatePriceTableD} from "../../http/goodsAPI";
 
 const VizitsPrice = () => {
     const { user } = useContext(Context);
@@ -16,6 +16,11 @@ const VizitsPrice = () => {
     const [name, setName] = useState("");
     const [flag, setFlag] = useState(true);
 console.log(newPrice)
+
+    // const coastOfBanner = [[550, 600], [500, 600], [400, 500], [350, 450], [300, 400], [280, 380], [240, 340]];
+    // const coastOfGlue = 60;
+    // const coastOfluvers = 15;
+
     const handleTable = (fIndex, key, event) => {
         if(event.target.value.length > 200){alert('Превышена длина ячейки!'); return}
         setNewPrice(
@@ -42,7 +47,7 @@ console.log(newPrice)
     }, [flag]);
 
     const callCreatePriceTable = () => {
-        updatePriceTableC({ name, note, price: newPrice })
+        updatePriceTableD({ name, note, price: newPrice })
             .then((data) => {
                 alert('Данные успешно сохранены!')
                 window.location.reload();
@@ -68,14 +73,13 @@ console.log(newPrice)
                 <thead>
                     <tr>
                         <td></td>
-                        <td>Белая</td>
-                        <td>Черная</td>
-                        <td>Цветная</td>
-                        <td>Дизайнерская</td>
-                        <td>Фотолюминесцентная</td>
-                        <td>Перфорированная</td>
-                        <td>Прозрачная</td>
-                        <td>Светоотражающая</td>
+                        <td>До 1 м2</td>
+                        <td>от 1-5 м2</td>
+                        <td>от 5-10 м2</td>
+                        <td>от 10-50 м2</td>
+                        <td>от 50-100 м2</td>
+                        <td>от 100-500 м2</td>
+                        <td>от 500 м2</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,58 +95,36 @@ console.log(newPrice)
 
                       <>  {newPrice.map((price, index) => (
                             <tr key={index}>
-                                    {index === 0 && <><td >До 1 м2</td></>}
-                                    {index === 1 && <><td >От 1 до 5 м2</td></>}
-                                    {index === 2 && <><td >От 5 до 10 м2</td></>}
-                                    {index === 3 && <><td >От 10 м2</td></>}
-                                    {index !== 4 && <>
+                                    {index === 0 && <><td >400-440</td></>}
+                                    {index === 1 && <><td >500</td></>}
+                                    {index !== 2 && <>
                                     {Object.keys(price).map((item, ind) => (
                                             <td key={item}>{price[item]}</td>
-                                            ))}</>
-                                            }
-                                            
+                                            ))}</>}
                                 </tr>
                         ))}
                         <tr>
-                            <td colSpan={9}>
-                                Порезка
+                            <td colSpan={8}>
+                                Цена люверса: {newPrice[2].a}
                             </td>
                         </tr>
                         <tr>
-                            <td >Без порезки</td>
-                            <td >А6</td>
-                            <td >А5</td>
-                            <td >А4</td>
-                            <td >А3</td>
-                            <td >А2</td>
-                            <td >А1</td>
-                            <td ></td>
-                            <td ></td>
-                        </tr>
-                        <tr>
-                                {newPrice.map((price, index) => (
-
-                                        <>{index === 4 && <>
-                                            {Object.keys(price).map((item, ind) => (
-                                                    <td key={item}>{price[item]}</td>
-                                                    ))}</>
-                                            }</>
-                                ))}
-                                <td ></td>
+                            <td colSpan={8}>
+                                Цена проклейки 1 метра: {newPrice[2].b}
+                            </td>
                         </tr>
                         </>
 
                       
                     : 
 
+                       
 
-                                         <>  {newPrice.map((price, index) => (
+                       <>  {newPrice.map((price, index) => (
                             <tr key={index}>
-                                    {index === 0 && <><td >До 1 м2</td></>}
-                                    {index === 1 && <><td >От 1 до 5 м2</td></>}
-                                    {index === 2 && <><td >От 5 до 10 м2</td></>}
-                                    {index === 3 && <><td >От 10 м2</td></>}
-                                    {index !== 4 && <>
+                                    {index === 0 && <><td >400-440</td></>}
+                                    {index === 1 && <><td >500</td></>}
+                                    {index !== 2 && <>
                                     {Object.keys(price).map((item, ind) => (
                                             <td key={item}><input
                                             type="text"
@@ -156,52 +138,45 @@ console.log(newPrice)
                                             }
                                             value={price[item]}
                                         ></input></td>
-                                            ))}</>
-                                            }
-                                            
+                                            ))}</>}
                                 </tr>
                         ))}
                         <tr>
-                            <td colSpan={9}>
-                                Порезка
+                            <td colSpan={8}>
+                                Цена люверса: <input
+                                            type="text"
+                                            className="input-class"
+                                            onChange={(event) =>
+                                                handleTable(
+                                                    2,
+                                                    'a',
+                                                    event
+                                                )
+                                            }
+                                            value={newPrice[2].a}
+                                        ></input>
                             </td>
                         </tr>
                         <tr>
-                            <td >Без порезки</td>
-                            <td >А6</td>
-                            <td >А5</td>
-                            <td >А4</td>
-                            <td >А3</td>
-                            <td >А2</td>
-                            <td >А1</td>
-                            <td ></td>
-                            <td ></td>
-                        </tr>
-                        <tr>
-                                {newPrice.map((price, index) => (
-
-                                        <>{index === 4 && <>
-                                            {Object.keys(price).map((item, ind) => (
-                                                <>{Object.keys(price).length - 1 !== ind &&
-                                                                <td key={item}><input
-                                                                type="text"
-                                                                className="input-class"
-                                                                onChange={(event) =>
-                                                                    handleTable(
-                                                                        index,
-                                                                        item,
-                                                                        event
-                                                                    )
-                                                                }
-                                                                value={price[item]}
-                                                            ></input></td>}</>
-                                                    ))}</>
-                                            }</>
-                                ))}
-                                <td ></td>
-                                <td ></td>
+                            <td colSpan={8}>
+                                Цена проклейки 1 метра: <input
+                                            type="text"
+                                            className="input-class"
+                                            onChange={(event) =>
+                                                handleTable(
+                                                    2,
+                                                    'b',
+                                                    event
+                                                )
+                                            }
+                                            value={newPrice[2].b}
+                                        ></input>
+                            </td>
                         </tr>
                         </>
+                        
+
+
 
 
 
