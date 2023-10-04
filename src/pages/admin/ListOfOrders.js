@@ -26,8 +26,14 @@ const ListOfOrders = () => {
                 setCount(data.length);
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 512 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 118 - Обратитесь к администратору!");
+                }
             });
     }, [page]);
 
@@ -39,8 +45,14 @@ const ListOfOrders = () => {
                 }
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 528 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 119 - Обратитесь к администратору!");
+                }
             });
     }, [page]);
 

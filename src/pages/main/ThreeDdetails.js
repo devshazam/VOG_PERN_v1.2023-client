@@ -8,17 +8,6 @@ const ThreeDdetails = () => {
 
 
 
-        // useEffect(() => {
-        //     fetchUsersOrders({page: `${page}`, userId: `${user.user.id}`})
-        //         .then((data) => {
-        //             setOrders(data.rows);
-        //             setCount(data.count);
-        //         })
-        //         .catch((error) => {
-        //             console.log('dev', error);
-        //             alert('Ошибка 512 - Обратитесь к администратору!');
-        //         });
-        // }, [page, flag]);
 
 
 

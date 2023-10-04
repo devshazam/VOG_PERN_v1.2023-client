@@ -8,7 +8,7 @@ const Contacts = () => {
     useEffect(() => {
         checkPayStatus()
             .then((data) => {
-                console.log(data.status);
+                // console.log(data.status);
                 if (data.status == "success") {
                     setValue("Оплата прошла успешно!");
                 } else {
@@ -19,8 +19,14 @@ const Contacts = () => {
                 }, 10000);
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 505 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 142 - Обратитесь к администратору!");
+                }
             });
     }, []);
 

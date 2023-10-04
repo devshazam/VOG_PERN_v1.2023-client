@@ -6,7 +6,6 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 
-
 import { fetchOnePrice, updatePriceTable } from "../../http/goodsAPI";
 
 const CreatePrice = () => {
@@ -19,7 +18,10 @@ const CreatePrice = () => {
     const [flag, setFlag] = useState(true);
 
     const handleTable = (fIndex, key, event) => {
-        if(event.target.value.length > 200){alert('Превышена длина ячейки!'); return}
+        if (event.target.value.length > 200) {
+            alert("Превышена длина ячейки!");
+            return;
+        }
         setNewPrice(
             newPrice.map((price, index) =>
                 fIndex == index
@@ -38,20 +40,32 @@ const CreatePrice = () => {
                 setName(JSON.parse(data.value).name);
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 512 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 145 - Обратитесь к администратору!");
+                }
             });
     }, [flag]);
 
     const callCreatePriceTable = () => {
         updatePriceTable({ name, note, price: newPrice, priceId })
             .then((data) => {
-                alert('Данные успешно сохранены!')
+                alert("Данные успешно сохранены!");
                 window.location.reload();
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 512 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 146 - Обратитесь к администратору!");
+                }
             });
     };
 
@@ -63,69 +77,76 @@ const CreatePrice = () => {
 
     return (
         <>
-        <div className="scroll-div">
-            <h1>{name}</h1>
+            <div className="scroll-div">
+                <h1>{name}</h1>
 
-            <Table striped bordered hover>
-                <tbody>
-                {newPrice.length === 0 ?
-                        <Spinner  className="vizits-price-spiner" animation="border" />
-                :
+                <Table striped bordered hover>
+                    <tbody>
+                        {newPrice.length === 0 ? (
+                            <Spinner
+                                className="vizits-price-spiner"
+                                animation="border"
+                            />
+                        ) : (
+                            <>
+                                {flag
+                                    ? newPrice.map((price, index) => (
+                                          <tr key={index}>
+                                              {Object.keys(price).map(
+                                                  (item) => (
+                                                      <td key={item}>
+                                                          {price[item]}
+                                                      </td>
+                                                  )
+                                              )}
+                                          </tr>
+                                      ))
+                                    : newPrice.map((price, index) => (
+                                          <tr key={index}>
+                                              {Object.keys(price).map(
+                                                  (item) => (
+                                                      <td key={item}>
+                                                          <input
+                                                              type="text"
+                                                              className="input-class"
+                                                              onChange={(
+                                                                  event
+                                                              ) =>
+                                                                  handleTable(
+                                                                      index,
+                                                                      item,
+                                                                      event
+                                                                  )
+                                                              }
+                                                              value={
+                                                                  price[item]
+                                                              }
+                                                          ></input>
+                                                      </td>
+                                                  )
+                                              )}
+                                          </tr>
+                                      ))}
+                            </>
+                        )}
+                    </tbody>
+                </Table>
+                <p>{note}</p>
 
-           
-                    <>{flag ? 
-                            newPrice.map((price, index) => (
-                                <tr key={index}>
-                                    {Object.keys(price).map((item) => (
-                                        <td key={item}>{price[item]}</td>
-                                    ))}
-                                </tr>
-                            ))
-                    : 
-                            newPrice.map((price, index) => (
-                                <tr key={index}>
-                                    {Object.keys(price).map((item) => (
-                                        <td key={item}>
-                                            <input
-                                                type="text"
-                                                className="input-class"
-                                                onChange={(event) =>
-                                                    handleTable(
-                                                        index,
-                                                        item,
-                                                        event
-                                                    )
-                                                }
-                                                value={price[item]}
-                                            ></input>
-                                        </td>
-                                    ))}
-                                </tr>
-                            ))
-                    }</>
-                }
-
-                </tbody>
-            </Table>
-            <p>{note}</p>
-
-            {flag ? 
-
-                    <>{user.user.role == "ADMIN" && (
-                        <Button variant="danger" onClick={handleAdmin}>
-                            Изменить таблицу
-                        </Button>
-                    )}</>
-            :
-                <Button
-                    variant="danger"
-                    onClick={callCreatePriceTable}
-                >
-                    Сохранить данные
-                </Button>
-              
-            }
-        </div>
+                {flag ? (
+                    <>
+                        {user.user.role == "ADMIN" && (
+                            <Button variant="danger" onClick={handleAdmin}>
+                                Изменить таблицу
+                            </Button>
+                        )}
+                    </>
+                ) : (
+                    <Button variant="danger" onClick={callCreatePriceTable}>
+                        Сохранить данные
+                    </Button>
+                )}
+            </div>
         </>
     );
 };

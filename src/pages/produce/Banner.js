@@ -33,21 +33,26 @@ const Banner = observer(() => {
     const glueArray = ["без проклейки", "с проклейкой"];
     const luversStepArray = ["0", "200", "300", "400", "500"]; //
     const densityArray = ["400-440", "500"];
-console.log(coastOfBanner)
+    // console.log(coastOfBanner)
 
     useEffect(() => {
-        fetchPriceOfProduce({jsonId: 4})
+        fetchPriceOfProduce({ jsonId: 4 })
             .then((data) => {
                 setCoastOfBanner(JSON.parse(data.value)[0]);
                 setCoastOfluvers(JSON.parse(data.value)[1]);
                 setCoastOfGlue(JSON.parse(data.value)[2]);
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 532 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 151 - Обратитесь к администратору!");
+                }
             });
     }, []);
-
 
     useEffect(() => {
         if (!width || !height) {
@@ -76,13 +81,21 @@ console.log(coastOfBanner)
 
         let midNum = (+width * +height * +number) / 1000000;
         let midNum2;
-        if (midNum < 1) {midNum2 = midNum * coastOfBanner[0][+density];
-        } else if (midNum >= 1 && midNum < 5) { midNum2 = midNum * coastOfBanner[1][+density];
-        } else if (midNum >= 5 && midNum < 10) { midNum2 = midNum * coastOfBanner[2][+density];
-        } else if (midNum >= 10 && midNum < 50) { midNum2 = midNum * coastOfBanner[3][+density];
-        } else if (midNum >= 50 && midNum < 100) { midNum2 = midNum * coastOfBanner[4][+density];
-        } else if (midNum >= 100 && midNum < 500) { midNum2 = midNum * coastOfBanner[5][+density];
-        } else if (midNum >= 500) { midNum2 = midNum * coastOfBanner[6][+density]; }
+        if (midNum < 1) {
+            midNum2 = midNum * coastOfBanner[0][+density];
+        } else if (midNum >= 1 && midNum < 5) {
+            midNum2 = midNum * coastOfBanner[1][+density];
+        } else if (midNum >= 5 && midNum < 10) {
+            midNum2 = midNum * coastOfBanner[2][+density];
+        } else if (midNum >= 10 && midNum < 50) {
+            midNum2 = midNum * coastOfBanner[3][+density];
+        } else if (midNum >= 50 && midNum < 100) {
+            midNum2 = midNum * coastOfBanner[4][+density];
+        } else if (midNum >= 100 && midNum < 500) {
+            midNum2 = midNum * coastOfBanner[5][+density];
+        } else if (midNum >= 500) {
+            midNum2 = midNum * coastOfBanner[6][+density];
+        }
 
         let midluversStep = 0; // стоимость
         if (luversStep !== "0") {

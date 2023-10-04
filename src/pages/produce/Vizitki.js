@@ -28,15 +28,22 @@ const Vizitki = observer(() => {
     const vizVid = ["матовая", "глянцевая", "дизайнерская"];
     const vizLam = ["без ламинации", "глянцевая", "матовая"];
     const vizNum = ["96", "200", "500", "1000"];
-    console.log(vizit);
+    // console.log(vizit);
+
     useEffect(() => {
-        fetchPriceOfProduce({jsonId: 2})
+        fetchPriceOfProduce({ jsonId: 2 })
             .then((data) => {
                 setVizit(JSON.parse(data.value));
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 508 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 153 - Обратитесь к администратору!");
+                }
             });
     }, []);
 

@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 
 import { observer } from "mobx-react-lite";
 import { login } from "../../http/userAPI";
-import isEmail from 'validator/lib/isEmail';
+import isEmail from "validator/lib/isEmail";
 
 const LoginPage = observer(() => {
     const { helpers, user } = useContext(Context);
@@ -19,24 +19,35 @@ const LoginPage = observer(() => {
 
     // TODO - доделать аинхронную отправку
     const makeLogin = () => {
-        if (!email || !password) {alert("Оба поля должны быть заполнены!");return;}
-        if(email.split('').length > 200 || password.split('').length > 200){alert('Одно из значений более 200 символов!');return;} // длинну строки
-        if(!isEmail(email)) {alert("Email не корректен!"); return;}
+        if (!email || !password) {
+            alert("Оба поля должны быть заполнены!");
+            return;
+        }
+        if (email.split("").length > 200 || password.split("").length > 200) {
+            alert("Одно из значений более 200 символов!");
+            return;
+        } // длинну строки
+        if (!isEmail(email)) {
+            alert("Email не корректен!");
+            return;
+        }
 
-        login(email, password).then((data) => {
+        login(email, password)
+            .then((data) => {
                 alert("Успешный Вход в систему!");
                 helpers.setModalLogin(false);
                 // user.setIsAuth(true);
                 window.location.reload();
             })
             .catch((error) => {
-                if(error.response.status == 500){
-                    alert(error.response.data.message);
-                }else{
-                    console.log('dev', error);
-                    alert('Ошибка 502 - Обратитесь к администратору!'); 
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 111 - Обратитесь к администратору!");
                 }
-                
             });
     };
 

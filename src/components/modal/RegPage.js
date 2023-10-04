@@ -22,22 +22,39 @@ const RegPage = observer(() => {
     };
 
     const makeReg = async () => {
+        if (!email || !password || !phone || !name) {
+            alert("Оба поля должны быть заполнены!");
+            return;
+        }
+        if (
+            email.split("").length > 200 ||
+            password.split("").length > 200 ||
+            phone.split("").length > 200 ||
+            name.split("").length > 200
+        ) {
+            alert("Одно из значений более 200 символов!");
+            return;
+        } // длинну строки
+        if (!isEmail(email)) {
+            alert("Email не корректен!");
+            return;
+        }
 
-        if (!email || !password || !phone || !name) {alert("Оба поля должны быть заполнены!");return;}
-        if(email.split('').length > 200 || password.split('').length > 200 || phone.split('').length > 200 || name.split('').length > 200){alert('Одно из значений более 200 символов!');return;} // длинну строки
-        if(!isEmail(email)) {alert("Email не корректен!"); return;}
-
-        registration(email, password, name, phone).then((data) => {
+        registration(email, password, name, phone)
+            .then((data) => {
                 alert("Успешная регистрация!");
                 helpers.setModalRegistration(false);
                 // user.setIsAuth(true);
                 window.location.reload();
-            }).catch((error) => {
-                if(error.response.status == 500){
-                    alert(error.response.data.message);
-                }else{
-                    console.log('dev', error);
-                    alert('Ошибка 503 - Обратитесь к администратору!');
+            })
+            .catch((error) => {
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 112 - Обратитесь к администратору!");
                 }
             });
     };

@@ -22,8 +22,14 @@ const ListOfUserOrders = () => {
                 setCount(data.length);
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 512 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 126 - Обратитесь к администратору!");
+                }
             });
     }, [page]);
 
@@ -91,8 +97,6 @@ const ListOfUserOrders = () => {
                         ))
                     ) : (
                         <tr>
-                            <td></td>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

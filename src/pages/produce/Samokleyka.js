@@ -17,7 +17,7 @@ const Samokleyka = observer(() => {
     const { user, device } = useContext(Context);
     const [value, setValue] = useState(0); // цена товара - расчитаная
     const [width, setWidth] = useState(""); // ширина баннеар
-    const [height, setHeight] = useState(""); // высота баннера     
+    const [height, setHeight] = useState(""); // высота баннера
     const [description, setDescription] = useState(""); // Телефон
     const [vidSamo, setVidSamo] = useState("0");
     const [number, setNumber] = useState("1");
@@ -27,19 +27,7 @@ const Samokleyka = observer(() => {
     const [vidToValue, setVidToValue] = useState([]);
     const [porezkaCoast, setPorezkaCoast] = useState([]);
 
-    // const vidToValue = [
-    //     [650, 600, 550, 500], // белая
-    //     [700, 650, 600, 550], // черная
-    //     [900, 850, 800, 750], // цветная
-    //     [2500, 2330, 2150, 2000], // дизайнерская
-    //     [5000, 4700, 4500, 4200], // Фотолюминесцентная
-    //     [1000, 900, 850, 800], // Перфорированная
-    //     [700, 650, 600, 550], // Прозрачная
-    //     [1500, 1400, 1300, 1200], // Светоотражающая
-    // ];
-    
-    // const porezkaCoast = [0, 5, 7, 10, 25, 42, 51]; // цены на порезку
-console.log(vidToValue)
+
     const vidToName = [
         "белая",
         "черная",
@@ -61,21 +49,24 @@ console.log(vidToValue)
         "/file/samokleyki/svetootrajaushaya.jpg",
     ];
     const porezkaName = ["Без порезки", "A6", "A5", "A4", "A3", "A2", "A1"]; // фортмат порезки
-
-
+console.log(porezkaCoast)
     useEffect(() => {
-        fetchPriceOfProduce({jsonId: 3})
+        fetchPriceOfProduce({ jsonId: 3 })
             .then((data) => {
                 setVidToValue(JSON.parse(data.value)[0]);
                 setPorezkaCoast(JSON.parse(data.value)[1]);
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 532 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 152 - Обратитесь к администратору!");
+                }
             });
     }, []);
-
-
 
     useEffect(() => {
         if (!width || !height) {
@@ -128,7 +119,16 @@ console.log(vidToValue)
                 porezkaName[+porezka]
             };`
         );
-    }, [width, height, vidSamo, number, porezka, value, vidToValue, porezkaCoast ]);
+    }, [
+        width,
+        height,
+        vidSamo,
+        number,
+        porezka,
+        value,
+        vidToValue,
+        porezkaCoast,
+    ]);
 
     return (
         <>

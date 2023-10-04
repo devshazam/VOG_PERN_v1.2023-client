@@ -30,11 +30,17 @@ const OneGoods = observer(() => {
         fetchOneGoods({ goodsId })
             .then((data) => {
                 setGoodsItem(data);
-                console.log("dev", data);
+                // console.log("dev", data);
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 518 - Обратитесь к администратору!");
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 141 - Обратитесь к администратору!");
+                }
             });
     }, [goodsId]);
 

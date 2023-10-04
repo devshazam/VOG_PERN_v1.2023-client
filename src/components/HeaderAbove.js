@@ -21,25 +21,27 @@ const HeaderAbove = observer(() => {
             return;
         }
         reciveBasketCount({ userId: user.user.id })
-            .then((res) => {
-                setBasketNumber(res);
-            })
-            .catch((error) => {
-                if (error.response.status == 500) {
-                    alert(error.response.data.message);
-                } else {
-                    console.log("dev", error.response.data.message);
-                    alert("Ошибка 501 - Обратитесь к администратору!");
+            .then((data) => {
+                setBasketNumber(data);
+            }).catch((error) => {
+                if(error.response.data){
+                    alert(`${error.response.data.message}${error.response.status}`);
+                }else{
+                    console.log('dev', error);
+                    alert('Ошибка 104 - Обратитесь к администратору!');
                 }
             });
+            
         reciveOrderCount({ userId: user.user.id })
-            .then((res) => {
-                // console.log(res);
-                setOrderNumber(res);
-            })
-            .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 501 - Обратитесь к администратору!");
+            .then((data) => {
+                setOrderNumber(data);
+            }).catch((error) => {
+                if(error.response.data){
+                    alert(`${error.response.data.message}${error.response.status}`);
+                }else{
+                    console.log('dev', error);
+                    alert('Ошибка 105 - Обратитесь к администратору!');
+                }
             });
     }, [helpers.reloadBasket]);
 
@@ -69,8 +71,12 @@ const HeaderAbove = observer(() => {
                 document.location.href = data.fileLocation;
             })
             .catch((error) => {
-                console.log("dev", error);
-                alert("Ошибка 502 - Обратитесь к администратору!");
+                if(error.response.data){
+                    alert(`${error.response.data.message}${error.response.status}`);
+                }else{
+                    console.log('dev', error);
+                    alert('Ошибка 106 - Обратитесь к администратору!');
+                }
             });
     };
 

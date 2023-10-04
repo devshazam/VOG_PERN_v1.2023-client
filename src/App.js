@@ -56,7 +56,14 @@ const App = observer(() => {
               user.setUser(data)
               user.setIsAuth(true)
             }
-        }).catch((error) => console.log('dev', error )).finally(() => setLoading(false))
+        }).catch((error) => {
+          if(error.response.data){
+              alert(`${error.response.data.message} - (${error.response.status})`);
+          }else{
+              console.log('dev', error);
+              alert('Ошибка 103 - Обратитесь к администратору!');
+          }
+        }).finally(() => setLoading(false))
     }, [])
 
   if (loading) {
