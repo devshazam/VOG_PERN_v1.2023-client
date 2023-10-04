@@ -57,12 +57,7 @@ const App = observer(() => {
               user.setIsAuth(true)
             }
         }).catch((error) => {
-          if(error.response.data){
-              alert(`${error.response.data.message} - (${error.response.status})`);
-          }else{
-              console.log('dev', error);
-              alert('Ошибка 103 - Обратитесь к администратору!');
-          }
+          console.log('Авторизация', error);
         }).finally(() => setLoading(false))
     }, [])
 
