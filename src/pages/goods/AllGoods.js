@@ -198,10 +198,12 @@ const AllGoods = observer(() => {
                                                 </a>
                                                 <Card.Body>
                                                     <Card.Title>
-                                                        Цена: {goods.price} р
+                                                        Цена: {goods.price} р <br/>
+                                                        Остаток: {goods.summa}
                                                     </Card.Title>
                                                     <Card.Text>
                                                         {goods.name}
+                                                        
                                                     </Card.Text>
                                                     {user.user.role ==
                                                         "ADMIN" && (
