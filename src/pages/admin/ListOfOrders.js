@@ -97,6 +97,7 @@ const ListOfOrders = () => {
                         <th>Имя</th>
                         <th>Описание заказа</th>
                         <th>Описание </th>
+                        <th>Картинка</th>
                         <th>Дата создания</th>
                     </tr>
                 </thead>
@@ -107,7 +108,7 @@ const ListOfOrders = () => {
                                 <td>{device.name}</td>
                                 <td>{device.feature}</td>
                                 <td>{device.descriptionText}</td>
-
+                                <td>{device.img}</td>
                                 <td>
                                     {device.createdAt.split("T")[0] +
                                         " / " +
