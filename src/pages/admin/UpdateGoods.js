@@ -297,6 +297,7 @@ const UpdateGoods = () => {
                                         <option value="stands">
                                             Информационные стенды
                                         </option>
+                                        <option value="pechat">Печати и Штампы</option>
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>

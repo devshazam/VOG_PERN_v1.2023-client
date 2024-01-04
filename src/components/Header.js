@@ -89,6 +89,9 @@ const Header = () => {
                                     <NavDropdown.Item href="/goods/stands">
                                         Информационные стенды
                                     </NavDropdown.Item>
+                                    <NavDropdown.Item href="/goods/pechat">
+                                        Печати и Штампы
+                                    </NavDropdown.Item>
                                 </NavDropdown>
 
                                 <NavDropdown

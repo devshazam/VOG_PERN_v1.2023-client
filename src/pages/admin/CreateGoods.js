@@ -198,6 +198,7 @@ const CreateGoods = () => {
                             <option value="stands">
                                 Информационные стенды
                             </option>
+                            <option value="pechat">Печати и Штампы</option>
                         </Form.Select>
                     </Form.Group>
 

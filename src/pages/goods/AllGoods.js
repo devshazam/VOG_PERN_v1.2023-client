@@ -128,6 +128,7 @@ const AllGoods = observer(() => {
                                 <option value="3d-nit">
                                     Нить для 3D печати
                                 </option>
+                                <option value="pechat">Печати и Штампы</option>
                             </Form.Select>
                         </FloatingLabel>
                     </Form.Group>
