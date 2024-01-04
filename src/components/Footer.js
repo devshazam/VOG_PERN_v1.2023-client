@@ -15,7 +15,9 @@ function Footer(){
 			  <div className="column">
 							<p className="heading">Документы:</p>
 							<ul>
-							<li><a href="/oferta">Договор офетры</a></li></ul>
+							<li><a href="/oferta">Договор офетры</a></li>
+							<li>Работаем с юр. лицами по тендерным закупкам</li>
+							</ul>
 						</div>
               </Col>
               <Col xs={12} lg ={3}>
@@ -41,7 +43,7 @@ function Footer(){
 							<ul>
 							<li>Email: <a  href="mailto:<a href='mailto: info@kopi34.ru">kopi34@yandex.ru</a></li>
 							<li>Тел: <a href='tel:89093802519'>+7(909) 380-25-19</a></li>
-							<li>Тел: <a href='tel:+78442599161'>+7 (8442) 59-91-61</a></li></ul>
+							<li>Тел: <a href='tel:+78442599161'>+7 (8442) 59-91-61</a> (Казахская 25)</li></ul>
 							<p>График работы с 09:00 до 19:00</p>
 						</div>
               </Col>

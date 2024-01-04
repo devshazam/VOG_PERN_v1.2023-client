@@ -155,9 +155,11 @@ const HeaderAbove = observer(() => {
                                             alt="Заказы"
                                             title="Заказы"
                                         />
-                                        <span className="bascket-num">
-                                            {orderNumber}
-                                        </span>
+                                        { (+orderNumber !== 0) &&  
+                                            <span className="bascket-num">
+                                                {orderNumber}
+                                            </span>
+                                        }
                                     </Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
@@ -169,9 +171,11 @@ const HeaderAbove = observer(() => {
                                             alt="Корзина"
                                             title="Корзина"
                                         />
-                                        <span className="bascket-num">
-                                            {basketNumber}
-                                        </span>
+                                        { (+basketNumber !== 0) &&  
+                                            <span className="bascket-num">
+                                                {basketNumber}
+                                            </span>
+                                        }
                                     </Nav.Link>
                                 </Nav.Item>
                             </>
