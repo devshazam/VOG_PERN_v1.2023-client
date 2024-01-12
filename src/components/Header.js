@@ -52,6 +52,9 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/samokleyka">
                                         Самоклейки
                                     </NavDropdown.Item>
+                                    <NavDropdown.Item href="/goods/bagety">
+                                        Багеты на заказ
+                                    </NavDropdown.Item>
                                     {/* <NavDropdown.Divider /> */}
                                 </NavDropdown>
 
@@ -65,8 +68,8 @@ const Header = () => {
                                      <NavDropdown.Item href="/goods/krujki">
                                         Кружки
                                     </NavDropdown.Item>
-                                     <NavDropdown.Item href="/goods/bagety">
-                                        Багетные рамки
+                                     <NavDropdown.Item href="/goods/fotoramki">
+                                        Фоторамки
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/goods/planketki">
                                         Плакетки

@@ -274,29 +274,16 @@ const UpdateGoods = () => {
                                         value={group}
                                     >
                                         <option value="krujki">Кружки</option>
-                                        <option value="futbolki">
-                                            Футболки
-                                        </option>
-                                        <option value="bagety">Багеты</option>
-                                        <option value="planketki">
-                                            Плакетки
-                                        </option>
-                                        <option value="shtender">
-                                            Штендеры
-                                        </option>
-                                        <option value="magnit">
-                                            Магнитики
-                                        </option>
+                                        <option value="futbolki">Футболки</option>
+                                        <option value="bagety">Багеты на заказ</option>
+                                        <option value="fotoramki">Фоторамки</option>
+                                        <option value="planketki">Плакетки</option>
+                                        <option value="shtender">Штендеры</option>
+                                        <option value="magnit">Магнитики</option>
                                         <option value="brelok">Брелоки</option>
-                                        <option value="plenka-avery">
-                                            Пленка AVERY
-                                        </option>
-                                        <option value="3d-nit">
-                                            Нить для 3D печати
-                                        </option>
-                                        <option value="stands">
-                                            Информационные стенды
-                                        </option>
+                                        <option value="plenka-avery">Пленка AVERY</option>
+                                        <option value="3d-nit">Нить для 3D печати</option>
+                                        <option value="stands">Информационные стенды</option>
                                         <option value="pechat">Печати и Штампы</option>
                                     </Form.Select>
                                 </FloatingLabel>
