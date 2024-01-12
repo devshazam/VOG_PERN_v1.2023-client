@@ -1,6 +1,5 @@
 import React from "react";
-import Container fro
-m "react-bootstrap/Container";
+import Container from "react-bootstrap/Container";
 
 
 const Oferta = () => {
