@@ -19,6 +19,7 @@ import ThreeDdetails from './pages/main/ThreeDdetails';
 import Banner from "./pages/produce/Banner";
 import Vizitki from "./pages/produce/Vizitki";
 import Samokleyka from "./pages/produce/Samokleyka";
+import Photo from "./pages/produce/Photo";
 
 import AllGoods from "./pages/goods/AllGoods.js";
 import OneGoods from "./pages/goods/OneGoods.js";
@@ -104,6 +105,7 @@ const App = observer(() => {
               <Route path="/produce/vizitki" element={<Vizitki />} />
               <Route path="/produce/banner" element={<Banner />} />
               <Route path="/produce/samokleyka" element={<Samokleyka />} />
+              <Route path="/produce/photo" element={<Photo />} />
 {/* Prices */}
               <Route path="/prices/:priceId" element={<OnePrice  />} />
               <Route path="/prices/vizits-price" element={<VizitsPrice  />} />
