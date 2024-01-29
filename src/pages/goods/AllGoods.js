@@ -30,7 +30,7 @@ const AllGoods = observer(() => {
     const [page, setPage] = useState(1);
     const [categoryIt, setCategoryIt] = useState(category);
     const [itemSort, setItemSort] = useState("createdAt");
-    const [orderSort, setOrderSort] = useState("ASC");
+    const [orderSort, setOrderSort] = useState("DESC");
 
     useEffect(() => {
         fetchGoodsList(limit, `${page}`, categoryIt, itemSort, orderSort)
