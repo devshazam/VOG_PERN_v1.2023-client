@@ -6,8 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "react-bootstrap/Image";
-import Accordion from 'react-bootstrap/Accordion';
-
+import Accordion from "react-bootstrap/Accordion";
 
 const Header = () => {
     return (
@@ -52,11 +51,17 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/samokleyka">
                                         Самоклейки
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/goods/bagety">
-                                        Багеты на заказ
-                                    </NavDropdown.Item>
+                                   {/* <NavDropdown.Item href="/produce/baget">
+                                         Багеты
+                                    </NavDropdown.Item> */}
                                     <NavDropdown.Item href="/produce/photo">
                                         Фото на документы
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/produce/posterka">
+                                        Постерка
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/goods/bagety">
+                                        Багеты на заказ
                                     </NavDropdown.Item>
                                     {/* <NavDropdown.Divider /> */}
                                 </NavDropdown>
@@ -65,13 +70,13 @@ const Header = () => {
                                     title="Купить товары"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
-                                   <NavDropdown.Item href="/goods/futbolki">
+                                    <NavDropdown.Item href="/goods/futbolki">
                                         Футболки
                                     </NavDropdown.Item>
-                                     <NavDropdown.Item href="/goods/krujki">
+                                    <NavDropdown.Item href="/goods/krujki">
                                         Кружки
                                     </NavDropdown.Item>
-                                     <NavDropdown.Item href="/goods/fotoramki">
+                                    <NavDropdown.Item href="/goods/fotoramki">
                                         Фоторамки
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/goods/planketki">
@@ -104,6 +109,18 @@ const Header = () => {
                                     title="Прайсы услуг"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
+                                    <NavDropdown.Item href="/prices/8">
+                                        Ксерокопия
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/6">
+                                        Сканирование
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/7">
+                                        Распечатка текста и чертежей
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/20">
+                                        Твердый переплет дипломов
+                                    </NavDropdown.Item>
                                     <NavDropdown.Item href="/prices/vizits-price">
                                         Визитки
                                     </NavDropdown.Item>
@@ -113,9 +130,17 @@ const Header = () => {
                                     <NavDropdown.Item href="/prices/banner-price">
                                         Баннеры
                                     </NavDropdown.Item>
-                                    <Accordion defaultActiveKey="0" className="menu-accordion">
-                                        <Accordion.Item eventKey="1" className="item-accordion">
-                                            <Accordion.Header>Ламинация</Accordion.Header>
+                                    <Accordion
+                                        defaultActiveKey="0"
+                                        className="menu-accordion"
+                                    >
+                                        <Accordion.Item
+                                            eventKey="1"
+                                            className="item-accordion"
+                                        >
+                                            <Accordion.Header>
+                                                Ламинация
+                                            </Accordion.Header>
                                             <Accordion.Body>
                                                 <NavDropdown.Item href="/prices/1">
                                                     Ламинация листовая (глянец)
@@ -129,40 +154,33 @@ const Header = () => {
                                                 <NavDropdown.Item href="/prices/5">
                                                     Матовая рулонная ламинация
                                                 </NavDropdown.Item>
-                                    
                                             </Accordion.Body>
                                         </Accordion.Item>
                                     </Accordion>
-                                    <Accordion defaultActiveKey="0" className="menu-accordion">
-                                        <Accordion.Item eventKey="1" className="item-accordion">
-                                            <Accordion.Header>Копирование</Accordion.Header>
+
+                                    <Accordion
+                                        defaultActiveKey="0"
+                                        className="menu-accordion"
+                                    >
+                                        <Accordion.Item
+                                            eventKey="1"
+                                            className="item-accordion"
+                                        >
+                                            <Accordion.Header>
+                                                Печать
+                                            </Accordion.Header>
                                             <Accordion.Body>
-                                                <NavDropdown.Item href="/prices/6">
-                                                    Сканирование
+                                                <NavDropdown.Item href="/prices/11">
+                                                    Лазерная печать А4, А3
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/prices/7">
-                                                    Распечатка текста и чертежей
+                                                <NavDropdown.Item href="/prices/12">
+                                                    Струйная печать, глянцевая
+                                                    бумага
                                                 </NavDropdown.Item>
-                                                <NavDropdown.Item href="/prices/8">
-                                                    Ксерокопия
+                                                <NavDropdown.Item href="/prices/13">
+                                                    Струйная печать, матовая
+                                                    бумага
                                                 </NavDropdown.Item>
-                                    
-                                            </Accordion.Body>
-                                        </Accordion.Item>
-                                    </Accordion>
-                                    <Accordion defaultActiveKey="0" className="menu-accordion">
-                                        <Accordion.Item eventKey="1" className="item-accordion">
-                                            <Accordion.Header>Печать</Accordion.Header>
-                                            <Accordion.Body>
-                                            <NavDropdown.Item href="/prices/11">
-                                                Лазерная печать А4, А3
-                                            </NavDropdown.Item>
-                                            <NavDropdown.Item href="/prices/12">
-                                                Струйная печать, глянцевая бумага
-                                            </NavDropdown.Item>
-                                            <NavDropdown.Item href="/prices/13">
-                                                Струйная печать, матовая бумага
-                                            </NavDropdown.Item>
                                             </Accordion.Body>
                                         </Accordion.Item>
                                     </Accordion>
@@ -175,7 +193,6 @@ const Header = () => {
                                     <NavDropdown.Item href="/prices/18">
                                         Значки
                                     </NavDropdown.Item>
-                                    
                                 </NavDropdown>
 
                                 {/* <Nav.Link href="/goods/krujki">Кружки</Nav.Link> */}
@@ -187,14 +204,13 @@ const Header = () => {
                                         rounded
                                         alt="Заказы"
                                         title="Заказы"
-                                    /> 3D детали
+                                    />{" "}
+                                    3D детали
                                 </Nav.Link>
                                 <Nav.Link href="/contacts">Контакты</Nav.Link>
                             </Nav>
                             <Navbar.Text>
-                                <span className="label">
-                                    г. Волгоград       
-                                </span>
+                                <span className="label">г. Волгоград</span>
                             </Navbar.Text>
                             {/* <Form className="d-flex">
                   <Form.Control

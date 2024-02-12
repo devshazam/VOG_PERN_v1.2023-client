@@ -1,0 +1,6 @@
+$ cd /apps/client
+$ git pull
+    [ $ npm i ]
+    [ .env ]
+$ npm run build
+$ mp2 restart 

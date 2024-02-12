@@ -18,6 +18,8 @@ import ThreeDdetails from './pages/main/ThreeDdetails';
 
 import Banner from "./pages/produce/Banner";
 import Vizitki from "./pages/produce/Vizitki";
+import Baget from "./pages/produce/Baget";
+import Postrka from "./pages/produce/Postrka";
 import Samokleyka from "./pages/produce/Samokleyka";
 import Photo from "./pages/produce/Photo";
 
@@ -103,6 +105,8 @@ const App = observer(() => {
               <Route path="/goods/one/:goodsId" element={<OneGoods />} />
 {/* Produce */}
               <Route path="/produce/vizitki" element={<Vizitki />} />
+              <Route path="/produce/baget" element={<Baget />} /> 
+              <Route path="/produce/posterka" element={<Postrka />} /> 
               <Route path="/produce/banner" element={<Banner />} />
               <Route path="/produce/samokleyka" element={<Samokleyka />} />
               <Route path="/produce/photo" element={<Photo />} />
