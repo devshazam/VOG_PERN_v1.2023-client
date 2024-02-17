@@ -15,7 +15,7 @@ function Footer(){
 			  <div className="column">
 							<p className="heading">Документы:</p>
 							<ul>
-							<li><a href="/oferta">Договор офетры</a></li>
+							<li><a href="/oferta">Договор оферты</a></li>
 							<li>Работаем с юр. лицами по тендерным закупкам</li>
 							</ul>
 						</div>
