@@ -51,9 +51,9 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/samokleyka">
                                         Самоклейки
                                     </NavDropdown.Item>
-                                   {/* <NavDropdown.Item href="/produce/baget">
+                                   <NavDropdown.Item href="/produce/baget">
                                          Багеты
-                                    </NavDropdown.Item> */}
+                                    </NavDropdown.Item>
                                     <NavDropdown.Item href="/produce/photo">
                                         Фото на документы
                                     </NavDropdown.Item>

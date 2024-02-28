@@ -12,13 +12,15 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { observer } from "mobx-react-lite";
 // import { vizit } from "../../arrays/vizitki.js";
 // import { fetchPriceOfProduce } from "../../http/jsonAPI";
-import configBaget from "../../config/bagets";
+import { bagetArray, typeBaget, imgBaget } from "../../config/bagets";
 import Accordion from "react-bootstrap/Accordion";
 
 const Vizitki = observer(() => {
     const [width, setWidth] = useState(""); // ширина баннеар
     const [height, setHeight] = useState(""); // высота баннера
     const [type, setType] = useState("0"); // высота баннера
+    const [subType, setSubType] = useState("0"); // высота баннера
+    const [color, setColor] = useState("0"); // высота баннера
     const [glass, setGlass] = useState("0"); // высота баннера
     const [back, setBack] = useState("0"); // высота баннера
     const [value, setValue] = useState(0); // цена товара - расчитаная
@@ -35,25 +37,30 @@ const Vizitki = observer(() => {
             return;
         }
         // if() Фильтрация по 0-300; только числа, false
-        let aw = configBaget.findIndex((elem) => +width + +height <= elem[0]);
+        let aw = bagetArray.findIndex((elem) => +width + +height <= elem[0]);
         if (aw >= 0) {
             setValue(
-                configBaget[aw][+type + 1] +
-                    (pet === "1" && configBaget[aw][9]) +
-                    (back === "1" && configBaget[aw][10]) +
-                    (back === "2" && configBaget[aw][11]) -
-                    (glass === "1" && configBaget[aw][8])
+                bagetArray[aw][+type + 1] +
+                    (pet === "1" && bagetArray[aw][9]) +
+                    (back === "1" && bagetArray[aw][10]) +
+                    (back === "2" && bagetArray[aw][11]) -
+                    (glass === "1" && bagetArray[aw][8])
             );
         }
     }, [height, width, type, glass, back, pet]); // <- add the count variable here
 
+    console.log(Object.keys(typeBaget[+type])[+subType]);
     return (
         <>
             <Container>
                 <Row>
                     <Col xs={12} md={6} className="wrap-image">
                         <Image
-                            src="/file/pic/vizitki.jpg"
+                            src={`/file/bagets/${
+                                Object.keys(imgBaget[+type])[+subType]
+                            }/${
+                                Object.values(imgBaget[+type])[+subType][+color]
+                            }.jpg`}
                             id="goods-image"
                             alt="Визитку"
                             thumbnail
@@ -92,7 +99,6 @@ const Vizitki = observer(() => {
                                     />
                                 </FloatingLabel>
                             </Form.Group>
-
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
                                     controlId="floatingSelectSide"
@@ -100,9 +106,11 @@ const Vizitki = observer(() => {
                                 >
                                     <Form.Select
                                         aria-label="Default select example"
-                                        onChange={(e) =>
-                                            setType(e.target.value)
-                                        }
+                                        onChange={(e) => {
+                                            setType(e.target.value);
+                                            setSubType("0");
+                                            setColor("0");
+                                        }}
                                         value={type}
                                     >
                                         <option value="0">B</option>
@@ -112,6 +120,60 @@ const Vizitki = observer(() => {
                                         <option value="4">F</option>
                                         <option value="5">G</option>
                                         <option value="6">H</option>
+                                    </Form.Select>
+                                </FloatingLabel>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel
+                                    controlId="floatingSelectSide"
+                                    label="Подтип:"
+                                >
+                                    <Form.Select
+                                        aria-label="Default select example"
+                                        onChange={(e) => {
+                                            setSubType(e.target.value);
+                                            setColor("0");
+                                        }}
+                                        value={subType}
+                                    >
+                                        {Object.keys(typeBaget[+type]).map(
+                                            (val, ind) => {
+                                                return (
+                                                    <option
+                                                        key={ind}
+                                                        value={ind}
+                                                    >
+                                                        {val}
+                                                    </option>
+                                                );
+                                            }
+                                        )}
+                                    </Form.Select>
+                                </FloatingLabel>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel
+                                    controlId="floatingSelectSide"
+                                    label="Цвет:"
+                                >
+                                    <Form.Select
+                                        aria-label="Default select example"
+                                        onChange={(e) =>
+                                            setColor(e.target.value)
+                                        }
+                                        value={color}
+                                    >
+                                        {Object.values(typeBaget[+type])[
+                                            +subType
+                                        ].map((val, ind) => {
+                                            return (
+                                                <option key={ind} value={ind}>
+                                                    {val}
+                                                </option>
+                                            );
+                                        })}
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
@@ -455,8 +517,7 @@ const Vizitki = observer(() => {
                                 className="item-accordion"
                             >
                                 <Accordion.Header>
-                                    <b>Натяжка на подрамник:</b> (галерейная
-                                    натяжка + 50%)
+                                    <b>Натяжка на подрамник*:</b>
                                 </Accordion.Header>
                                 <Accordion.Body>
                                     <ul>
@@ -481,6 +542,7 @@ const Vizitki = observer(() => {
                                             750 руб.
                                         </li>
                                     </ul>
+                                    <p>* Галерейная натяжка + 50%</p>
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>
