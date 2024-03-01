@@ -60,9 +60,7 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/posterka">
                                         Постерка
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/goods/bagety">
-                                        Багеты на заказ
-                                    </NavDropdown.Item>
+                                    
                                     {/* <NavDropdown.Divider /> */}
                                 </NavDropdown>
 
@@ -102,6 +100,9 @@ const Header = () => {
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/goods/pechat">
                                         Печати и Штампы
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/goods/bagety">
+                                        Багеты на заказ
                                     </NavDropdown.Item>
                                 </NavDropdown>
 
@@ -192,6 +193,9 @@ const Header = () => {
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/prices/18">
                                         Значки
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/21">
+                                        Брошюровка с обложками
                                     </NavDropdown.Item>
                                 </NavDropdown>
 

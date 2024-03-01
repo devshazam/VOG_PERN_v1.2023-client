@@ -25,6 +25,7 @@ const Vizitki = observer(() => {
     const [back, setBack] = useState("0"); // высота баннера
     const [value, setValue] = useState(0); // цена товара - расчитаная
     const [pet, setPet] = useState("0"); // цена товара - расчитаная
+    const [aw, setAw] = useState(0); // цена товара - расчитаная
 
     useEffect(() => {
         if (!width || !height) return;
@@ -33,23 +34,27 @@ const Vizitki = observer(() => {
             return;
         }
         if (+width + +height <= 0 || +width + +height > 300) {
-            alert("Сумма ширины и высоты должна быть от 0 до 300!");
+            alert("Сумма ширины и высоты должна быть от 0 до 300 сантиметров!");
             return;
         }
         // if() Фильтрация по 0-300; только числа, false
-        let aw = bagetArray.findIndex((elem) => +width + +height <= elem[0]);
+        setAw(bagetArray.findIndex((elem) => +width + +height <= elem[0]));
         if (aw >= 0) {
-            setValue(
-                bagetArray[aw][+type + 1] +
-                    (pet === "1" && bagetArray[aw][9]) +
-                    (back === "1" && bagetArray[aw][10]) +
-                    (back === "2" && bagetArray[aw][11]) -
-                    (glass === "1" && bagetArray[aw][8])
-            );
+            if (bagetArray[aw][+type + 1]) {
+                setValue(
+                    bagetArray[aw][+type + 1] +
+                        (pet === "1" && bagetArray[aw][9]) +
+                        (back === "1" && bagetArray[aw][10]) +
+                        (back === "2" && bagetArray[aw][11]) -
+                        (glass === "1" && bagetArray[aw][8])
+                );
+            } else {
+                setValue("Такого размера не делаем!");
+            }
         }
-    }, [height, width, type, glass, back, pet]); // <- add the count variable here
+    }, [height, width, type, glass, back, pet, aw]); // <- add the count variable here
 
-    console.log(Object.keys(typeBaget[+type])[+subType]);
+    console.log(aw);
     return (
         <>
             <Container>
@@ -72,11 +77,11 @@ const Vizitki = observer(() => {
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
                                     controlId="floatingWidth"
-                                    label="Ширина (мм):"
+                                    label="Ширина (СМ):"
                                 >
                                     <Form.Control
                                         type="text"
-                                        placeholder="Ширина (мм):"
+                                        placeholder="Ширина (СМ):"
                                         onChange={(e) =>
                                             setWidth(e.target.value)
                                         }
@@ -87,11 +92,11 @@ const Vizitki = observer(() => {
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
                                     controlId="floatingHeight"
-                                    label="Высота (мм):"
+                                    label="Высота (СМ):"
                                 >
                                     <Form.Control
                                         type="text"
-                                        placeholder="Высота (мм):"
+                                        placeholder="Высота (СМ):"
                                         onChange={(e) =>
                                             setHeight(e.target.value)
                                         }
@@ -190,10 +195,20 @@ const Vizitki = observer(() => {
                                         }
                                         value={glass}
                                     >
-                                        <option value="0">
-                                            Со стеклом (стандарт)
-                                        </option>
-                                        <option value="1">Без стекла</option>
+                                        {bagetArray[aw][8] ? (
+                                            <>
+                                                <option value="0">
+                                                    Со стеклом (стандарт)
+                                                </option>
+                                                <option value="1">
+                                                    Без стекла
+                                                </option>
+                                            </>
+                                        ) : (
+                                            <option value="0">
+                                                Без стекла
+                                            </option>
+                                        )}
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
