@@ -26,6 +26,7 @@ const Banner = observer(() => {
     const [coastOfBanner, setCoastOfBanner] = useState([]);
     const [coastOfluvers, setCoastOfluvers] = useState(0);
     const [coastOfGlue, setCoastOfGlue] = useState(0);
+    const [perfo, setPerfo] = useState('0'); // перфорация
 
     const name = "Баннер";
     const goodsId = "0";
@@ -58,7 +59,7 @@ const Banner = observer(() => {
         if (!width || !height) {
             return;
         }
-        if (!width || !height || !number) {
+        if (!width || !height || !number || !perfo) {
             alert("Не все поля заполнены!");
             return;
         }
@@ -73,7 +74,8 @@ const Banner = observer(() => {
         if (
             !Number.isInteger(+width) ||
             !Number.isInteger(+height) ||
-            !Number.isInteger(+number)
+            !Number.isInteger(+number) ||
+            !Number.isInteger(+perfo)
         ) {
             alert("Введите только целое число!");
             return;
@@ -115,13 +117,13 @@ const Banner = observer(() => {
         setLuversCoast(midluversStep);
         setGlueCoast(midglue);
         if (
-            Math.round(+(midNum2 + +midluversStep + +midglue) * 100) / 100 <=
+            Math.round(+(midNum2 + +midluversStep + +midglue + (perfo && +perfo * 15)) * 100) / 100 <=
             200
         ) {
             setValue(200);
         } else {
             setValue(
-                Math.round((+midNum2 + +midluversStep + +midglue) * 100) / 100
+                Math.round((+midNum2 + +midluversStep + +midglue + (perfo && +perfo * 15)) * 100) / 100
             );
         }
 
@@ -130,9 +132,9 @@ const Banner = observer(() => {
                 densityArray[+density]
             } грамм; Шаг люверсов: ${
                 luversStepArray[+luversStep]
-            } мм; Проклейка: ${glueArray[+glue]}; Кол-во: ${number};`
+            } мм; Проклейка: ${glueArray[+glue]}; Перфорация: ${perfo} шт; Кол-во: ${number} шт;`
         );
-    }, [width, density, height, luversStep, number, glue, value]); // <- add the count variable here
+    }, [width, density, height, luversStep, number, glue, value, perfo]); // <- add the count variable here
 
     return (
         <>
@@ -148,8 +150,8 @@ const Banner = observer(() => {
                     </Col>
                     <Col xs={12} lg={6}>
                         <h1>Итоговая цена: {value} p. </h1>
-                        <h4>(цена люверсов: {luversCoast}р.)</h4>
-                        <h4>(цена проклейки: {glueCoast}р.)</h4>
+                        <h4>Люверсы: {luversCoast}р.; Проклейка: {glueCoast}р.; Перфорация: {perfo && +perfo * 15}р.</h4>
+
                         <Row className="mb-3">
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
@@ -251,14 +253,29 @@ const Banner = observer(() => {
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
                                     controlId="floatingNumber"
-                                    label="Кол-во:"
+                                    label="Кол-во баннеров:"
                                 >
                                     <Form.Control
                                         type="text"
-                                        placeholder="Кол-во:"
+                                        placeholder="Кол-во баннеров:"
                                         value={number}
                                         onChange={(e) =>
                                             setNumber(e.target.value)
+                                        }
+                                    />
+                                </FloatingLabel>
+                            </Form.Group>
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel
+                                    controlId="floatingNumber"
+                                    label="Перфорация (цена за шт.):"
+                                >
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Перфорация (цена за шт.):"
+                                        value={perfo}
+                                        onChange={(e) =>
+                                            setPerfo(e.target.value)
                                         }
                                     />
                                 </FloatingLabel>
