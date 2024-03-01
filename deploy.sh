@@ -2,4 +2,4 @@
 pwd
 git pull
 npm run build
-pm2 restart 
+pm2 restart index
