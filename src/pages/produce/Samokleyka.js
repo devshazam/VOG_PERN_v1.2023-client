@@ -108,7 +108,7 @@ const Samokleyka = observer(() => {
             Math.round(
                 (m2 +
                     +number * porezkaCoast[+porezka] +
-                    plastickArray[+plastick]) *
+                    +number * plastickArray[+plastick]) *
                     100
             ) /
                 100 <=
@@ -120,7 +120,7 @@ const Samokleyka = observer(() => {
                 Math.round(
                     (m2 +
                         +number * porezkaCoast[+porezka] +
-                        plastickArray[+plastick]) *
+                        +number * plastickArray[+plastick]) *
                         100
                 ) / 100
             );
