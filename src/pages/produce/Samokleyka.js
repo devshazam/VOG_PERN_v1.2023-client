@@ -21,13 +21,14 @@ const Samokleyka = observer(() => {
     const [description, setDescription] = useState(""); // Телефон
     const [vidSamo, setVidSamo] = useState("0");
     const [number, setNumber] = useState("1");
+    const [plastick, setPlastick] = useState("0");
     const [porezka, setPorezka] = useState("0");
     const name = "Cамоклейка";
     const goodsId = "0";
     const [vidToValue, setVidToValue] = useState([]);
     const [porezkaCoast, setPorezkaCoast] = useState([]);
 
-
+    const plastickArray = [0, 10000, 5200, 2600, 2200, 1800];
     const vidToName = [
         "белая",
         "черная",
@@ -49,7 +50,7 @@ const Samokleyka = observer(() => {
         "/file/samokleyki/svetootrajaushaya.jpg",
     ];
     const porezkaName = ["Без порезки", "A6", "A5", "A4", "A3", "A2", "A1"]; // фортмат порезки
-console.log(porezkaCoast)
+    console.log(porezkaCoast);
     useEffect(() => {
         fetchPriceOfProduce({ jsonId: 3 })
             .then((data) => {
@@ -102,13 +103,24 @@ console.log(porezkaCoast)
         }
 
         if (
-            Math.round((m2 + +number * porezkaCoast[+porezka]) * 100) / 100 <=
+            Math.round(
+                (m2 +
+                    +number * porezkaCoast[+porezka] +
+                    plastickArray[+plastick]) *
+                    100
+            ) /
+                100 <=
             200
         ) {
             setValue(200);
         } else {
             setValue(
-                Math.round((m2 + +number * porezkaCoast[+porezka]) * 100) / 100
+                Math.round(
+                    (m2 +
+                        +number * porezkaCoast[+porezka] +
+                        plastickArray[+plastick]) *
+                        100
+                ) / 100
             );
         }
 
@@ -117,7 +129,7 @@ console.log(porezkaCoast)
                 vidToName[+vidSamo]
             }; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number}; Порезка: ${
                 porezkaName[+porezka]
-            };`
+            }; Пластик ПВХ: ${plastickArray[+plastick]}`
         );
     }, [
         width,
@@ -128,6 +140,7 @@ console.log(porezkaCoast)
         value,
         vidToValue,
         porezkaCoast,
+        plastick,
     ]);
 
     return (
@@ -179,7 +192,7 @@ console.log(porezkaCoast)
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="12" className="mb-3">
+                            <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
                                     controlId="floatingSelectVid"
                                     label="Вид самоклейки:"
@@ -208,11 +221,34 @@ console.log(porezkaCoast)
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
+                            <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel
+                                    controlId="floatingSelectVid"
+                                    label="Пластик ПВХ (подложка):"
+                                >
+                                    <Form.Select
+                                        aria-label="Default select example"
+                                        onChange={(e) =>
+                                            setPlastick(e.target.value)
+                                        }
+                                        value={plastick}
+                                    >
+                                        <option value="0">
+                                            Без пластика ПВХ
+                                        </option>
+                                        <option value="1">А0</option>
+                                        <option value="2">А1</option>
+                                        <option value="3">А2</option>
+                                        <option value="4">А3</option>
+                                        <option value="5">А4</option>
+                                    </Form.Select>
+                                </FloatingLabel>
+                            </Form.Group>
 
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
                                     controlId="floatingNumber"
-                                    label="Кол-во:"
+                                    label="Кол-во самоклеек:"
                                 >
                                     <Form.Control
                                         type="text"

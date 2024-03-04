@@ -1,6 +1,6 @@
 # Update_Deploy
     Простое обновление:
-        $ . ./apps/client/deploy.sh
+        cd /apps/client && . ./deploy.sh
     Сложное обновление:
         $ cd /apps/client
         $ git pull
