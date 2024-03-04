@@ -29,6 +29,8 @@ const Samokleyka = observer(() => {
     const [porezkaCoast, setPorezkaCoast] = useState([]);
 
     const plastickArray = [0, 10000, 5200, 2600, 2200, 1800];
+    const plastickArrayFormat = ['Без пластика', 'A0', 'A1', 'A2', 'A3', 'A4'];
+
     const vidToName = [
         "белая",
         "черная",
@@ -129,7 +131,7 @@ const Samokleyka = observer(() => {
                 vidToName[+vidSamo]
             }; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Кол-во: ${number}; Порезка: ${
                 porezkaName[+porezka]
-            }; Пластик ПВХ: ${plastickArray[+plastick]}`
+            }; Пластик ПВХ: ${plastickArrayFormat[+plastick]}`
         );
     }, [
         width,
