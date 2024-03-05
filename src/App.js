@@ -47,6 +47,7 @@ import CreatePrice from './pages/admin/CreatePrice';
 import OnePrice from './pages/prices/OnePrice';
 
 import {check} from "./http/userAPI";
+import Holsty from './pages/produce/Holsty.js';
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -106,6 +107,7 @@ const App = observer(() => {
 {/* Produce */}
               <Route path="/produce/vizitki" element={<Vizitki />} />
               <Route path="/produce/baget" element={<Baget />} /> 
+              <Route path="/produce/holsty" element={<Holsty />} /> 
               <Route path="/produce/posterka" element={<Postrka />} /> 
               <Route path="/produce/banner" element={<Banner />} />
               <Route path="/produce/samokleyka" element={<Samokleyka />} />
