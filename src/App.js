@@ -13,8 +13,7 @@ import Payinfo from "./pages/main/Payinfo";
 import Home from "./pages/main/Home";
 import Empty from "./pages/main/Empty";
 import Oferta from "./pages/main/Oferta";
-import ThreeDdetails from './pages/main/ThreeDdetails';
-
+import ThreeDNit from './pages/produce/ThreDNit.js'
 
 import Banner from "./pages/produce/Banner";
 import Vizitki from "./pages/produce/Vizitki";
@@ -22,6 +21,7 @@ import Baget from "./pages/produce/Baget";
 import Postrka from "./pages/produce/Postrka";
 import Samokleyka from "./pages/produce/Samokleyka";
 import Photo from "./pages/produce/Photo";
+import Falcovka from "./pages/produce/Falcovka";
 
 import AllGoods from "./pages/goods/AllGoods.js";
 import OneGoods from "./pages/goods/OneGoods.js";
@@ -48,6 +48,7 @@ import OnePrice from './pages/prices/OnePrice';
 
 import {check} from "./http/userAPI";
 import Holsty from './pages/produce/Holsty.js';
+import ThreeDdetails from './pages/main/ThreeDdetails.js';
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -112,6 +113,8 @@ const App = observer(() => {
               <Route path="/produce/banner" element={<Banner />} />
               <Route path="/produce/samokleyka" element={<Samokleyka />} />
               <Route path="/produce/photo" element={<Photo />} />
+              <Route path="/produce/falcovka" element={<Falcovka />} />
+              <Route path="/produce/threed" element={<ThreeDNit />} />
 {/* Prices */}
               <Route path="/prices/:priceId" element={<OnePrice  />} />
               <Route path="/prices/vizits-price" element={<VizitsPrice  />} />

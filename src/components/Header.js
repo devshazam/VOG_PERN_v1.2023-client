@@ -63,6 +63,12 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/holsty">
                                        Холсты
                                     </NavDropdown.Item>
+                                    <NavDropdown.Item href="/produce/falcovka">
+                                       Фальцовка чертежей
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/produce/threed">
+                                       3D нить
+                                    </NavDropdown.Item>
                                     
                                     {/* <NavDropdown.Divider /> */}
                                 </NavDropdown>
@@ -94,9 +100,6 @@ const Header = () => {
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/goods/plenka">
                                         Пленка AVERY
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href="/goods/3d-nit">
-                                        Нить для 3D печати
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/goods/stands">
                                         Информационные стенды
@@ -204,15 +207,26 @@ const Header = () => {
 
                                 {/* <Nav.Link href="/goods/krujki">Кружки</Nav.Link> */}
                                 {/* <Nav.Link href="/goods/kancelyariya">Канцелярия</Nav.Link> */}
+                                {/* <NavDropdown
+                                    title="3Д детали"
+                                    id="offcanvasNavbarDropdown-expand-lg"
+                                >
+                                    <NavDropdown.Item href="/goods/3d-nit">
+                                            Нить для 3D печати
+                                        </NavDropdown.Item>
+                                    <NavDropdown.Item href="/3d-details">
+                                        <Image
+                                            src="/file/icons8-3d-50.jpg"
+                                            className="bascket_img"
+                                            rounded
+                                            alt="Заказы"
+                                            title="Заказы"
+                                        />{" "}
+                                         3D печать
+                                    </NavDropdown.Item>
+                                </NavDropdown> */}
                                 <Nav.Link href="/3d-details">
-                                    <Image
-                                        src="/file/icons8-3d-50.jpg"
-                                        className="bascket_img"
-                                        rounded
-                                        alt="Заказы"
-                                        title="Заказы"
-                                    />{" "}
-                                    3D детали
+                                3D печать
                                 </Nav.Link>
                                 <Nav.Link href="/contacts">Контакты</Nav.Link>
                             </Nav>
