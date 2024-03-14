@@ -39,7 +39,7 @@ const Header = () => {
                         <Offcanvas.Body className="justify-content-between">
                             <Nav className="justify-content-end  pe-3 my-2 my-lg-0">
                                 <NavDropdown
-                                    title="Заказать товары"
+                                    title="Заказать"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
                                     <NavDropdown.Item href="/produce/vizitki">
@@ -66,15 +66,13 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/falcovka">
                                        Фальцовка чертежей
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/produce/threed">
-                                       3D нить
-                                    </NavDropdown.Item>
+                             
                                     
                                     {/* <NavDropdown.Divider /> */}
                                 </NavDropdown>
 
                                 <NavDropdown
-                                    title="Купить товары"
+                                    title="Купить"
                                     id="offcanvasNavbarDropdown-expand-lg"
                                 >
                                     <NavDropdown.Item href="/goods/futbolki">
@@ -109,6 +107,9 @@ const Header = () => {
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/goods/bagety">
                                         Багеты на заказ
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/produce/threed">
+                                       3D нить
                                     </NavDropdown.Item>
                                 </NavDropdown>
 

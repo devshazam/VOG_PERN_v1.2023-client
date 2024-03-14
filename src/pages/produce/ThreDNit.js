@@ -28,7 +28,7 @@ const ThreeDNit = observer(() => {
     const salesArray = [100, 50, 10, 5, 0];
     const procetnSale = [10, 7, 5, 3, 0];
     const typeToFolder =['pla', 'abs'];
-
+console.log(mainObject.type)
     useEffect(() => {
         if (!mainObject.number) {return;}
         if (!Number.isInteger(+mainObject.number)) {
@@ -45,7 +45,7 @@ const ThreeDNit = observer(() => {
                 plaNitColor[mainObject.type][mainObject.color]
             }; Цена: ${value} рублей; Скидка: ${procent} %; Кол-во: ${mainObject.number};`
         );
-    }, [JSON.stringify(mainObject)]); // <- add the count variable here
+    }, [JSON.stringify(mainObject)], description); // <- add the count variable here
 
     return (
         <>
@@ -76,9 +76,6 @@ const ThreeDNit = observer(() => {
                                             setMainObject({
                                                 ...mainObject,
                                                 type: e.target.value,
-                                            });
-                                            setMainObject({
-                                                ...mainObject,
                                                 color: '1',
                                             })
                                         }
