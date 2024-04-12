@@ -182,23 +182,7 @@ const Banner = observer(() => {
                                 </FloatingLabel>
                             </Form.Group>
 
-                            <Form.Group as={Col} md="6" className="mb-3">
-                                <FloatingLabel
-                                    controlId="floatingSelectDensity"
-                                    label="Плотность (грамм):"
-                                >
-                                    <Form.Select
-                                        aria-label="Floating label select example"
-                                        onChange={(e) =>
-                                            setDensity(e.target.value)
-                                        }
-                                        value={density}
-                                    >
-                                        <option value="0">400-440</option>
-                                        <option value="1">500</option>
-                                    </Form.Select>
-                                </FloatingLabel>
-                            </Form.Group>
+             
 
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel

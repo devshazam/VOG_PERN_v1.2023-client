@@ -49,6 +49,7 @@ import OnePrice from './pages/prices/OnePrice';
 import {check} from "./http/userAPI";
 import Holsty from './pages/produce/Holsty.js';
 import ThreeDdetails from './pages/main/ThreeDdetails.js';
+import Sites from './pages/main/Sites.js';
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -97,6 +98,7 @@ const App = observer(() => {
           <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="*" element={<Empty />} />
+              <Route path="/sites" element={<Sites />} />
               <Route path="/payinfo" element={<Payinfo />} />
               <Route path="/3d-details" element={<ThreeDdetails />} />
               <Route path="/oferta" element={<Oferta />} />
