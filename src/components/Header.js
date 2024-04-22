@@ -105,9 +105,6 @@ const Header = () => {
                                     <NavDropdown.Item href="/goods/pechat">
                                         Печати и Штампы
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/goods/bagety">
-                                        Багеты на заказ
-                                    </NavDropdown.Item>
                                     <NavDropdown.Item href="/produce/threed">
                                        3D нить
                                     </NavDropdown.Item>

@@ -10,7 +10,7 @@ export default function Sites() {
     return (
         <>
             <Container>
-               <h1>Разработка сайтов - <a href="https://docs.google.com/spreadsheets/d/15-S6nuAZmFIOgbWYCZMc2RgTPA7dvPy9/edit?usp=sharing&ouid=117443855612121402557&rtpof=true&sd=true">прайс-лист!</a> </h1>
+               <h1>Разработка сайтов - <a href="https://docs.google.com/spreadsheets/d/15-S6nuAZmFIOgbWYCZMc2RgTPA7dvPy9/edit?usp=sharing&ouid=117443855612121402557&rtpof=true&sd=true" target="blank">прайс-лист!</a> </h1>
                
                 <Row className="mb-5">
                     <Col xs={12} sm={6} lg={4} className="mb-3">
