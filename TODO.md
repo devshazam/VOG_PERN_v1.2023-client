@@ -1,1 +1,4 @@
-1- поменять все названия компонентов в самих файлах
+-  Ctrl + Alt + I - Auto-indent line(s)
+- Ctrl + D Duplicate current line or selected block 
+- Ctrl + Y Delete line at caret 
+- Ctrl + Shift + J Join lines
