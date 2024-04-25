@@ -151,6 +151,9 @@ const Vizitki = observer(() => {
                             name={name}
                             id={goodsId}
                         />
+                        <p style={{fontSize: 12}}>
+                            ** - данные цены действуют только на сайте!
+                        </p>
                     </Col>
                 </Row>
 
