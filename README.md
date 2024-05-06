@@ -1,4 +1,4 @@
 # Update_Deploy
 cd /apps/client && . ./deploy.sh
 
-//fjf
+cd /apps/client && . ./deploy.sh
