@@ -447,7 +447,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             {orders && orders.length > 0 && orders.map((i, index) => {
                                 return(
 
-<img key={index} src={`/api/${i.img}`} style={{height: "40px"}} onClick={() => toJson(`/api/${i.img}`)}/>
+<img key={index} src={`https://api.kopi34.ru/${i.img}`} style={{height: "40px"}} onClick={() => toJson(`https://api.kopi34.ru/${i.img}`)}/>
                                 )
                             })
                             }
