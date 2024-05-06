@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState} from "react";
 import { fabric } from "fabric";
 import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 //import "./styles.css";
-import json from "../../config/dummy.json";
+import jsonDummy from "../../config/dummy.json";
 import {Button,ButtonGroup } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,14 +10,24 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import AbcIcon from '@mui/icons-material/Abc';
+// import AbcIcon from '@mui/icons-material/Abc';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+// import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import {fetchEditorObjects} from "../../http/jsonAPI";
 
 const relationArrai = [0.55, 0.4]
 export default function Editor() {
     const [size, setSize] = useState({width: 0, height: 0, relation: 0});
+    const [color, setColor] = useState("#35363a");
+    const [rank, setRank] = useState("");
+    const [orders, setOrders] = useState([]);
     const { editor, onReady } = useFabricJSEditor();
     const blockElem = useRef();
 console.log(blockElem.current && blockElem.current.clientWidth)
@@ -36,6 +46,29 @@ console.log(blockElem.current && blockElem.current.clientWidth)
             editor.canvas.renderAll();
     }, [blockElem?.current?.width, editor, size.relation, size.height])
     
+
+
+    useEffect(() => {
+        if(!rank) {
+            setOrders([]);
+            return;
+        }
+        fetchEditorObjects({rank})
+            .then((data) => {
+                console.log(data);
+                setOrders(data);
+            })
+            .catch((error) => {
+                if (error.response.data) {
+                    alert(
+                        `${error.response.data.message}${error.response.status}`
+                    );
+                } else {
+                    console.log("dev", error);
+                    alert("Ошибка 127 - Обратитесь к администратору!");
+                }
+            });
+    }, [rank]);
 
 
 
@@ -68,7 +101,91 @@ console.log(blockElem.current && blockElem.current.clientWidth)
     }, [blockElem?.current, editor]); 
 
 
+    useEffect(() => {
+        if (!editor || !fabric) {
+          return;
+        }
+        editor.canvas.freeDrawingBrush.color = color;
+        editor.setStrokeColor(color);
+        editor.setFillColor(color);
+      }, [color]);
 
+
+    const removeBackground = () => {
+        if (editor.canvas.backgroundImage) {
+          editor.canvas.setBackgroundImage(null);
+          editor.canvas.renderAll();
+        }
+        console.log(editor.canvas.getObjects());
+      };
+
+    const onColorChange = (color) => {
+
+        removeBackground();
+        if (editor.canvas) {
+          editor.canvas.backgroundColor = color;
+          editor.canvas.renderAll();
+        }
+      };
+
+
+      const onAddCircle = () => {
+        const circle = new fabric.Circle({
+            id: 'circle',
+            top: 50,
+            left: 50,
+            radius: 15,
+            originX: 'center',
+            originY: 'center',
+            fill: '#000000',
+            objectCaching: false,
+            padding: 10,
+            cornerColor: '#000000',
+            cornerStyle: 'circle',
+            cornerStrokeColor: '#000000',
+            borderDashArray: [5, 5],
+            borderColor: '#000000',
+            transparentCorners: true,
+            lockRotation: true, // can not rotate 
+            erasable: false, // can not erase it by erase tool-brush...
+        });
+    
+        // Render Circle on Canvas
+        editor.canvas.add(circle);
+        // editor.addCircle();
+        // editor.addLine();
+      };
+
+      const onAddRectangle = () => {
+      
+        const rect = new fabric.Rect({
+            id: 'rectangle',
+            top: 70,
+            left: 70,
+            width: 50,
+            height: 50,
+            fill: '#000000',
+            objectCaching: false,
+            padding: 10,
+            rx: 2, // radius
+            ry: 2, // radius
+        });
+    
+        editor.canvas.add(rect);
+      };
+
+
+      const onAddLine = () => {
+
+        // Render Circle on Canvas
+        editor.canvas.add(new fabric.Line([50, 200, 200, 200], {
+            left: 60,
+            top: 60,
+            stroke: 'black'
+        }));
+        // editor.addCircle();
+        // editor.addLine();
+      };
 
     const removeSelectedObject = () => {
         editor.canvas.remove(editor.canvas.getActiveObject());
@@ -89,14 +206,100 @@ console.log(blockElem.current && blockElem.current.clientWidth)
         editor.canvas.renderAll();
     };
 
+    const toBack = () => {
+        editor.canvas.sendBackwards(editor.canvas.getActiveObject());
+        editor.canvas.discardActiveObject();
+        editor.canvas.renderAll();
+      };
 
-    const fromJson = () => {
-        console.log(json);
+  
+
+    const cloneObject = () => {
+        var object = fabric.util.object.clone(editor.canvas.getActiveObject());
+        object.set("top", object.top+5);
+        object.set("left", object.left+5);
+        editor.canvas.add(object);
+    }
+    const changeFontFamily = (value) => {
+        editor.canvas.getActiveObject().fontFamily = value;
+        editor.canvas.renderAll();
+      };
+
+  const fromJson = () => {
+        console.log(jsonDummy);
         editor.canvas.loadFromJSON(
-            json,
+            jsonDummy,
             editor.canvas.renderAll.bind(editor.canvas)
         );
     };
+
+      const toJson = (imgLink) => {
+        var json = editor.canvas.toJSON();
+        console.log(jsonDummy);
+        json.objects.push({...jsonDummy.objects[0], src: imgLink})
+        // editor.canvas.clear();
+        editor.canvas.loadFromJSON(
+            // {...json.objects.push({...jsonDummy.objects[0], src: imgLink})},
+            json,
+            editor.canvas.renderAll.bind(editor.canvas)
+        );
+        // console.log(json);
+      };
+
+
+      const saveAsImg = () => {
+            if (!editor || !fabric) {
+                return;
+            }
+            const ext = "png";
+            const base64 = editor.canvas.toDataURL({
+                format: ext,
+                enableRetinaScaling: true
+            });
+        
+            const link = document.createElement("a");
+            link.href = base64;
+            link.download = `${Date(Date.now()).slice(0, 24)}.${ext}`;
+            link.click();
+        }
+
+
+
+
+        const changeFontStyle = (value) => {
+            editor.canvas.getActiveObject().fontStyle = value;
+            editor.canvas.renderAll();
+          };
+        
+          const changeFontType = (value) => {
+            editor.canvas.getActiveObject().fontWeight = value;
+            editor.canvas.renderAll();
+          };
+
+
+
+
+
+
+
+
+
+          const items = [
+            {
+              key: '1',
+              label: 'This is panel header 1',
+              children: <img src="/497Kb.png" style={{width: "40px", height: "40px"}} onClick={() => toJson("/497Kb.png")}/>,
+            },
+            {
+              key: '2',
+              label: 'This is panel header 2',
+              children: <p>Привет2</p>,
+            },
+          ];
+
+
+
+
 
     return (
         <>
@@ -110,7 +313,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             label="Age"
                             onChange={(e) => {setSize({...size, relation: e.target.value})}} value={size.relation}
                         >
-                            <MenuItem value={0}>Визитка</MenuItem>
+                            <MenuItem value={0}>Визитка 50 х 90</MenuItem>
                             <MenuItem value={1}>Кружка</MenuItem>
                         </Select>
                     </FormControl>
@@ -127,17 +330,14 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                 >
                             
                 <ButtonGroup variant="contained" aria-label="Basic button group">
-                            <Button onClick={addText} variant="contained" >
-                                <AbcIcon />
-                                
-                            </Button>
+                         
                             <Button
                                 component="label"
                                 role={undefined}
                                 variant="contained"
                                 tabIndex={-1}
                                 startIcon={<CloudUploadIcon />}
-                            >
+                            >Добавить рисунок
                               <input
                                     type="file"
                                     id="img-item"
@@ -152,14 +352,107 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             <Button onClick={removeSelectedObject} variant="contained" >
                                 <DeleteForeverIcon />
                             </Button>
-                            <Button onClick={toFront} variant="contained" >
-                                <ArrowOutwardIcon />
+                            {/* <Button onClick={() =>toJson()} variant="contained" >
+                            toJson
+                            </Button> */}
+                            <Button onClick={onAddCircle} variant="contained" >
+                                Вставить круг
                             </Button>
-                            <Button onClick={exportSVG} variant="contained" color="success">
-                                <TaskAltIcon />
+                            <Button onClick={onAddRectangle} variant="contained" >
+                                Вставить квадрат
+                            </Button>
+                            <Button onClick={onAddLine} variant="contained" >
+                                Вставить линию
+                            </Button>
+                            <Button onClick={cloneObject} variant="contained" >
+                                Клонировать
+                            </Button>
+                            <Button onClick={saveAsImg} variant="contained" >
+                                скачать jpg
+                            </Button>
+                        </ButtonGroup>
+
+                        
+                        <ButtonGroup variant="contained" aria-label="Basic button group">
+                               <Button onClick={addText} variant="contained" >
+                                {/* <AbcIcon /> */}
+                                Текст
+                            </Button>
+                            <Button onClick={toFront} variant="contained" >
+                                {/* <ArrowOutwardIcon /> */}
+                                На передний план
+                            </Button>
+                            <Button onClick={toBack} variant="contained" >
+                                {/* <ArrowOutwardIcon /> */}
+                                На задний план
+                            </Button>
+                            <Button
+                                component="label"
+                                role={undefined}
+                                variant="contained"
+                                tabIndex={-1}
+                            >Цвет текста
+                            <input
+                                type="color"
+                                value={color}
+                                onChange={(e) => setColor(e.target.value)}
+                                hidden
+                            />
                             </Button>
 
+                            <Button
+                                component="label"
+                                role={undefined}
+                                variant="contained"
+                                tabIndex={-1}
+                            >Цвет фона
+                            <input
+                                type="color"
+                                id="color-item"
+                                onChange={(e) => onColorChange(e.target.value)}
+                                hidden
+                            /></Button>
+                            <Button onClick={exportSVG} variant="contained" color="success" startIcon={<TaskAltIcon /> }>
+                                Оформить заказ
+                            </Button>
+                            <div>
+                            <select onChange={(e) => changeFontFamily(e.target.value)}>
+                            <option></option>
+                            <option value="Pacifico">Pacifico</option>
+                            <option value="Lobster">Lobster</option>
+                        </select>
+
+                        <select onChange={(e) => changeFontStyle(e.target.value)}>
+                            <option></option>
+                            <option value="normal">normal</option>
+                            <option value="italic">italic</option>
+                        </select>
+                        </div>
+
+                        <div>
+
+                        <select onChange={(e) => changeFontType(e.target.value)}>
+                            <option></option>
+                            <option value="bold">bold</option>
+                            <option value="normal">normal</option>
+                        </select>
+                        <select onChange={(e) => {setRank(e.target.value)}}>
+                            <option value="">Сбросить</option>
+                            <option value="cvet">Цветы</option>
+                            <option value="jivot">Животные</option>
+                        </select>
+                        </div>
                      </ButtonGroup>
+                     <div>
+                            {orders && orders.length > 0 && orders.map((i, index) => {
+                                return(
+
+<img key={index} src={`/api/${i.img}`} style={{height: "40px"}} onClick={() => toJson(`/api/${i.img}`)}/>
+                                )
+                            })
+                            }
+</div>
+
 
                      <div
                     style={{
@@ -180,7 +473,9 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                     <FabricJSCanvas className="sample-canvas" onReady={onReady} />
                 </div>
 
+<img src="/497Kb.png" style={{width: "40px", height: "40px"}} onClick={() => toJson("/497Kb.png")}/>
                 </div>
+                <p>* - Уважаемые клиенты при оформлении заказа ваши макеты будут прикреплены к заказу в виде картинки, без возможномти вносить изменения! <br /> ** - К заказу не принимается нацисткая символика, оскарбления в адресс власти и СВО!</p>
             </div>
         </div>
 

@@ -24,7 +24,15 @@ export const fetchPriceOfProduce = async ( params ) => {
     return data
 }
 
+export const createObjectItem = async ( params ) => {
+    const {data} = await $host.post('/api/jsona/create', params)
+    return data
+}
 
+export const fetchEditorObjects = async ( params ) => {
+    const {data} = await $host.post('/api/jsona/get-editor-objects', params)
+    return data
+}
 
 
 

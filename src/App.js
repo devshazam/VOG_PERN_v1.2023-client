@@ -51,6 +51,7 @@ import Holsty from './pages/produce/Holsty.js';
 import ThreeDdetails from './pages/main/ThreeDdetails.js';
 import Sites from './pages/main/Sites.js';
 import Editor from './pages/main/Editor.js';
+import EditorInsert from './pages/admin-user/EditorInsert.js';
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -85,6 +86,7 @@ const App = observer(() => {
               <Route path="/admin/base-of-orders/:orderId" element={<ListOfOrders />} />
               <Route path="/admin/list-of-goods" element={<ListOfGoods   />} />
               <Route path="/admin/create" element={<CreateGoods  />} />
+              <Route path="/admin/createObject" element={<EditorInsert  />} />
 
               <Route path="/admin/create-price" element={<CreatePrice  />} />
               <Route path="/admin/update-goods/:goodsId" element={<UpdateGoods />} />
