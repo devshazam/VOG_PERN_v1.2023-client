@@ -227,19 +227,34 @@ console.log(blockElem.current && blockElem.current.clientWidth)
         );
     };
 
-      const toJson = (imgLink) => {
-        var json = editor.canvas.toJSON();
-        console.log(jsonDummy);
-        json.objects.push({...jsonDummy.objects[0], src: imgLink})
-        // editor.canvas.clear();
-        editor.canvas.loadFromJSON(
-            // {...json.objects.push({...jsonDummy.objects[0], src: imgLink})},
-            json,
-            editor.canvas.renderAll.bind(editor.canvas)
-        );
-        // console.log(json);
-      };
+    //   const toJson = (imgLink) => {
+    //     var json = editor.canvas.toJSON();
+    //     console.log(jsonDummy);
+    //     json.objects.push({...jsonDummy.objects[0], src: imgLink})
+    //     // editor.canvas.clear();
+    //     editor.canvas.loadFromJSON(
+    //         // {...json.objects.push({...jsonDummy.objects[0], src: imgLink})},
+    //         json,
+    //         editor.canvas.renderAll.bind(editor.canvas)
+    //     );
+    //     // console.log(json);
+    //   };
 
+    const toJson = (url) => {
+        if (!editor || !fabric) {
+            return;
+        }
+        fabric.Image.fromURL(
+            url,
+            (img) => {
+                editor.canvas.add(img);
+                editor.canvas.renderAll();
+            },
+            { scaleX: 0.15, scaleY: 0.15 }
+        );
+
+        console.log(editor.canvas.getObjects());
+    };
 
       const saveAsImg = () => {
             if (!editor || !fabric) {
