@@ -227,18 +227,11 @@ console.log(blockElem.current && blockElem.current.clientWidth)
         );
     };
 
-    //   const toJson = (imgLink) => {
-    //     var json = editor.canvas.toJSON();
-    //     console.log(jsonDummy);
-    //     json.objects.push({...jsonDummy.objects[0], src: imgLink})
-    //     // editor.canvas.clear();
-    //     editor.canvas.loadFromJSON(
-    //         // {...json.objects.push({...jsonDummy.objects[0], src: imgLink})},
-    //         json,
-    //         editor.canvas.renderAll.bind(editor.canvas)
-    //     );
-    //     // console.log(json);
-    //   };
+      const toJsons = () => {
+        var json = editor.canvas.toJSON();
+        console.log(json)
+
+      };
 
     const toJson = (url) => {
         if (!editor || !fabric) {
@@ -255,6 +248,33 @@ console.log(blockElem.current && blockElem.current.clientWidth)
 
         console.log(editor.canvas.getObjects());
     };
+
+
+
+    const addBackground = (url) => {
+        removeBackground();
+    
+        fabric.Image.fromURL(
+          url,
+          (img) => {
+            if (editor.canvas) {
+                editor.canvas.setBackgroundImage(
+                img,
+                () => {
+                  editor.canvas.renderAll();
+                },
+                {
+                  scaleX: editor.canvas.width / img.width,
+                  scaleY: editor.canvas.height / img.height
+                }
+              );
+            }
+          },
+          { crossOrigin: "anonymous" }
+        );
+      };
+
+
 
       const saveAsImg = () => {
             if (!editor || !fabric) {
@@ -421,7 +441,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                                 onChange={(e) => onColorChange(e.target.value)}
                                 hidden
                             /></Button>
-                            <Button onClick={exportSVG} variant="contained" color="success" startIcon={<TaskAltIcon /> }>
+                            <Button onClick={toJsons} variant="contained" color="success" startIcon={<TaskAltIcon /> }>
                                 Оформить заказ
                             </Button>
                             <div>
@@ -482,7 +502,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                     <FabricJSCanvas className="sample-canvas" onReady={onReady} />
                 </div>
 
-<img src="/497Kb.png" style={{width: "40px", height: "40px"}} onClick={() => toJson("/497Kb.png")}/>
+<img src="/497Kb.png" style={{width: "40px", height: "40px"}} onClick={() => addBackground("/497Kb.png")}/>
                 </div>
                 <p>* - Уважаемые клиенты при оформлении заказа ваши макеты будут прикреплены к заказу в виде картинки, без возможномти вносить изменения! <br /> ** - К заказу не принимается нацисткая символика, оскарбления в адресс власти и СВО!</p>
             </div>
