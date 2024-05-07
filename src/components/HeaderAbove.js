@@ -136,10 +136,16 @@ const HeaderAbove = observer(() => {
                                                 Создать прайс
                                             </NavDropdown.Item>
                                             <NavDropdown.Item
-                                                href="/admin/createObject"
+                                                href="/admin/create-object"
                                                 className="redLink"
                                             >
                                                 Загрузить декор
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item
+                                                href="/admin/image-editor"
+                                                className="redLink"
+                                            >
+                                                Редактор изображений
                                             </NavDropdown.Item>
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item

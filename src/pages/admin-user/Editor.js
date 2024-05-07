@@ -14,7 +14,9 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 // import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import {fetchEditorObjects, fetchEditorsObjects} from "../../http/jsonAPI";
+import {fetchEditorObjects, createObjectItem2} from "../../http/jsonAPI";
+import EditorInsert from "./EditorInsert";
+
 
 const relationArrai = [0.55, 0.4]
 export default function Editor() {
@@ -22,7 +24,6 @@ export default function Editor() {
     const [color, setColor] = useState("#35363a");
     const [rank, setRank] = useState("");
     const [orders, setOrders] = useState([]);
-    const [templ, setTempl] = useState([]);
     const { editor, onReady } = useFabricJSEditor();
     const blockElem = useRef();
 console.log(blockElem.current && blockElem.current.clientWidth)
@@ -64,24 +65,6 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                 }
             });
     }, [rank]);
-    useEffect(() => {
-  
-        fetchEditorsObjects({rank: size.relation})
-            .then((data) => {
-                console.log(data);
-                setTempl(data);
-            })
-            .catch((error) => {
-                if (error.response.data) {
-                    alert(
-                        `${error.response.data.message}${error.response.status}`
-                    );
-                } else {
-                    console.log("dev", error);
-                    alert("Ошибка 127 - Обратитесь к администратору!");
-                }
-            });
-    }, [size.relation]);
 
 
 
@@ -238,19 +221,54 @@ console.log(blockElem.current && blockElem.current.clientWidth)
         editor.canvas.renderAll();
       };
 
-  const fromJson = (json) => {
-        console.log(json);
+  const fromJson = () => {
+        console.log(jsonDummy);
         editor.canvas.loadFromJSON(
-            json,
+            jsonDummy,
             editor.canvas.renderAll.bind(editor.canvas)
         );
     };
 
       const toJsons = () => {
+           if (!editor || !fabric) {
+            return;
+        }
+
+        const base64 = editor.canvas.toDataURL({
+            format: "jpg",
+            enableRetinaScaling: true
+        });
+
         var json = editor.canvas.toJSON();
+        if(base64 && json){
+
+            const formData = new FormData();
+            formData.append("rank", size);
+            formData.append("image", base64);
+            formData.append("value", JSON.stringify(json));
+    
+            createObjectItem2(formData)
+                .then((data) => {
+                    alert("Данные успешно внесены!");
+                })
+                .catch((error) => {
+                    if (error.response.data) {
+                        alert(
+                            `${error.response.data.message}${error.response.status}`
+                        );
+                    } else {
+                        console.log("dev", error);
+                        alert("Ошибка 101 - Обратитесь к администратору!");
+                    }
+                })
+        }else{
+            alert("Не все поля заполнены!");
+            return;
+        }
         console.log(json)
 
       };
+
 
     const toJson = (url) => {
         if (!editor || !fabric) {
@@ -295,22 +313,6 @@ console.log(blockElem.current && blockElem.current.clientWidth)
 
 
 
-      const saveAsImg = () => {
-            if (!editor || !fabric) {
-                return;
-            }
-            const ext = "png";
-            const base64 = editor.canvas.toDataURL({
-                format: ext,
-                enableRetinaScaling: true
-            });
-        
-            const link = document.createElement("a");
-            link.href = base64;
-            link.download = `${Date(Date.now()).slice(0, 24)}.${ext}`;
-            link.click();
-        }
-
 
 
 
@@ -351,6 +353,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
 
     return (
         <>
+        <EditorInsert />
             <div className="App">
 
                     <FormControl fullWidth style={{marginBottom: "10px"}}>
@@ -365,15 +368,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             <MenuItem value={1}>Кружка</MenuItem>
                         </Select>
                     </FormControl>
-                    <div>
-                            {templ && templ.length > 0 && templ.map((i, index) => {
-                                return(
 
-                <img key={index} src={`/api/${i.img}`} style={{height: "40px"}} onClick={() => fromJson(i.value)}/>
-                                )
-                            })
-                            }
-                    </div>
 
                     <div
                     style={{
@@ -387,24 +382,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             
                 <ButtonGroup variant="contained" aria-label="Basic button group">
                          
-                            <Button
-                                component="label"
-                                role={undefined}
-                                variant="contained"
-                                tabIndex={-1}
-                                startIcon={<CloudUploadIcon />}
-                            >Добавить рисунок
-                              <input
-                                    type="file"
-                                    id="img-item"
-                                    name="img-item"
-                                    accept="image/*"
-                                    hidden
-                                    // value={'wewrw'}
-                                    onChange={(e) => {addImage(e)}}
-                                />
-                            
-                            </Button>
+  
                             <Button onClick={removeSelectedObject} variant="contained" >
                                 <DeleteForeverIcon />
                             </Button>
@@ -422,9 +400,6 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             </Button>
                             <Button onClick={cloneObject} variant="contained" >
                                 Клонировать
-                            </Button>
-                            <Button onClick={saveAsImg} variant="contained" >
-                                скачать jpg
                             </Button>
                         </ButtonGroup>
 
@@ -496,14 +471,22 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             <option value="">Сбросить</option>
                             <option value="cvet">Цветы</option>
                             <option value="jivot">Животные</option>
+                            <option value="1">Фон Визитки</option>
+                            <option value="2">Фон кружки</option>
                         </select>
                         </div>
                      </ButtonGroup>
                      <div>
                             {orders && orders.length > 0 && orders.map((i, index) => {
                                 return(
+                                    <>
+                                    {+rank ?
+                                        <img key={index} src={`/api/${i.img}`} style={{height: "40px"}} onClick={() => addBackground(`/api/${i.img}`)}/>
+                                        :
+                                        <img key={index} src={`/api/${i.img}`} style={{height: "40px"}} onClick={() => toJson(`/api/${i.img}`)}/>
+                                    }
+                                    </>
 
-<img key={index} src={`/api/${i.img}`} style={{height: "40px"}} onClick={() => toJson(`/api/${i.img}`)}/>
                                 )
                             })
                             }

@@ -47,6 +47,8 @@ const PrivateOffice = () => {
             <select name="select" id="select" onChange={(e) => setRank(e.target.value)}>
                 <option value="cvet">цветы</option>
                 <option value="jivot">Животные</option>
+                <option value="1">Фон Визитки</option>
+                <option value="2">Фон кружки</option>
             </select>
             <input type="submit" value={"Загрузить"}/>
         </form>

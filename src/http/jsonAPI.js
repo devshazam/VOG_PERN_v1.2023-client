@@ -33,6 +33,14 @@ export const fetchEditorObjects = async ( params ) => {
     const {data} = await $host.post('/api/jsona/get-editor-objects', params)
     return data
 }
+export const fetchEditorsObjects = async ( params ) => {
+    const {data} = await $host.post('/api/jsona/get-editor-objects-editor', params)
+    return data
+}
+export const createObjectItem2 = async ( params ) => {
+    const {data} = await $host.post('/api/jsona/get-editor-objects2', params)
+    return data
+}
 
 
 
