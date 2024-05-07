@@ -65,8 +65,8 @@ console.log(blockElem.current && blockElem.current.clientWidth)
             });
     }, [rank]);
     useEffect(() => {
-  
-        fetchEditorsObjects({rank: size.relation})
+  if(!size.relation){return;}
+        fetchEditorsObjects({rank: String(size.relation)})
             .then((data) => {
                 console.log(data);
                 setTempl(data);

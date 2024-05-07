@@ -96,12 +96,12 @@ const App = observer(() => {
               <Route path="/admin/user/private-office/:orderId" element={<ListOfUserOrders  />} />
               <Route path="/admin/user/basket" element={<UserBasket  />} />
               <Route path="/admin/user/basket-cashless" element={<UserBasketCashless  />} />
+              <Route path="/admin/image-editor" element={<EditorAdmin  />} />
           </Route>
 
 
           <Route path="/" element={<Layout />}>
-              {/* <Route path="/admin/image-editor" element={<EditorAdmin  />} /> */}
-              <Route path="/image-editor" element={<EditorAdmin  />} />
+              {/* <Route path="/image-editor" element={<EditorAdmin  />} /> */}
               <Route index element={<Home />} />
               <Route path="*" element={<Empty />} />
               <Route path="/sites" element={<Sites />} />
