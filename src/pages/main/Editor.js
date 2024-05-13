@@ -64,8 +64,13 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                 }
             });
     }, [rank]);
+
+
+
+    
     useEffect(() => {
-  if(!size.relation){return;}
+        console.log(size.relation)
+//   if(!size.relation){return;}
         fetchEditorsObjects({rank: String(size.relation)})
             .then((data) => {
                 console.log(data);
@@ -109,7 +114,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
             return;
         }
 
-        fromJson();
+        fromJson(jsonDummy);
         editor.canvas.renderAll();
     }, [blockElem?.current, editor]); 
 
@@ -236,6 +241,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
     const changeFontFamily = (value) => {
         editor.canvas.getActiveObject().fontFamily = value;
         editor.canvas.renderAll();
+        console.log(editor.canvas.getObjects());
       };
 
   const fromJson = (json) => {
@@ -326,12 +332,6 @@ console.log(blockElem.current && blockElem.current.clientWidth)
 
 
 
-
-
-
-
-
-
           const items = [
             {
               key: '1',
@@ -349,6 +349,18 @@ console.log(blockElem.current && blockElem.current.clientWidth)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <>
             <div className="App">
@@ -359,7 +371,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             label="Age"
-                            onChange={(e) => {setSize({...size, relation: e.target.value})}} value={size.relation}
+                            onChange={(e) => {setSize({...size, relation: +e.target.value})}} value={size.relation}
                         >
                             <MenuItem value={0}>Визитка 50 х 90</MenuItem>
                             <MenuItem value={1}>Кружка</MenuItem>
@@ -369,7 +381,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             {templ && templ.length > 0 && templ.map((i, index) => {
                                 return(
 
-                <img key={index} src={`/api/${i.img}`} style={{height: "40px"}} onClick={() => fromJson(i.value)}/>
+                <img key={index} src={`/api/${i.img}`} style={{height: "40px"}} onClick={() => fromJson(JSON.parse(i.value))}/>
                                 )
                             })
                             }

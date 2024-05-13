@@ -243,7 +243,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
         if(base64 && json){
 
             const formData = new FormData();
-            formData.append("rank", size);
+            formData.append("rank", String(size.relation));
             formData.append("image", base64);
             formData.append("value", JSON.stringify(json));
     

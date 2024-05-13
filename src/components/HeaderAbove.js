@@ -104,6 +104,11 @@ const HeaderAbove = observer(() => {
                                     <NavDropdown.Item onClick={showModalReview}>
                                         Оставить отзыв
                                     </NavDropdown.Item>
+                                    <NavDropdown.Item
+                                                href="/editor"
+                                            >
+                                                Редактор картинок
+                                            </NavDropdown.Item>
 
                                     <NavDropdown.Item onClick={logOut}>
                                         Выход
