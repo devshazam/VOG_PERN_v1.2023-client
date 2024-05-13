@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState, useContext} from "react";
 import { fabric } from "fabric";
 import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 //import "./styles.css";
@@ -8,16 +8,20 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Context } from "../../index";
 
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 // import AbcIcon from '@mui/icons-material/Abc';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 // import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import {fetchEditorObjects, fetchEditorsObjects} from "../../http/jsonAPI";
+import {fetchEditorObjects, fetchEditorsObjects, createObjectItem2} from "../../http/jsonAPI";
+
 
 const relationArrai = [0.55, 0.4]
 export default function Editor() {
+    const { user } = useContext(Context);
+
     const [size, setSize] = useState({width: 0, height: 0, relation: 0});
     const [color, setColor] = useState("#35363a");
     const [rank, setRank] = useState("");
@@ -258,6 +262,52 @@ console.log(blockElem.current && blockElem.current.clientWidth)
 
       };
 
+
+
+      const toJsonsen = () => {
+        if (!editor || !fabric) {
+         return;
+     }
+        console.log(user.user.id)
+     const base64 = editor.canvas.toDataURL({
+         format: "jpg",
+         enableRetinaScaling: true
+     });
+
+     var json = editor.canvas.toJSON();
+     if(base64 && json){
+
+         const formData = new FormData();
+         formData.append("rank", String(size.relation));
+         formData.append("userId", user.user.id);
+         formData.append("image", base64);
+         formData.append("value", JSON.stringify(json));
+ 
+         createObjectItem2(formData)
+             .then((data) => {
+                 alert("Данные успешно внесены!");
+             })
+             .catch((error) => {
+                 if (error.response.data) {
+                     alert(
+                         `${error.response.data.message}${error.response.status}`
+                     );
+                 } else {
+                     console.log("dev", error);
+                     alert("Ошибка 101 - Обратитесь к администратору!");
+                 }
+             })
+     }else{
+         alert("Не все поля заполнены!");
+         return;
+     }
+     console.log(json)
+
+   };
+
+
+
+
     const toJson = (url) => {
         if (!editor || !fabric) {
             return;
@@ -438,10 +488,6 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                             <Button onClick={saveAsImg} variant="contained" >
                                 скачать jpg
                             </Button>
-                        </ButtonGroup>
-
-                        
-                        <ButtonGroup variant="contained" aria-label="Basic button group">
                                <Button onClick={addText} variant="contained" >
                                 {/* <AbcIcon /> */}
                                 Текст
@@ -450,6 +496,10 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                                 {/* <ArrowOutwardIcon /> */}
                                 На передний план
                             </Button>
+                        </ButtonGroup>
+
+                        
+                        <ButtonGroup variant="contained" aria-label="Basic button group">
                             <Button onClick={toBack} variant="contained" >
                                 {/* <ArrowOutwardIcon /> */}
                                 На задний план
@@ -480,18 +530,16 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                                 onChange={(e) => onColorChange(e.target.value)}
                                 hidden
                             /></Button>
-                            <Button onClick={toJsons} variant="contained" color="success" startIcon={<TaskAltIcon /> }>
+                            <Button onClick={toJsonsen} variant="contained" color="success" startIcon={<TaskAltIcon /> }>
                                 Оформить заказ
                             </Button>
                             <div>
                             <select onChange={(e) => changeFontFamily(e.target.value)}>
-                            <option></option>
                             <option value="Pacifico">Pacifico</option>
                             <option value="Lobster">Lobster</option>
                         </select>
 
                         <select onChange={(e) => changeFontStyle(e.target.value)}>
-                            <option></option>
                             <option value="normal">normal</option>
                             <option value="italic">italic</option>
                         </select>
@@ -500,9 +548,8 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                         <div>
 
                         <select onChange={(e) => changeFontType(e.target.value)}>
-                            <option></option>
-                            <option value="bold">bold</option>
                             <option value="normal">normal</option>
+                            <option value="bold">bold</option>
                         </select>
                         <select onChange={(e) => {setRank(e.target.value)}}>
                             <option value="">Сбросить</option>
@@ -541,7 +588,6 @@ console.log(blockElem.current && blockElem.current.clientWidth)
                     <FabricJSCanvas className="sample-canvas" onReady={onReady} />
                 </div>
 
-<img src="/497Kb.png" style={{width: "40px", height: "40px"}} onClick={() => addBackground("/497Kb.png")}/>
                 </div>
                 <p>* - Уважаемые клиенты при оформлении заказа ваши макеты будут прикреплены к заказу в виде картинки, без возможномти вносить изменения! <br /> ** - К заказу не принимается нацисткая символика, оскарбления в адресс власти и СВО!</p>
             </div>

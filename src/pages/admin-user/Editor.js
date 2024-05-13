@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState, useContext     } from "react";
 import { fabric } from "fabric";
 import { FabricJSCanvas, useFabricJSEditor } from "fabricjs-react";
 //import "./styles.css";
@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import { Context } from "../../index";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 // import AbcIcon from '@mui/icons-material/Abc';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -20,6 +20,7 @@ import EditorInsert from "./EditorInsert";
 
 const relationArrai = [0.55, 0.4]
 export default function Editor() {
+    const { user } = useContext(Context);
     const [size, setSize] = useState({width: 0, height: 0, relation: 0});
     const [color, setColor] = useState("#35363a");
     const [rank, setRank] = useState("");
@@ -233,7 +234,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
            if (!editor || !fabric) {
             return;
         }
-
+console.log(user.user.id)
         const base64 = editor.canvas.toDataURL({
             format: "jpg",
             enableRetinaScaling: true
@@ -244,6 +245,7 @@ console.log(blockElem.current && blockElem.current.clientWidth)
 
             const formData = new FormData();
             formData.append("rank", String(size.relation));
+            formData.append("userId", user.user.id);
             formData.append("image", base64);
             formData.append("value", JSON.stringify(json));
     
