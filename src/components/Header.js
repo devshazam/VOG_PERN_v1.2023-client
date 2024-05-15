@@ -54,9 +54,6 @@ const Header = () => {
                                    <NavDropdown.Item href="/produce/baget">
                                          Багеты
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/produce/photo">
-                                        Фото на документы
-                                    </NavDropdown.Item>
                                     <NavDropdown.Item href="/produce/posterka">
                                         Постерка
                                     </NavDropdown.Item>
@@ -65,6 +62,9 @@ const Header = () => {
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/produce/falcovka">
                                        Фальцовка чертежей
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/produce/znachki">
+                                        Значки
                                     </NavDropdown.Item>
                              
                                     
@@ -108,6 +108,7 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/threed">
                                        3D нить
                                     </NavDropdown.Item>
+                                    
                                 </NavDropdown>
 
                                 <NavDropdown
@@ -161,6 +162,7 @@ const Header = () => {
                                                 </NavDropdown.Item>
                                             </Accordion.Body>
                                         </Accordion.Item>
+                                        
                                     </Accordion>
 
                                     <Accordion
@@ -195,11 +197,11 @@ const Header = () => {
                                     <NavDropdown.Item href="/prices/10">
                                         Тиражирование на ризографе
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/prices/18">
-                                        Значки
-                                    </NavDropdown.Item>
                                     <NavDropdown.Item href="/prices/21">
                                         Брошюровка с обложками
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="/prices/photo">
+                                        Фото на документы
                                     </NavDropdown.Item>
                                 </NavDropdown>
 

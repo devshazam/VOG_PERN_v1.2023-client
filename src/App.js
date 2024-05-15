@@ -53,6 +53,8 @@ import Sites from './pages/main/Sites.js';
 import Editor from './pages/main/Editor.js';
 import EditorInsert from './pages/admin-user/EditorInsert.js';
 import EditorAdmin from './pages/admin-user/Editor.js';
+import Znachki from './pages/produce/Znachki.js';
+
 
 const App = observer(() => {
   const {user} = useContext(Context)
@@ -121,10 +123,11 @@ const App = observer(() => {
               <Route path="/produce/posterka" element={<Postrka />} /> 
               <Route path="/produce/banner" element={<Banner />} />
               <Route path="/produce/samokleyka" element={<Samokleyka />} />
-              <Route path="/produce/photo" element={<Photo />} />
+              <Route path="/produce/znachki" element={<Znachki />} />
               <Route path="/produce/falcovka" element={<Falcovka />} />
               <Route path="/produce/threed" element={<ThreeDNit />} />
 {/* Prices */}
+              <Route path="/prices/photo" element={<Photo />} />
               <Route path="/prices/:priceId" element={<OnePrice  />} />
               <Route path="/prices/vizits-price" element={<VizitsPrice  />} />
               <Route path="/prices/samokleyka-price" element={<SamokleykaPrice  />} />
