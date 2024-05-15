@@ -40,7 +40,7 @@ const Falcovka = observer(() => {
         setDescription(
             `Наименование: ${name}; Цена: ${value} рублей; Формат: ${formatToSize[mainObject.format]}; Кол-во: ${mainObject.number}`
         );
-    }, [mainObject.number]); // <- add the count variable here
+    }, [JSON.stringify(mainObject)]); // <- add the count variable here
 
     return (
         <>
