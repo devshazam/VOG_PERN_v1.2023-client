@@ -2,7 +2,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "./index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {observer} from "mobx-react-lite"; 
+import {observer} from "mobx-react-lite";
 import 'bootstrap/dist/css/bootstrap.css';
 
 import Layout from './Layout';
@@ -54,6 +54,7 @@ import Editor from './pages/main/Editor.js';
 import EditorInsert from './pages/admin-user/EditorInsert.js';
 import EditorAdmin from './pages/admin-user/Editor.js';
 import Znachki from './pages/produce/Znachki.js';
+import Flag from './pages/produce/Flag.js';
 
 
 const App = observer(() => {
@@ -80,7 +81,7 @@ const App = observer(() => {
 
   return (
     <div className="App">
-    
+
       <BrowserRouter>
       <Routes>
           <Route path="/admin/" element={<LayoutAdmin />}>
@@ -118,28 +119,29 @@ const App = observer(() => {
               <Route path="/goods/one/:goodsId" element={<OneGoods />} />
 {/* Produce */}
               <Route path="/produce/vizitki" element={<Vizitki />} />
-              <Route path="/produce/baget" element={<Baget />} /> 
-              <Route path="/produce/holsty" element={<Holsty />} /> 
-              <Route path="/produce/posterka" element={<Postrka />} /> 
+              <Route path="/produce/baget" element={<Baget />} />
+              <Route path="/produce/holsty" element={<Holsty />} />
+              <Route path="/produce/posterka" element={<Postrka />} />
               <Route path="/produce/banner" element={<Banner />} />
               <Route path="/produce/samokleyka" element={<Samokleyka />} />
-              <Route path="/produce/znachki" element={<Znachki />} />
               <Route path="/produce/falcovka" element={<Falcovka />} />
               <Route path="/produce/threed" element={<ThreeDNit />} />
+              <Route path="/produce/znachki" element={<Znachki />} />
+              <Route path="/produce/flags-tkani" element={<Flag />} />
 {/* Prices */}
               <Route path="/prices/photo" element={<Photo />} />
               <Route path="/prices/:priceId" element={<OnePrice  />} />
               <Route path="/prices/vizits-price" element={<VizitsPrice  />} />
               <Route path="/prices/samokleyka-price" element={<SamokleykaPrice  />} />
               <Route path="/prices/banner-price" element={<BannerPrice  />} />
-              
+
             </Route>
       </Routes>
-      
+
     </BrowserRouter>
 
- 
-      
+
+
     </div>
   );
 });

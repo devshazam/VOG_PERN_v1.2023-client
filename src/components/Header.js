@@ -66,8 +66,11 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/znachki">
                                         Значки
                                     </NavDropdown.Item>
-                             
-                                    
+                                    <NavDropdown.Item href="/produce/flags-tkani">
+                                        Флаговая ткань
+                                    </NavDropdown.Item>
+
+
                                     {/* <NavDropdown.Divider /> */}
                                 </NavDropdown>
 
@@ -108,7 +111,7 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/threed">
                                        3D нить
                                     </NavDropdown.Item>
-                                    
+
                                 </NavDropdown>
 
                                 <NavDropdown
@@ -162,7 +165,7 @@ const Header = () => {
                                                 </NavDropdown.Item>
                                             </Accordion.Body>
                                         </Accordion.Item>
-                                        
+
                                     </Accordion>
 
                                     <Accordion

@@ -22,12 +22,7 @@ const Photo = () => {
                 <h1>Фото на документы</h1>
                 <Row>
                     <Col xs={12} md={6} className="wrap-image">
-                        <Image
-                            src="/file/pic/qazw.jpg"
-                            id="goods-image"
-                            alt="Баннеры"
-                            thumbnail
-                        />
+                        <Image src="/file/pic/qazw.jpg" id="goods-image" alt="Баннеры" thumbnail />
                     </Col>
                     <Col xs={12} lg={6} className="wrap-image">
                          <Table striped bordered hover>
