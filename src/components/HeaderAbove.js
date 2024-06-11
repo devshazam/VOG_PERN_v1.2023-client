@@ -94,13 +94,11 @@ const HeaderAbove = observer(() => {
                             zIndex: 1021,
                         }}
                     >
-                         {/* {user.isAuth ? ( */}
-                        {true ? (
+                         {user.isAuth ? (
                             <>
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
-                                    // title={user.user.email}
-                                    title={'dfdgdg'}
+                                    title={user.user.email}
                                 >
                                     <NavDropdown.Item onClick={changeUserCred}>
                                         Изменить данные
