@@ -18,9 +18,9 @@ const Header = () => {
                     <Navbar.Brand href="/">
                         <img
                             src="/file/logo.png"
-                            width="200"
-                            height="46"
-                            className="d-inline-block align-top"
+                            width="160"
+                            // height="46"
+                            className="d-inline-block align-top mb-1"
                             alt="React Bootstrap logo"
                             id="logo-file"
                         />
@@ -212,8 +212,8 @@ const Header = () => {
                                 <Nav.Link href="/3d-details">
                                 3D печать
                                 </Nav.Link>
-                                <Nav.Link href="/sites">Разработка сайтов</Nav.Link>
-                                <Nav.Link href="/contacts">Контакты</Nav.Link>
+                                <Nav.Link href="https://seo-cy.ru/" target="_blank">Разработка сайтов</Nav.Link>
+                                <Nav.Link href="/#contacts">Контакты</Nav.Link>
                             </Nav>
                             <Navbar.Text>
                                 <span className="label">г. Волгоград</span>

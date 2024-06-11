@@ -83,7 +83,9 @@ const HeaderAbove = observer(() => {
     return (
         <Container>
             <Row>
-                <Col xs={12} lg={4}></Col>
+                <Col xs={12} lg={4} className="d-none d-sm-block">
+                    <p className="mt-1 mb-0" >Расписание работы: Пн - Пт: 9:00 - 19:00</p>
+                </Col>
                 <Col xs={12} lg={{ span: 6, offset: 2 }}>
                     <Nav
                         style={{
