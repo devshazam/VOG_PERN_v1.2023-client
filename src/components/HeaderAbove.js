@@ -84,7 +84,7 @@ const HeaderAbove = observer(() => {
         <Container>
             <Row>
                 <Col xs={12} lg={4} className="d-none d-sm-block">
-                    <p className="mt-1 mb-0" >Расписание работы: Пн - Пт: 9:00 - 19:00</p>
+                    <p className="mt-3 mb-0" style={{ fontSize: 14 }}>Расписание работы: Пн - Пт: 9:00 - 19:00</p>
                 </Col>
                 <Col xs={12} lg={{ span: 6, offset: 2 }}>
                     <Nav
@@ -94,11 +94,13 @@ const HeaderAbove = observer(() => {
                             zIndex: 1021,
                         }}
                     >
-                        {user.isAuth ? (
+                         {/* {user.isAuth ? ( */}
+                        {true ? (
                             <>
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
-                                    title={user.user.email}
+                                    // title={user.user.email}
+                                    title={'dfdgdg'}
                                 >
                                     <NavDropdown.Item onClick={changeUserCred}>
                                         Изменить данные
