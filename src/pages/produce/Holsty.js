@@ -234,6 +234,7 @@ console.log(mainObject)
                                     {errors.number && <p style={{color: 'red'}}>{errors.number}</p>}
                                 </FloatingLabel>
                             </Form.Group>
+                            </Row>
 
                             <SendToBasket
                             value={`${value}`}
@@ -241,7 +242,6 @@ console.log(mainObject)
                             name={name}
                             id={goodsId}
                         />
-                        </Row>
                         <hr></hr>
                         <p>
                             <b>Калькулятор цены работает исходя из следующих цен:</b>

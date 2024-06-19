@@ -23,7 +23,7 @@ export default function Home() {
     return (
         <>
             {/* <Container> */}
-            <div className="mb-5">
+            <div className="mb-5 d-none d-sm-block">
                 <Carousel
                     data-bs-theme="dark"
                     // className="mb-5 d-none d-sm-block"

@@ -9,7 +9,7 @@ import { login } from "../../http/userAPI";
 import isEmail from "validator/lib/isEmail";
 
 const LoginPage = observer(() => {
-    const { helpers, user } = useContext(Context);
+    const { helpers } = useContext(Context);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 

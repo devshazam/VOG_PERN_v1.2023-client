@@ -9,7 +9,6 @@ import { Row, Col } from "react-bootstrap";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { reciveBasketCount, reciveOrderCount } from "../http/deviceAPI";
 import { fetchXslFile } from "../http/goodsAPI";
-import BanButton from "./BanButton";
 
 const HeaderAbove = observer(() => {
     const [basketNumber, setBasketNumber] = useState("0");
@@ -106,62 +105,61 @@ const HeaderAbove = observer(() => {
                                     <NavDropdown.Item onClick={showModalReview}>
                                         Оставить отзыв
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item
+                                    {/* <NavDropdown.Item
                                                 href="/editor"
                                             >
                                                 Редактор картинок
-                                            </NavDropdown.Item>
+                                            </NavDropdown.Item> */}
 
                                     <NavDropdown.Item onClick={logOut}>
                                         Выход
                                     </NavDropdown.Item>
-                                    {user.user.role == "ADMIN" && (
+                                    {user.user.role === "ADMIN" && (
                                         <>
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item
                                                 href="/admin/base-of-orders"
                                                 className="redLink"
                                             >
-                                                База заказов
+                                                Заказы с сайта
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item
+                                            {/* <NavDropdown.Item
                                                 href="/admin/list-of-goods"
                                                 className="redLink"
                                             >
                                                 База товаров
-                                            </NavDropdown.Item>
+                                            </NavDropdown.Item> */}
                                             <NavDropdown.Item
                                                 href="/admin/create"
                                                 className="redLink"
                                             >
                                                 Создать товар
                                             </NavDropdown.Item>
-                                            <NavDropdown.Item
+                                            {/* <NavDropdown.Item
                                                 href="/admin/create-price"
                                                 className="redLink"
                                             >
                                                 Создать прайс
-                                            </NavDropdown.Item>
-                                            <NavDropdown.Item
+                                            </NavDropdown.Item> */}
+                                            {/* <NavDropdown.Item
                                                 href="/admin/create-object"
                                                 className="redLink"
                                             >
                                                 Загрузить декор
-                                            </NavDropdown.Item>
+                                            </NavDropdown.Item> */}
                                             <NavDropdown.Item
                                                 href="/admin/image-editor"
                                                 className="redLink"
                                             >
                                                 Редактор изображений
                                             </NavDropdown.Item>
-                                            <NavDropdown.Divider />
+                                            {/* <NavDropdown.Divider />
                                             <NavDropdown.Item
                                                 onClick={fetchXsl}
                                                 className="fioLink"
                                             >
                                                 Скачать базу товаров (xlsx)
-                                            </NavDropdown.Item>
-                                            <BanButton />
+                                            </NavDropdown.Item> */}
                                         </>
                                     )}
                                 </NavDropdown>

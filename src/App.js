@@ -49,7 +49,8 @@ import OnePrice from './pages/prices/OnePrice';
 import {check} from "./http/userAPI";
 import Holsty from './pages/produce/Holsty.js';
 import ThreeDdetails from './pages/main/ThreeDdetails.js';
-import Sites from './pages/main/Sites.js';
+// import Sites from './pages/main/Sites.js';
+import EditorTest from './pages/main/EditorTest.js';
 import Editor from './pages/main/Editor.js';
 import EditorInsert from './pages/admin-user/EditorInsert.js';
 import EditorAdmin from './pages/admin-user/Editor.js';
@@ -107,8 +108,9 @@ const App = observer(() => {
               {/* <Route path="/image-editor" element={<EditorAdmin  />} /> */}
               <Route index element={<Home />} />
               <Route path="*" element={<Empty />} />
-              <Route path="/sites" element={<Sites />} />
+              {/* <Route path="/sites" element={<Sites />} /> */}
               <Route path="/editor" element={<Editor />} />
+              <Route path="/editor-test" element={<EditorTest />} />
               <Route path="/payinfo" element={<Payinfo />} />
               <Route path="/3d-details" element={<ThreeDdetails />} />
               <Route path="/oferta" element={<Oferta />} />

@@ -19,22 +19,22 @@ function Messanger(){
 				  alt="Чат с менеджером"
 			  /></div>
 		  <div id="messenger-links" className={classTeg}>
-			<a title="phone" href="tel:+79093802519" target="_blank"><img
+			<a title="phone" href="tel:+79093802519" target="_blank" rel='noreferrer'><img
 					src="/file/2/icons8-phone.svg"
 					alt="phone"
 				/>
 			</a>
-			<a title="Telegramm" href="https://t.me/kopiprint34" target="_blank"><img
+			<a title="Telegramm" href="https://t.me/kopiprint34" target="_blank" rel='noreferrer'><img
 					  src="/file/2/telegramm.svg"
 					  alt="Вконтакте"
 				  />
 			</a>
-			<a title="Viber" href="viber://chat?number=%2B+79093802519" target="_blank"><img
+			<a title="Viber" href="viber://chat?number=%2B+79093802519" target="_blank" rel='noreferrer'><img
 					  src="/file/2/icons8-viber.svg"
 					  alt="Viber"
 				  />
 			</a>
-			<a title="Email" href="mailto:kopi34@yandex.ru" target="_blank"><img
+			<a title="Email" href="mailto:kopi34@yandex.ru" target="_blank" rel='noreferrer'><img
 					src="/file/2/icons8-email-96.png"
 					alt="Email"
 				/>
