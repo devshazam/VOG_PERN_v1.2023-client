@@ -93,7 +93,8 @@ const HeaderAbove = observer(() => {
                             zIndex: 1021,
                         }}
                     >
-                         {user.isAuth ? (
+                         {/* {user.isAuth ? ( */}
+                         {true ? (
                             <>
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
