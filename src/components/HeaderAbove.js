@@ -97,7 +97,15 @@ const HeaderAbove = observer(() => {
                             <>
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
-                                    title={user.user.email}
+                                    title={
+                                        <><p  className="d-none d-sm-inline">{user.user.email}</p>
+                                        <Image
+                                            src="/icons8-user-50.png"
+                                            className="bascket_img d-sm-none mt-0"
+                                            rounded
+                                            alt="Заказы"
+                                            title="Заказы"
+                                        /></>}
                                 >
                                     <NavDropdown.Item onClick={changeUserCred}>
                                         Изменить данные

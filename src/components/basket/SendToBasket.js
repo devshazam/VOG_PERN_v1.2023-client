@@ -43,7 +43,7 @@ const SendToBasket = observer((props) => {
             alert("Длинна описания должна быть меннее 1000 символов!");
             return;
         }
-        if (props.value === "0" || isNaN(props.value)) {
+        if (props.value == "0" || isNaN(props.value)) {
             alert("Не сформирована цена!");
             return;
         }
@@ -114,11 +114,11 @@ const SendToBasket = observer((props) => {
                 >
                     <FloatingLabel
                         controlId="floatingDescriptionItem"
-                        label="Описание (cсылки на файлы, дополнительные условия):"
+                        label="Описание (условия, ссылки):"
                     >
                         <Form.Control
                             type="text"
-                            placeholder="Ссылки на файлы, дополнительные условия"
+                            placeholder="Описание (условия, ссылки):"
                             onChange={(e) => setDescriptionText(e.target.value)}
                             value={descriptionText}
                         />
