@@ -348,11 +348,101 @@ export default function Home() {
 
             <div id="contacts">
                 <h3 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Контакты</h3>
-           
+                <Row className="mb-5">
+                    <Col lg={8} className="mb-3 d-none d-lg-block" >
+                        <Image
+                            src="/23642.jpg"
+                            thumbnail
+                        />
+                    </Col>
+                    <Col xs={12} lg={4} className="mb-3" >
+                    <div style={{ borderRadius: "5px", padding: "15px", border: "1px solid rgb(214 214 214)", height: "100%" }}>
+                        <div className="mb-3" style={{ textAlign: "center"}}>
+                        <h4 className="heading">Номера:</h4>
+                        <ul  style={{ listStyle: "none"}}>
+							<li>Тел: <a href='tel:89093802519'>+7(909) 380-25-19</a> (Петропавловская 87)</li>
+							<li>Тел: <a href='tel:+78442599161'>+7 (8442) 59-91-61</a> (Казахская 25)</li>
+							<li>Email: <a  href="mailto:<a href='mailto: info@kopi34.ru">kopi34@yandex.ru</a></li>
+                        </ul>
+                        <a href="https://t.me/kopiprint34" >
+                            <Image
+                            src="/icons8-telegram-app-48.png"
+                            thumbnail
+                            style={{ marginRight: "5px"}}
+                            />
+                        </a>
+                        <a href="tel:+79093802519">
+                            <Image
+                            src="/icons8-telephone-48.png"
+                            style={{ marginRight: "5px"}}
+                            thumbnail 
+                            />
+                        </a>
+                        <a href="viber://chat?number=%2B+79093802519">
+                            <Image
+                            src="/icons8-viber-48.png"
+                            thumbnail
+                            style={{ marginRight: "5px"}}
+                            />
+                        </a>
+                        <a href="mailto:kopi34@yandex.ru">
+                            <Image
+                            src="/icons8-email-48.png"
+                            thumbnail
+                            />
+                        </a>
+                        </div>
+                        <div className="mb-3"  style={{ textAlign: "center"}}>
+                    <h4 className="heading">Адреса:</h4>
+                    
+                        <ul style={{ listStyle: "none"}}>
+                            <li className="hr">ул. Петропавловская 87 <a href="https://3.redirect.appmetrica.yandex.com/route?
+                    &end-lat=48.513796
+                    &end-lon=44.530127
+                    &tariffClass=econom
+                    &ref=kopi34ru
+                    &appmetrica_tracking_id=1178268795219780156
+                    " target="_blank"  rel="noreferrer">
+                            <Image style={{ width: "28px", height: "28px"}}
+                            src="/Logo_yandex_taxi_app.png"
+                            // thumbnail
+                            />
+                        </a></li>
+                            <li className="hr">ул. Казахская 25 <a href="https://3.redirect.appmetrica.yandex.com/route?
+                    &end-lat=48.675475
+                    &end-lon=44.445829
+                    &tariffClass=econom
+                    &ref=kopi34ru
+                    &appmetrica_tracking_id=1178268795219780156
+                    " target="_blank"  rel="noreferrer">
+                            <Image style={{ width: "28px", height: "28px"}}
+                            src="/Logo_yandex_taxi_app.png"
+                            // thumbnail
+                            />
+                        </a></li>
+                            <li className="hr">ул. 2-я Динамовская д. 6 (производство) <a href="https://3.redirect.appmetrica.yandex.com/route?
+                    &end-lat=48.516081
+                    &end-lon=44.577396
+                    &tariffClass=econom
+                    &ref=kopi34ru
+                    &appmetrica_tracking_id=1178268795219780156
+                    " target="_blank"  rel="noreferrer">
+                            <Image style={{ width: "28px", height: "28px"}}
+                            src="/Logo_yandex_taxi_app.png"
+                            // thumbnail
+                            />
+                        </a></li>
+                        </ul>
+
+                        </div>
+                    </div>
+
+                    </Col>
+                </Row>
                  {/* TODO - карта яндекс */}
-                 <div className="contacts__map rounded" id="map" style={{ overflow: "hidden"}}>
+                 {/* <div className="contacts__map rounded" id="map" style={{ overflow: "hidden"}}>
                   <iframe id="iframe-map" src="https://yandex.ru/map-widget/v1/?um=constructor%3A060b3485f21dfcc0665d3b1ab5142c50b7785234b63ae9fc37474239f0203294&amp;source=constructor" width="100%" height="400" frameBorder="0"></iframe>
-                </div>
+                </div> */}
             </div>
 
 
