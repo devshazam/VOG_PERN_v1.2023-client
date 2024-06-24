@@ -41,7 +41,7 @@ export default function Home() {
                         />
                         <Carousel.Caption>
                             <h3 ><mark style={{ backgroundColor: "white", color: "black" }}>Скидка* 10% на заказы с сайта!</mark></h3>
-                            <p > <mark style={{ backgroundColor: "black", color: "white" }}>* скидка действует бессрочно!</mark></p>
+                            <p > <mark style={{ backgroundColor: "black", color: "white" }}>* действует до конца месяца!</mark></p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     
@@ -72,115 +72,103 @@ export default function Home() {
             <div id="fast-choice">
                 <h4 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Популярные услуги</h4>
                 <Row className="mb-5">
-                    <Col xs={6} lg={2} >
+                    <Col xs={6} lg={2} className="mb-3" >
                         <div className="wrapper-mob" >
-                            <div className="wr-mob-img" >
-                                <a href="/produce/banner">
-                                    <Image
-                                        src="/file/home/banner.jpg"
-                                        // thumbnail
-                                        className="img-mob"
-                                    />
-                                </a>
-                            </div>
-                            <div className="wr-mob-text" >
-                                <a href="/produce/banner">
-                                    <p>Калькулятор баннеров</p>
-                                </a>
-                            </div>
+                            <a href="/produce/banner">
+                                <div className="wr-mob-img" >
+                                        <Image
+                                            src="/file/home/banner.jpg"
+                                            // thumbnail
+                                            className="img-mob"
+                                        />
+                                </div>
+                                <div className="wr-mob-text" >
+                                        <p>Заказать баннер</p>
+                                </div>
+                            </a>
                         </div>
                     </Col>
-                    <Col xs={6} lg={2} >
+                    <Col xs={6} lg={2} className="mb-3" >
                         <div className="wrapper-mob" >
-                            <div className="wr-mob-img" >
                                 <a href="/produce/vizitki">
+                            <div className="wr-mob-img" >
                                     <Image
                                         src="/file/home/vizitki.jpg"
                                         // thumbnail
                                         className="img-mob"
                                     />
-                                </a>
                             </div>
                             <div className="wr-mob-text" >
-                                <a href="/produce/banner">
-                                    <p>Калькулятор визиток</p>
-                                </a>
+                                    <p>Заказать визитки</p>
                             </div>
+                                </a>
                         </div>
                     </Col>
 
 
 
-                    <Col xs={6} lg={2} >
+                    <Col xs={6} lg={2} className="mb-3" >
                         <div className="wrapper-mob" >
-                            <div className="wr-mob-img" >
                                 <a href="/produce/samokleyka">
+                            <div className="wr-mob-img" >
                                     <Image
                                         src="/file/home/samokleyky.png"
                                         // thumbnail
                                         className="img-mob"
                                     />
-                                </a>
                             </div>
                             <div className="wr-mob-text" >
-                                <a href="/produce/banner">
-                                    <p>Калькулятор самоклеек</p>
-                                </a>
+                                    <p>Заказать самоклейки</p>
                             </div>
+                                </a>
                         </div>
                     </Col>
-                    <Col xs={6} lg={2} >
+                    <Col xs={6} lg={2} className="mb-3" >
                         <div className="wrapper-mob" >
-                            <div className="wr-mob-img" >
                                 <a href="/3d-details">
+                            <div className="wr-mob-img" >
                                     <Image
                                         src="/file/home/3d.jpg"
                                         // thumbnail
                                         className="img-mob"
                                     />
-                                </a>
                             </div>
                             <div className="wr-mob-text" >
-                                <a href="/produce/banner">
                                     <p>Печать 3D деталей</p>
-                                </a>
                             </div>
+                                </a>
                         </div>
                     </Col>
-                    <Col xs={6} lg={2} >
+                    <Col xs={6} lg={2} className="mb-3" >
                         <div className="wrapper-mob" >
-                            <div className="wr-mob-img" >
                                 <a href="/produce/holsty">
+                            <div className="wr-mob-img" >
                                     <Image
                                         src="/file/holst.jpg"
                                         // thumbnail
                                         className="img-mob"
                                     />
-                                </a>
                             </div>
                             <div className="wr-mob-text" >
-                                <a href="/produce/banner">
-                                    <p>Калькулятор холстов</p>
-                                </a>
+                                    <p>Заказать холсты</p>
                             </div>
+                                </a>
                         </div>
                     </Col>
-                    <Col xs={6} lg={2} >
+                    <Col xs={6} lg={2} className="mb-3" >
                         <div className="wrapper-mob" >
-                            <div className="wr-mob-img" >
                                 <a href="/produce/posterka">
+                            <div className="wr-mob-img" >
                                     <Image
                                         src="/file/pic/posterka.jpg"
                                         // thumbnail
                                         className="img-mob"
                                     />
-                                </a>
                             </div>
                             <div className="wr-mob-text" >
-                                <a href="/produce/banner">
-                                    <p>Расчитать значки</p>
-                                </a>
+                                    <p>Заказать постерку</p>
                             </div>
+                                </a>
                         </div>
                     </Col>
 
