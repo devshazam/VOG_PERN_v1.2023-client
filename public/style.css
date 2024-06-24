@@ -458,3 +458,29 @@ margin-right: 15px;
     }
     
         }
+
+.wrapper-mob{
+    /* background: rgb(209, 209, 209); Цвет фона */
+    border-radius: 5px;
+    border: 1px solid rgb(214 214 214);
+    box-shadow: 0 0 10px rgba(141, 141, 141, 0.5); /* Параметры тени */
+    padding: 5px;
+}
+.wrapper-mob:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+}
+.wr-mob-text p{
+   color: #000;
+}
+.wr-mob-text a{
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    
+}
+.wrapper-col-img{
+    box-shadow: 0 0 10px rgba(141, 141, 141, 0.5); /* Параметры тени */
+}
+.wrapper-col-img:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+}

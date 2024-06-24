@@ -23,35 +23,44 @@ export default function Home() {
     return (
         <>
             {/* <Container> */}
-            <div className="mb-5 d-none d-sm-block">
+            <div className="mb-5">
                 <Carousel
                     data-bs-theme="dark"
                     // className="mb-5 d-none d-sm-block"
                 >
                     <Carousel.Item>
-                        <a href="/produce/vizitki">
-                            <img
-                                className="d-block w-100 rounded"
-                                src="/file/main-banner/banner-1.jpg"
-                                alt="Second slide"
-                            />
-                        </a>
+                        <img 
+                            className="d-block w-100 d-sm-none"
+                            src="/file/main-banner/banner-1-mob.jpg"
+                            alt="Second slide"
+                        />
+                        <img 
+                            className="d-none d-sm-block w-100"
+                            src="/file/main-banner/banner-1.jpg"
+                            alt="Second slide"
+                        />
                         <Carousel.Caption>
-                            <h3 className="d-group"><mark style={{ backgroundColor: "white", color: "black" }}>Полиграфия в Волгограде!</mark></h3>
-                            <p className="d-group"><mark style={{ backgroundColor: "white", color: "black" }}>Весь спектр полиграфических услуг по низким ценам!<br></br>Приходите и попробуйте сами.</mark></p>
+                            <h3 ><mark style={{ backgroundColor: "white", color: "black" }}>Скидка* 10% на заказы с сайта!</mark></h3>
+                            <p > <mark style={{ backgroundColor: "black", color: "white" }}>* скидка действует бессрочно!</mark></p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     
                     <Carousel.Item>
                         <a href="/3d-details">
-                        <img
-                            className="d-block w-100 rounded"
+                        <img 
+                            className="d-block w-100 d-sm-none"
+                            src="/file/main-banner/banner-2-mob.jpg"
+                            alt="Second slide"
+                        />
+                        <img 
+                            className="d-none d-sm-block w-100"
                             src="/file/main-banner/banner-2.jpg"
-                            alt="First slide"
-                        /></a>
+                            alt="Second slide"
+                        />
+                        </a>
                         <Carousel.Caption style={{ color: "white" }}>
-                            <h3 className="d-group"><mark style={{ backgroundColor: "black", color: "white" }}>3D печать в Волгограде!</mark></h3>
-                            <p className="d-group"> <mark style={{ backgroundColor: "black", color: "white" }}>На 3D принтере можно напечататьлюбую деталь, даже самую сложную!<br></br>Приходите и попробуйте!</mark></p>
+                            <h3 ><mark style={{ backgroundColor: "black", color: "white" }}>3D печать в Волгограде!</mark></h3>
+                            <p > <mark style={{ backgroundColor: "white", color: "black" }}>Печатаем все!</mark></p>
                         </Carousel.Caption>
                     </Carousel.Item>
 
@@ -61,68 +70,126 @@ export default function Home() {
 
 
             <div id="fast-choice">
-                <h3 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Популярные услуги</h3>
+                <h4 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Популярные услуги</h4>
                 <Row className="mb-5">
                     <Col xs={6} lg={2} >
-                        <a href="/produce/banner">
-                            <Image
-                                src="/file/home/banner.jpg"
-                                thumbnail
-                                className="img-mob"
-                            />
-                        </a>
+                        <div className="wrapper-mob" >
+                            <div className="wr-mob-img" >
+                                <a href="/produce/banner">
+                                    <Image
+                                        src="/file/home/banner.jpg"
+                                        // thumbnail
+                                        className="img-mob"
+                                    />
+                                </a>
+                            </div>
+                            <div className="wr-mob-text" >
+                                <a href="/produce/banner">
+                                    <p>Калькулятор баннеров</p>
+                                </a>
+                            </div>
+                        </div>
                     </Col>
-                    
-                    <Col xs={6} lg={2}  className="mb-3" >
-                        <a href="/produce/samokleyka">
-                            <Image
-                                src="/file/home/samokleyky.png"
-                                thumbnail
-                                className="img-mob"
-                            />
-                        </a>
+                    <Col xs={6} lg={2} >
+                        <div className="wrapper-mob" >
+                            <div className="wr-mob-img" >
+                                <a href="/produce/vizitki">
+                                    <Image
+                                        src="/file/home/vizitki.jpg"
+                                        // thumbnail
+                                        className="img-mob"
+                                    />
+                                </a>
+                            </div>
+                            <div className="wr-mob-text" >
+                                <a href="/produce/banner">
+                                    <p>Калькулятор визиток</p>
+                                </a>
+                            </div>
+                        </div>
                     </Col>
-                    <Col xs={6} lg={2} className="mb-3" >
-                        <a href="/3d-details">
-                            <Image
-                                src="/file/home/3d.jpg"
-                                thumbnail
-                                className="img-mob"
-                            />
-                        </a>
+
+
+
+                    <Col xs={6} lg={2} >
+                        <div className="wrapper-mob" >
+                            <div className="wr-mob-img" >
+                                <a href="/produce/samokleyka">
+                                    <Image
+                                        src="/file/home/samokleyky.png"
+                                        // thumbnail
+                                        className="img-mob"
+                                    />
+                                </a>
+                            </div>
+                            <div className="wr-mob-text" >
+                                <a href="/produce/banner">
+                                    <p>Калькулятор самоклеек</p>
+                                </a>
+                            </div>
+                        </div>
                     </Col>
-                    <Col xs={6} lg={2} className="mb-3" >
-                        <a href="/produce/vizitki">
-                            <Image
-                                src="/file/home/vizitki.jpg"
-                                thumbnail
-                                className="img-mob"
-                            />
-                        </a>
+                    <Col xs={6} lg={2} >
+                        <div className="wrapper-mob" >
+                            <div className="wr-mob-img" >
+                                <a href="/3d-details">
+                                    <Image
+                                        src="/file/home/3d.jpg"
+                                        // thumbnail
+                                        className="img-mob"
+                                    />
+                                </a>
+                            </div>
+                            <div className="wr-mob-text" >
+                                <a href="/produce/banner">
+                                    <p>Печать 3D деталей</p>
+                                </a>
+                            </div>
+                        </div>
                     </Col>
-                    <Col xs={6} lg={2} className="mb-3" >
-                        <a href="/produce/holsty">
-                            <Image
-                                src="/file/holst.jpg"
-                                thumbnail
-                                className="img-mob"
-                            />
-                        </a>
+                    <Col xs={6} lg={2} >
+                        <div className="wrapper-mob" >
+                            <div className="wr-mob-img" >
+                                <a href="/produce/holsty">
+                                    <Image
+                                        src="/file/holst.jpg"
+                                        // thumbnail
+                                        className="img-mob"
+                                    />
+                                </a>
+                            </div>
+                            <div className="wr-mob-text" >
+                                <a href="/produce/banner">
+                                    <p>Калькулятор холстов</p>
+                                </a>
+                            </div>
+                        </div>
                     </Col>
-                    <Col xs={6} lg={2} className="mb-3" >
-                        <a href="/produce/znachki">
-                            <Image
-                                src="/file/znachki/1.jpg"
-                                thumbnail
-                                className="img-mob"
-                            />
-                        </a>
+                    <Col xs={6} lg={2} >
+                        <div className="wrapper-mob" >
+                            <div className="wr-mob-img" >
+                                <a href="/produce/posterka">
+                                    <Image
+                                        src="/file/pic/posterka.jpg"
+                                        // thumbnail
+                                        className="img-mob"
+                                    />
+                                </a>
+                            </div>
+                            <div className="wr-mob-text" >
+                                <a href="/produce/banner">
+                                    <p>Расчитать значки</p>
+                                </a>
+                            </div>
+                        </div>
                     </Col>
+
+
                 </Row>
                 </div>
                
             <div id="feedback">
-                <h3 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Отзывы</h3>
+                <h4 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Отзывы</h4>
                 <Row className="mb-5">
                     <Col xs={6} lg={3}  className="mb-3" >
                     <Card>
@@ -243,13 +310,13 @@ export default function Home() {
 
 
             <div id="portfolio">
-                <h3 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Портфолио</h3>
+                <h4 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Портфолио</h4>
                 <Row className="mb-5">
                     <Col xs={6} lg={2} className="mb-3" >
                         <Image
                             src="/file/portfolio/1.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/1.jpg")}
                         />
                     </Col>
@@ -257,7 +324,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/2.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/2.jpg")}
                         />
                     </Col>
@@ -265,7 +332,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/3.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/3.jpg")}
                         />
                     </Col>
@@ -273,7 +340,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/4.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/4.jpg")}
                         />
                     </Col>
@@ -281,7 +348,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/5.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/5.jpg")}
                         />
                     </Col>
@@ -289,7 +356,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/6.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/6.jpg")}
                         />
                     </Col>
@@ -297,7 +364,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/7.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/7.jpg")}
                         />
                     </Col>
@@ -305,7 +372,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/8.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/8.jpg")}
                         />
                     </Col>
@@ -313,7 +380,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/9.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/9.jpg")}
                         />
                     </Col>
@@ -321,7 +388,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/10.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/10.jpg")}
                         />
                     </Col>
@@ -329,7 +396,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/11.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/11.jpg")}
                         />
                     </Col>
@@ -337,7 +404,7 @@ export default function Home() {
                         <Image
                             src="/file/portfolio/12.jpg"
                             thumbnail
-                            className="img-mob"
+                            className="img-mob wrapper-col-img"
                             onClick={() => handleShows("/file/portfolio/12.jpg")}
                         />
                     </Col>
@@ -347,7 +414,7 @@ export default function Home() {
             </div>
 
             <div id="contacts">
-                <h3 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Контакты</h3>
+                <h4 className="mb-3" style={{ borderBottom: "6px solid #63b03e", display: "inline-block" }}>Контакты</h4>
                 <Row className="mb-5">
                     <Col lg={8} className="mb-3 d-none d-lg-block" >
                         <Image
