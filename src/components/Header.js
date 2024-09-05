@@ -67,6 +67,9 @@ const Header = () => {
                                     <NavDropdown.Item href="/produce/flags-tkani">
                                         Флаговая ткань
                                     </NavDropdown.Item>
+                                    <NavDropdown.Item href="/produce/plastick">
+                                        Пластик
+                                    </NavDropdown.Item>
 
 
                                     {/* <NavDropdown.Divider /> */}

@@ -48,6 +48,7 @@ import OnePrice from './pages/prices/OnePrice';
 
 import {check} from "./http/userAPI";
 import Holsty from './pages/produce/Holsty.js';
+import Plastick from './pages/produce/Plastick.js';
 import ThreeDdetails from './pages/main/ThreeDdetails.js';
 // import Sites from './pages/main/Sites.js';
 import EditorTest from './pages/main/EditorTest.js';
@@ -130,6 +131,7 @@ const App = observer(() => {
               <Route path="/produce/threed" element={<ThreeDNit />} />
               <Route path="/produce/znachki" element={<Znachki />} />
               <Route path="/produce/flags-tkani" element={<Flag />} />
+              <Route path="/produce/plastick" element={<Plastick />} />
 {/* Prices */}
               <Route path="/prices/photo" element={<Photo />} />
               <Route path="/prices/:priceId" element={<OnePrice  />} />
