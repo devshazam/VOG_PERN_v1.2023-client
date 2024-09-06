@@ -18,6 +18,7 @@ import _ from "lodash";
 const name = "Plastick";
 const goodsId = "23";
 const arrOfValues = [250, 300, 350, 400, 600, 750, 950, 1000, 1350, 1350, 1500, 1750, 1900, 2100, 2450, 2800, 2850, 3150, 3500];
+const arrOfSize = ['100x150мм', '150x200мм', '300x100мм', '210x300мм', '300x300мм', '300x400мм', '400x500мм', '400x600мм', '500x700мм', '600x600мм', '600x700мм', '600x800мм', '600x900мм', '600x1000мм', '700x1000мм', '800x1000мм', '900x900мм', '900x1000мм', '1000x1000мм', 'Свой размер от 1000 ММ'];
 const arrSquer = [1, 3, 5, 10, 20, 50, 100];
 const arrArrea = [3500, 3300, 3000, 2900, 2800, 2500];
 
@@ -55,30 +56,27 @@ console.log(mainObject, value)
         let count1;
         if(mainObject.cost !== 19){
                     count1 = (+mainObject.number * arrOfValues[mainObject.cost])
-        }else{
-
-            let square = (mainObject.width * mainObject.height / 1000000);
-
-            if(1 < square <= 3){
+                }else{
+                    
+                    let square = (mainObject.width * mainObject.height / 1000000);
+                    
+            if(1 <= square && square <= 3){
                 count1 = 3500 * square * mainObject.number;
-            }
-            if(3 < square <= 5){
+            }else if(3 <= square && square <= 5){
                 count1 = 3300 * square * mainObject.number;
-            }
-            if(5 < square <= 10){
+            }else if(5 <= square && square <= 10){
                 count1 = 3000 * square * mainObject.number;
-            }
-            if(10 < square <= 20){
+            }else if(10 <= square && square <= 20){
                 count1 = 2900 * square * mainObject.number;
-            }
-            if(20 < square <= 50){
+            }else if(20 <= square && square <= 50){
                 count1 = 2800 * square * mainObject.number;
-            }
-            if(50 < square <= 100){
+            }else if(50 < square && square <= 100){
                 count1 = 2500 * square * mainObject.number;
+                console.log(square, mainObject.number, count1, 12)
             }
+            console.log(count1, 13)
         }
-
+        
 
 
         if (count1 <= 200) {
@@ -96,7 +94,7 @@ console.log(mainObject, value)
                 setSale(5)
             }
         }
-        setDescription(`Наименование: ${name}; Цена: ${value} рублей;  Размер: ${arrOfValues[mainObject.cost]}; Ширина: ${mainObject.width} мм; Высота: ${mainObject.height} мм; Кол-во: ${mainObject.number};`
+        setDescription(`Наименование: ${name}; Цена: ${value} рублей;  Размер: ${arrOfSize[mainObject.cost]}; Ширина: ${mainObject.width} мм; Высота: ${mainObject.height} мм; Кол-во: ${mainObject.number};`
         );
     }, [JSON.stringify(mainObject)]); // <- add the count variable here
 
