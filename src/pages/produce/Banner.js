@@ -27,14 +27,16 @@ const Banner = observer(() => {
     const [coastOfluvers, setCoastOfluvers] = useState(0);
     const [coastOfGlue, setCoastOfGlue] = useState(0);
     const [perfo, setPerfo] = useState('0'); // перфорация
+    const [luversNum, setLuversNum] = useState('0'); // люверсы
 
     const name = "Баннер";
     const goodsId = "0";
 
     const glueArray = ["без проклейки", "с проклейкой"];
-    const luversStepArray = ["0", "200", "300", "400", "500"]; //
+    const luversStepArray = ["0", "200", "300", "400", "500", "люверсы в штуках:"]; //
     const densityArray = ["400-440", "500"];
-    // console.log(coastOfBanner)
+    console.log(description)
+    console.log(luversNum)
 
     useEffect(() => {
         fetchPriceOfProduce({ jsonId: 4 })
@@ -59,14 +61,15 @@ const Banner = observer(() => {
         if (!width || !height) {
             return;
         }
-        if (!width || !height || !number || !perfo) {
+        if (!width || !height || !number || !perfo || !luversNum) {
             alert("Не все поля заполнены!");
             return;
         }
         if (
             width.split("").length > 200 ||
             height.split("").length > 200 ||
-            number.split("").length > 200
+            number.split("").length > 200 ||
+            luversNum.split("").length > 200
         ) {
             alert("Не более 200 симолов!");
             return;
@@ -75,7 +78,9 @@ const Banner = observer(() => {
             !Number.isInteger(+width) ||
             !Number.isInteger(+height) ||
             !Number.isInteger(+number) ||
-            !Number.isInteger(+perfo)
+            !Number.isInteger(+perfo) ||
+            !Number.isInteger(+luversNum) 
+            
         ) {
             alert("Введите только целое число!");
             return;
@@ -101,12 +106,19 @@ const Banner = observer(() => {
 
         let midluversStep = 0; // стоимость
         if (luversStep !== "0") {
-            midluversStep =
-                Math.round(
-                    ((+width + +height) * +number * 2) /
-                        +luversStepArray[+luversStep]
-                ) * coastOfluvers; /// цена люверса
+            if(luversStep === "5"){
+                midluversStep = luversNum * coastOfluvers;
+            }else{
+                midluversStep =
+                    Math.round(
+                        ((+width + +height) * +number * 2) /
+                            +luversStepArray[+luversStep]
+                    ) * coastOfluvers; /// цена люверса
+            }
         }
+
+
+
         let midglue = 0; // проклейка
         if (glue === "1") {
             midglue = Math.ceil(
@@ -130,11 +142,9 @@ const Banner = observer(() => {
         setDescription(
             `Товар: ${name}; Цена: ${value} рублей; Ширина: ${width} мм; Высота: ${height} мм; Плотность: ${
                 densityArray[+density]
-            } грамм; Шаг люверсов: ${
-                luversStepArray[+luversStep]
-            } мм; Проклейка: ${glueArray[+glue]}; Перфорация: ${perfo} шт; Кол-во: ${number} шт;`
+            } грамм; ${luversStep !== '5'? 'Шаг люверсов: ' + luversStepArray[+luversStep]+ ' мм': 'Кол-во люверсов: ' + luversNum + ' шт'}; Проклейка: ${glueArray[+glue]}; Перфорация: ${perfo} шт; Кол-во: ${number} шт;`
         );
-    }, [width, density, height, luversStep, number, glue, value, perfo]); // <- add the count variable here
+    }, [width, density, height, luversStep, number, glue, value, perfo, luversNum]); // <- add the count variable here
 
     return (
         <>
@@ -227,9 +237,31 @@ const Banner = observer(() => {
                                         <option value="4">
                                             500 миллиметров
                                         </option>
+                                        <option value="5">
+                                        Люверсы в Штуках
+                                        </option>
                                     </Form.Select>
                                 </FloatingLabel>
                             </Form.Group>
+
+                            { luversStep === '5' && 
+
+                                <Form.Group as={Col} md="6" className="mb-3">
+                                <FloatingLabel
+                                    controlId="floatingWidth"
+                                    label="Кол-во Люверсов:"
+                                >
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Кол-во Люверсов:"
+                                        onChange={(e) =>
+                                            setLuversNum(e.target.value)
+                                        }
+                                        value={luversNum}
+                                    />
+                                </FloatingLabel>
+                                </Form.Group>
+                            }
 
                             <Form.Group as={Col} md="6" className="mb-3">
                                 <FloatingLabel
