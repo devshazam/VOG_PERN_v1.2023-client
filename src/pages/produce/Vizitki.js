@@ -48,7 +48,7 @@ const Vizitki = observer(() => {
     }, []);
 
     useEffect(() => {
-        if (vizit.length == 0) return;
+        if (vizit.length === 0) return;
         setValue(vizit[+side][+vid][+lam][+num]);
         setDescription(
             `Наименование: ${name}; Цена: ${value} рублей; Кол-во сторон печати: ${

@@ -168,8 +168,7 @@ const Vizitki = observer(() => {
                                         onChange={(e) =>
                                             setColor(e.target.value)
                                         }
-                                        value={color}
-                                    >
+                                        value={color} >
                                         {Object.values(typeBaget[+type])[
                                             +subType
                                         ].map((val, ind) => {
